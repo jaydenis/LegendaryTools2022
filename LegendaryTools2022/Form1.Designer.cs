@@ -147,6 +147,7 @@ namespace LegendaryTools2022
             // toolStrip2
             // 
             this.toolStrip2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBoxCardTypes,
             this.toolStripButton1});
@@ -173,7 +174,7 @@ namespace LegendaryTools2022
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::LegendaryTools2022.Properties.Resources.attack;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);

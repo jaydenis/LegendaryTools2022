@@ -40,7 +40,7 @@ namespace LegendaryTools2022.Controls
             this.btnKeyword = new System.Windows.Forms.Button();
             this.groupBoxTeam = new System.Windows.Forms.GroupBox();
             this.cmbTeam = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
-            this.imageListTeams = new System.Windows.Forms.ImageList(this.components);
+            this.imageListTeamsFull = new System.Windows.Forms.ImageList(this.components);
             this.btnUpdateCard = new System.Windows.Forms.Button();
             this.cmbAttributesOther = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
             this.imageListAttributes = new System.Windows.Forms.ImageList(this.components);
@@ -92,13 +92,14 @@ namespace LegendaryTools2022.Controls
             this.kryptonGalleryRange1 = new ComponentFactory.Krypton.Ribbon.KryptonGalleryRange();
             this.kryptonGalleryRange2 = new ComponentFactory.Krypton.Ribbon.KryptonGalleryRange();
             this.kryptonGalleryRange3 = new ComponentFactory.Krypton.Ribbon.KryptonGalleryRange();
+            this.imageListTeams = new System.Windows.Forms.ImageList(this.components);
             this.txtCardSubName = new System.Windows.Forms.TextBox();
             this.txtCardName = new System.Windows.Forms.TextBox();
             this.imageListPowersFullSize = new System.Windows.Forms.ImageList(this.components);
             this.kryptonContextMenuItems1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems();
             this.kryptonContextMenuItem1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem();
             this.imageListAttributesOther = new System.Windows.Forms.ImageList(this.components);
-            this.imageListTeamsFull = new System.Windows.Forms.ImageList(this.components);
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1.Panel1)).BeginInit();
             this.kryptonSplitContainer1.Panel1.SuspendLayout();
@@ -125,7 +126,7 @@ namespace LegendaryTools2022.Controls
             this.kryptonSplitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.kryptonSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonSplitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.kryptonSplitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.kryptonSplitContainer1.Location = new System.Drawing.Point(0, 25);
             this.kryptonSplitContainer1.Name = "kryptonSplitContainer1";
             // 
             // kryptonSplitContainer1.Panel1
@@ -145,7 +146,6 @@ namespace LegendaryTools2022.Controls
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.cmbAttributesPower);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.btnExport);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.numNumberInDeck);
-            this.kryptonSplitContainer1.Panel2.Controls.Add(this.toolStrip1);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.label1);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.lblArtworkPath);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.btnBrowseImage);
@@ -162,7 +162,7 @@ namespace LegendaryTools2022.Controls
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.txtCardSubName);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.txtCardName);
             this.kryptonSplitContainer1.Panel2.PanelBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlAlternate;
-            this.kryptonSplitContainer1.Size = new System.Drawing.Size(1169, 786);
+            this.kryptonSplitContainer1.Size = new System.Drawing.Size(1169, 761);
             this.kryptonSplitContainer1.SplitterDistance = 468;
             this.kryptonSplitContainer1.TabIndex = 0;
             // 
@@ -175,7 +175,7 @@ namespace LegendaryTools2022.Controls
             this.kryptonPanel1.MinimumSize = new System.Drawing.Size(423, 451);
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.PanelBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlAlternate;
-            this.kryptonPanel1.Size = new System.Drawing.Size(468, 786);
+            this.kryptonPanel1.Size = new System.Drawing.Size(468, 761);
             this.kryptonPanel1.TabIndex = 1;
             // 
             // btnResetCard
@@ -190,7 +190,7 @@ namespace LegendaryTools2022.Controls
             // 
             // pictureBoxTemplate
             // 
-            this.pictureBoxTemplate.Location = new System.Drawing.Point(22, 51);
+            this.pictureBoxTemplate.Location = new System.Drawing.Point(33, 13);
             this.pictureBoxTemplate.MaximumSize = new System.Drawing.Size(504, 700);
             this.pictureBoxTemplate.MinimumSize = new System.Drawing.Size(304, 400);
             this.pictureBoxTemplate.Name = "pictureBoxTemplate";
@@ -201,7 +201,7 @@ namespace LegendaryTools2022.Controls
             // 
             // btnGap
             // 
-            this.btnGap.Location = new System.Drawing.Point(340, 446);
+            this.btnGap.Location = new System.Drawing.Point(336, 395);
             this.btnGap.Name = "btnGap";
             this.btnGap.Size = new System.Drawing.Size(58, 28);
             this.btnGap.TabIndex = 74;
@@ -211,7 +211,7 @@ namespace LegendaryTools2022.Controls
             // 
             // btnRegular
             // 
-            this.btnRegular.Location = new System.Drawing.Point(276, 446);
+            this.btnRegular.Location = new System.Drawing.Point(272, 395);
             this.btnRegular.Name = "btnRegular";
             this.btnRegular.Size = new System.Drawing.Size(58, 28);
             this.btnRegular.TabIndex = 74;
@@ -222,7 +222,7 @@ namespace LegendaryTools2022.Controls
             // btnKeyword
             // 
             this.btnKeyword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKeyword.Location = new System.Drawing.Point(203, 446);
+            this.btnKeyword.Location = new System.Drawing.Point(199, 395);
             this.btnKeyword.Name = "btnKeyword";
             this.btnKeyword.Size = new System.Drawing.Size(67, 28);
             this.btnKeyword.TabIndex = 74;
@@ -235,7 +235,7 @@ namespace LegendaryTools2022.Controls
             this.groupBoxTeam.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxTeam.Controls.Add(this.cmbTeam);
             this.groupBoxTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxTeam.Location = new System.Drawing.Point(16, 174);
+            this.groupBoxTeam.Location = new System.Drawing.Point(12, 123);
             this.groupBoxTeam.Name = "groupBoxTeam";
             this.groupBoxTeam.Size = new System.Drawing.Size(443, 66);
             this.groupBoxTeam.TabIndex = 73;
@@ -252,37 +252,34 @@ namespace LegendaryTools2022.Controls
             this.cmbTeam.TabIndex = 54;
             this.cmbTeam.SelectedIndexChanged += new System.EventHandler(this.cmbTeam_SelectedIndexChanged);
             // 
-            // imageListTeams
+            // imageListTeamsFull
             // 
-            this.imageListTeams.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeams.ImageStream")));
-            this.imageListTeams.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListTeams.Images.SetKeyName(0, "A_Force.png");
-            this.imageListTeams.Images.SetKeyName(1, "avengers.png");
-            this.imageListTeams.Images.SetKeyName(2, "brotherhood.png");
-            this.imageListTeams.Images.SetKeyName(3, "cabal.png");
-            this.imageListTeams.Images.SetKeyName(4, "champions.png");
-            this.imageListTeams.Images.SetKeyName(5, "defenders.png");
-            this.imageListTeams.Images.SetKeyName(6, "fantastic_four.png");
-            this.imageListTeams.Images.SetKeyName(7, "foot_clan.png");
-            this.imageListTeams.Images.SetKeyName(8, "guardians.png");
-            this.imageListTeams.Images.SetKeyName(9, "heroes_for_hire.png");
-            this.imageListTeams.Images.SetKeyName(10, "hydra.png");
-            this.imageListTeams.Images.SetKeyName(11, "illuminati.png");
-            this.imageListTeams.Images.SetKeyName(12, "legion_of_monsters.png");
-            this.imageListTeams.Images.SetKeyName(13, "marvel-knights.png");
-            this.imageListTeams.Images.SetKeyName(14, "mercs_4_money.png");
-            this.imageListTeams.Images.SetKeyName(15, "mutants.png");
-            this.imageListTeams.Images.SetKeyName(16, "shield.png");
-            this.imageListTeams.Images.SetKeyName(17, "sinister6.png");
-            this.imageListTeams.Images.SetKeyName(18, "spider_friends.png");
-            this.imageListTeams.Images.SetKeyName(19, "thunderbolts.png");
-            this.imageListTeams.Images.SetKeyName(20, "us_army.png");
-            this.imageListTeams.Images.SetKeyName(21, "x_force.png");
-            this.imageListTeams.Images.SetKeyName(22, "x_men.png");
+            this.imageListTeamsFull.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeamsFull.ImageStream")));
+            this.imageListTeamsFull.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListTeamsFull.Images.SetKeyName(0, "A_Force.png");
+            this.imageListTeamsFull.Images.SetKeyName(1, "avengers.png");
+            this.imageListTeamsFull.Images.SetKeyName(2, "brotherhood.png");
+            this.imageListTeamsFull.Images.SetKeyName(3, "cabal.png");
+            this.imageListTeamsFull.Images.SetKeyName(4, "champions.png");
+            this.imageListTeamsFull.Images.SetKeyName(5, "defenders.png");
+            this.imageListTeamsFull.Images.SetKeyName(6, "fantastic_four.png");
+            this.imageListTeamsFull.Images.SetKeyName(7, "guardians.png");
+            this.imageListTeamsFull.Images.SetKeyName(8, "hydra.png");
+            this.imageListTeamsFull.Images.SetKeyName(9, "illuminati.png");
+            this.imageListTeamsFull.Images.SetKeyName(10, "marvel_knights.png");
+            this.imageListTeamsFull.Images.SetKeyName(11, "mercs_4_money.png");
+            this.imageListTeamsFull.Images.SetKeyName(12, "mutants.png");
+            this.imageListTeamsFull.Images.SetKeyName(13, "shield.png");
+            this.imageListTeamsFull.Images.SetKeyName(14, "sinister6.png");
+            this.imageListTeamsFull.Images.SetKeyName(15, "spider_friends.png");
+            this.imageListTeamsFull.Images.SetKeyName(16, "thunderbolts.png");
+            this.imageListTeamsFull.Images.SetKeyName(17, "us_army.png");
+            this.imageListTeamsFull.Images.SetKeyName(18, "x_force.png");
+            this.imageListTeamsFull.Images.SetKeyName(19, "x_men.png");
             // 
             // btnUpdateCard
             // 
-            this.btnUpdateCard.Location = new System.Drawing.Point(384, 669);
+            this.btnUpdateCard.Location = new System.Drawing.Point(380, 618);
             this.btnUpdateCard.Name = "btnUpdateCard";
             this.btnUpdateCard.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateCard.TabIndex = 72;
@@ -293,7 +290,7 @@ namespace LegendaryTools2022.Controls
             // cmbAttributesOther
             // 
             this.cmbAttributesOther.ImageList = this.imageListAttributes;
-            this.cmbAttributesOther.Location = new System.Drawing.Point(145, 446);
+            this.cmbAttributesOther.Location = new System.Drawing.Point(141, 395);
             this.cmbAttributesOther.Name = "cmbAttributesOther";
             this.cmbAttributesOther.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
             this.cmbAttributesOther.Size = new System.Drawing.Size(52, 28);
@@ -315,7 +312,7 @@ namespace LegendaryTools2022.Controls
             // cmbAttributesPower
             // 
             this.cmbAttributesPower.ImageList = this.imageListPowers;
-            this.cmbAttributesPower.Location = new System.Drawing.Point(80, 446);
+            this.cmbAttributesPower.Location = new System.Drawing.Point(76, 395);
             this.cmbAttributesPower.Name = "cmbAttributesPower";
             this.cmbAttributesPower.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
             this.cmbAttributesPower.Size = new System.Drawing.Size(59, 28);
@@ -334,7 +331,7 @@ namespace LegendaryTools2022.Controls
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(15, 669);
+            this.btnExport.Location = new System.Drawing.Point(11, 618);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 23);
             this.btnExport.TabIndex = 61;
@@ -344,7 +341,7 @@ namespace LegendaryTools2022.Controls
             // 
             // numNumberInDeck
             // 
-            this.numNumberInDeck.Location = new System.Drawing.Point(128, 622);
+            this.numNumberInDeck.Location = new System.Drawing.Point(124, 571);
             this.numNumberInDeck.Maximum = new decimal(new int[] {
             20,
             0,
@@ -377,15 +374,16 @@ namespace LegendaryTools2022.Controls
             this.copyToolStripButton,
             this.pasteToolStripButton,
             this.toolStripSeparator1,
-            this.toolStripButtonChangeCardType,
-            this.toolStripCmbCardTypes,
             this.toolStripButtonReset,
+            this.toolStripLabelDeckName,
             this.toolStripLabel1,
-            this.toolStripLabelDeckName});
+            this.toolStripCmbCardTypes,
+            this.toolStripSeparator2,
+            this.toolStripButtonChangeCardType});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip1.Size = new System.Drawing.Size(696, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1169, 25);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
@@ -457,7 +455,6 @@ namespace LegendaryTools2022.Controls
             // 
             // toolStripButtonChangeCardType
             // 
-            this.toolStripButtonChangeCardType.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButtonChangeCardType.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButtonChangeCardType.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonChangeCardType.Image")));
             this.toolStripButtonChangeCardType.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -468,7 +465,6 @@ namespace LegendaryTools2022.Controls
             // 
             // toolStripCmbCardTypes
             // 
-            this.toolStripCmbCardTypes.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripCmbCardTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolStripCmbCardTypes.Name = "toolStripCmbCardTypes";
             this.toolStripCmbCardTypes.Size = new System.Drawing.Size(121, 25);
@@ -485,14 +481,12 @@ namespace LegendaryTools2022.Controls
             // 
             // toolStripLabel1
             // 
-            this.toolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(62, 22);
             this.toolStripLabel1.Text = "Card Type:";
             // 
             // toolStripLabelDeckName
             // 
-            this.toolStripLabelDeckName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLabelDeckName.Font = new System.Drawing.Font("Eurostile", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabelDeckName.Name = "toolStripLabelDeckName";
             this.toolStripLabelDeckName.Size = new System.Drawing.Size(150, 22);
@@ -503,7 +497,7 @@ namespace LegendaryTools2022.Controls
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(16, 48);
+            this.label1.Location = new System.Drawing.Point(12, -3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 15);
             this.label1.TabIndex = 68;
@@ -515,7 +509,7 @@ namespace LegendaryTools2022.Controls
             this.lblArtworkPath.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblArtworkPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.lblArtworkPath.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblArtworkPath.Location = new System.Drawing.Point(16, 64);
+            this.lblArtworkPath.Location = new System.Drawing.Point(12, 13);
             this.lblArtworkPath.Name = "lblArtworkPath";
             this.lblArtworkPath.Size = new System.Drawing.Size(360, 40);
             this.lblArtworkPath.TabIndex = 67;
@@ -525,7 +519,7 @@ namespace LegendaryTools2022.Controls
             this.btnBrowseImage.AutoSize = true;
             this.btnBrowseImage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBrowseImage.Image = ((System.Drawing.Image)(resources.GetObject("btnBrowseImage.Image")));
-            this.btnBrowseImage.Location = new System.Drawing.Point(401, 51);
+            this.btnBrowseImage.Location = new System.Drawing.Point(397, 0);
             this.btnBrowseImage.Name = "btnBrowseImage";
             this.btnBrowseImage.Size = new System.Drawing.Size(58, 55);
             this.btnBrowseImage.TabIndex = 66;
@@ -540,7 +534,7 @@ namespace LegendaryTools2022.Controls
             this.numCardTextSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numCardTextSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
             this.numCardTextSize.ForeColor = System.Drawing.Color.White;
-            this.numCardTextSize.Location = new System.Drawing.Point(415, 618);
+            this.numCardTextSize.Location = new System.Drawing.Point(411, 567);
             this.numCardTextSize.Maximum = new decimal(new int[] {
             64,
             0,
@@ -564,7 +558,7 @@ namespace LegendaryTools2022.Controls
             // numCardSubTitleSize
             // 
             this.numCardSubTitleSize.BackColor = System.Drawing.Color.White;
-            this.numCardSubTitleSize.Location = new System.Drawing.Point(401, 146);
+            this.numCardSubTitleSize.Location = new System.Drawing.Point(397, 95);
             this.numCardSubTitleSize.Maximum = new decimal(new int[] {
             48,
             0,
@@ -588,7 +582,7 @@ namespace LegendaryTools2022.Controls
             // numCardTitleSize
             // 
             this.numCardTitleSize.BackColor = System.Drawing.Color.White;
-            this.numCardTitleSize.Location = new System.Drawing.Point(401, 115);
+            this.numCardTitleSize.Location = new System.Drawing.Point(397, 64);
             this.numCardTitleSize.Maximum = new decimal(new int[] {
             48,
             0,
@@ -616,7 +610,7 @@ namespace LegendaryTools2022.Controls
             this.groupBoxPower2.Controls.Add(this.chkPower2Visible);
             this.groupBoxPower2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBoxPower2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.groupBoxPower2.Location = new System.Drawing.Point(242, 246);
+            this.groupBoxPower2.Location = new System.Drawing.Point(238, 195);
             this.groupBoxPower2.Name = "groupBoxPower2";
             this.groupBoxPower2.Size = new System.Drawing.Size(217, 73);
             this.groupBoxPower2.TabIndex = 62;
@@ -650,7 +644,7 @@ namespace LegendaryTools2022.Controls
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(337, 622);
+            this.label3.Location = new System.Drawing.Point(333, 571);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 15);
             this.label3.TabIndex = 60;
@@ -661,7 +655,7 @@ namespace LegendaryTools2022.Controls
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(12, 622);
+            this.label2.Location = new System.Drawing.Point(8, 571);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 15);
             this.label2.TabIndex = 60;
@@ -681,7 +675,7 @@ namespace LegendaryTools2022.Controls
             this.groupBox6.Controls.Add(this.txtCardVictoryPointsValue);
             this.groupBox6.Controls.Add(this.lblCardCostValue);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.groupBox6.Location = new System.Drawing.Point(15, 325);
+            this.groupBox6.Location = new System.Drawing.Point(11, 274);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(443, 115);
             this.groupBox6.TabIndex = 59;
@@ -810,7 +804,7 @@ namespace LegendaryTools2022.Controls
             this.groupBoxPower.Controls.Add(this.chkPowerVisible);
             this.groupBoxPower.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBoxPower.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.groupBoxPower.Location = new System.Drawing.Point(16, 246);
+            this.groupBoxPower.Location = new System.Drawing.Point(12, 195);
             this.groupBoxPower.Name = "groupBoxPower";
             this.groupBoxPower.Size = new System.Drawing.Size(217, 73);
             this.groupBoxPower.TabIndex = 58;
@@ -850,7 +844,7 @@ namespace LegendaryTools2022.Controls
             "<RECRUIT>"});
             this.txtCardTextBox.BackColor = System.Drawing.Color.White;
             this.txtCardTextBox.Font = new System.Drawing.Font("Eurostile", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardTextBox.Location = new System.Drawing.Point(16, 480);
+            this.txtCardTextBox.Location = new System.Drawing.Point(12, 429);
             this.txtCardTextBox.MaxLength = 350;
             this.txtCardTextBox.Multiline = true;
             this.txtCardTextBox.Name = "txtCardTextBox";
@@ -866,7 +860,7 @@ namespace LegendaryTools2022.Controls
             this.kryptonGalleryRange2,
             this.kryptonGalleryRange3});
             this.cmbAttributesTeams.ImageList = this.imageListTeams;
-            this.cmbAttributesTeams.Location = new System.Drawing.Point(16, 446);
+            this.cmbAttributesTeams.Location = new System.Drawing.Point(12, 395);
             this.cmbAttributesTeams.Name = "cmbAttributesTeams";
             this.cmbAttributesTeams.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
             this.cmbAttributesTeams.Size = new System.Drawing.Size(58, 28);
@@ -891,11 +885,39 @@ namespace LegendaryTools2022.Controls
             this.kryptonGalleryRange3.ImageIndexEnd = 49;
             this.kryptonGalleryRange3.ImageIndexStart = 39;
             // 
+            // imageListTeams
+            // 
+            this.imageListTeams.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeams.ImageStream")));
+            this.imageListTeams.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListTeams.Images.SetKeyName(0, "A_Force.png");
+            this.imageListTeams.Images.SetKeyName(1, "avengers.png");
+            this.imageListTeams.Images.SetKeyName(2, "brotherhood.png");
+            this.imageListTeams.Images.SetKeyName(3, "cabal.png");
+            this.imageListTeams.Images.SetKeyName(4, "champions.png");
+            this.imageListTeams.Images.SetKeyName(5, "defenders.png");
+            this.imageListTeams.Images.SetKeyName(6, "fantastic_four.png");
+            this.imageListTeams.Images.SetKeyName(7, "foot_clan.png");
+            this.imageListTeams.Images.SetKeyName(8, "guardians.png");
+            this.imageListTeams.Images.SetKeyName(9, "heroes_for_hire.png");
+            this.imageListTeams.Images.SetKeyName(10, "hydra.png");
+            this.imageListTeams.Images.SetKeyName(11, "illuminati.png");
+            this.imageListTeams.Images.SetKeyName(12, "legion_of_monsters.png");
+            this.imageListTeams.Images.SetKeyName(13, "marvel-knights.png");
+            this.imageListTeams.Images.SetKeyName(14, "mercs_4_money.png");
+            this.imageListTeams.Images.SetKeyName(15, "mutants.png");
+            this.imageListTeams.Images.SetKeyName(16, "shield.png");
+            this.imageListTeams.Images.SetKeyName(17, "sinister6.png");
+            this.imageListTeams.Images.SetKeyName(18, "spider_friends.png");
+            this.imageListTeams.Images.SetKeyName(19, "thunderbolts.png");
+            this.imageListTeams.Images.SetKeyName(20, "us_army.png");
+            this.imageListTeams.Images.SetKeyName(21, "x_force.png");
+            this.imageListTeams.Images.SetKeyName(22, "x_men.png");
+            // 
             // txtCardSubName
             // 
             this.txtCardSubName.BackColor = System.Drawing.Color.White;
             this.txtCardSubName.Font = new System.Drawing.Font("Eurostile", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardSubName.Location = new System.Drawing.Point(16, 146);
+            this.txtCardSubName.Location = new System.Drawing.Point(12, 95);
             this.txtCardSubName.MaxLength = 100;
             this.txtCardSubName.Name = "txtCardSubName";
             this.txtCardSubName.Size = new System.Drawing.Size(360, 22);
@@ -908,7 +930,7 @@ namespace LegendaryTools2022.Controls
             // 
             this.txtCardName.BackColor = System.Drawing.Color.White;
             this.txtCardName.Font = new System.Drawing.Font("Eurostile", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardName.Location = new System.Drawing.Point(16, 115);
+            this.txtCardName.Location = new System.Drawing.Point(12, 64);
             this.txtCardName.MaxLength = 100;
             this.txtCardName.Name = "txtCardName";
             this.txtCardName.Size = new System.Drawing.Size(360, 25);
@@ -937,30 +959,10 @@ namespace LegendaryTools2022.Controls
             this.imageListAttributesOther.ImageSize = new System.Drawing.Size(16, 16);
             this.imageListAttributesOther.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // imageListTeamsFull
+            // toolStripSeparator2
             // 
-            this.imageListTeamsFull.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeamsFull.ImageStream")));
-            this.imageListTeamsFull.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListTeamsFull.Images.SetKeyName(0, "A_Force.png");
-            this.imageListTeamsFull.Images.SetKeyName(1, "avengers.png");
-            this.imageListTeamsFull.Images.SetKeyName(2, "brotherhood.png");
-            this.imageListTeamsFull.Images.SetKeyName(3, "cabal.png");
-            this.imageListTeamsFull.Images.SetKeyName(4, "champions.png");
-            this.imageListTeamsFull.Images.SetKeyName(5, "defenders.png");
-            this.imageListTeamsFull.Images.SetKeyName(6, "fantastic_four.png");
-            this.imageListTeamsFull.Images.SetKeyName(7, "guardians.png");
-            this.imageListTeamsFull.Images.SetKeyName(8, "hydra.png");
-            this.imageListTeamsFull.Images.SetKeyName(9, "illuminati.png");
-            this.imageListTeamsFull.Images.SetKeyName(10, "marvel_knights.png");
-            this.imageListTeamsFull.Images.SetKeyName(11, "mercs_4_money.png");
-            this.imageListTeamsFull.Images.SetKeyName(12, "mutants.png");
-            this.imageListTeamsFull.Images.SetKeyName(13, "shield.png");
-            this.imageListTeamsFull.Images.SetKeyName(14, "sinister6.png");
-            this.imageListTeamsFull.Images.SetKeyName(15, "spider_friends.png");
-            this.imageListTeamsFull.Images.SetKeyName(16, "thunderbolts.png");
-            this.imageListTeamsFull.Images.SetKeyName(17, "us_army.png");
-            this.imageListTeamsFull.Images.SetKeyName(18, "x_force.png");
-            this.imageListTeamsFull.Images.SetKeyName(19, "x_men.png");
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // CardEditorForm
             // 
@@ -968,6 +970,7 @@ namespace LegendaryTools2022.Controls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.kryptonSplitContainer1);
+            this.Controls.Add(this.toolStrip1);
             this.Name = "CardEditorForm";
             this.Size = new System.Drawing.Size(1169, 786);
             this.Load += new System.EventHandler(this.CardEditorForm_Load);
@@ -995,6 +998,7 @@ namespace LegendaryTools2022.Controls
             this.groupBoxPower.ResumeLayout(false);
             this.groupBoxPower.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1068,5 +1072,6 @@ namespace LegendaryTools2022.Controls
         private System.Windows.Forms.Button btnKeyword;
         private System.Windows.Forms.ImageList imageListTeams;
         private System.Windows.Forms.ImageList imageListTeamsFull;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

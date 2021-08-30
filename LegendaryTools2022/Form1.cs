@@ -133,7 +133,9 @@ namespace LegendaryTools2022
 
                     cardTab.Tag = cardModel.SelectedCardModel.CardId;
                     CardEditorForm cardEditorForm = new CardEditorForm(cardModel);
+                    cardEditorForm.Dock = DockStyle.Fill;
                     cardTab.Controls.Add(cardEditorForm);
+                    
                     tabControlMain.Controls.Add(cardTab);
                     tabControlMain.SelectedTab = cardTab;
                     this.Cursor = Cursors.Default;

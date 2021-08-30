@@ -1,5 +1,6 @@
 ﻿
 using Kaliko.ImageLibrary;
+using LegendaryTools2022.ImageEditor;
 using LegendaryTools2022.Managers;
 using LegendaryTools2022.Models;
 using LegendaryTools2022.Properties;
@@ -49,7 +50,7 @@ namespace LegendaryTools2022.Controls
 
 
         public KalikoImage artworkImage { get; set; }
-        KalikoImage origImage;
+        public KalikoImage orignalArtwork { get; set; }
         KalikoImage backUnderlayImage;
         KalikoImage backTextImage;
         KalikoImage attackImage;
@@ -138,7 +139,7 @@ namespace LegendaryTools2022.Controls
 
             artworkImage = new KalikoImage(Resources.artwork);
 
-            origImage = artworkImage;
+            orignalArtwork = artworkImage;
 
             frameImage = new KalikoImage(Resources.back_none);
 
@@ -184,7 +185,7 @@ namespace LegendaryTools2022.Controls
             try
             {
                 artworkImage = null;
-                origImage = null;
+                orignalArtwork = null;
                 backUnderlayImage = null;
                 backTextImage = null;
                 attackImage = null;
@@ -213,41 +214,22 @@ namespace LegendaryTools2022.Controls
                 backUnderlayImage = null;
                 backTextImage = null;
 
-                foreach (var file in currentTemplateDirectory.GetFiles())
+                foreach (var file in currentTemplateDirectory.GetFiles().Where(x=>x.Extension == ".json"))
                 {
-                    if (file.Extension == ".png")
-                    {
-
-                        //if (file.Name.Contains("back_underlay") && backUnderlayImage == null)
-                        //{
-                        //    backUnderlayImage = new KalikoImage(file.FullName);
-                        //    backUnderlayImage.Resize(picWidth, picHeight);
-                        //}
-
-                        //if (file.Name.Contains("back_text") && backTextImage == null)
-                        //{
-                        //    backTextImage = new KalikoImage(file.FullName);
-                        //    backTextImage.Resize(picWidth, picHeight);
-                        //}
-                        //currentDirectoryTemplateImages.Add(new KalikoImage(file.FullName));
-                    }
-
-                    if (file.Extension == ".json")
-                    {
-
+                    
                         templateModelList = coreManager.ReadTemplateSettings(currentDeckModel.DeckType.ToLower());
                         currentTemplateModel = templateModelList.Teamplates.Where(x => x.CardTemplate.Name.ToLower() == currentCardModel.CardTypeTemplate.ToLower()).FirstOrDefault();
                         ToggleFormControls(currentTemplateModel);
 
                         if (currentCardModel.FrameImage != "")
-                            frameImageFromTemplate = currentTemplateDirectory + "\\" + currentCardModel.FrameImage;
+                            frameImageFromTemplate = $"{currentTemplateDirectory}\\{currentCardModel.FrameImage}";
                         else
-                            frameImageFromTemplate = currentTemplateDirectory + "\\" + templateModelList.Teamplates.FirstOrDefault().CardTemplate.Name;
+                            frameImageFromTemplate = $"{currentTemplateDirectory}\\{templateModelList.Teamplates.FirstOrDefault().CardTemplate.Name}";
 
 
-                        backTextImage = new KalikoImage(currentTemplateDirectory + "\\" + currentCardModel.CardBackTextImage);
+                        backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{currentCardModel.CardBackTextImage}");
                         backTextImage.Resize(picWidth, picHeight);
-                    }
+                    
                 }
 
                 toolStripLabelDeckName.Text = "Deck Name: " + currentDeckModel.Name;
@@ -416,6 +398,7 @@ namespace LegendaryTools2022.Controls
                 pictureBoxTemplate.Image = null;
                 pictureBoxTemplate.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBoxTemplate.Image = cardImage.GetAsBitmap();
+                orignalArtwork = cardImage;
             }
             this.Cursor = Cursors.Default;
         }
@@ -453,7 +436,7 @@ namespace LegendaryTools2022.Controls
             if (currentTemplateModel.FormControls.ShowAttributes)
             {
 
-                frameImage = new KalikoImage(currentTemplateDirectory + "\\" + model.FrameImage);
+                frameImage = new KalikoImage($"{currentTemplateDirectory}\\{model.FrameImage}");
                 frameImage.Resize(picWidth, picHeight);
             }
 
@@ -826,8 +809,8 @@ namespace LegendaryTools2022.Controls
                             LegendaryIconModel icon = IsIcon(s);
                             if (gap == true)
                             {
-                                y += currentFont.Height - 12;
-                                x = 1;
+                                y += currentFont.Height;
+                                x = startPoint[0].X;
                             }
                             else if ((icon == null))
                             {
@@ -1011,11 +994,7 @@ namespace LegendaryTools2022.Controls
 
         private Point[] GetPolygon()
         {
-            // if (overridePolygon)
-            //   return SetPolygon();
-
-
-
+        
             if (currentTemplateModel != null)
             {
                 // overridePolygon = false;
@@ -1037,24 +1016,7 @@ namespace LegendaryTools2022.Controls
                     xy++;
                 }
 
-
-
-                //numX1.Value = polygon[0].X;
-                //numY1.Value = polygon[0].Y;
-
-                //numX2.Value = polygon[1].X;
-                //numY2.Value = polygon[1].Y;
-
-                //numX3.Value = polygon[2].X;
-                //numY3.Value = polygon[2].Y;
-
-                //numX4.Value = polygon[3].X;
-                //numY4.Value = polygon[3].Y;
-
-
                 return polygon;
-
-
 
             }
             else
@@ -1064,24 +1026,6 @@ namespace LegendaryTools2022.Controls
 
         }
 
-        private Point[] SetPolygon()
-        {
-            Point[] polygon = new Point[4];
-
-            //polygon[0].X = GetPercentage(Convert.ToInt32(numX1.Value), scale);
-            //polygon[0].Y = GetPercentage(Convert.ToInt32(numY1.Value), scale);
-
-            //polygon[1].X = GetPercentage(Convert.ToInt32(numX2.Value), scale);
-            //polygon[1].Y = GetPercentage(Convert.ToInt32(numY2.Value), scale);
-
-            //polygon[2].X = GetPercentage(Convert.ToInt32(numX3.Value), scale);
-            //polygon[2].Y = GetPercentage(Convert.ToInt32(numY3.Value), scale);
-
-            //polygon[3].X = GetPercentage(Convert.ToInt32(numX4.Value), scale);
-            //polygon[3].Y = GetPercentage(Convert.ToInt32(numY4.Value), scale);
-
-            return polygon;
-        }
 
 
         public int getXStart(int y)
@@ -1094,9 +1038,6 @@ namespace LegendaryTools2022.Controls
                     return i;
                 }
             }
-
-
-            //TODO other alignments
 
             return -1;
         }
@@ -1127,9 +1068,6 @@ namespace LegendaryTools2022.Controls
                     return i;
                 }
             }
-
-
-            //TODO other alignments
 
             return -1;
         }
@@ -1180,6 +1118,9 @@ namespace LegendaryTools2022.Controls
        
         private void pictureBoxTemplate_DoubleClick(object sender, EventArgs e)
         {
+            
+            orignalArtwork = artworkImage;
+
             OpenFileDialog Dlg = new OpenFileDialog
             {
                 Filter = "",
@@ -1188,13 +1129,13 @@ namespace LegendaryTools2022.Controls
             if (Dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 currentCardModel.ArtWorkPath = Dlg.FileName;
-                lblArtworkPath.Text = currentCardModel.ArtWorkPath;
-                Image image = Image.FromFile(Dlg.FileName);
+               lblArtworkPath.Text = currentCardModel.ArtWorkPath;
+                
                 artworkImage = new KalikoImage(Dlg.FileName);
-                //ImageSlicer imageSlicer = new ImageSlicer(artworkImage);
-               // imageSlicer.ShowDialog(this);
-               // artworkImage = imageSlicer.imageResult;
-                origImage = artworkImage;
+                ImageSlicer imageSlicer = new ImageSlicer(artworkImage, orignalArtwork);
+                imageSlicer.ShowDialog(this);
+                artworkImage = imageSlicer.imageResult;
+                orignalArtwork = artworkImage;
                 LoadImage(currentCardModel);
             }
         }
@@ -1329,7 +1270,7 @@ namespace LegendaryTools2022.Controls
             cardToUpdate.AttributesRecruit = txtCardRecruitValue.Text;
             cardToUpdate.AttributesVp = txtCardVictoryPointsValue.Text;
             cardToUpdate.CardDisplayName = txtCardName.Text;
-            cardToUpdate.CardDisplayNameFontSize = Convert.ToInt32(numCardTextSize.Value);
+            cardToUpdate.CardDisplayNameFontSize = Convert.ToInt32(numCardTitleSize.Value);
             cardToUpdate.CardNameSub = txtCardSubName.Text;
             cardToUpdate.CardNameSubFontSize = Convert.ToInt32(numCardSubTitleSize.Value);
             cardToUpdate.CardText = txtCardTextBox.Text;
