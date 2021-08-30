@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+
+<structure
+ name="villain"
+ displayname="Villain"
+ defaultstyle="Base"
+ group="villain_adversaries"
+ nameeditable="true"
+ />
+
+<attributes>
+ <attribute
+  name="Villain Team"
+  type="icon"
+  icontype="team"
+ />
+</attributes>
+
+</xml>
+

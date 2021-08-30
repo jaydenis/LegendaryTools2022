@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1685F2A1-7A57-411A-9079-545450DD07A6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LegendaryTools2022</RootNamespace>
+    <AssemblyName>LegendaryTools2022</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Design, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Docking, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Workspace.dll</HintPath>
+    </Reference>
+    <Reference Include="Kaliko.ImageLibrary, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageLibrary.3.0.2\lib\net45\Kaliko.ImageLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Kaliko.ImageLibrary.FastFilters, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageLibrary.FastFilters.3.0.2\lib\net45\Kaliko.ImageLibrary.FastFilters.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.2.0.0\lib\net452\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\CardEditorForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CardEditorForm.Designer.cs">
+      <DependentUpon>CardEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\CoreManager.cs" />
+    <Compile Include="Managers\WordDefinition.cs" />
+    <Compile Include="Models\CardGroupModel.cs" />
+    <Compile Include="Models\CardNodeModel.cs" />
+    <Compile Include="Models\CardTemplateViewModel.cs" />
+    <Compile Include="Models\CardTextIcon.cs" />
+    <Compile Include="Models\CardTypeModel.cs" />
+    <Compile Include="Models\CustomSetProjectModel.cs" />
+    <Compile Include="Models\CustomSetsModel.cs" />
+    <Compile Include="Models\DeckTypeModel.cs" />
+    <Compile Include="Models\LegendaryIconModel.cs" />
+    <Compile Include="Models\LegendarySetModel.cs" />
+    <Compile Include="Models\TemplateModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\AppSettings.cs" />
+    <Compile Include="Utilities\BooleanConverter.cs" />
+    <Compile Include="Utilities\SystemSettings.cs" />
+    <EmbeddedResource Include="Controls\CardEditorForm.resx">
+      <DependentUpon>CardEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Images\cardgroups.json" />
+    <None Include="Images\cardtypes.json" />
+    <None Include="Images\cardtypes\adversary\template.json" />
+    <None Include="Images\cardtypes\ambition\template.json" />
+    <None Include="Images\cardtypes\hero\template.json" />
+    <None Include="Images\cardtypes\hero_rare\template.json" />
+    <None Include="Images\cardtypes\hero_uncommon\template.json" />
+    <None Include="Images\cardtypes\mastermind\template.json" />
+    <None Include="Images\cardtypes\mastermind_tactic\template.json" />
+    <None Include="Images\cardtypes\mastermind_transformed\template.json" />
+    <None Include="Images\decktypes.json" />
+    <None Include="Images\icons.json" />
+    <None Include="Images\template.json" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\artwork.jpg" />
+    <Content Include="Images\cardtypes\adversary\back_underlay.png" />
+    <Content Include="Images\cardtypes\adversary\template.xml" />
+    <Content Include="Images\cardtypes\ambition\back_underlay.png" />
+    <Content Include="Images\cardtypes\ambition\frame.png" />
+    <Content Include="Images\cardtypes\ambition\template.xml" />
+    <Content Include="Images\cardtypes\ambition\text_overlay.png" />
+    <Content Include="Images\cardtypes\backup_adversary\back_underlay.png" />
+    <Content Include="Images\cardtypes\backup_adversary\template.xml" />
+    <Content Include="Images\cardtypes\bindings\template.xml" />
+    <Content Include="Images\cardtypes\bindings\wound_underlay.png" />
+    <Content Include="Images\cardtypes\bystander\bystander_underlay.png" />
+    <Content Include="Images\cardtypes\bystander\template.xml" />
+    <Content Include="Images\cardtypes\bystander_villain\bystander_underlay.png" />
+    <Content Include="Images\cardtypes\bystander_villain\template.xml" />
+    <Content Include="Images\cardtypes\bystander_wound\bystander_underlay.png" />
+    <Content Include="Images\cardtypes\bystander_wound\template.xml" />
+    <Content Include="Images\cardtypes\bystander_wound\wound_underlay.png" />
+    <Content Include="Images\cardtypes\commander\back_underlay.png" />
+    <Content Include="Images\cardtypes\commander\template.xml" />
+    <Content Include="Images\cardtypes\commander_tactic\back_underlay.png" />
+    <Content Include="Images\cardtypes\commander_tactic\template.xml" />
+    <Content Include="Images\cardtypes\henchmen\back_underlay.png" />
+    <Content Include="Images\cardtypes\henchmen\template.xml" />
+    <Content Include="Images\cardtypes\henchmen_location\back_underlay.png" />
+    <Content Include="Images\cardtypes\henchmen_location\template.xml" />
+    <Content Include="Images\cardtypes\hero\back_cost.png" />
+    <Content Include="Images\cardtypes\hero\back_text.png" />
+    <Content Include="Images\cardtypes\hero\back_underlay.png" />
+    <Content Include="Images\cardtypes\hero\hero_common_covert.png" />
+    <Content Include="Images\cardtypes\hero\hero_common_instinct.png" />
+    <Content Include="Images\cardtypes\hero\hero_common_none.png" />
+    <Content Include="Images\cardtypes\hero\hero_common_range.png" />
+    <Content Include="Images\cardtypes\hero\hero_common_strength.png" />
+    <Content Include="Images\cardtypes\hero\hero_common_tech.png" />
+    <Content Include="Images\cardtypes\hero\hero_rare_back_text.png" />
+    <Content Include="Images\cardtypes\hero\hero_uncommon_covert.png" />
+    <Content Include="Images\cardtypes\hero\hero_uncommon_instinct.png" />
+    <Content Include="Images\cardtypes\hero\hero_uncommon_none.png" />
+    <Content Include="Images\cardtypes\hero\hero_uncommon_range.png" />
+    <Content Include="Images\cardtypes\hero\hero_uncommon_strength.png" />
+    <Content Include="Images\cardtypes\hero\hero_uncommon_tech.png" />
+    <Content Include="Images\cardtypes\hero_common_transformed\back_cost.png" />
+    <Content Include="Images\cardtypes\hero_common_transformed\back_covert.png" />
+    <Content Include="Images\cardtypes\hero_common_transformed\back_instinct.png" />
+    <Content Include="Images\cardtypes\hero_common_transformed\back_none.png" />
+    <Content Include="Images\cardtypes\hero_common_transformed\back_range.png" />
+    <Content Include="Images\cardtypes\hero_common_transformed\back_strength.png" />
+    <Content Include="Images\cardtypes\hero_common_transformed\back_tech.png" />
+    <Content Include="Images\cardtypes\hero_common_transformed\back_text.png" />
+    <Content Include="Images\cardtypes\hero_common_transformed\template.xml" />
+    <Content Include="Images\cardtypes\hero_rare\back_cost.png" />
+    <Content Include="Images\cardtypes\hero_rare\back_underlay.png" />
+    <Content Include="Images\cardtypes\hero_rare\hero_rare_back_text.png" />
+    <Content Include="Images\cardtypes\hero_rare_transformed\back_cost.png" />
+    <Content Include="Images\cardtypes\hero_rare_transformed\back_text.png" />
+    <Content Include="Images\cardtypes\hero_rare_transformed\template.xml" />
+    <Content Include="Images\cardtypes\hero_uncommon\back_cost.png" />
+    <Content Include="Images\cardtypes\hero_uncommon\back_covert.png" />
+    <Content Include="Images\cardtypes\hero_uncommon\back_instinct.png" />
+    <Content Include="Images\cardtypes\hero_uncommon\back_none.png" />
+    <Content Include="Images\cardtypes\hero_uncommon\back_range.png" />
+    <Content Include="Images\cardtypes\hero_uncommon\back_strength.png" />
+    <Content Include="Images\cardtypes\hero_uncommon\back_tech.png" />
+    <Content Include="Images\cardtypes\hero_uncommon\back_text.png" />
+    <Content Include="Images\cardtypes\hero_uncommon_transformed\back_cost.png" />
+    <Content Include="Images\cardtypes\hero_uncommon_transformed\back_covert.png" />
+    <Content Include="Images\cardtypes\hero_uncommon_transformed\back_instinct.png" />
+    <Content Include="Images\cardtypes\hero_uncommon_transformed\back_none.png" />
+    <Content Include="Images\cardtypes\hero_uncommon_transformed\back_range.png" />
+    <Content Include="Images\cardtypes\hero_uncommon_transformed\back_strength.png" />
+    <Content Include="Images\cardtypes\hero_uncommon_transformed\back_tech.png" />
+    <Content Include="Images\cardtypes\hero_uncommon_transformed\back_text.png" />
+    <Content Include="Images\cardtypes\hero_uncommon_transformed\template.xml" />
+    <Content Include="Images\cardtypes\mastermind\back_underlay.png" />
+    <Content Include="Images\cardtypes\mastermind_epic\back_underlay.png" />
+    <Content Include="Images\cardtypes\mastermind_epic\template.xml" />
+    <Content Include="Images\cardtypes\mastermind_epic_token\back_underlay.png" />
+    <Content Include="Images\cardtypes\mastermind_epic_token\template.xml" />
+    <Content Include="Images\cardtypes\mastermind_tactic\back_underlay.png" />
+    <Content Include="Images\cardtypes\mastermind_token\back_underlay.png" />
+    <Content Include="Images\cardtypes\mastermind_token\template.xml" />
+    <Content Include="Images\cardtypes\mastermind_transformed\back_underlay.png" />
+    <Content Include="Images\cardtypes\mastermind_transformed\template.xml" />
+    <Content Include="Images\cardtypes\master_strike\back_underlay.png" />
+    <Content Include="Images\cardtypes\master_strike\master_strike.png" />
+    <Content Include="Images\cardtypes\master_strike\template.xml" />
+    <Content Include="Images\cardtypes\operation\backing.png" />
+    <Content Include="Images\cardtypes\operation\back_underlay.png" />
+    <Content Include="Images\cardtypes\operation\template.xml" />
+    <Content Include="Images\cardtypes\recruitable_bystander\back_underlay.png" />
+    <Content Include="Images\cardtypes\recruitable_bystander\template.xml" />
+    <Content Include="Images\cardtypes\recruitable_villain\back_cost.png" />
+    <Content Include="Images\cardtypes\recruitable_villain\back_covert.png" />
+    <Content Include="Images\cardtypes\recruitable_villain\back_instinct.png" />
+    <Content Include="Images\cardtypes\recruitable_villain\back_none.png" />
+    <Content Include="Images\cardtypes\recruitable_villain\back_range.png" />
+    <Content Include="Images\cardtypes\recruitable_villain\back_strength.png" />
+    <Content Include="Images\cardtypes\recruitable_villain\back_tech.png" />
+    <Content Include="Images\cardtypes\recruitable_villain\back_text.png" />
+    <Content Include="Images\cardtypes\recruitable_villain\template.xml" />
+    <Content Include="Images\cardtypes\scheme\backing.png" />
+    <Content Include="Images\cardtypes\scheme\back_underlay.png" />
+    <Content Include="Images\cardtypes\scheme\template.xml" />
+    <Content Include="Images\cardtypes\scheme_twist\back_underlay.png" />
+    <Content Include="Images\cardtypes\scheme_twist\plot_twist.png" />
+    <Content Include="Images\cardtypes\scheme_twist\template.xml" />
+    <Content Include="Images\cardtypes\scheme_twist_custom\back_underlay.png" />
+    <Content Include="Images\cardtypes\scheme_twist_custom\plot_twist.png" />
+    <Content Include="Images\cardtypes\scheme_twist_custom\template.xml" />
+    <Content Include="Images\cardtypes\special_sidekick\back_cost.png" />
+    <Content Include="Images\cardtypes\special_sidekick\back_covert.png" />
+    <Content Include="Images\cardtypes\special_sidekick\back_instinct.png" />
+    <Content Include="Images\cardtypes\special_sidekick\back_none.png" />
+    <Content Include="Images\cardtypes\special_sidekick\back_range.png" />
+    <Content Include="Images\cardtypes\special_sidekick\back_strength.png" />
+    <Content Include="Images\cardtypes\special_sidekick\back_tech.png" />
+    <Content Include="Images\cardtypes\special_sidekick\back_text.png" />
+    <Content Include="Images\cardtypes\special_sidekick\template.xml" />
+    <Content Include="Images\cardtypes\starter_agent\back_grey.png" />
+    <Content Include="Images\cardtypes\starter_agent\template.xml" />
+    <Content Include="Images\cardtypes\starter_commander\back_grey.png" />
+    <Content Include="Images\cardtypes\starter_commander\template.xml" />
+    <Content Include="Images\cardtypes\starter_custom\back_grey.png" />
+    <Content Include="Images\cardtypes\starter_custom\template.xml" />
+    <Content Include="Images\cardtypes\trap\back_underlay.png" />
+    <Content Include="Images\cardtypes\trap\template.xml" />
+    <Content Include="Images\cardtypes\villain\back_underlay.png" />
+    <Content Include="Images\cardtypes\villain\template.xml" />
+    <Content Include="Images\cardtypes\villain_location\back_underlay.png" />
+    <Content Include="Images\cardtypes\villain_location\template.xml" />
+    <Content Include="Images\cardtypes\villain_token\back_underlay.png" />
+    <Content Include="Images\cardtypes\villain_token\template.xml" />
+    <Content Include="Images\cardtypes\villain_transformed\back_underlay.png" />
+    <Content Include="Images\cardtypes\villain_transformed\template.xml" />
+    <Content Include="Images\cardtypes\wound\template.xml" />
+    <Content Include="Images\cardtypes\wound\wound_underlay.png" />
+    <Content Include="Images\cardtypes\wound_grevious\template.xml" />
+    <Content Include="Images\cardtypes\wound_grevious\wound_underlay.png" />
+    <Content Include="Images\cardtypes\wound_villain\template.xml" />
+    <Content Include="Images\cardtypes\wound_villain\wound_underlay.png" />
+    <Content Include="Images\card_example.png" />
+    <Content Include="Images\decktypes\adversary.xml" />
+    <Content Include="Images\decktypes\backup_adversary.xml" />
+    <Content Include="Images\decktypes\bystanders.xml" />
+    <Content Include="Images\decktypes\commander.xml" />
+    <Content Include="Images\decktypes\henchmen.xml" />
+    <Content Include="Images\decktypes\hero.xml" />
+    <Content Include="Images\decktypes\mastermind.xml" />
+    <Content Include="Images\decktypes\sidekicks.xml" />
+    <Content Include="Images\decktypes\starter_deck.xml" />
+    <Content Include="Images\decktypes\villain.xml" />
+    <Content Include="Images\decktypes\wound.xml" />
+    <Content Include="Images\default_blank_card.png" />
+    <Content Include="Images\icons\attributes\attack.png" />
+    <Content Include="Images\icons\attributes\attack_lg.png" />
+    <Content Include="Images\icons\attributes\cards.png" />
+    <Content Include="Images\icons\attributes\cost.png" />
+    <Content Include="Images\icons\attributes\piercing.png" />
+    <Content Include="Images\icons\attributes\piercing_lg.png" />
+    <Content Include="Images\icons\attributes\published.xml" />
+    <Content Include="Images\icons\attributes\recruit.png" />
+    <Content Include="Images\icons\attributes\recruit_lg.png" />
+    <Content Include="Images\icons\attributes\victory.png" />
+    <Content Include="Images\icons\misc\focus.png" />
+    <Content Include="Images\icons\misc\published.xml" />
+    <Content Include="Images\icons\misc\token.png" />
+    <Content Include="Images\icons\powers\covert.png" />
+    <Content Include="Images\icons\powers\instinct.png" />
+    <Content Include="Images\icons\powers\published.xml" />
+    <Content Include="Images\icons\powers\range.png" />
+    <Content Include="Images\icons\powers\strength.png" />
+    <Content Include="Images\icons\powers\tech.png" />
+    <Content Include="Images\icons\teams\A-Force.png" />
+    <Content Include="Images\icons\teams\autobot.png" />
+    <Content Include="Images\icons\teams\avengers.png" />
+    <Content Include="Images\icons\teams\brotherhood.png" />
+    <Content Include="Images\icons\teams\cabal.png" />
+    <Content Include="Images\icons\teams\champions.png" />
+    <Content Include="Images\icons\teams\Crime_Syndicate.png" />
+    <Content Include="Images\icons\teams\cybertron.png" />
+    <Content Include="Images\icons\teams\decepticon.png" />
+    <Content Include="Images\icons\teams\defenders.png" />
+    <Content Include="Images\icons\teams\dinobot.png" />
+    <Content Include="Images\icons\teams\fantastic-four.png" />
+    <Content Include="Images\icons\teams\Foes_of_Asgard.png" />
+    <Content Include="Images\icons\teams\footclan.png" />
+    <Content Include="Images\icons\teams\foot_clan.png" />
+    <Content Include="Images\icons\teams\guardians.png" />
+    <Content Include="Images\icons\teams\heroes_for_hire.png" />
+    <Content Include="Images\icons\teams\hydra.png" />
+    <Content Include="Images\icons\teams\icons.svg" />
+    <Content Include="Images\icons\teams\illuminati.png" />
+    <Content Include="Images\icons\teams\legion_of_monsters.png" />
+    <Content Include="Images\icons\teams\marvel-knights.png" />
+    <Content Include="Images\icons\teams\mercs_4_money.png" />
+    <Content Include="Images\icons\teams\Monsters_Unleashed_logo_sm.png" />
+    <Content Include="Images\icons\teams\mutants.png" />
+    <Content Include="Images\icons\teams\predacon.png" />
+    <Content Include="Images\icons\teams\Quintesson.png" />
+    <Content Include="Images\icons\teams\runaways.png" />
+    <Content Include="Images\icons\teams\shield.png" />
+    <Content Include="Images\icons\teams\sinister6.png" />
+    <Content Include="Images\icons\teams\spider-friends.png" />
+    <Content Include="Images\icons\teams\squirrels.png" />
+    <Content Include="Images\icons\teams\thunderbolts.png" />
+    <Content Include="Images\icons\teams\turtles.png" />
+    <Content Include="Images\icons\teams\us_army.png" />
+    <Content Include="Images\icons\teams\x-force.png" />
+    <Content Include="Images\icons\teams\x-men.png" />
+    <Content Include="Images\icons_sm\covert_sm.png" />
+    <Content Include="Images\icons_sm\instinct_sm.png" />
+    <Content Include="Images\icons_sm\range_sm.png" />
+    <Content Include="Images\icons_sm\strength_sm.png" />
+    <Content Include="Images\icons_sm\tech_sm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cost.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\covert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\instinct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\range.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recruit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\strength.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tech.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attack1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piercing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\victory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\artwork.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_none.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

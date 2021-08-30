@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+
+<template
+ basetemplate="wound_grevious"
+ name="wound_villain"
+ displayname="Wound (Villain)"
+ deck="villain"
+ />
+
+<styles>
+
+<style
+ name="Villains">
+
+<cardname 
+ name="Card Name"
+ includesubname="true"
+ subnameprefix="Wound - "
+ />
+
+ </style>
+
+ <style
+  name="Base Set">
+
+ <cardname 
+ name="Card Name"
+ includesubname="true"
+ subnameprefix="Wound - "
+ />
+
+ </style>
+
+</styles>
+
+<cardname 
+ name="Wound Card Type"
+ defaultvalue="Wound"
+ x="100"
+ />
+
+</xml>
+

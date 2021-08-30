@@ -1,0 +1,11 @@
+{
+  
+    "name": "adversary",
+    "displayname": "Adversary",
+    "deck": "adversary",
+    "rectxarray": "92,440,330,92",
+    "rectyarray": "518,518,670,670",
+    "cardwidth": "750",
+    "cardheight": "1050"
+  
+}

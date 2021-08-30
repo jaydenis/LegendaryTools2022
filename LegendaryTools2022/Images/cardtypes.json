@@ -1,0 +1,45 @@
+[
+  {
+    "category": "HERO",
+    "name": "hero_common",
+    "displayname": "Hero - Common",
+    "deck": "Hero"
+  },
+  {
+    "category": "HERO",
+    "name": "hero_uncommon",
+    "displayname": "Hero - Uncommon",
+    "deck": "Hero"
+  },
+  {
+    "category": "HERO",
+    "name": "hero_rare",
+    "displayname": "Hero - Rare",
+    "deck": "Hero"
+  },
+  {
+    "category": "MASTERMIND",
+    "name": "mastermind",
+    "displayname": "Mastermind",
+    "deck": "Mastermind"
+  },
+  {
+    "category": "MASTERMIND",
+    "name": "mastermind_tactic",
+    "displayname": "Mastermind - Tactic",
+    "deck": "Mastermind"
+  },
+  {
+    "category": "MASTERMIND",
+    "name": "mastermind_epic",
+    "displayname": "Mastermind - Epic",
+    "deck": "Mastermind"
+  },
+  {
+    "category": "MASTERMIND",
+    "name": "mastermind_transformed",
+    "displayname": "Mastermind - Transformed",
+    "deck": "Mastermind"
+  }
+
+]

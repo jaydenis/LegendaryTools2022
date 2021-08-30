@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+
+<template
+ basetemplate="hero_uncommon"
+ name="hero_uncommon_transformed"
+ displayname="Hero Transformed (Uncommon)"
+ defaultsindeck="false"
+ />
+
+
+<styles>
+
+ <style name="Villains">
+
+<cardname 
+ name="Card Name"
+ subnametext="%DECKNAME%, TRANSFORMED"
+ subnamecolour="#FD0004"
+ />
+
+ </style>
+
+<style name="Base Set">
+
+<cardname 
+ name="Card Name"
+ subnametext="%DECKNAME%, TRANSFORMED"
+ subnamecolour="#FD0004"
+ />
+
+ </style>
+
+</styles>
+
+</xml>
+

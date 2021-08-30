@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+
+<template
+ basetemplate="mastermind"
+ name="mastermind_transformed"
+ displayname="Transformed Mastermind"
+ defaultsindeck="false"
+ />
+
+<cardname 
+ name="Card Name"
+ allowchange="true"
+ subnameeditable="true"
+ subnametext="Mastermind, TRANSFORMED"
+ subnamecolour="#FD0004"
+ />
+
+</xml>
+

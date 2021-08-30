@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+
+<template
+ name="bystander"
+ displayname="Bystander"
+ deck="bystanders"
+ defaultsindeck="true"
+ defaultcopies="1"
+ />
+
+<cardsize
+ cardwidth="750"
+ cardheight="1050"
+ dpi="300"
+ />
+
+<bgimage
+ name="Background Image"
+ path=""
+ x="0"
+ y="0"
+ allowchange="true"
+ zoomable="true"
+ />
+
+<image
+ name="bystander_underlay"
+ templatefile="true"
+ path="bystander_underlay.png"
+ fullsize="true"
+ x="0"
+ y="0"
+ maxwidth="750"
+ maxheight="1050"
+ allowchange="false"
+ zoomable="false"
+ />
+
+<cardname 
+ name="Card Name"
+ defaultvalue="Card Name"
+ allowchange="true"
+ includesubname="false"
+ highlight="banner"
+ highlightcolour="#111111"
+ uppercase="true"
+ alignment="center"
+ x="375"
+ y="40"
+ colour="#e9dc98"
+ textsize="48"
+ blurradius="15"
+ bluedouble="true"
+ blurexpand="4"
+ />
+
+<icon
+ name="Victory"
+ defaultvalue="victory"
+ allowchange="false"
+ optional="true"
+ x="695"
+ y="740"
+ maxwidth="60"
+ maxheight="60"
+ drawunderlay="false"
+ blurradius="1"
+ bluedouble="false"
+ blurexpand="0"
+ blurcolour="#000000"
+ />
+
+<text
+ name="Victory Value"
+ linkedelement="Victory"
+ alignment="center"
+ allowchange="true"
+ defaultvalue="1"
+ x="695"
+ y="740"
+ colour="#FFFFFF"
+ textsize="40"
+ uppercase="true"
+ drawunderlay="true"
+ blurradius="2"
+ bluedouble="false"
+ blurexpand="3"
+ blurcolour="#000000"
+ />
+
+<cardname 
+ name="Bystander Card Type"
+ defaultvalue="Bystander"
+ allowchange="false"
+ includesubname="false"
+ highlight="blur"
+ highlightcolour="#000000"
+ uppercase="true"
+ alignment="left"
+ x="100"
+ y="715"
+ colour="#FFFFFF"
+ textsize="60"
+ subnamesize="40"
+ blurradius="5"
+ bluedouble="false"
+ blurexpand="3"
+ />
+
+<textarea
+ name="Bystander Card Text"
+ alignmenthorizontal="left"
+ alignmentvertical="top"
+ allowchange="true"
+ defaultvalue=""
+ colour="#000000"
+ textsize="34"
+ rectxarray="120,735,735,500,347,180"
+ rectyarray="845,845,1040,1040,1000,909"
+ debug="false"
+ />
+
+<property
+ name="Number in Deck"
+ property="numberindeck"
+ defaultvalue="1"
+ />
+
+</xml>
+

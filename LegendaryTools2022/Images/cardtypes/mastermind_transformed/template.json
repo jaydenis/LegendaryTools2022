@@ -1,0 +1,23 @@
+{
+  "card_template": {
+    "name": "back_underlay.png",
+    "displayname": "Mastermind",
+    "deck": "",
+    "rectxarray": "55,440,440,55",
+    "rectyarray": "522,522,670,670",
+    "cardwidth": 750,
+    "cardheight": 1050
+  },
+  "form_controls": {
+    "show_team": false,
+    "show_power": false,
+    "show_power2": false,
+    "show_attributes": false,
+    "show_attributes_cost": true,
+    "show_attributes_recruit": false,
+    "show_attributes_attack": false,
+    "show_attributes_piercing": false,
+    "show_victory_points": true,
+    "show_attack_cost": true
+  }
+}

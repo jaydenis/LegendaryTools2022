@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+
+<template
+ basetemplate="hero_common"
+ name="special_sidekick"
+ displayname="Special Sidekick"
+ deck="sidekicks"
+ defaultsindeck="true"
+ defaultcopies="1"
+ />
+
+<styles>
+
+ <style name="Villains">
+
+<cardname 
+ name="Card Name"
+ subnametext="Special Sidekick"
+ />
+
+  </style>
+
+<style name="Base Set">
+
+<cardname 
+ name="Card Name"
+ subnametext="Special Sidekick"
+ />
+
+  </style>
+
+</styles>
+
+<textarea
+ name="Card Text"
+ defaultvalue="Put this on the bottom of the Sidekick Stack."
+/>
+
+<property
+ name="Number in Deck"
+ property="numberindeck"
+ defaultvalue="1"
+ />
+
+</xml>
+
