@@ -30,17 +30,7 @@ namespace LegendaryTools2022
 
         string currentCustomSetPath;
 
-        List<CardTextIcon> cardTextIcons = new List<CardTextIcon>();
-        List<TextField> cardTextFields = new List<TextField>();
-
-        List<CardTypeModel> currentCardTypesList = new List<CardTypeModel>();
-
-
-        List<LegendaryIconModel> LegendaryIconList { get; set; }
-
-        ResourceManager rm = Resources.ResourceManager;
-
-        List<string> openCardTabs = new List<string>();
+        
 
         public Form1()
         {
@@ -52,8 +42,8 @@ namespace LegendaryTools2022
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LegendaryIconList = new List<LegendaryIconModel>();
-            LegendaryIconList = coreManager.LoadIconsFromDirectory();
+            //LegendaryIconList = new List<LegendaryIconModel>();
+           // LegendaryIconList = coreManager.LoadIconsFromDirectory();
 
             if (settings.lastProject != string.Empty)
                 LoadCustomSet(settings.lastProject);
@@ -88,11 +78,12 @@ namespace LegendaryTools2022
                         TreeNode cardNode = new TreeNode($"{card.CardDisplayName} - {card.CardType}");
                         cardNode.ImageIndex = card.TeamIcon;
                         cardNode.SelectedImageIndex = card.TeamIcon;
-                        cardNode.Tag = new CardNodeModel { 
-                             SelectedSetModel = customSetProject,
-                             SelectedDeckModel = deck,
-                             SelectedCardModel = card,
-                             CurrentCustomSetPath = item.SetName
+                        cardNode.Tag = new CardNodeModel
+                        {
+                            SelectedSetModel = customSetProject,
+                            SelectedDeckModel = deck,
+                            SelectedCardModel = card,
+                            CurrentCustomSetPath = item.SetName
                         };
                         deckNode.Nodes.Add(cardNode);
                     }
@@ -135,12 +126,36 @@ namespace LegendaryTools2022
                     CardEditorForm cardEditorForm = new CardEditorForm(cardModel);
                     cardEditorForm.Dock = DockStyle.Fill;
                     cardTab.Controls.Add(cardEditorForm);
-                    
+
                     tabControlMain.Controls.Add(cardTab);
                     tabControlMain.SelectedTab = cardTab;
                     this.Cursor = Cursors.Default;
                 }
             }
         }
+
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog Dlg = new OpenFileDialog
+            {
+                Filter = "Json files (*.json)|*.json",
+                Title = "Select Custom Set"
+            };
+            if (Dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Cursor = Cursors.WaitCursor;
+                settings.lastFolder = System.IO.Path.GetDirectoryName(Dlg.FileName);
+  
+                
+                LoadCustomSet(Dlg.FileName);
+
+                settings.lastProject = Dlg.FileName;
+                settings.Save();
+
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+
     }
 }

@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendaryTools2022", "LegendaryTools2022\LegendaryTools2022.csproj", "{1685F2A1-7A57-411A-9079-545450DD07A6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LegendaryMastermind", "LegendaryMastermind", "{57202B88-B565-46F6-973C-3D2974ADF9F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendaryMastermindCore", "LegendaryMastermind\LegendaryMastermindCore\LegendaryMastermindCore.csproj", "{6226EB10-3E7D-4737-B393-27AFFD99B2E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{1685F2A1-7A57-411A-9079-545450DD07A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1685F2A1-7A57-411A-9079-545450DD07A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1685F2A1-7A57-411A-9079-545450DD07A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6226EB10-3E7D-4737-B393-27AFFD99B2E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6226EB10-3E7D-4737-B393-27AFFD99B2E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6226EB10-3E7D-4737-B393-27AFFD99B2E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6226EB10-3E7D-4737-B393-27AFFD99B2E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6226EB10-3E7D-4737-B393-27AFFD99B2E8} = {57202B88-B565-46F6-973C-3D2974ADF9F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3CFB5D1-C133-4ED8-8617-F0D7C8371BBB}
