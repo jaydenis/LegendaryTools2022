@@ -1,4 +1,5 @@
 ﻿
+using ComponentFactory.Krypton.Toolkit;
 using Kaliko.ImageLibrary;
 using LegendaryTools2022.ImageEditor;
 using LegendaryTools2022.Managers;
@@ -28,7 +29,7 @@ namespace LegendaryTools2022.Controls
        
         CardModel currentCardModel;
         int currentCardId = 0;
-        readonly CardModel origCardModel;
+        private CardModel origCardModel;
 
 
         DeckModel currentDeckModel;
@@ -69,6 +70,7 @@ namespace LegendaryTools2022.Controls
 
         Dictionary<int, KalikoImage> renderedCards = new Dictionary<int, KalikoImage>();
 
+        bool overridePolygon = false;
 
 
         private double scale = 1.0d;
@@ -95,8 +97,7 @@ namespace LegendaryTools2022.Controls
             currentCustomSetPath = cardNodeModel.CurrentCustomSetPath;
             currentCustomSetModel = cardNodeModel.SelectedSetModel;
             currentDeckModel = cardNodeModel.SelectedDeckModel;
-            currentCardModel = cardNodeModel.SelectedCardModel;
-            currentCardId = cardNodeModel.SelectedCardModel.CardId;
+            
             origDeckModel = cardNodeModel.SelectedDeckModel;
             origCardModel = cardNodeModel.SelectedCardModel;
 
@@ -104,6 +105,16 @@ namespace LegendaryTools2022.Controls
             settings = SystemSettings.Load();
             settings.Save();
 
+            FontFamily fontFamily = new FontFamily("Percolator");
+
+            attributesFont = new Font(
+               fontFamily,
+               82,
+               FontStyle.Bold,
+               GraphicsUnit.Pixel);
+
+
+            PopulateDeckTree();
 
         }
 
@@ -125,25 +136,25 @@ namespace LegendaryTools2022.Controls
 
 
 
-            attackImage = new KalikoImage(Resources.attack);
-            recruitImage = new KalikoImage(Resources.recruit);
-            piercingImage = new KalikoImage(Resources.piercing);
-            victoryPointsImage = new KalikoImage(Resources.victory);
-            costImage = new KalikoImage(Resources.cost);
+            //attackImage = new KalikoImage(Resources.attack);
+            //recruitImage = new KalikoImage(Resources.recruit);
+            //piercingImage = new KalikoImage(Resources.piercing);
+            //victoryPointsImage = new KalikoImage(Resources.victory);
+            //costImage = new KalikoImage(Resources.cost);
 
-            artworkImage = new KalikoImage(Resources.artwork);
+            //artworkImage = new KalikoImage(Resources.artwork);
 
-            orignalArtwork = artworkImage;
+            //orignalArtwork = artworkImage;
 
-            frameImage = new KalikoImage(Resources.back_none);
+            //frameImage = new KalikoImage(Resources.back_none);
 
-            backTextImage = new KalikoImage(Resources.back_text);
-            backTextImage.Resize(picWidth, picHeight);
-            frameImage.Resize(picWidth, picHeight);
+            //backTextImage = new KalikoImage(Resources.back_text);
+            //backTextImage.Resize(picWidth, picHeight);
+            //frameImage.Resize(picWidth, picHeight);
 
             settings.Save();
             LoadCardTypes(currentDeckModel);
-            PopulateCardEditor(currentCardModel);
+            
         }
 
         #region Main
@@ -188,7 +199,7 @@ namespace LegendaryTools2022.Controls
 
                 currentCardModel = model;
 
-                currentCardId = model.CardId;
+                
 
                 //load card type template
                 var templatePath = $"{settings.baseFolder}\\cardtypes\\{currentDeckModel.DeckType}";
@@ -218,9 +229,9 @@ namespace LegendaryTools2022.Controls
                 toolStripLabelDeckName.Text = "Deck Name: " + currentDeckModel.Name;
                 toolStripCmbCardTypes.SelectedItem = currentCardModel.CardType;
                 txtCardName.Text = model.CardDisplayName;
-                numCardTitleSize.Value = model.CardDisplayNameFontSize;
-                txtCardSubName.Text = model.CardNameSub;
-                numCardSubTitleSize.Value = model.CardNameSubFontSize;
+                numCardTitleSize.Value = model.CardDisplayNameFontSize < model.CardNameSubFontSize ? model.CardNameSubFontSize+2: model.CardDisplayNameFontSize;
+                txtCardSubName.Text = model.CardNameSub == "Card Sub-Title" ? currentDeckModel.Name : model.CardNameSub;
+                numCardSubTitleSize.Value = model.CardNameSubFontSize > numCardTitleSize.Value ? numCardTitleSize.Value-2 : model.CardNameSubFontSize;
                 txtCardAttackValue.Text = model.AttributesAttack;
                 txtCardCostValue.Text = model.AttributesCost;
                 txtCardPiercingValue.Text = model.AttributesPiercing;
@@ -930,7 +941,9 @@ namespace LegendaryTools2022.Controls
 
         private Point[] GetPolygon()
         {
-        
+            if (overridePolygon)
+                return SetPolygon();
+
             if (currentTemplateModel != null)
             {
                 // overridePolygon = false;
@@ -946,6 +959,29 @@ namespace LegendaryTools2022.Controls
                 int xy = 0;
                 for (int i = 0; i < xsplit.Length; i++)
                 {
+                    if (i == 0) {
+                        numX1.Value = int.Parse(xsplit[i].Trim());
+                        numY1.Value = int.Parse(ysplit[i].Trim());
+                    }
+
+                    if (i == 1)
+                    {
+                        numX2.Value = int.Parse(xsplit[i].Trim());
+                        numY2.Value = int.Parse(ysplit[i].Trim());
+                    }
+
+                    if (i == 2)
+                    {
+                        numX3.Value = int.Parse(xsplit[i].Trim());
+                        numY3.Value = int.Parse(ysplit[i].Trim());
+                    }
+
+                    if (i == 3)
+                    {
+                        numX4.Value = int.Parse(xsplit[i].Trim());
+                        numY4.Value = int.Parse(ysplit[i].Trim());
+                    }
+
                     xpoints[i].X = GetPercentage(int.Parse(xsplit[i].Trim()), scale);
                     xpoints[i].Y = GetPercentage(int.Parse(ysplit[i].Trim()), scale);
                     polygon[xy] = xpoints[i];
@@ -1192,11 +1228,8 @@ namespace LegendaryTools2022.Controls
         #endregion
 
         private void btnResetCard_Click(object sender, EventArgs e)
-        {
-            currentCardModel = null;
-            currentDeckModel = null;
-
-            currentDeckModel = origDeckModel;
+        {           
+            overridePolygon = false;
             PopulateCardEditor(origCardModel);
         }
 
@@ -1278,6 +1311,65 @@ namespace LegendaryTools2022.Controls
             txtCardTextBox.Paste();
             txtCardTextBox.Focus();
             LoadImage(currentCardModel);
+        }
+
+
+        #region CardTree
+       
+        private void PopulateDeckTree()
+        {
+            kryptonListBox1.Items.Clear();
+           
+            foreach (var card in currentDeckModel.Cards)
+            {
+                KryptonListItem item = new KryptonListItem();
+                item.ShortText = $"{card.CardDisplayName}";
+                item.LongText = $"({card.CardType})";
+                item.Tag = card;
+                kryptonListBox1.Items.Add(item);
+            }
+
+            kryptonListBox1.SelectedIndex = 0;
+        }
+
+
+        private void kryptonListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            KryptonListItem item = (KryptonListItem)kryptonListBox1.SelectedItem;
+            origCardModel = (CardModel)item.Tag;
+            PopulateCardEditor(origCardModel);
+            this.Cursor = Cursors.Default;
+        }
+
+
+
+        #endregion
+
+        private void btnChangePolygon_Click(object sender, EventArgs e)
+        {
+            overridePolygon = true;
+            SetPolygon();
+            LoadImage(currentCardModel);
+        }
+
+        private Point[] SetPolygon()
+        {
+            Point[] polygon = new Point[4];
+
+            polygon[0].X = GetPercentage(Convert.ToInt32(numX1.Value), scale);
+            polygon[0].Y = GetPercentage(Convert.ToInt32(numY1.Value), scale);
+
+            polygon[1].X = GetPercentage(Convert.ToInt32(numX2.Value), scale);
+            polygon[1].Y = GetPercentage(Convert.ToInt32(numY2.Value), scale);
+
+            polygon[2].X = GetPercentage(Convert.ToInt32(numX3.Value), scale);
+            polygon[2].Y = GetPercentage(Convert.ToInt32(numY3.Value), scale);
+
+            polygon[3].X = GetPercentage(Convert.ToInt32(numX4.Value), scale);
+            polygon[3].Y = GetPercentage(Convert.ToInt32(numY4.Value), scale);
+
+            return polygon;
         }
     }
 }

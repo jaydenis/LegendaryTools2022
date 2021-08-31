@@ -26,16 +26,13 @@ namespace LegendaryTools2022
         SystemSettings settings;
 
 
-        DirectoryInfo currentTemplateDirectory;
-
-        string currentCustomSetPath;
-
         
 
         public Form1()
         {
             InitializeComponent();
             settings = SystemSettings.Load();
+            
             settings.Save();
 
         }
@@ -43,15 +40,16 @@ namespace LegendaryTools2022
         private void Form1_Load(object sender, EventArgs e)
         {
             //LegendaryIconList = new List<LegendaryIconModel>();
-           // LegendaryIconList = coreManager.LoadIconsFromDirectory();
+            // LegendaryIconList = coreManager.LoadIconsFromDirectory();
 
             if (settings.lastProject != string.Empty)
                 LoadCustomSet(settings.lastProject);
+            else
+                OpenFile();
         }
 
         private void LoadCustomSet(string path)
         {
-            currentCustomSetPath = path;
             customSets = coreManager.OpenCustomSets(path);
             PopulateDeckTree();
         }
@@ -59,12 +57,12 @@ namespace LegendaryTools2022
         private void PopulateDeckTree()
         {
             treeViewCards.Nodes.Clear();
-
+            tabControlMain.Controls.Clear();
             TreeNode root = new TreeNode("Custom Sets");
             foreach (CustomSetModel item in customSets.CustomSets)
             {
                 TreeNode setNode = new TreeNode(item.DisplayName);
-                setNode.Tag = "SetNode";
+                setNode.Tag = item;
                 customSetProject = coreManager.OpenCustomSet(item.SetName);
 
                 foreach (var deck in customSetProject.Decks)
@@ -72,22 +70,14 @@ namespace LegendaryTools2022
                     TreeNode deckNode = new TreeNode(deck.Name);
                     deckNode.ImageIndex = deck.TeamIcon;
                     deckNode.SelectedImageIndex = deck.TeamIcon;
-                    deckNode.Tag = "DeckNode";
-                    foreach (var card in deck.Cards)
-                    {
-                        TreeNode cardNode = new TreeNode($"{card.CardDisplayName} - {card.CardType}");
-                        cardNode.ImageIndex = card.TeamIcon;
-                        cardNode.SelectedImageIndex = card.TeamIcon;
-                        cardNode.Tag = new CardNodeModel
-                        {
-                            SelectedSetModel = customSetProject,
-                            SelectedDeckModel = deck,
-                            SelectedCardModel = card,
-                            CurrentCustomSetPath = item.SetName
-                        };
-                        deckNode.Nodes.Add(cardNode);
-                    }
 
+                    deckNode.Tag = new CardNodeModel
+                    {
+                        SelectedSetModel = customSetProject,
+                        SelectedDeckModel = deck,
+                        CurrentCustomSetPath = item.SetName
+                    };
+                  
                     setNode.Nodes.Add(deckNode);
                 }
 
@@ -97,44 +87,7 @@ namespace LegendaryTools2022
 
         }
 
-        private void treeViewCards_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (e.Node.Tag != null)
-            {
-                if (e.Node.Tag is CardNodeModel)
-                {
-                    this.Cursor = Cursors.WaitCursor;
-                    var cardModel = (CardNodeModel)e.Node.Tag;
-
-                    TabPage cardTab = new TabPage(cardModel.SelectedCardModel.CardDisplayName);
-                    cardTab.Tag = cardModel.SelectedCardModel.CardId;
-                    foreach (TabPage tp in tabControlMain.TabPages)
-                    {
-                        if (tp.Tag != null && tp.Tag.Equals(cardTab.Tag))
-                        {
-                            //Here i want to go inside Tab which is already open
-
-                            tabControlMain.SelectedTab = tp;
-                            tp.Focus();
-                            this.Cursor = Cursors.Default;
-                            return;
-                        }
-                    }
-
-
-                    cardTab.Tag = cardModel.SelectedCardModel.CardId;
-                    CardEditorForm cardEditorForm = new CardEditorForm(cardModel);
-                    cardEditorForm.Dock = DockStyle.Fill;
-                    cardTab.Controls.Add(cardEditorForm);
-
-                    tabControlMain.Controls.Add(cardTab);
-                    tabControlMain.SelectedTab = cardTab;
-                    this.Cursor = Cursors.Default;
-                }
-            }
-        }
-
-        private void openToolStripButton_Click(object sender, EventArgs e)
+        private void OpenFile()
         {
             OpenFileDialog Dlg = new OpenFileDialog
             {
@@ -145,8 +98,7 @@ namespace LegendaryTools2022
             {
                 this.Cursor = Cursors.WaitCursor;
                 settings.lastFolder = System.IO.Path.GetDirectoryName(Dlg.FileName);
-  
-                
+
                 LoadCustomSet(Dlg.FileName);
 
                 settings.lastProject = Dlg.FileName;
@@ -154,6 +106,46 @@ namespace LegendaryTools2022
 
                 this.Cursor = Cursors.Default;
             }
+        }
+
+        private void treeViewCards_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Tag != null)
+            {
+                if (e.Node.Tag is CardNodeModel)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    var deckModel = (CardNodeModel)e.Node.Tag;
+
+                    TabPage deckTab = new TabPage(deckModel.SelectedDeckModel.Name);
+                    deckTab.Tag = deckModel.SelectedDeckModel;
+                    foreach (TabPage tp in tabControlMain.TabPages)
+                    {
+                        if (tp.Tag != null && tp.Tag.Equals(deckTab.Tag))
+                        {
+                            tabControlMain.SelectedTab = tp;
+                            tp.Focus();
+                            this.Cursor = Cursors.Default;
+                            return;
+                        }
+                    }
+
+
+                    deckTab.Tag = deckModel.SelectedDeckModel;
+                    CardEditorForm cardEditorForm = new CardEditorForm(deckModel);
+                    cardEditorForm.Dock = DockStyle.Fill;
+                    deckTab.Controls.Add(cardEditorForm);
+
+                    tabControlMain.Controls.Add(deckTab);
+                    tabControlMain.SelectedTab = deckTab;
+                    this.Cursor = Cursors.Default;
+                }
+            }
+        }
+
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            OpenFile();
         }
 
 

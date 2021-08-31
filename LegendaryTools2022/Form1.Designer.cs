@@ -110,7 +110,7 @@ namespace LegendaryTools2022
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1369, 713);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Main";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
@@ -128,7 +128,7 @@ namespace LegendaryTools2022
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControlMain);
             this.splitContainer1.Size = new System.Drawing.Size(1363, 707);
-            this.splitContainer1.SplitterDistance = 279;
+            this.splitContainer1.SplitterDistance = 214;
             this.splitContainer1.TabIndex = 2;
             // 
             // treeViewCards
@@ -139,7 +139,7 @@ namespace LegendaryTools2022
             this.treeViewCards.Location = new System.Drawing.Point(0, 25);
             this.treeViewCards.Name = "treeViewCards";
             this.treeViewCards.ShowLines = false;
-            this.treeViewCards.Size = new System.Drawing.Size(279, 682);
+            this.treeViewCards.Size = new System.Drawing.Size(214, 682);
             this.treeViewCards.TabIndex = 1;
             this.treeViewCards.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewCards_AfterSelect);
             // 
@@ -152,7 +152,7 @@ namespace LegendaryTools2022
             this.toolStripButton1});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(279, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(214, 25);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -185,7 +185,7 @@ namespace LegendaryTools2022
             this.tabControlMain.Location = new System.Drawing.Point(0, 0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1080, 707);
+            this.tabControlMain.Size = new System.Drawing.Size(1145, 707);
             this.tabControlMain.TabIndex = 0;
             // 
             // tabPage2
@@ -193,9 +193,9 @@ namespace LegendaryTools2022
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1369, 691);
+            this.tabPage2.Size = new System.Drawing.Size(1369, 713);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // menuStrip1

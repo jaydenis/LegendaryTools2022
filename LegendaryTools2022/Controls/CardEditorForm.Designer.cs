@@ -33,6 +33,17 @@ namespace LegendaryTools2022.Controls
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CardEditorForm));
             this.kryptonSplitContainer1 = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnChangePolygon = new System.Windows.Forms.Button();
+            this.numY4 = new System.Windows.Forms.NumericUpDown();
+            this.numX4 = new System.Windows.Forms.NumericUpDown();
+            this.numY3 = new System.Windows.Forms.NumericUpDown();
+            this.numX3 = new System.Windows.Forms.NumericUpDown();
+            this.numY2 = new System.Windows.Forms.NumericUpDown();
+            this.numX2 = new System.Windows.Forms.NumericUpDown();
+            this.numY1 = new System.Windows.Forms.NumericUpDown();
+            this.numX1 = new System.Windows.Forms.NumericUpDown();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.btnResetCard = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.pictureBoxTemplate = new System.Windows.Forms.PictureBox();
             this.btnGap = new System.Windows.Forms.Button();
@@ -48,20 +59,6 @@ namespace LegendaryTools2022.Controls
             this.imageListPowers = new System.Windows.Forms.ImageList(this.components);
             this.btnExport = new System.Windows.Forms.Button();
             this.numNumberInDeck = new System.Windows.Forms.NumericUpDown();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonChangeCardType = new System.Windows.Forms.ToolStripButton();
-            this.toolStripCmbCardTypes = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripButtonReset = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabelDeckName = new System.Windows.Forms.ToolStripLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.lblArtworkPath = new System.Windows.Forms.Label();
             this.btnBrowseImage = new System.Windows.Forms.Button();
@@ -95,11 +92,27 @@ namespace LegendaryTools2022.Controls
             this.imageListTeams = new System.Windows.Forms.ImageList(this.components);
             this.txtCardSubName = new System.Windows.Forms.TextBox();
             this.txtCardName = new System.Windows.Forms.TextBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonReset = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabelDeckName = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripCmbCardTypes = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonChangeCardType = new System.Windows.Forms.ToolStripButton();
             this.imageListPowersFullSize = new System.Windows.Forms.ImageList(this.components);
             this.kryptonContextMenuItems1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems();
             this.kryptonContextMenuItem1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem();
             this.imageListAttributesOther = new System.Windows.Forms.ImageList(this.components);
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.kryptonListBox1 = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1.Panel1)).BeginInit();
             this.kryptonSplitContainer1.Panel1.SuspendLayout();
@@ -108,16 +121,26 @@ namespace LegendaryTools2022.Controls
             this.kryptonSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numY4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numX4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numY3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numX3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numY2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numX2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numY1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numX1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTemplate)).BeginInit();
             this.groupBoxTeam.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNumberInDeck)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardSubTitleSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTitleSize)).BeginInit();
             this.groupBoxPower2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBoxPower.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonSplitContainer1
@@ -126,7 +149,7 @@ namespace LegendaryTools2022.Controls
             this.kryptonSplitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.kryptonSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonSplitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.kryptonSplitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.kryptonSplitContainer1.Location = new System.Drawing.Point(200, 25);
             this.kryptonSplitContainer1.Name = "kryptonSplitContainer1";
             // 
             // kryptonSplitContainer1.Panel1
@@ -162,25 +185,199 @@ namespace LegendaryTools2022.Controls
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.txtCardSubName);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.txtCardName);
             this.kryptonSplitContainer1.Panel2.PanelBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlAlternate;
-            this.kryptonSplitContainer1.Size = new System.Drawing.Size(1169, 761);
-            this.kryptonSplitContainer1.SplitterDistance = 468;
+            this.kryptonSplitContainer1.Size = new System.Drawing.Size(969, 761);
+            this.kryptonSplitContainer1.SplitterDistance = 400;
             this.kryptonSplitContainer1.TabIndex = 0;
             // 
             // kryptonPanel1
             // 
+            this.kryptonPanel1.Controls.Add(this.groupBox1);
+            this.kryptonPanel1.Controls.Add(this.splitter1);
             this.kryptonPanel1.Controls.Add(this.btnResetCard);
             this.kryptonPanel1.Controls.Add(this.pictureBoxTemplate);
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
-            this.kryptonPanel1.MinimumSize = new System.Drawing.Size(423, 451);
+            this.kryptonPanel1.MinimumSize = new System.Drawing.Size(400, 400);
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.PanelBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlAlternate;
-            this.kryptonPanel1.Size = new System.Drawing.Size(468, 761);
+            this.kryptonPanel1.Size = new System.Drawing.Size(400, 761);
             this.kryptonPanel1.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnChangePolygon);
+            this.groupBox1.Controls.Add(this.numY4);
+            this.groupBox1.Controls.Add(this.numX4);
+            this.groupBox1.Controls.Add(this.numY3);
+            this.groupBox1.Controls.Add(this.numX3);
+            this.groupBox1.Controls.Add(this.numY2);
+            this.groupBox1.Controls.Add(this.numX2);
+            this.groupBox1.Controls.Add(this.numY1);
+            this.groupBox1.Controls.Add(this.numX1);
+            this.groupBox1.Location = new System.Drawing.Point(33, 571);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(343, 142);
+            this.groupBox1.TabIndex = 64;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Text Area";
+            // 
+            // btnChangePolygon
+            // 
+            this.btnChangePolygon.Location = new System.Drawing.Point(141, 102);
+            this.btnChangePolygon.Name = "btnChangePolygon";
+            this.btnChangePolygon.Size = new System.Drawing.Size(75, 23);
+            this.btnChangePolygon.TabIndex = 2;
+            this.btnChangePolygon.Text = "Change";
+            this.btnChangePolygon.UseVisualStyleBackColor = true;
+            this.btnChangePolygon.Click += new System.EventHandler(this.btnChangePolygon_Click);
+            // 
+            // numY4
+            // 
+            this.numY4.Location = new System.Drawing.Point(78, 105);
+            this.numY4.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numY4.Name = "numY4";
+            this.numY4.Size = new System.Drawing.Size(53, 20);
+            this.numY4.TabIndex = 0;
+            this.numY4.Value = new decimal(new int[] {
+            670,
+            0,
+            0,
+            0});
+            // 
+            // numX4
+            // 
+            this.numX4.Location = new System.Drawing.Point(6, 105);
+            this.numX4.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numX4.Name = "numX4";
+            this.numX4.Size = new System.Drawing.Size(53, 20);
+            this.numX4.TabIndex = 0;
+            this.numX4.Value = new decimal(new int[] {
+            92,
+            0,
+            0,
+            0});
+            // 
+            // numY3
+            // 
+            this.numY3.Location = new System.Drawing.Point(78, 77);
+            this.numY3.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numY3.Name = "numY3";
+            this.numY3.Size = new System.Drawing.Size(53, 20);
+            this.numY3.TabIndex = 0;
+            this.numY3.Value = new decimal(new int[] {
+            670,
+            0,
+            0,
+            0});
+            // 
+            // numX3
+            // 
+            this.numX3.Location = new System.Drawing.Point(6, 77);
+            this.numX3.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numX3.Name = "numX3";
+            this.numX3.Size = new System.Drawing.Size(53, 20);
+            this.numX3.TabIndex = 0;
+            this.numX3.Value = new decimal(new int[] {
+            440,
+            0,
+            0,
+            0});
+            // 
+            // numY2
+            // 
+            this.numY2.Location = new System.Drawing.Point(78, 49);
+            this.numY2.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numY2.Name = "numY2";
+            this.numY2.Size = new System.Drawing.Size(53, 20);
+            this.numY2.TabIndex = 0;
+            this.numY2.Value = new decimal(new int[] {
+            518,
+            0,
+            0,
+            0});
+            // 
+            // numX2
+            // 
+            this.numX2.Location = new System.Drawing.Point(6, 49);
+            this.numX2.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numX2.Name = "numX2";
+            this.numX2.Size = new System.Drawing.Size(53, 20);
+            this.numX2.TabIndex = 0;
+            this.numX2.Value = new decimal(new int[] {
+            440,
+            0,
+            0,
+            0});
+            // 
+            // numY1
+            // 
+            this.numY1.Location = new System.Drawing.Point(78, 21);
+            this.numY1.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numY1.Name = "numY1";
+            this.numY1.Size = new System.Drawing.Size(53, 20);
+            this.numY1.TabIndex = 0;
+            this.numY1.Value = new decimal(new int[] {
+            518,
+            0,
+            0,
+            0});
+            // 
+            // numX1
+            // 
+            this.numX1.Location = new System.Drawing.Point(6, 21);
+            this.numX1.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numX1.Name = "numX1";
+            this.numX1.Size = new System.Drawing.Size(53, 20);
+            this.numX1.TabIndex = 0;
+            this.numX1.Value = new decimal(new int[] {
+            92,
+            0,
+            0,
+            0});
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 761);
+            this.splitter1.TabIndex = 63;
+            this.splitter1.TabStop = false;
             // 
             // btnResetCard
             // 
-            this.btnResetCard.Location = new System.Drawing.Point(352, 669);
+            this.btnResetCard.Location = new System.Drawing.Point(33, 534);
             this.btnResetCard.Name = "btnResetCard";
             this.btnResetCard.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
             this.btnResetCard.Size = new System.Drawing.Size(90, 25);
@@ -190,11 +387,12 @@ namespace LegendaryTools2022.Controls
             // 
             // pictureBoxTemplate
             // 
+            this.pictureBoxTemplate.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBoxTemplate.Location = new System.Drawing.Point(33, 13);
             this.pictureBoxTemplate.MaximumSize = new System.Drawing.Size(504, 700);
             this.pictureBoxTemplate.MinimumSize = new System.Drawing.Size(304, 400);
             this.pictureBoxTemplate.Name = "pictureBoxTemplate";
-            this.pictureBoxTemplate.Size = new System.Drawing.Size(409, 553);
+            this.pictureBoxTemplate.Size = new System.Drawing.Size(343, 515);
             this.pictureBoxTemplate.TabIndex = 0;
             this.pictureBoxTemplate.TabStop = false;
             this.pictureBoxTemplate.DoubleClick += new System.EventHandler(this.pictureBoxTemplate_DoubleClick);
@@ -360,137 +558,6 @@ namespace LegendaryTools2022.Controls
             0,
             0,
             0});
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripButton,
-            this.openToolStripButton,
-            this.saveToolStripButton,
-            this.toolStripSeparator,
-            this.cutToolStripButton,
-            this.copyToolStripButton,
-            this.pasteToolStripButton,
-            this.toolStripSeparator1,
-            this.toolStripButtonReset,
-            this.toolStripLabelDeckName,
-            this.toolStripLabel1,
-            this.toolStripCmbCardTypes,
-            this.toolStripSeparator2,
-            this.toolStripButtonChangeCardType});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip1.Size = new System.Drawing.Size(1169, 25);
-            this.toolStrip1.Stretch = true;
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // newToolStripButton
-            // 
-            this.newToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
-            this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.newToolStripButton.Text = "&New";
-            // 
-            // openToolStripButton
-            // 
-            this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
-            this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.openToolStripButton.Text = "&Open";
-            // 
-            // saveToolStripButton
-            // 
-            this.saveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
-            this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.saveToolStripButton.Text = "&Save";
-            this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // cutToolStripButton
-            // 
-            this.cutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton.Image")));
-            this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cutToolStripButton.Name = "cutToolStripButton";
-            this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.cutToolStripButton.Text = "C&ut";
-            // 
-            // copyToolStripButton
-            // 
-            this.copyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.copyToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripButton.Image")));
-            this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.copyToolStripButton.Name = "copyToolStripButton";
-            this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.copyToolStripButton.Text = "&Copy";
-            // 
-            // pasteToolStripButton
-            // 
-            this.pasteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pasteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripButton.Image")));
-            this.pasteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.pasteToolStripButton.Name = "pasteToolStripButton";
-            this.pasteToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.pasteToolStripButton.Text = "&Paste";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonChangeCardType
-            // 
-            this.toolStripButtonChangeCardType.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonChangeCardType.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonChangeCardType.Image")));
-            this.toolStripButtonChangeCardType.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonChangeCardType.Name = "toolStripButtonChangeCardType";
-            this.toolStripButtonChangeCardType.Size = new System.Drawing.Size(107, 22);
-            this.toolStripButtonChangeCardType.Text = "Change Card Type";
-            this.toolStripButtonChangeCardType.Click += new System.EventHandler(this.btnChangeCardType_Click);
-            // 
-            // toolStripCmbCardTypes
-            // 
-            this.toolStripCmbCardTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripCmbCardTypes.Name = "toolStripCmbCardTypes";
-            this.toolStripCmbCardTypes.Size = new System.Drawing.Size(121, 25);
-            // 
-            // toolStripButtonReset
-            // 
-            this.toolStripButtonReset.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonReset.Image")));
-            this.toolStripButtonReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripButtonReset.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonReset.Name = "toolStripButtonReset";
-            this.toolStripButtonReset.Size = new System.Drawing.Size(55, 22);
-            this.toolStripButtonReset.Text = "Reset";
-            this.toolStripButtonReset.Click += new System.EventHandler(this.btnResetCard_Click);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(62, 22);
-            this.toolStripLabel1.Text = "Card Type:";
-            // 
-            // toolStripLabelDeckName
-            // 
-            this.toolStripLabelDeckName.Font = new System.Drawing.Font("Eurostile", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabelDeckName.Name = "toolStripLabelDeckName";
-            this.toolStripLabelDeckName.Size = new System.Drawing.Size(150, 22);
-            this.toolStripLabelDeckName.Text = "[DECK_NAME]";
             // 
             // label1
             // 
@@ -813,6 +880,7 @@ namespace LegendaryTools2022.Controls
             // 
             // cmbPower1
             // 
+            this.cmbPower1.Cursor = System.Windows.Forms.Cursors.Default;
             this.cmbPower1.ImageList = this.imageListPowers;
             this.cmbPower1.Location = new System.Drawing.Point(8, 25);
             this.cmbPower1.Name = "cmbPower1";
@@ -939,6 +1007,142 @@ namespace LegendaryTools2022.Controls
             this.txtCardName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCardName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCardName_KeyUp);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripButton,
+            this.openToolStripButton,
+            this.saveToolStripButton,
+            this.toolStripSeparator,
+            this.cutToolStripButton,
+            this.copyToolStripButton,
+            this.pasteToolStripButton,
+            this.toolStripSeparator1,
+            this.toolStripButtonReset,
+            this.toolStripLabelDeckName,
+            this.toolStripLabel1,
+            this.toolStripCmbCardTypes,
+            this.toolStripSeparator2,
+            this.toolStripButtonChangeCardType});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStrip1.Size = new System.Drawing.Size(1169, 25);
+            this.toolStrip1.Stretch = true;
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // newToolStripButton
+            // 
+            this.newToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
+            this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newToolStripButton.Name = "newToolStripButton";
+            this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.newToolStripButton.Text = "&New";
+            // 
+            // openToolStripButton
+            // 
+            this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
+            this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openToolStripButton.Name = "openToolStripButton";
+            this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.openToolStripButton.Text = "&Open";
+            // 
+            // saveToolStripButton
+            // 
+            this.saveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
+            this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.saveToolStripButton.Name = "saveToolStripButton";
+            this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.saveToolStripButton.Text = "&Save";
+            this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
+            // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
+            // 
+            // cutToolStripButton
+            // 
+            this.cutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton.Image")));
+            this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cutToolStripButton.Name = "cutToolStripButton";
+            this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.cutToolStripButton.Text = "C&ut";
+            // 
+            // copyToolStripButton
+            // 
+            this.copyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.copyToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripButton.Image")));
+            this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.copyToolStripButton.Name = "copyToolStripButton";
+            this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.copyToolStripButton.Text = "&Copy";
+            // 
+            // pasteToolStripButton
+            // 
+            this.pasteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.pasteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripButton.Image")));
+            this.pasteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.pasteToolStripButton.Name = "pasteToolStripButton";
+            this.pasteToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.pasteToolStripButton.Text = "&Paste";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonReset
+            // 
+            this.toolStripButtonReset.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonReset.Image")));
+            this.toolStripButtonReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripButtonReset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonReset.Name = "toolStripButtonReset";
+            this.toolStripButtonReset.Size = new System.Drawing.Size(55, 22);
+            this.toolStripButtonReset.Text = "Reset";
+            this.toolStripButtonReset.Click += new System.EventHandler(this.btnResetCard_Click);
+            // 
+            // toolStripLabelDeckName
+            // 
+            this.toolStripLabelDeckName.Font = new System.Drawing.Font("Eurostile", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabelDeckName.Name = "toolStripLabelDeckName";
+            this.toolStripLabelDeckName.Size = new System.Drawing.Size(150, 22);
+            this.toolStripLabelDeckName.Text = "[DECK_NAME]";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(62, 22);
+            this.toolStripLabel1.Text = "Card Type:";
+            // 
+            // toolStripCmbCardTypes
+            // 
+            this.toolStripCmbCardTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripCmbCardTypes.Name = "toolStripCmbCardTypes";
+            this.toolStripCmbCardTypes.Size = new System.Drawing.Size(121, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonChangeCardType
+            // 
+            this.toolStripButtonChangeCardType.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonChangeCardType.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonChangeCardType.Image")));
+            this.toolStripButtonChangeCardType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonChangeCardType.Name = "toolStripButtonChangeCardType";
+            this.toolStripButtonChangeCardType.Size = new System.Drawing.Size(107, 22);
+            this.toolStripButtonChangeCardType.Text = "Change Card Type";
+            this.toolStripButtonChangeCardType.Click += new System.EventHandler(this.btnChangeCardType_Click);
+            // 
             // imageListPowersFullSize
             // 
             this.imageListPowersFullSize.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListPowersFullSize.ImageStream")));
@@ -959,10 +1163,23 @@ namespace LegendaryTools2022.Controls
             this.imageListAttributesOther.ImageSize = new System.Drawing.Size(16, 16);
             this.imageListAttributesOther.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // toolStripSeparator2
+            // panel1
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.panel1.Controls.Add(this.kryptonListBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 761);
+            this.panel1.TabIndex = 2;
+            // 
+            // kryptonListBox1
+            // 
+            this.kryptonListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonListBox1.Location = new System.Drawing.Point(0, 0);
+            this.kryptonListBox1.Name = "kryptonListBox1";
+            this.kryptonListBox1.Size = new System.Drawing.Size(200, 761);
+            this.kryptonListBox1.TabIndex = 0;
+            this.kryptonListBox1.SelectedIndexChanged += new System.EventHandler(this.kryptonListBox1_SelectedIndexChanged);
             // 
             // CardEditorForm
             // 
@@ -970,6 +1187,7 @@ namespace LegendaryTools2022.Controls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.kryptonSplitContainer1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "CardEditorForm";
             this.Size = new System.Drawing.Size(1169, 786);
@@ -983,11 +1201,18 @@ namespace LegendaryTools2022.Controls
             this.kryptonSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numY4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numX4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numY3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numX3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numY2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numX2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numY1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numX1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTemplate)).EndInit();
             this.groupBoxTeam.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numNumberInDeck)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardSubTitleSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTitleSize)).EndInit();
@@ -997,6 +1222,9 @@ namespace LegendaryTools2022.Controls
             this.groupBox6.PerformLayout();
             this.groupBoxPower.ResumeLayout(false);
             this.groupBoxPower.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1073,5 +1301,18 @@ namespace LegendaryTools2022.Controls
         private System.Windows.Forms.ImageList imageListTeams;
         private System.Windows.Forms.ImageList imageListTeamsFull;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.Panel panel1;
+        private ComponentFactory.Krypton.Toolkit.KryptonListBox kryptonListBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnChangePolygon;
+        private System.Windows.Forms.NumericUpDown numY4;
+        private System.Windows.Forms.NumericUpDown numX4;
+        private System.Windows.Forms.NumericUpDown numY3;
+        private System.Windows.Forms.NumericUpDown numX3;
+        private System.Windows.Forms.NumericUpDown numY2;
+        private System.Windows.Forms.NumericUpDown numX2;
+        private System.Windows.Forms.NumericUpDown numY1;
+        private System.Windows.Forms.NumericUpDown numX1;
     }
 }
