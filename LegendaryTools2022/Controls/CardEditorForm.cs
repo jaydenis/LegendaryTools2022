@@ -68,7 +68,7 @@ namespace LegendaryTools2022.Controls
         Font cardInfoFont;
         Font cardCostFont;
 
-        Dictionary<int, KalikoImage> renderedCards = new Dictionary<int, KalikoImage>();
+        Dictionary<string, KalikoImage> renderedCards = new Dictionary<string, KalikoImage>();
 
         bool overridePolygon = false;
 
@@ -861,38 +861,26 @@ namespace LegendaryTools2022.Controls
             {
                 if (card != null)
                 {
-                    card.CardName = txtCardSubName.Text.Replace(" ", "_").Replace("'", "_").ToLower();
-                    card.CardNameSub = txtCardSubName.Text;
+                    //card.CardName =txtCardName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower()+"_"+ txtCardSubName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower();
+                    //card.CardNameSub = txtCardSubName.Text;
 
-                    var exportedImageName = $"{card.CardNameSub.ToLower()}_{card.CardTypeTemplate.ToLower()}_{card.CardId}.png";
+                    var exportedImageName = $"{card.CardName.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower()}_{card.CardNameSub.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower()}_{card.CardTypeTemplate.ToLower()}_{card.CardId}.png";
 
-                    //card.ArtWorkPath = lblArtworkPath.Text;
-                    card.ArtWorkSize = $"{artworkImage.Size.Width},{artworkImage.Size.Height}";
-                    card.AttributesAttack = txtCardAttackValue.Text;
-                    card.AttributesCost = txtCardCostValue.Text;
-                    card.AttributesPiercing = txtCardPiercingValue.Text;
-                    card.AttributesRecruit = txtCardRecruitValue.Text;
-                    card.AttributesVp = txtCardVictoryPointsValue.Text;
-                    card.CardDisplayName = txtCardName.Text;
-                    card.CardDisplayNameFontSize = Convert.ToInt32(numCardTextSize.Value);
-                    card.CardNameSub = txtCardSubName.Text;
-                    card.CardNameSubFontSize = Convert.ToInt32(numCardSubTitleSize.Value);
-                    card.CardText = txtCardTextBox.Text;
-                    card.CardTextFontSize = Convert.ToInt32(numCardTextSize.Value);
-                    //card.FrameImage = templateModel.CardTemplate.Name;
+                    
 
-                    card.TeamIcon = cmbTeam.SelectedIndex;
-
-                    KalikoImage exportImage = renderedCards.Where(x => x.Key == card.CardId).FirstOrDefault().Value;
+                    KalikoImage exportImage = renderedCards.Where(x => x.Key == exportedImageName).FirstOrDefault().Value;
                     if (exportImage != null)
                     {
-                        DirectoryInfo directory = new DirectoryInfo($"{settings.lastFolder}\\cards");
+
+                        currentCustomSetPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
+                        DirectoryInfo directory = new DirectoryInfo(currentCustomSetPath);
                         if (!directory.Exists)
                             directory.Create();
 
-                        currentCardModel.ExportedCardImage = $"{settings.lastFolder}\\cards\\{exportedImageName}";
+                        var exportedCardImage = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}\\{exportedImageName}";
+                        
 
-                        exportImage.SaveImage(currentCardModel.ExportedCardImage, System.Drawing.Imaging.ImageFormat.Png);
+                        exportImage.SaveImage(exportedCardImage, System.Drawing.Imaging.ImageFormat.Png);
                     }
                 }
             }
@@ -1186,14 +1174,14 @@ namespace LegendaryTools2022.Controls
             LoadImage(currentCardModel);
         }       
 
-        private void UpdateCard()
+        private void UpdateCard(int cardId)
         {
-            var cardToUpdate = currentDeckModel.Cards.Where(x => x.CardId == currentCardId).FirstOrDefault();
+            var cardToUpdate = currentDeckModel.Cards.Where(x => x.CardId == cardId).FirstOrDefault();
 
-            cardToUpdate.CardName = txtCardSubName.Text.Replace(" ", "_").Replace("'", "_").ToLower();
+            cardToUpdate.CardName = txtCardSubName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower() + "_" + txtCardName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower();
             cardToUpdate.CardNameSub = txtCardSubName.Text;
 
-            var exportedImageName = $"{cardToUpdate.CardNameSub.ToLower()}_{cardToUpdate.CardTypeTemplate.ToLower()}_{cardToUpdate.CardId}.png";
+            var exportedImageName = $"{cardToUpdate.CardName.ToLower()}_{cardToUpdate.CardTypeTemplate.ToLower()}_{cardToUpdate.CardId}.png";
 
             cardToUpdate.ArtWorkSize = $"{artworkImage.Size.Width},{artworkImage.Size.Height}";
             cardToUpdate.AttributesAttack = txtCardAttackValue.Text;
@@ -1212,16 +1200,19 @@ namespace LegendaryTools2022.Controls
 
 
             KalikoImage exportImage = RenderCardImage(cardToUpdate);
-            DirectoryInfo directory = new DirectoryInfo($"{settings.lastFolder}\\cards");
+            currentCustomSetPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
+            DirectoryInfo directory = new DirectoryInfo(currentCustomSetPath);
             if (!directory.Exists)
                 directory.Create();
 
-            cardToUpdate.ExportedCardImage = $"{settings.lastFolder}\\cards\\{exportedImageName}";
+            cardToUpdate.ExportedCardImage = $"{currentCustomSetPath}\\{exportedImageName}";
 
-            if (renderedCards.ContainsKey(cardToUpdate.CardId))
-                renderedCards.Remove(cardToUpdate.CardId);
+            if (renderedCards.ContainsKey(exportedImageName))
+                renderedCards.Remove(exportedImageName);
 
-            renderedCards.Add(cardToUpdate.CardId, exportImage);
+            renderedCards.Add(exportedImageName, exportImage);
+
+            //exportImage.SaveImage(cardToUpdate.ExportedCardImage, System.Drawing.Imaging.ImageFormat.Png);
 
         }
 
@@ -1259,20 +1250,7 @@ namespace LegendaryTools2022.Controls
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            UpdateCard();
-
-            foreach (var item in renderedCards)
-            {
-                KalikoImage exportImage = item.Value;
-                if (exportImage != null)
-                {
-                    DirectoryInfo directory = new DirectoryInfo($"{settings.lastFolder}\\cards");
-                    if (!directory.Exists)
-                        directory.Create();
-
-                    exportImage.SaveImage(currentCardModel.ExportedCardImage, System.Drawing.Imaging.ImageFormat.Png);
-                }
-            }
+            UpdateCard(currentCardId);
 
             coreManager.SaveCustomSet(currentCustomSetModel, currentCustomSetPath);
 
@@ -1281,7 +1259,24 @@ namespace LegendaryTools2022.Controls
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            ExportCardImages();
+            this.Cursor = Cursors.WaitCursor;
+
+            foreach (var item in renderedCards)
+            {
+                KalikoImage exportImage = item.Value;
+                if (exportImage != null)
+                {
+                    DirectoryInfo directory = new DirectoryInfo($"{currentCustomSetPath}");
+                    if (!directory.Exists)
+                        directory.Create();
+                    var x = $"{currentCustomSetPath}\\{item.Key}";
+                    exportImage.SaveImage(x, System.Drawing.Imaging.ImageFormat.Png);
+                }
+            }
+
+            coreManager.SaveCustomSet(currentCustomSetModel, currentCustomSetPath);
+
+            this.Cursor = Cursors.Default;
         }
 
         private void btnUpdateCard_Click(object sender, EventArgs e)
@@ -1338,6 +1333,7 @@ namespace LegendaryTools2022.Controls
             this.Cursor = Cursors.WaitCursor;
             KryptonListItem item = (KryptonListItem)kryptonListBox1.SelectedItem;
             origCardModel = (CardModel)item.Tag;
+            currentCardId = origCardModel.CardId;
             PopulateCardEditor(origCardModel);
             this.Cursor = Cursors.Default;
         }
