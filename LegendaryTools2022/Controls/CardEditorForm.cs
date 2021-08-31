@@ -114,7 +114,7 @@ namespace LegendaryTools2022.Controls
                GraphicsUnit.Pixel);
 
 
-            PopulateDeckTree();
+           
 
         }
 
@@ -153,7 +153,13 @@ namespace LegendaryTools2022.Controls
             //frameImage.Resize(picWidth, picHeight);
 
             settings.Save();
+
             LoadCardTypes(currentDeckModel);
+
+
+            PopulateDeckTree();
+
+            
             
         }
 
@@ -173,7 +179,7 @@ namespace LegendaryTools2022.Controls
                 foreach (var item in keyValuePair.Value)
                 {                  
                     currentCardTypesList.Add(item);
-                    toolStripCmbCardTypes.Items.Add(item.Displayname);
+                    cmbCardType.Items.Add(item.Displayname);
                 }
             }
 
@@ -227,7 +233,7 @@ namespace LegendaryTools2022.Controls
                 }
 
                 toolStripLabelDeckName.Text = "Deck Name: " + currentDeckModel.Name;
-                toolStripCmbCardTypes.SelectedItem = currentCardModel.CardType;
+                cmbCardType.SelectedItem = model.CardType;
                 txtCardName.Text = model.CardDisplayName;
                 numCardTitleSize.Value = model.CardDisplayNameFontSize < model.CardNameSubFontSize ? model.CardNameSubFontSize+2: model.CardDisplayNameFontSize;
                 txtCardSubName.Text = model.CardNameSub == "Card Sub-Title" ? currentDeckModel.Name : model.CardNameSub;
@@ -872,12 +878,12 @@ namespace LegendaryTools2022.Controls
                     if (exportImage != null)
                     {
 
-                        currentCustomSetPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
-                        DirectoryInfo directory = new DirectoryInfo(currentCustomSetPath);
+                        var cardPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
+                        DirectoryInfo directory = new DirectoryInfo(cardPath);
                         if (!directory.Exists)
                             directory.Create();
 
-                        var exportedCardImage = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}\\{exportedImageName}";
+                        var exportedCardImage = $"{cardPath}\\{exportedImageName}";
                         
 
                         exportImage.SaveImage(exportedCardImage, System.Drawing.Imaging.ImageFormat.Png);
@@ -1195,17 +1201,21 @@ namespace LegendaryTools2022.Controls
             cardToUpdate.CardNameSubFontSize = Convert.ToInt32(numCardSubTitleSize.Value);
             cardToUpdate.CardText = txtCardTextBox.Text;
             cardToUpdate.CardTextFontSize = Convert.ToInt32(numCardTextSize.Value);
-
+            
             cardToUpdate.TeamIcon = cmbTeam.SelectedIndex;
 
 
+            var cardTypeModel = currentCardTypesList.Where(x => x.Displayname == cmbCardType.SelectedItem.ToString()).FirstOrDefault();
+            cardToUpdate.CardTypeTemplate = cardTypeModel.Name;
+            cardToUpdate.CardType = cardTypeModel.Displayname;
+
             KalikoImage exportImage = RenderCardImage(cardToUpdate);
-            currentCustomSetPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
-            DirectoryInfo directory = new DirectoryInfo(currentCustomSetPath);
+            var cardPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
+            DirectoryInfo directory = new DirectoryInfo(cardPath);
             if (!directory.Exists)
                 directory.Create();
 
-            cardToUpdate.ExportedCardImage = $"{currentCustomSetPath}\\{exportedImageName}";
+            cardToUpdate.ExportedCardImage = $"{cardPath}\\{exportedImageName}";
 
             if (renderedCards.ContainsKey(exportedImageName))
                 renderedCards.Remove(exportedImageName);
@@ -1226,8 +1236,9 @@ namespace LegendaryTools2022.Controls
 
         private void btnChangeCardType_Click(object sender, EventArgs e)
         {
-            currentCardModel.CardTypeTemplate = currentCardTypesList.Where(x=>x.Displayname == toolStripCmbCardTypes.SelectedItem.ToString()).FirstOrDefault().Name;
-
+            var cardTypeModel = currentCardTypesList.Where(x => x.Displayname == cmbCardType.SelectedItem.ToString()).FirstOrDefault();
+            currentCardModel.CardTypeTemplate = cardTypeModel.Name;
+            currentCardModel.CardType = cardTypeModel.Displayname;
             if (currentCardModel.CardTypeTemplate == "hero_rare")
             {
                 currentCardModel.FrameImage = $"{currentCardModel.CardTypeTemplate}_back_text.png";
