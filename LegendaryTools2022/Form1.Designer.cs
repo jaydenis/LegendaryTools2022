@@ -99,7 +99,7 @@ namespace LegendaryTools2022
             this.tabControl1.Location = new System.Drawing.Point(0, 49);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1377, 739);
+            this.tabControl1.Size = new System.Drawing.Size(1381, 865);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -108,7 +108,7 @@ namespace LegendaryTools2022
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1369, 713);
+            this.tabPage1.Size = new System.Drawing.Size(1373, 839);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -127,8 +127,8 @@ namespace LegendaryTools2022
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControlMain);
-            this.splitContainer1.Size = new System.Drawing.Size(1363, 707);
-            this.splitContainer1.SplitterDistance = 214;
+            this.splitContainer1.Size = new System.Drawing.Size(1367, 833);
+            this.splitContainer1.SplitterDistance = 164;
             this.splitContainer1.TabIndex = 2;
             // 
             // treeViewCards
@@ -139,7 +139,7 @@ namespace LegendaryTools2022
             this.treeViewCards.Location = new System.Drawing.Point(0, 25);
             this.treeViewCards.Name = "treeViewCards";
             this.treeViewCards.ShowLines = false;
-            this.treeViewCards.Size = new System.Drawing.Size(214, 682);
+            this.treeViewCards.Size = new System.Drawing.Size(164, 808);
             this.treeViewCards.TabIndex = 1;
             this.treeViewCards.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewCards_AfterSelect);
             // 
@@ -152,7 +152,7 @@ namespace LegendaryTools2022
             this.toolStripButton1});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(214, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(164, 25);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -185,7 +185,7 @@ namespace LegendaryTools2022
             this.tabControlMain.Location = new System.Drawing.Point(0, 0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1145, 707);
+            this.tabControlMain.Size = new System.Drawing.Size(1199, 833);
             this.tabControlMain.TabIndex = 0;
             // 
             // tabPage2
@@ -208,7 +208,7 @@ namespace LegendaryTools2022
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1377, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1381, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -450,7 +450,7 @@ namespace LegendaryTools2022
             this.helpToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1377, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1381, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -541,7 +541,7 @@ namespace LegendaryTools2022
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1377, 788);
+            this.ClientSize = new System.Drawing.Size(1381, 914);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);

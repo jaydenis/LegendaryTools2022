@@ -43,9 +43,10 @@ namespace LegendaryTools2022.Controls
             this.numX2 = new System.Windows.Forms.NumericUpDown();
             this.numY1 = new System.Windows.Forms.NumericUpDown();
             this.numX1 = new System.Windows.Forms.NumericUpDown();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.btnResetCard = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.pictureBoxTemplate = new System.Windows.Forms.PictureBox();
+            this.btnChangeCardType = new System.Windows.Forms.Button();
+            this.cmbCardType = new System.Windows.Forms.ComboBox();
             this.btnGap = new System.Windows.Forms.Button();
             this.btnRegular = new System.Windows.Forms.Button();
             this.btnKeyword = new System.Windows.Forms.Button();
@@ -59,6 +60,7 @@ namespace LegendaryTools2022.Controls
             this.imageListPowers = new System.Windows.Forms.ImageList(this.components);
             this.btnExport = new System.Windows.Forms.Button();
             this.numNumberInDeck = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblArtworkPath = new System.Windows.Forms.Label();
             this.btnBrowseImage = new System.Windows.Forms.Button();
@@ -110,9 +112,7 @@ namespace LegendaryTools2022.Controls
             this.imageListAttributesOther = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.kryptonListBox1 = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbCardType = new System.Windows.Forms.ComboBox();
-            this.btnChangeCardType = new System.Windows.Forms.Button();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonSplitContainer1.Panel1)).BeginInit();
             this.kryptonSplitContainer1.Panel1.SuspendLayout();
@@ -149,7 +149,7 @@ namespace LegendaryTools2022.Controls
             this.kryptonSplitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.kryptonSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonSplitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.kryptonSplitContainer1.Location = new System.Drawing.Point(200, 25);
+            this.kryptonSplitContainer1.Location = new System.Drawing.Point(267, 25);
             this.kryptonSplitContainer1.Name = "kryptonSplitContainer1";
             // 
             // kryptonSplitContainer1.Panel1
@@ -188,14 +188,13 @@ namespace LegendaryTools2022.Controls
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.txtCardSubName);
             this.kryptonSplitContainer1.Panel2.Controls.Add(this.txtCardName);
             this.kryptonSplitContainer1.Panel2.PanelBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlAlternate;
-            this.kryptonSplitContainer1.Size = new System.Drawing.Size(969, 761);
+            this.kryptonSplitContainer1.Size = new System.Drawing.Size(902, 761);
             this.kryptonSplitContainer1.SplitterDistance = 400;
             this.kryptonSplitContainer1.TabIndex = 0;
             // 
             // kryptonPanel1
             // 
             this.kryptonPanel1.Controls.Add(this.groupBox1);
-            this.kryptonPanel1.Controls.Add(this.splitter1);
             this.kryptonPanel1.Controls.Add(this.btnResetCard);
             this.kryptonPanel1.Controls.Add(this.pictureBoxTemplate);
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -370,14 +369,6 @@ namespace LegendaryTools2022.Controls
             0,
             0});
             // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 761);
-            this.splitter1.TabIndex = 63;
-            this.splitter1.TabStop = false;
-            // 
             // btnResetCard
             // 
             this.btnResetCard.Location = new System.Drawing.Point(33, 534);
@@ -399,6 +390,24 @@ namespace LegendaryTools2022.Controls
             this.pictureBoxTemplate.TabIndex = 0;
             this.pictureBoxTemplate.TabStop = false;
             this.pictureBoxTemplate.DoubleClick += new System.EventHandler(this.pictureBoxTemplate_DoubleClick);
+            // 
+            // btnChangeCardType
+            // 
+            this.btnChangeCardType.Location = new System.Drawing.Point(402, 30);
+            this.btnChangeCardType.Name = "btnChangeCardType";
+            this.btnChangeCardType.Size = new System.Drawing.Size(57, 23);
+            this.btnChangeCardType.TabIndex = 76;
+            this.btnChangeCardType.Text = "Change";
+            this.btnChangeCardType.UseVisualStyleBackColor = true;
+            this.btnChangeCardType.Click += new System.EventHandler(this.btnChangeCardType_Click);
+            // 
+            // cmbCardType
+            // 
+            this.cmbCardType.FormattingEnabled = true;
+            this.cmbCardType.Location = new System.Drawing.Point(17, 32);
+            this.cmbCardType.Name = "cmbCardType";
+            this.cmbCardType.Size = new System.Drawing.Size(360, 21);
+            this.cmbCardType.TabIndex = 75;
             // 
             // btnGap
             // 
@@ -561,6 +570,17 @@ namespace LegendaryTools2022.Controls
             0,
             0,
             0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(13, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(75, 15);
+            this.label4.TabIndex = 68;
+            this.label4.Text = "Card Type:";
             // 
             // label1
             // 
@@ -1147,7 +1167,7 @@ namespace LegendaryTools2022.Controls
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 761);
+            this.panel1.Size = new System.Drawing.Size(267, 761);
             this.panel1.TabIndex = 2;
             // 
             // kryptonListBox1
@@ -1155,44 +1175,24 @@ namespace LegendaryTools2022.Controls
             this.kryptonListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonListBox1.Location = new System.Drawing.Point(0, 0);
             this.kryptonListBox1.Name = "kryptonListBox1";
-            this.kryptonListBox1.Size = new System.Drawing.Size(200, 761);
+            this.kryptonListBox1.Size = new System.Drawing.Size(267, 761);
             this.kryptonListBox1.TabIndex = 0;
             this.kryptonListBox1.SelectedIndexChanged += new System.EventHandler(this.kryptonListBox1_SelectedIndexChanged);
             // 
-            // label4
+            // splitter1
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(13, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 15);
-            this.label4.TabIndex = 68;
-            this.label4.Text = "Card Type:";
-            // 
-            // cmbCardType
-            // 
-            this.cmbCardType.FormattingEnabled = true;
-            this.cmbCardType.Location = new System.Drawing.Point(17, 32);
-            this.cmbCardType.Name = "cmbCardType";
-            this.cmbCardType.Size = new System.Drawing.Size(360, 21);
-            this.cmbCardType.TabIndex = 75;
-            // 
-            // btnChangeCardType
-            // 
-            this.btnChangeCardType.Location = new System.Drawing.Point(402, 30);
-            this.btnChangeCardType.Name = "btnChangeCardType";
-            this.btnChangeCardType.Size = new System.Drawing.Size(57, 23);
-            this.btnChangeCardType.TabIndex = 76;
-            this.btnChangeCardType.Text = "Change";
-            this.btnChangeCardType.UseVisualStyleBackColor = true;
-            this.btnChangeCardType.Click += new System.EventHandler(this.btnChangeCardType_Click);
+            this.splitter1.Location = new System.Drawing.Point(267, 25);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 761);
+            this.splitter1.TabIndex = 3;
+            this.splitter1.TabStop = false;
             // 
             // CardEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.splitter1);
             this.Controls.Add(this.kryptonSplitContainer1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
@@ -1305,7 +1305,6 @@ namespace LegendaryTools2022.Controls
         private System.Windows.Forms.ImageList imageListTeams;
         private System.Windows.Forms.ImageList imageListTeamsFull;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Panel panel1;
         private ComponentFactory.Krypton.Toolkit.KryptonListBox kryptonListBox1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -1321,5 +1320,6 @@ namespace LegendaryTools2022.Controls
         private System.Windows.Forms.ComboBox cmbCardType;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnChangeCardType;
+        private System.Windows.Forms.Splitter splitter1;
     }
 }

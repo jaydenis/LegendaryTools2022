@@ -79,6 +79,9 @@ namespace LegendaryTools2022.Models
         [JsonConverter(typeof(BooleanConverter))]
         public bool ArtWorkZoom { get; set; }
 
+        [JsonProperty("art_work_rectangle")]
+        public string ArtworkRectangle { get; set; }
+
         [JsonProperty("card_display_name")]
         public string CardDisplayName { get; set; }
 

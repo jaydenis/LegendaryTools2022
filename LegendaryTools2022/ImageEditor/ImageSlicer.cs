@@ -18,6 +18,8 @@ namespace LegendaryTools2022.ImageEditor
         private KalikoImage imageOrignal;
         private KalikoImage orignalArtwork;
         public KalikoImage imageResult;
+        public KalikoImage OriginalImage;
+        public Rectangle ImageRectangle;
         private Size OriginalImageSize;
         private Size ModifiedImageSize;
 
@@ -26,9 +28,9 @@ namespace LegendaryTools2022.ImageEditor
 
         int cropX;
         int cropY;
-        int cropWidth;
+        public int cropWidth;
 
-        int cropHeight;
+        public int cropHeight;
         int oCropX;
         int oCropY;
         public Pen cropPen;
@@ -131,56 +133,7 @@ namespace LegendaryTools2022.ImageEditor
             pictureBoxOrig.SizeMode = PictureBoxSizeMode.CenterImage;
         }
 
-        private void CropImage()
-        {
-
-            Cursor = Cursors.Default;
-
-            try
-            {
-                if (cropWidth < 1)
-                {
-                    return;
-                }
-                Rectangle rect = new Rectangle(cropX, cropY, cropWidth, cropHeight);
-                //First we define a rectangle with the help of already calculated points
-                // Bitmap OriginalImage = new Bitmap(pictureBoxOrig.Image, pictureBoxOrig.Width, pictureBoxOrig.Height);
-
-                KalikoImage OriginalImage = new KalikoImage(pictureBoxOrig.Image);
-                //Original image
-                //Bitmap _img = new Bitmap(cropWidth, cropHeight);
-
-                KalikoImage cropImage = new KalikoImage(cropWidth, cropHeight);
-
-                // for cropinf image
-                Graphics g = Graphics.FromImage(cropImage.GetAsBitmap());
-                // create graphics
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                //set image attributes
-                g.DrawImage(OriginalImage.GetAsBitmap(), 0, 0, rect, GraphicsUnit.Pixel);
-
-
-
-
-
-                imageResult = cropImage.Scale(new CropScaling(319, 462));
-                pictureBoxResult.Image = imageResult.GetAsBitmap();
-
-                //pictureBoxResult.Image = _img;
-                //pictureBoxResult.Width = 260;
-                //pictureBoxResult.Height = 350;
-                //pictureBoxResult.SizeMode = PictureBoxSizeMode.AutoSize;
-                PictureBoxLocation();
-                SetResizeInfo(new Size(cropImage.Width, cropImage.Height));
-
-
-            }
-            catch (Exception ex)
-            {
-            }
-        }
+    
 
         private void pictureBoxOrig_MouseDown(object sender, MouseEventArgs e)
         {
@@ -269,17 +222,7 @@ namespace LegendaryTools2022.ImageEditor
 
         private void pictureBoxResult_Paint(object sender, PaintEventArgs e)
         {
-            //// Shrink the image using high-quality interpolation.
-            //e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            //e.Graphics.DrawImage(
-            //    pictureBoxOrig.Image,
-            //    new Rectangle(260, 350, (int)(0.6 * ModifiedImageSize.Width), (int)(0.6 * ModifiedImageSize.Height)),
-            //    // destination rectangle
-            //    0,
-            //    0,           // upper-left corner of source rectangle
-            //    ModifiedImageSize.Width,       // width of source rectangle
-            //    ModifiedImageSize.Height,      // height of source rectangle
-            //    GraphicsUnit.Pixel);
+           
         }
 
         private void splitContainer1_Panel1_Resize(object sender, EventArgs e)
@@ -289,17 +232,7 @@ namespace LegendaryTools2022.ImageEditor
 
         private void pictureBoxOrig_Paint(object sender, PaintEventArgs e)
         {
-            //// Shrink the image using high-quality interpolation.
-            //e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            //e.Graphics.DrawImage(
-            //    pictureBoxOrig.Image,
-            //    new Rectangle(260, 350, (int)(0.6 * imgWidth), (int)(0.6 * imgHeight)),
-            //    // destination rectangle
-            //    0,
-            //    0,           // upper-left corner of source rectangle
-            //    imgWidth,       // width of source rectangle
-            //    imgHeight,      // height of source rectangle
-            //    GraphicsUnit.Pixel);
+           
         }
 
         private void numSelectionTop_ValueChanged(object sender, EventArgs e)
@@ -310,57 +243,7 @@ namespace LegendaryTools2022.ImageEditor
             pictureBoxResult.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
-        private void UpdateZoomedImage(MouseEventArgs e)
-        {
-            // Calculate the width and height of the portion of the image we want
-            // to show in the picZoom picturebox. This value changes when the zoom
-            // factor is changed.
-            int zoomWidth = pictureBoxResult.Width;// / _ZoomFactor;
-            int zoomHeight = pictureBoxResult.Height;// / _ZoomFactor;
-
-            // Calculate the horizontal and vertical midpoints for the crosshair
-            // cursor and correct centering of the new image
-            int halfWidth = zoomWidth / 2;
-            int halfHeight = zoomHeight / 2;
-
-            // Create a new temporary bitmap to fit inside the picZoom picturebox
-            KalikoImage tempBitmap = new KalikoImage(zoomWidth, zoomHeight);
-
-            // Create a temporary Graphics object to work on the bitmap
-            Graphics bmGraphics = Graphics.FromImage(tempBitmap.GetAsBitmap());
-
-            // Clear the bitmap with the selected backcolor
-            //bmGraphics.Clear(_BackColor);
-
-            // Set the interpolation mode
-            bmGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-            // Draw the portion of the main image onto the bitmap
-            // The target rectangle is already known now.
-            // Here the mouse position of the cursor on the main image is used to
-            // cut out a portion of the main image.
-            bmGraphics.DrawImage(pictureBoxOrig.Image,
-                                 new Rectangle(0, 0, zoomWidth, zoomHeight),
-                                 new Rectangle(e.X - halfWidth, e.Y - halfHeight, zoomWidth, zoomHeight),
-                                 GraphicsUnit.Pixel);
-
-            // Draw the bitmap on the picZoom picturebox
-            pictureBoxResult.Image = tempBitmap.GetAsBitmap();
-
-            imageResult = tempBitmap;
-            // Draw a crosshair on the bitmap to simulate the cursor position
-            bmGraphics.DrawLine(Pens.Black, halfWidth + 1, halfHeight - 4, halfWidth + 1, halfHeight - 1);
-            bmGraphics.DrawLine(Pens.Black, halfWidth + 1, halfHeight + 6, halfWidth + 1, halfHeight + 3);
-            bmGraphics.DrawLine(Pens.Black, halfWidth - 4, halfHeight + 1, halfWidth - 1, halfHeight + 1);
-            bmGraphics.DrawLine(Pens.Black, halfWidth + 6, halfHeight + 1, halfWidth + 3, halfHeight + 1);
-
-            // Dispose of the Graphics object
-            bmGraphics.Dispose();
-
-            // Refresh the picZoom picturebox to reflect the changes
-            pictureBoxResult.Refresh();
-
-        }
+        
 
         private void btnCrop_Click(object sender, EventArgs e)
         {
@@ -374,9 +257,9 @@ namespace LegendaryTools2022.ImageEditor
                 {
                     return;
                 }
-                Rectangle rect = new Rectangle(cropX, cropY, cropWidth, cropHeight);
+                ImageRectangle = new Rectangle(cropX, cropY, cropWidth, cropHeight);
                 //First we define a rectangle with the help of already calculated points
-                KalikoImage OriginalImage = new KalikoImage(pictureBoxOrig.Image);
+                OriginalImage = new KalikoImage(pictureBoxOrig.Image);
                 OriginalImage.Resize(pictureBoxOrig.Width, pictureBoxOrig.Height);
                 //Original image
                 KalikoImage _img = new KalikoImage(cropWidth, cropHeight);
@@ -387,7 +270,7 @@ namespace LegendaryTools2022.ImageEditor
                 g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                 g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 //set image attributes
-                g.DrawImage(OriginalImage.GetAsBitmap(), 0, 0, rect, GraphicsUnit.Pixel);
+                g.DrawImage(OriginalImage.GetAsBitmap(), 0, 0, ImageRectangle, GraphicsUnit.Pixel);
 
                 pictureBoxResult.Image = _img.GetAsBitmap();
                 pictureBoxResult.Width = 260;// _img.Width;

@@ -1070,15 +1070,25 @@ namespace LegendaryTools2022.Controls
                 Title = "Select image"
             };
             if (Dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                currentCardModel.ArtWorkPath = Dlg.FileName;
-               lblArtworkPath.Text = currentCardModel.ArtWorkPath;
+            {             
                 
                 artworkImage = new KalikoImage(Dlg.FileName);
                 ImageSlicer imageSlicer = new ImageSlicer(artworkImage, orignalArtwork);
                 imageSlicer.ShowDialog(this);
+
+               
                 artworkImage = imageSlicer.imageResult;
                 orignalArtwork = artworkImage;
+
+                var cardPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}\\artwork";
+                DirectoryInfo directory = new DirectoryInfo(cardPath);
+                if (!directory.Exists)
+                    directory.Create();
+
+                currentCardModel.ArtWorkPath = $"{cardPath}\\img{Dlg.FileName.GetHashCode()}.png";
+                lblArtworkPath.Text = currentCardModel.ArtWorkPath;
+                artworkImage.SaveImage(currentCardModel.ArtWorkPath, System.Drawing.Imaging.ImageFormat.Png);
+
                 LoadImage(currentCardModel);
             }
         }
@@ -1210,6 +1220,7 @@ namespace LegendaryTools2022.Controls
             cardToUpdate.CardType = cardTypeModel.Displayname;
 
             KalikoImage exportImage = RenderCardImage(cardToUpdate);
+
             var cardPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
             DirectoryInfo directory = new DirectoryInfo(cardPath);
             if (!directory.Exists)
@@ -1220,7 +1231,7 @@ namespace LegendaryTools2022.Controls
             if (renderedCards.ContainsKey(exportedImageName))
                 renderedCards.Remove(exportedImageName);
 
-            renderedCards.Add(exportedImageName, exportImage);
+            renderedCards.Add(exportedImageName, exportImage);            
 
             //exportImage.SaveImage(cardToUpdate.ExportedCardImage, System.Drawing.Imaging.ImageFormat.Png);
 
@@ -1265,6 +1276,7 @@ namespace LegendaryTools2022.Controls
 
             coreManager.SaveCustomSet(currentCustomSetModel, currentCustomSetPath);
 
+            PopulateDeckTree(kryptonListBox1.SelectedIndex);
             this.Cursor = Cursors.Default;
         }
 
@@ -1277,10 +1289,11 @@ namespace LegendaryTools2022.Controls
                 KalikoImage exportImage = item.Value;
                 if (exportImage != null)
                 {
-                    DirectoryInfo directory = new DirectoryInfo($"{currentCustomSetPath}");
+                    var cardPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
+                    DirectoryInfo directory = new DirectoryInfo($"{cardPath}");
                     if (!directory.Exists)
                         directory.Create();
-                    var x = $"{currentCustomSetPath}\\{item.Key}";
+                    var x = $"{cardPath}\\{item.Key}";
                     exportImage.SaveImage(x, System.Drawing.Imaging.ImageFormat.Png);
                 }
             }
@@ -1321,8 +1334,8 @@ namespace LegendaryTools2022.Controls
 
 
         #region CardTree
-       
-        private void PopulateDeckTree()
+
+        private void PopulateDeckTree(int selectedIndex = 0)
         {
             kryptonListBox1.Items.Clear();
            
@@ -1335,7 +1348,7 @@ namespace LegendaryTools2022.Controls
                 kryptonListBox1.Items.Add(item);
             }
 
-            kryptonListBox1.SelectedIndex = 0;
+            kryptonListBox1.SelectedIndex = selectedIndex;
         }
 
 
