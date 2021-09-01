@@ -21,7 +21,7 @@ namespace LegendaryTools2022.Managers
         }
         public List<DeckTypeModel> GetDeckTypes()
         {
-            var path = settings.baseFolder + "\\" + settings.json_templates;
+            var path = settings.baseFolder + "\\" + settings.json_decktypes;
             string jsonText = File.ReadAllText(path);
             var dataModel = JsonConvert.DeserializeObject<IList<DeckTypeModel>>(jsonText).ToList();
 

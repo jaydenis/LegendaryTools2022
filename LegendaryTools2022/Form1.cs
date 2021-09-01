@@ -65,20 +65,26 @@ namespace LegendaryTools2022
                 setNode.Tag = item;
                 customSetProject = coreManager.OpenCustomSet(item.SetName);
 
-                foreach (var deck in customSetProject.Decks)
+                foreach (var deckType in coreManager.GetDeckTypes())
                 {
-                    TreeNode deckNode = new TreeNode(deck.Name);
-                    deckNode.ImageIndex = deck.TeamIcon;
-                    deckNode.SelectedImageIndex = deck.TeamIcon;
+                    TreeNode deckTypeNode = new TreeNode(deckType.DisplayName);
 
-                    deckNode.Tag = new CardNodeModel
+                    foreach (var deck in customSetProject.Decks.Where(x=>x.DeckType == deckType.Name))
                     {
-                        SelectedSetModel = customSetProject,
-                        SelectedDeckModel = deck,
-                        CurrentCustomSetPath = item.SetName
-                    };
-                  
-                    setNode.Nodes.Add(deckNode);
+                        TreeNode deckNode = new TreeNode(deck.Name);
+                        deckNode.ImageIndex = deck.TeamIcon;
+                        deckNode.SelectedImageIndex = deck.TeamIcon;
+
+                        deckNode.Tag = new CardNodeModel
+                        {
+                            SelectedSetModel = customSetProject,
+                            SelectedDeckModel = deck,
+                            CurrentCustomSetPath = item.SetName
+                        };
+
+                        deckTypeNode.Nodes.Add(deckNode);
+                    }
+                    setNode.Nodes.Add(deckTypeNode);
                 }
 
                 root.Nodes.Add(setNode);

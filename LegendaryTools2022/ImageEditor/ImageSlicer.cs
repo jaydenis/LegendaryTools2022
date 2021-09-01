@@ -43,7 +43,7 @@ namespace LegendaryTools2022.ImageEditor
         public ImageSlicer(KalikoImage _image, KalikoImage _orignalArtwork)
         {
             InitializeComponent();
-           imageOrignal = _image;
+            imageOrignal = _image;
             //pictureBoxOrig.BackgroundImage = imageOrignal;
             orignalArtwork = _orignalArtwork;
 
@@ -51,18 +51,8 @@ namespace LegendaryTools2022.ImageEditor
 
         private void ImageSlicer_Load(object sender, EventArgs e)
         {
-            BindDomainIUpDown();
-           
-            LoadImage();
-        }
 
-        private void BindDomainIUpDown()
-        {
-            for (int i = 1; i <= 999; i++)
-            {
-                domainUpDown1.Items.Add(i);
-            }
-            domainUpDown1.Text = "100";
+            LoadImage();
         }
 
         private void LoadImage()
@@ -79,10 +69,9 @@ namespace LegendaryTools2022.ImageEditor
             OriginalImageSize = new Size(imgWidth, imghieght);
 
             // Create thumbnail by cropping
-            imageResult = imageOrignal.Scale(new CropScaling(319, 462));
+            imageResult = imageOrignal.Scale(new CropScaling(343, 515));
             pictureBoxResult.Image = imageResult.GetAsBitmap();
 
-            SetResizeInfo(new Size(imgWidth,imghieght));
 
         }
 
@@ -101,155 +90,9 @@ namespace LegendaryTools2022.ImageEditor
             pictureBoxOrig.Location = new Point(_x, _y);
         }
 
-
-        private void SetResizeInfo(Size size)
+        private void CropImage()
         {
-            numSelectionWidth.Value = size.Width;
-            numSelectionHeight.Value = size.Height;
-
-        }
-
-        private void radioSizeOrig_CheckedChanged(object sender, EventArgs e)
-        {
-            LoadImage();
-            pictureBoxOrig.SizeMode = PictureBoxSizeMode.AutoSize;
-        }
-
-        private void radioSizeToFit_CheckedChanged(object sender, EventArgs e)
-        {
-            LoadImage();
-            pictureBoxOrig.SizeMode = PictureBoxSizeMode.Zoom;
-        }
-
-        private void radioSizeForceToFit_CheckedChanged(object sender, EventArgs e)
-        {
-            LoadImage();
-            pictureBoxOrig.SizeMode = PictureBoxSizeMode.StretchImage;
-        }
-
-        private void radioSizeCutom_CheckedChanged(object sender, EventArgs e)
-        {
-            LoadImage();
-            pictureBoxOrig.SizeMode = PictureBoxSizeMode.CenterImage;
-        }
-
-    
-
-        private void pictureBoxOrig_MouseDown(object sender, MouseEventArgs e)
-        {
-
-            Cursor = Cursors.Default;
-            if (Makeselection)
-            {
-
-                try
-                {
-                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
-                    {
-                        Cursor = Cursors.Cross;
-                        cropX = e.X;
-                        cropY = e.Y;
-
-                        cropPen = new Pen(Color.Black, 1);
-                        cropPen.DashStyle = DashStyle.DashDotDot;
-                       //UpdateZoomedImage(e);
-
-                    }
-                    pictureBoxOrig.Refresh();
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-
-        }
-
-        private void pictureBoxOrig_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (Makeselection)
-            {
-               // CropImage();
-                Cursor = Cursors.Default;
-            }
-        }
-
-        private void pictureBoxOrig_MouseMove(object sender, MouseEventArgs e)
-        {
-            Cursor = Cursors.Default;
-            if (Makeselection)
-            {
-
-                try
-                {
-                    if (pictureBoxOrig.Image == null)
-                        return;
-
-
-                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
-                    {
-                        pictureBoxOrig.Refresh();
-                        cropWidth = e.X - cropX;
-                        cropHeight = e.Y - cropY;
-                        cropPen.Color = Color.Red;
-                        cropPen.Width = 3;
-                        pictureBoxOrig.CreateGraphics().DrawRectangle(cropPen, cropX, cropY, cropWidth, cropHeight);
-
-                        lblCurrentXY.Text = $"x:{e.X} / y:{e.Y}";
-                    }
-
-                   // UpdateZoomedImage(e);
-
-                }
-                catch (Exception ex)
-                {
-                    //if (ex.Number == 5)
-                    //    return;
-                }
-            }
-        }
-
-
-
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            imageResult = orignalArtwork; 
-        }
-
-        private void pictureBoxResult_Paint(object sender, PaintEventArgs e)
-        {
-           
-        }
-
-        private void splitContainer1_Panel1_Resize(object sender, EventArgs e)
-        {
-            PictureBoxLocation();
-        }
-
-        private void pictureBoxOrig_Paint(object sender, PaintEventArgs e)
-        {
-           
-        }
-
-        private void numSelectionTop_ValueChanged(object sender, EventArgs e)
-        {
-            KalikoImage xyImage = imageResult;
-            xyImage.Crop(Convert.ToInt32(numSelectionTop.Value), Convert.ToInt32(numSelectionLeft.Value), 319, 462);
-            pictureBoxResult.Image = xyImage.GetAsBitmap();
-            pictureBoxResult.SizeMode = PictureBoxSizeMode.StretchImage;
-        }
-
-        
-
-        private void btnCrop_Click(object sender, EventArgs e)
-        {
-           
-
-            Cursor = Cursors.Default;
+            Cursor = Cursors.WaitCursor;
 
             try
             {
@@ -273,8 +116,8 @@ namespace LegendaryTools2022.ImageEditor
                 g.DrawImage(OriginalImage.GetAsBitmap(), 0, 0, ImageRectangle, GraphicsUnit.Pixel);
 
                 pictureBoxResult.Image = _img.GetAsBitmap();
-                pictureBoxResult.Width = 260;// _img.Width;
-                pictureBoxResult.Height = 330;// _img.Height;
+                pictureBoxResult.Width = _img.Width;
+                pictureBoxResult.Height = _img.Height;
                 pictureBoxResult.SizeMode = PictureBoxSizeMode.StretchImage;
                 PictureBoxLocation();
 
@@ -284,49 +127,125 @@ namespace LegendaryTools2022.ImageEditor
             catch (Exception ex)
             {
             }
+            Cursor = Cursors.Default;
         }
 
-        private void btnMakeSelection_Click(object sender, EventArgs e)
+
+        private void pictureBoxOrig_MouseDown(object sender, MouseEventArgs e)
         {
-            Makeselection = true;
-            btnCrop.Enabled = true;
+            try
+            {   if (pictureBoxOrig.Image == null)
+                    return;
+
+                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                {
+                    Cursor = Cursors.Cross;
+                    cropX = e.X;
+                    cropY = e.Y;
+
+                    cropPen = new Pen(Color.Black, 1);
+                    cropPen.DashStyle = DashStyle.DashDotDot;
+
+               
+                    pictureBoxOrig.Refresh();
+                    cropWidth = 343;// e.X - cropX;
+                    cropHeight = 515;// e.Y - cropY;
+                    cropPen.Color = Color.Red;
+                    cropPen.Width = 2;
+                    pictureBoxOrig.CreateGraphics().DrawRectangle(cropPen, cropX, cropY, cropWidth, cropHeight);
+
+                }
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
-        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
+        private void pictureBoxOrig_MouseUp(object sender, MouseEventArgs e)
+        {           
+                CropImage();            
+        }
+
+        private void pictureBoxOrig_MouseMove(object sender, MouseEventArgs e)
         {
+            //try
+            //{
+            //    if (pictureBoxOrig.Image == null)
+            //        return;
+
+            //    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            //    {
+            //        pictureBoxOrig.Refresh();
+            //        cropWidth = 343;// e.X - cropX;
+            //        cropHeight = 515;// e.Y - cropY;
+            //        cropPen.Color = Color.Red;
+            //        cropPen.Width = 2;
+            //        pictureBoxOrig.CreateGraphics().DrawRectangle(cropPen, cropX, cropY, cropWidth, cropHeight);
+
+            //    }
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    //if (ex.Number == 5)
+            //    //    return;
+            //}
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            imageResult = orignalArtwork;
+        }
+
+        private void splitContainer1_Panel1_Resize(object sender, EventArgs e)
+        {
+            PictureBoxLocation();
+        }
+
+        private void btnCrop_Click(object sender, EventArgs e)
+        {
+            CropImage();
+        }
+              
+
+        private void zoomImageUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
             int percentage = 0;
             try
             {
-                percentage = Convert.ToInt32(domainUpDown1.Text);
+                percentage = Convert.ToInt32(zoomImageUpDown1.Text);
                 ModifiedImageSize = new Size((OriginalImageSize.Width * percentage) / 100, (OriginalImageSize.Height * percentage) / 100);
-                SetResizeInfo(ModifiedImageSize);
+
+                Bitmap bm_source = new Bitmap(pictureBoxOrig.Image);
+                // Make a bitmap for the result.
+                Bitmap bm_dest = new Bitmap(Convert.ToInt32(ModifiedImageSize.Width), Convert.ToInt32(ModifiedImageSize.Height));
+                // Make a Graphics object for the result Bitmap.
+                Graphics gr_dest = Graphics.FromImage(bm_dest);
+                // Copy the source image into the destination bitmap.
+                gr_dest.DrawImage(bm_source, 0, 0, bm_dest.Width + 1, bm_dest.Height + 1);
+                // Display the result.
+                pictureBoxOrig.Image = bm_dest;
+                pictureBoxOrig.Width = bm_dest.Width;
+                pictureBoxOrig.Height = bm_dest.Height;
+                pictureBoxResult.SizeMode = PictureBoxSizeMode.StretchImage;
+                PictureBoxLocation();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Invalid Percentage");
                 return;
             }
+            this.Cursor = Cursors.Default;
         }
 
-        private void splitContainer1_Resize(object sender, EventArgs e)
-        {
-            PictureBoxLocation();
-        }
+      
 
-        private void btnResize_Click(object sender, EventArgs e)
-        {
-            Bitmap bm_source = new Bitmap(pictureBoxOrig.Image);
-            // Make a bitmap for the result.
-            Bitmap bm_dest = new Bitmap(Convert.ToInt32(ModifiedImageSize.Width), Convert.ToInt32(ModifiedImageSize.Height));
-            // Make a Graphics object for the result Bitmap.
-            Graphics gr_dest = Graphics.FromImage(bm_dest);
-            // Copy the source image into the destination bitmap.
-            gr_dest.DrawImage(bm_source, 0, 0, bm_dest.Width + 1, bm_dest.Height + 1);
-            // Display the result.
-            pictureBoxOrig.Image = bm_dest;
-            pictureBoxOrig.Width = bm_dest.Width;
-            pictureBoxOrig.Height = bm_dest.Height;
-            PictureBoxLocation();
-        }
     }
-}
+    }

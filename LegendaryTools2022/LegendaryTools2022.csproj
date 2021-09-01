@@ -214,7 +214,9 @@
     <Content Include="Images\cardtypes\hero\hero_uncommon_range.png" />
     <Content Include="Images\cardtypes\hero\hero_uncommon_strength.png" />
     <Content Include="Images\cardtypes\hero\hero_uncommon_tech.png" />
+    <Content Include="Images\cardtypes\mastermind\back_text.png" />
     <Content Include="Images\cardtypes\mastermind\back_underlay.png" />
+    <Content Include="Images\cardtypes\mastermind_tactic\back_text.png" />
     <Content Include="Images\cardtypes\mastermind_tactic\back_underlay.png" />
     <Content Include="Images\cardtypes\mastermind_token\back_underlay.png" />
     <Content Include="Images\cardtypes\mastermind_token\template.xml" />

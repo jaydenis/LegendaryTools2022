@@ -375,7 +375,7 @@ namespace LegendaryTools2022.Controls
             if (cardImage != null)
             {
                 pictureBoxTemplate.Image = null;
-                pictureBoxTemplate.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBoxTemplate.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBoxTemplate.Image = cardImage.GetAsBitmap();
                 orignalArtwork = cardImage;
             }
