@@ -15,37 +15,34 @@ namespace LegendaryTools2022.ImageEditor
 {
     public partial class ImageSlicer : Form
     {
-        private KalikoImage imageOrignal;
-        private KalikoImage orignalArtwork;
+        private KalikoImage imageNew;
+        private KalikoImage imageOrignalArtwork;
         public KalikoImage imageResult;
         public KalikoImage OriginalImage;
         public Rectangle ImageRectangle;
         private Size OriginalImageSize;
         private Size ModifiedImageSize;
 
-        int imgWidth = 0;
-        int imgHeight = 0;
+        private string imageNewPath;
+        private string imageOrignalArtworkPath;
+       
 
         int cropX;
         int cropY;
         public int cropWidth;
-
-        public int cropHeight;
-        int oCropX;
-        int oCropY;
+        public int cropHeight;    
+        
         public Pen cropPen;
+        public DashStyle cropDashStyle = DashStyle.Dash;
 
-        public DashStyle cropDashStyle = DashStyle.DashDot;
-        public bool Makeselection = true;
 
-        public bool CreateText = false;
-
-        public ImageSlicer(KalikoImage _image, KalikoImage _orignalArtwork)
+        public ImageSlicer(KalikoImage _imageNew, string _imageNewPath, KalikoImage _imageOrignalArtwork, string _imageOrignalArtworkPath)
         {
             InitializeComponent();
-            imageOrignal = _image;
-            //pictureBoxOrig.BackgroundImage = imageOrignal;
-            orignalArtwork = _orignalArtwork;
+            imageNew = _imageNew;
+            imageNewPath = _imageNewPath;
+            imageOrignalArtwork = _imageOrignalArtwork;
+            imageOrignalArtworkPath = _imageOrignalArtworkPath;
 
         }
 
@@ -59,17 +56,17 @@ namespace LegendaryTools2022.ImageEditor
         {
 
 
-            int imgWidth = imageOrignal.Width;
-            int imghieght = imageOrignal.Height;
+            int imgWidth = imageNew.Width;
+            int imghieght = imageNew.Height;
             pictureBoxOrig.Width = imgWidth;
             pictureBoxOrig.Height = imghieght;
-            pictureBoxOrig.Image = imageOrignal.GetAsBitmap();
+            pictureBoxOrig.Image = imageNew.GetAsBitmap();
             PictureBoxLocation();
 
             OriginalImageSize = new Size(imgWidth, imghieght);
 
             // Create thumbnail by cropping
-            imageResult = imageOrignal.Scale(new CropScaling(343, 515));
+            imageResult = imageNew.Scale(new CropScaling(343, 515));
             pictureBoxResult.Image = imageResult.GetAsBitmap();
 
 
@@ -126,6 +123,7 @@ namespace LegendaryTools2022.ImageEditor
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
             }
             Cursor = Cursors.Default;
         }
@@ -143,15 +141,13 @@ namespace LegendaryTools2022.ImageEditor
                     cropX = e.X;
                     cropY = e.Y;
 
-                    cropPen = new Pen(Color.Black, 1);
-                    cropPen.DashStyle = DashStyle.DashDotDot;
+                    cropPen = new Pen(Color.Red, 2);
+                    cropPen.DashStyle = DashStyle.Dot;
 
                
                     pictureBoxOrig.Refresh();
                     cropWidth = 343;// e.X - cropX;
                     cropHeight = 515;// e.Y - cropY;
-                    cropPen.Color = Color.Red;
-                    cropPen.Width = 2;
                     pictureBoxOrig.CreateGraphics().DrawRectangle(cropPen, cropX, cropY, cropWidth, cropHeight);
 
                 }
@@ -200,7 +196,7 @@ namespace LegendaryTools2022.ImageEditor
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            imageResult = orignalArtwork;
+            imageResult = imageOrignalArtwork;
         }
 
         private void splitContainer1_Panel1_Resize(object sender, EventArgs e)
@@ -223,7 +219,7 @@ namespace LegendaryTools2022.ImageEditor
                 percentage = Convert.ToInt32(zoomImageUpDown1.Text);
                 ModifiedImageSize = new Size((OriginalImageSize.Width * percentage) / 100, (OriginalImageSize.Height * percentage) / 100);
 
-                Bitmap bm_source = new Bitmap(pictureBoxOrig.Image);
+                Bitmap bm_source = new Bitmap(imageNewPath);
                 // Make a bitmap for the result.
                 Bitmap bm_dest = new Bitmap(Convert.ToInt32(ModifiedImageSize.Width), Convert.ToInt32(ModifiedImageSize.Height));
                 // Make a Graphics object for the result Bitmap.

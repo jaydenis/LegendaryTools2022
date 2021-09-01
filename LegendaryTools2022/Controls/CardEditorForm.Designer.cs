@@ -386,7 +386,7 @@ namespace LegendaryTools2022.Controls
             this.pictureBoxTemplate.MaximumSize = new System.Drawing.Size(504, 700);
             this.pictureBoxTemplate.MinimumSize = new System.Drawing.Size(304, 400);
             this.pictureBoxTemplate.Name = "pictureBoxTemplate";
-            this.pictureBoxTemplate.Size = new System.Drawing.Size(343, 515);
+            this.pictureBoxTemplate.Size = new System.Drawing.Size(346, 515);
             this.pictureBoxTemplate.TabIndex = 0;
             this.pictureBoxTemplate.TabStop = false;
             this.pictureBoxTemplate.DoubleClick += new System.EventHandler(this.pictureBoxTemplate_DoubleClick);

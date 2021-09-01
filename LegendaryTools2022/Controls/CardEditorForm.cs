@@ -294,8 +294,15 @@ namespace LegendaryTools2022.Controls
                     }
                     else
                     {
-                        artworkImage = new KalikoImage(model.ArtWorkPath);
-                        lblArtworkPath.Text = model.ArtWorkPath;
+                        try
+                        {
+                            artworkImage = new KalikoImage(model.ArtWorkPath);
+                            lblArtworkPath.Text = model.ArtWorkPath;
+                        }
+                        catch {
+                            artworkImage = new KalikoImage(Resources.artwork);
+                            lblArtworkPath.Text = "";
+                        }
                     }
 
                     LoadImage(model);
@@ -375,7 +382,7 @@ namespace LegendaryTools2022.Controls
             if (cardImage != null)
             {
                 pictureBoxTemplate.Image = null;
-                pictureBoxTemplate.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBoxTemplate.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBoxTemplate.Image = cardImage.GetAsBitmap();
                 orignalArtwork = cardImage;
             }
@@ -488,7 +495,7 @@ namespace LegendaryTools2022.Controls
             if (currentTemplateModel.FormControls.ShowAttributesCost && costImage != null)
             {
                 costImage.Resize(102, 102);
-                infoImage.BlitImage(costImage, 374, 585);
+                infoImage.BlitImage(costImage, 373, 585);
             }
 
 
@@ -1073,7 +1080,7 @@ namespace LegendaryTools2022.Controls
             {             
                 
                 artworkImage = new KalikoImage(Dlg.FileName);
-                ImageSlicer imageSlicer = new ImageSlicer(artworkImage, orignalArtwork);
+                ImageSlicer imageSlicer = new ImageSlicer(artworkImage, Dlg.FileName, orignalArtwork, currentCardModel.ArtWorkPath);
                 imageSlicer.ShowDialog(this);
 
                
@@ -1304,8 +1311,15 @@ namespace LegendaryTools2022.Controls
         }
 
         private void btnUpdateCard_Click(object sender, EventArgs e)
-        {
+        {            
+            this.Cursor = Cursors.WaitCursor;
             LoadImage(currentCardModel);
+
+            UpdateCard(currentCardId);
+
+            coreManager.SaveCustomSet(currentCustomSetModel, currentCustomSetPath);
+
+            this.Cursor = Cursors.Default;
         }
 
         private void btnKeyword_Click(object sender, EventArgs e)
