@@ -1,0 +1,42 @@
+[
+   
+    {
+      "name": "mastermind",
+      "displayName": "Mastermind",
+      "defaultStyle": "Base",
+      "group": "Masterminds",
+      
+    },
+    {
+      "name": "hero",
+      "displayName": "Hero",
+      "defaultStyle": "Base",
+      "group": "Heroes", 
+    },
+  {
+    "name": "bystander",
+    "displayName": "Bystander",
+    "defaultStyle": "Base",
+    "group": "Bystanders",
+  },
+  {
+    "name": "sidekick",
+    "displayName": "Special Sidekick",
+    "defaultStyle": "Base",
+    "group": "Sidekicks",
+  },
+    {
+      "name": "villain",
+      "displayName": "Villain",
+      "defaultStyle": "Base",
+      "group": "Villains",
+      
+    },
+  {
+    "name": "wound",
+    "displayName": "Wound",
+    "defaultStyle": "Base",
+    "group": "Wounds",
+
+  }  
+]

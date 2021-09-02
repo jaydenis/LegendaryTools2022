@@ -40,7 +40,7 @@ namespace LegendaryTools2022.Managers
 
         public CardTemplates ReadTemplateSettings(string templateFolder)
         {
-            string path = settings.baseFolder + "\\cardtypes\\" + templateFolder + "\\" + settings.json_templates;
+            string path = settings.baseFolder + "\\cards\\" + templateFolder + "\\" + settings.json_templates;
             string jsonText = File.ReadAllText(path);
             var dataModel = JsonConvert.DeserializeObject<CardTemplates>(jsonText);
 
@@ -77,6 +77,23 @@ namespace LegendaryTools2022.Managers
 
                     result.Add(item.Category, cardTypeList);
                 }
+            }
+
+            return result;
+        }
+
+        public List<CardTypeModel> GetCardTypes()
+        {
+            string path = settings.baseFolder + "\\" + settings.json_cardtypes;
+            string jsonText = File.ReadAllText(path);
+            var dataModel = JsonConvert.DeserializeObject<IList<CardTypeModel>>(jsonText).ToList();
+
+            var result = new List<CardTypeModel>();
+
+            foreach (CardTypeModel item in dataModel)
+            {
+                    result.Add(item);
+                
             }
 
             return result;

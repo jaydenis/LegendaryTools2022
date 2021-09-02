@@ -27,35 +27,7 @@ namespace LegendaryTools2022.Models
 
         [JsonProperty("group")]
         public string Group { get; set; }
-
-        [JsonProperty("nameEditable")]
-        [JsonConverter(typeof(BooleanConverter))]
-        public bool NameEditable { get; set; }
-
-        //[JsonProperty("deckType_attributes")]
-        //public List<DeckTypeAttributeModel> DeckTypeAttributes { get; set; }
     }
 
-    public partial class DeckTypeAttributeModel
-    {
-        [JsonProperty("attribute_name")]
-        public string AttributeName { get; set; }
 
-        [JsonProperty("displayName", NullValueHandling = NullValueHandling.Ignore)]
-        public string DisplayName { get; set; }
-
-        [JsonProperty("attribute_type")]
-        public string AttributeType { get; set; }
-
-        [JsonProperty("attribute_value", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
-        public long? AttributeValue { get; set; }
-
-        [JsonProperty("isEditable", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(BooleanConverter))]
-        public bool? IsEditable { get; set; }
-
-        [JsonProperty("iconType", NullValueHandling = NullValueHandling.Ignore)]
-        public string IconType { get; set; }
-    }
 }

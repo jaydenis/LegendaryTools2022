@@ -57,6 +57,15 @@
     <Reference Include="Kaliko.ImageLibrary.FastFilters, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ImageLibrary.FastFilters.3.0.2\lib\net45\Kaliko.ImageLibrary.FastFilters.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="Nancy, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.2.0.0\lib\net452\Nancy.dll</HintPath>
     </Reference>
@@ -82,6 +91,12 @@
     </Compile>
     <Compile Include="AddCardForm.Designer.cs">
       <DependentUpon>AddCardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddDeckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDeckForm.Designer.cs">
+      <DependentUpon>AddDeckForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\CardEditorForm.cs">
       <SubType>UserControl</SubType>
@@ -127,6 +142,9 @@
     <EmbeddedResource Include="AddCardForm.resx">
       <DependentUpon>AddCardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddDeckForm.resx">
+      <DependentUpon>AddDeckForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\CardEditorForm.resx">
       <DependentUpon>CardEditorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,12 +166,17 @@
     </Compile>
     <None Include="Images\cardgroups.json" />
     <None Include="Images\cardtypes.json" />
-    <None Include="Images\cardtypes\adversary\template.json" />
     <None Include="Images\cardtypes\ambition\template.json" />
+    <None Include="Images\cardtypes\bystander\template.json" />
+    <None Include="Images\cardtypes\henchmen\template.json" />
+    <None Include="Images\cardtypes\henchmen_location\template.json" />
     <None Include="Images\cardtypes\hero\template.json" />
     <None Include="Images\cardtypes\mastermind\template.json" />
     <None Include="Images\cardtypes\mastermind_tactic\template.json" />
     <None Include="Images\cardtypes\mastermind_transformed\template.json" />
+    <None Include="Images\cardtypes\special_sidekick\template.json" />
+    <None Include="Images\cardtypes\villain\template.json" />
+    <None Include="Images\cardtypes\villain_location\template.json" />
     <None Include="Images\decktypes.json" />
     <None Include="Images\icons.json" />
     <None Include="Images\template.json" />
@@ -173,16 +196,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\artwork.jpg" />
-    <Content Include="Images\cardtypes\adversary\back_underlay.png" />
-    <Content Include="Images\cardtypes\adversary\template.xml" />
     <Content Include="Images\cardtypes\ambition\back_underlay.png" />
     <Content Include="Images\cardtypes\ambition\frame.png" />
     <Content Include="Images\cardtypes\ambition\template.xml" />
     <Content Include="Images\cardtypes\ambition\text_overlay.png" />
-    <Content Include="Images\cardtypes\backup_adversary\back_underlay.png" />
-    <Content Include="Images\cardtypes\backup_adversary\template.xml" />
-    <Content Include="Images\cardtypes\bindings\template.xml" />
-    <Content Include="Images\cardtypes\bindings\wound_underlay.png" />
     <Content Include="Images\cardtypes\bystander\bystander_underlay.png" />
     <Content Include="Images\cardtypes\bystander\template.xml" />
     <Content Include="Images\cardtypes\bystander_villain\bystander_underlay.png" />
@@ -190,14 +207,8 @@
     <Content Include="Images\cardtypes\bystander_wound\bystander_underlay.png" />
     <Content Include="Images\cardtypes\bystander_wound\template.xml" />
     <Content Include="Images\cardtypes\bystander_wound\wound_underlay.png" />
-    <Content Include="Images\cardtypes\commander\back_underlay.png" />
-    <Content Include="Images\cardtypes\commander\template.xml" />
-    <Content Include="Images\cardtypes\commander_tactic\back_underlay.png" />
-    <Content Include="Images\cardtypes\commander_tactic\template.xml" />
     <Content Include="Images\cardtypes\henchmen\back_underlay.png" />
-    <Content Include="Images\cardtypes\henchmen\template.xml" />
     <Content Include="Images\cardtypes\henchmen_location\back_underlay.png" />
-    <Content Include="Images\cardtypes\henchmen_location\template.xml" />
     <Content Include="Images\cardtypes\hero\back_cost.png" />
     <Content Include="Images\cardtypes\hero\back_text.png" />
     <Content Include="Images\cardtypes\hero\back_underlay.png" />
@@ -224,9 +235,6 @@
     <Content Include="Images\cardtypes\master_strike\back_underlay.png" />
     <Content Include="Images\cardtypes\master_strike\master_strike.png" />
     <Content Include="Images\cardtypes\master_strike\template.xml" />
-    <Content Include="Images\cardtypes\operation\backing.png" />
-    <Content Include="Images\cardtypes\operation\back_underlay.png" />
-    <Content Include="Images\cardtypes\operation\template.xml" />
     <Content Include="Images\cardtypes\recruitable_bystander\back_underlay.png" />
     <Content Include="Images\cardtypes\recruitable_bystander\template.xml" />
     <Content Include="Images\cardtypes\recruitable_villain\back_cost.png" />
@@ -265,9 +273,7 @@
     <Content Include="Images\cardtypes\trap\back_underlay.png" />
     <Content Include="Images\cardtypes\trap\template.xml" />
     <Content Include="Images\cardtypes\villain\back_underlay.png" />
-    <Content Include="Images\cardtypes\villain\template.xml" />
     <Content Include="Images\cardtypes\villain_location\back_underlay.png" />
-    <Content Include="Images\cardtypes\villain_location\template.xml" />
     <Content Include="Images\cardtypes\villain_token\back_underlay.png" />
     <Content Include="Images\cardtypes\villain_token\template.xml" />
     <Content Include="Images\cardtypes\villain_transformed\back_underlay.png" />

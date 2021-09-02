@@ -10,8 +10,8 @@ namespace LegendaryTools2022.Models
 {
     public partial class CardTemplates
     {
-        [JsonProperty("teamplates")]
-        public List<TemplateModel> Teamplates { get; set; }
+        [JsonProperty("templates")]
+        public List<TemplateModel> Templates { get; set; }
     }
 
     public partial class TemplateModel
@@ -25,26 +25,39 @@ namespace LegendaryTools2022.Models
 
     public partial class CardTemplate
     {
-        [JsonProperty("name")]
+        [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
 
-        [JsonProperty("displayname")]
+        [JsonProperty("displayname", Required = Required.Always)]
         public string Displayname { get; set; }
 
-        [JsonProperty("deck")]
+        [JsonProperty("deck", Required = Required.Always)]
         public string Deck { get; set; }
 
-        [JsonProperty("rectxarray")]
+        [JsonProperty("rectxarray", Required = Required.Always)]
         public string Rectxarray { get; set; }
 
-        [JsonProperty("rectyarray")]
+        [JsonProperty("rectyarray", Required = Required.Always)]
         public string Rectyarray { get; set; }
 
-        [JsonProperty("cardwidth")]
+        [JsonProperty("cardwidth", Required = Required.Always)]
         public int Cardwidth { get; set; }
 
-        [JsonProperty("cardheight")]
+        [JsonProperty("cardheight", Required = Required.Always)]
         public int Cardheight { get; set; }
+
+        [JsonProperty("frame_image", Required = Required.Always)]
+        public string FrameImage { get; set; }
+
+        [JsonProperty("back_cost", NullValueHandling = NullValueHandling.Ignore)]
+        public string BackCost { get; set; }
+
+        [JsonProperty("back_text", NullValueHandling = NullValueHandling.Ignore) ]
+        public string BackText { get; set; }
+
+        [JsonProperty("back_underlay", NullValueHandling = NullValueHandling.Ignore)]
+        public string BackUnderlay { get; set; }
+
     }
 
     public partial class FormControls

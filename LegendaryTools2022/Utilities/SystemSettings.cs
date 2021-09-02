@@ -11,7 +11,7 @@ namespace LegendaryTools2022.Utilities
         public string lastFolder = @"";
         public string lastProject = "";
 
-        public string baseFolder = @"C:\Repos\LegendaryTools2022\LegendaryTools2022\Images";
+        public string baseFolder = @"C:\Repos\LegendaryTools2022\LegendaryTools2022\Templates";
         public string iconsFolder = "icons";
 
         public string json_decktypes = "decktypes.json";

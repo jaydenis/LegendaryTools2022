@@ -154,6 +154,10 @@ namespace LegendaryTools2022
             OpenFile();
         }
 
-
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            AddDeckForm deckForm = new AddDeckForm();
+            deckForm.ShowDialog(this);
+        }
     }
 }

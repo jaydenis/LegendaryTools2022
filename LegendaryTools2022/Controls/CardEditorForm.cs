@@ -208,7 +208,7 @@ namespace LegendaryTools2022.Controls
                 
 
                 //load card type template
-                var templatePath = $"{settings.baseFolder}\\cardtypes\\{currentDeckModel.DeckType}";
+                var templatePath = $"{settings.baseFolder}\\cards\\{currentDeckModel.DeckType}";
 
                 currentTemplateDirectory = new DirectoryInfo(templatePath);
                 string frameImageFromTemplate = "";
@@ -219,15 +219,15 @@ namespace LegendaryTools2022.Controls
                 {
 
                     templateModelList = coreManager.ReadTemplateSettings(currentDeckModel.DeckType.ToLower());
-                    currentTemplateModel = templateModelList.Teamplates.Where(x => x.CardTemplate.Name.ToLower() == currentCardModel.CardTypeTemplate.ToLower()).FirstOrDefault();
+                    currentTemplateModel = templateModelList.Templates.Where(x => x.CardTemplate.Name.ToLower() == currentCardModel.CardTypeTemplate.ToLower()).FirstOrDefault();
                     ToggleFormControls(currentTemplateModel);
 
                     if (currentCardModel.FrameImage != "")
                         frameImageFromTemplate = $"{currentTemplateDirectory}\\{currentCardModel.FrameImage}";
                     else
-                        frameImageFromTemplate = $"{currentTemplateDirectory}\\{templateModelList.Teamplates.FirstOrDefault().CardTemplate.Name}";
+                        frameImageFromTemplate = $"{currentTemplateDirectory}\\{templateModelList.Templates.FirstOrDefault().CardTemplate.Name}";
 
-                    backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{currentCardModel.CardBackTextImage}");
+                    backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{currentTemplateModel.CardTemplate.BackText}");
                     backTextImage.Resize(picWidth, picHeight);
 
                 }
