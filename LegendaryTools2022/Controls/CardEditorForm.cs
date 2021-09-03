@@ -1,6 +1,7 @@
 ﻿
 using ComponentFactory.Krypton.Toolkit;
 using Kaliko.ImageLibrary;
+using Kaliko.ImageLibrary.FastFilters;
 using LegendaryTools2022.ImageEditor;
 using LegendaryTools2022.Managers;
 using LegendaryTools2022.Models;
@@ -412,7 +413,14 @@ namespace LegendaryTools2022.Controls
 
             infoImage.BlitImage(artworkImage);
 
+            var textBackground = new KalikoImage(Resources.transparent_bg);
+            int textBackgroundHeight = 85;
+            if (currentDeckModel.DeckType.ToLower() == "mastermind")
+                textBackgroundHeight = 70;
 
+            textBackground.Resize(picWidth, textBackgroundHeight);
+
+            infoImage.BlitImage(textBackground, 0, 16);
 
             if (backTextImage != null)
                 infoImage.BlitImage(backTextImage);
@@ -425,6 +433,8 @@ namespace LegendaryTools2022.Controls
             }
 
             infoImage.BlitImage(frameImage);
+
+           
 
 
             if (powerImage != null && currentTemplateModel.FormControls.ShowPower)
@@ -538,8 +548,9 @@ namespace LegendaryTools2022.Controls
             txtFieldTitle.TextColor = Color.Gold;
             txtFieldTitle.Outline = 3;
             txtFieldTitle.OutlineColor = Color.Black;
+            
 
-            infoImage.DrawText(txtFieldTitle);
+           
 
 
             Font fontSubTitle = new Font(
@@ -550,13 +561,14 @@ namespace LegendaryTools2022.Controls
 
             TextField txtFieldSubTitle = new TextField(txtCardSubName.Text.ToUpper());
             txtFieldSubTitle.Font = fontSubTitle;
-            txtFieldSubTitle.TargetArea = new Rectangle(30, fontTitle.Height + 12, 430, 60);
+            txtFieldSubTitle.TargetArea = new Rectangle(30, txtFieldTitle.TargetArea.Height - 5, 430, 60);
             txtFieldSubTitle.Alignment = StringAlignment.Center;
             txtFieldSubTitle.TextColor = Color.Gold;
             txtFieldSubTitle.Outline = 2;
             txtFieldSubTitle.OutlineColor = Color.Black;
-            infoImage.DrawText(txtFieldSubTitle);
 
+            infoImage.DrawText(txtFieldTitle);
+            infoImage.DrawText(txtFieldSubTitle);
 
             if (txtCardAttackValue.Text.Length > 0 || txtCardRecruitValue.Text.Length > 0 || txtCardPiercingValue.Text.Length > 0 && (currentTemplateModel.FormControls.ShowAttributesAttack || currentTemplateModel.FormControls.ShowAttributesRecruit || currentTemplateModel.FormControls.ShowAttributesPiercing))
             {

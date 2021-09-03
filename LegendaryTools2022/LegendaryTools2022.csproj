@@ -163,8 +163,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Images\cardgroups.json" />
-    <None Include="Images\cardtypes.json" />
     <None Include="Images\cardtypes\ambition\template.json" />
     <None Include="Images\cardtypes\bystander\template.json" />
     <None Include="Images\cardtypes\henchmen\template.json" />
@@ -176,9 +174,6 @@
     <None Include="Images\cardtypes\special_sidekick\template.json" />
     <None Include="Images\cardtypes\villain\template.json" />
     <None Include="Images\cardtypes\villain_location\template.json" />
-    <None Include="Images\decktypes.json" />
-    <None Include="Images\icons.json" />
-    <None Include="Images\template.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -368,6 +363,7 @@
     <Content Include="Images\icons_sm\range_sm.png" />
     <Content Include="Images\icons_sm\strength_sm.png" />
     <Content Include="Images\icons_sm\tech_sm.png" />
+    <None Include="Images\transparent_bg.png" />
     <Content Include="Templates\artwork.jpg" />
     <Content Include="Templates\cards\bystander\bystander_underlay.png" />
     <Content Include="Templates\cards\bystander\bystander_villain_underlay.png" />
@@ -473,7 +469,6 @@
     <Content Include="Templates\icons_sm\strength_sm.png" />
     <Content Include="Templates\icons_sm\tech_sm.png" />
     <Content Include="Templates\Spinner.gif" />
-    <None Include="Images\Spinner.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\attack.png" />

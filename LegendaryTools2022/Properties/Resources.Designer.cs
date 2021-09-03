@@ -183,6 +183,16 @@ namespace LegendaryTools2022.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap transparent_bg {
+            get {
+                object obj = ResourceManager.GetObject("transparent_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap victory {
             get {
                 object obj = ResourceManager.GetObject("victory", resourceCulture);
