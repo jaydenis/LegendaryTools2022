@@ -126,7 +126,6 @@
     <Compile Include="Models\CustomSetsModel.cs" />
     <Compile Include="Models\DeckTypeModel.cs" />
     <Compile Include="Models\LegendaryIconModel.cs" />
-    <Compile Include="Models\LegendarySetModel.cs" />
     <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="NewSetForm.cs">
       <SubType>Form</SubType>
@@ -190,6 +189,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Templates\cardgroups.json" />
+    <None Include="Templates\cards\bystander\template.json" />
+    <None Include="Templates\cards\hero\template.json" />
+    <None Include="Templates\cards\mastermind\template.json" />
+    <None Include="Templates\cards\sidekick\template.json" />
+    <None Include="Templates\cards\villain\template.json" />
+    <None Include="Templates\cards\wound\template.json" />
+    <None Include="Templates\cardtypes.json" />
+    <None Include="Templates\decktypes.json" />
+    <None Include="Templates\icons.json" />
+    <None Include="Templates\template.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -358,6 +368,111 @@
     <Content Include="Images\icons_sm\range_sm.png" />
     <Content Include="Images\icons_sm\strength_sm.png" />
     <Content Include="Images\icons_sm\tech_sm.png" />
+    <Content Include="Templates\artwork.jpg" />
+    <Content Include="Templates\cards\bystander\bystander_underlay.png" />
+    <Content Include="Templates\cards\bystander\bystander_villain_underlay.png" />
+    <Content Include="Templates\cards\bystander\bystander_wound_underlay.png" />
+    <Content Include="Templates\cards\hero\back_cost.png" />
+    <Content Include="Templates\cards\hero\back_text.png" />
+    <Content Include="Templates\cards\hero\back_underlay.png" />
+    <Content Include="Templates\cards\hero\hero_common_covert.png" />
+    <Content Include="Templates\cards\hero\hero_common_instinct.png" />
+    <Content Include="Templates\cards\hero\hero_common_none.png" />
+    <Content Include="Templates\cards\hero\hero_common_range.png" />
+    <Content Include="Templates\cards\hero\hero_common_strength.png" />
+    <Content Include="Templates\cards\hero\hero_common_tech.png" />
+    <Content Include="Templates\cards\hero\hero_rare_back_text.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_covert.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_instinct.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_none.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_range.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_strength.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_tech.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_back_text.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_back_underlay.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_tactic_back_text.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_tactic_back_underlay.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_token.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_transformed.png" />
+    <Content Include="Templates\cards\sidekick\back_cost.png" />
+    <Content Include="Templates\cards\sidekick\back_covert.png" />
+    <Content Include="Templates\cards\sidekick\back_instinct.png" />
+    <Content Include="Templates\cards\sidekick\back_none.png" />
+    <Content Include="Templates\cards\sidekick\back_range.png" />
+    <Content Include="Templates\cards\sidekick\back_strength.png" />
+    <Content Include="Templates\cards\sidekick\back_tech.png" />
+    <Content Include="Templates\cards\sidekick\back_text.png" />
+    <Content Include="Templates\cards\villain\henchmen_back_underlay.png" />
+    <Content Include="Templates\cards\villain\henchmen_location_back_underlay.png" />
+    <Content Include="Templates\cards\villain\villain_back_underlay.png" />
+    <Content Include="Templates\cards\villain\villain_location.png" />
+    <Content Include="Templates\cards\villain\villain_token.png" />
+    <Content Include="Templates\cards\villain\villain_transformed.png" />
+    <Content Include="Templates\cards\wound\wound_underlay.png" />
+    <Content Include="Templates\card_example.png" />
+    <Content Include="Templates\default_blank_card.png" />
+    <Content Include="Templates\icons\attributes\attack.png" />
+    <Content Include="Templates\icons\attributes\attack_lg.png" />
+    <Content Include="Templates\icons\attributes\cards.png" />
+    <Content Include="Templates\icons\attributes\cost.png" />
+    <Content Include="Templates\icons\attributes\piercing.png" />
+    <Content Include="Templates\icons\attributes\piercing_lg.png" />
+    <Content Include="Templates\icons\attributes\published.xml" />
+    <Content Include="Templates\icons\attributes\recruit.png" />
+    <Content Include="Templates\icons\attributes\recruit_lg.png" />
+    <Content Include="Templates\icons\attributes\victory.png" />
+    <Content Include="Templates\icons\misc\focus.png" />
+    <Content Include="Templates\icons\misc\published.xml" />
+    <Content Include="Templates\icons\misc\token.png" />
+    <Content Include="Templates\icons\powers\covert.png" />
+    <Content Include="Templates\icons\powers\instinct.png" />
+    <Content Include="Templates\icons\powers\published.xml" />
+    <Content Include="Templates\icons\powers\range.png" />
+    <Content Include="Templates\icons\powers\strength.png" />
+    <Content Include="Templates\icons\powers\tech.png" />
+    <Content Include="Templates\icons\teams\A-Force.png" />
+    <Content Include="Templates\icons\teams\autobot.png" />
+    <Content Include="Templates\icons\teams\avengers.png" />
+    <Content Include="Templates\icons\teams\brotherhood.png" />
+    <Content Include="Templates\icons\teams\cabal.png" />
+    <Content Include="Templates\icons\teams\champions.png" />
+    <Content Include="Templates\icons\teams\Crime_Syndicate.png" />
+    <Content Include="Templates\icons\teams\cybertron.png" />
+    <Content Include="Templates\icons\teams\decepticon.png" />
+    <Content Include="Templates\icons\teams\defenders.png" />
+    <Content Include="Templates\icons\teams\dinobot.png" />
+    <Content Include="Templates\icons\teams\fantastic-four.png" />
+    <Content Include="Templates\icons\teams\Foes_of_Asgard.png" />
+    <Content Include="Templates\icons\teams\footclan.png" />
+    <Content Include="Templates\icons\teams\foot_clan.png" />
+    <Content Include="Templates\icons\teams\guardians.png" />
+    <Content Include="Templates\icons\teams\heroes_for_hire.png" />
+    <Content Include="Templates\icons\teams\hydra.png" />
+    <Content Include="Templates\icons\teams\icons.svg" />
+    <Content Include="Templates\icons\teams\illuminati.png" />
+    <Content Include="Templates\icons\teams\legion_of_monsters.png" />
+    <Content Include="Templates\icons\teams\marvel-knights.png" />
+    <Content Include="Templates\icons\teams\mercs_4_money.png" />
+    <Content Include="Templates\icons\teams\Monsters_Unleashed_logo_sm.png" />
+    <Content Include="Templates\icons\teams\mutants.png" />
+    <Content Include="Templates\icons\teams\predacon.png" />
+    <Content Include="Templates\icons\teams\Quintesson.png" />
+    <Content Include="Templates\icons\teams\runaways.png" />
+    <Content Include="Templates\icons\teams\shield.png" />
+    <Content Include="Templates\icons\teams\sinister6.png" />
+    <Content Include="Templates\icons\teams\spider-friends.png" />
+    <Content Include="Templates\icons\teams\squirrels.png" />
+    <Content Include="Templates\icons\teams\thunderbolts.png" />
+    <Content Include="Templates\icons\teams\turtles.png" />
+    <Content Include="Templates\icons\teams\us_army.png" />
+    <Content Include="Templates\icons\teams\x-force.png" />
+    <Content Include="Templates\icons\teams\x-men.png" />
+    <Content Include="Templates\icons_sm\covert_sm.png" />
+    <Content Include="Templates\icons_sm\instinct_sm.png" />
+    <Content Include="Templates\icons_sm\range_sm.png" />
+    <Content Include="Templates\icons_sm\strength_sm.png" />
+    <Content Include="Templates\icons_sm\tech_sm.png" />
+    <Content Include="Templates\Spinner.gif" />
     <None Include="Images\Spinner.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +516,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\back_none.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\cards\officer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

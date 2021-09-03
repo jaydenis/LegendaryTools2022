@@ -296,7 +296,7 @@ namespace LegendaryTools2022.Controls
                     {
                         try
                         {
-                            artworkImage = new KalikoImage(model.ArtWorkPath);
+                            artworkImage = new KalikoImage($"{currentCustomSetModel.BaseWorkPath}\\artwork\\{model.ArtWorkPath}");
                             lblArtworkPath.Text = model.ArtWorkPath;
                         }
                         catch {
@@ -469,20 +469,20 @@ namespace LegendaryTools2022.Controls
 
             if (txtCardRecruitValue.Text.Length > 0 && currentTemplateModel.FormControls.ShowAttributesRecruit && recruitImage != null)
             {
-                recruitImage.Resize(80, 80);
-                infoImage.BlitImage(recruitImage, 16, 465);
+                recruitImage.Resize(90, 90);
+                infoImage.BlitImage(recruitImage, 13, 465);
             }
 
             if (txtCardAttackValue.Text.Length > 0 && currentTemplateModel.FormControls.ShowAttributesAttack && attackImage != null)
             {
-                attackImage.Resize(80, 80);
-                infoImage.BlitImage(attackImage, 16, 580);
+                attackImage.Resize(90, 90);
+                infoImage.BlitImage(attackImage, 13, 580);
             }
 
             if (txtCardPiercingValue.Text.Length > 0 && currentTemplateModel.FormControls.ShowAttributesPiercing && piercingImage != null)
             {
-                piercingImage.Resize(80, 80);
-                infoImage.BlitImage(piercingImage, 16, 580);
+                piercingImage.Resize(90, 90);
+                infoImage.BlitImage(piercingImage, 13, 580);
             }
 
 
@@ -1087,12 +1087,12 @@ namespace LegendaryTools2022.Controls
                 artworkImage = imageSlicer.imageResult;
                 orignalArtwork = artworkImage;
 
-                var cardPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}\\artwork";
+                var cardPath = $"{currentCustomSetModel.BaseWorkPath}\\{currentCustomSetModel.SetName}\\artwork";
                 DirectoryInfo directory = new DirectoryInfo(cardPath);
                 if (!directory.Exists)
                     directory.Create();
 
-                currentCardModel.ArtWorkPath = $"{cardPath}\\img{Dlg.FileName.GetHashCode()}.png";
+                currentCardModel.ArtWorkPath = $"{cardPath}\\img_{Dlg.FileName.GetHashCode()}.png";
                 lblArtworkPath.Text = currentCardModel.ArtWorkPath;
                 artworkImage.SaveImage(currentCardModel.ArtWorkPath, System.Drawing.Imaging.ImageFormat.Png);
 
@@ -1228,7 +1228,7 @@ namespace LegendaryTools2022.Controls
 
             KalikoImage exportImage = RenderCardImage(cardToUpdate);
 
-            var cardPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
+            var cardPath = $"{currentCustomSetModel.BaseWorkPath}\\{currentCustomSetModel.SetName}\\cards";
             DirectoryInfo directory = new DirectoryInfo(cardPath);
             if (!directory.Exists)
                 directory.Create();
@@ -1257,9 +1257,11 @@ namespace LegendaryTools2022.Controls
             var cardTypeModel = currentCardTypesList.Where(x => x.Displayname == cmbCardType.SelectedItem.ToString()).FirstOrDefault();
             currentCardModel.CardTypeTemplate = cardTypeModel.Name;
             currentCardModel.CardType = cardTypeModel.Displayname;
+
+
             if (currentCardModel.CardTypeTemplate == "hero_rare")
             {
-                currentCardModel.FrameImage = $"{currentCardModel.CardTypeTemplate}_back_text.png";
+                currentCardModel.FrameImage = $"{currentTemplateDirectory}\\{currentTemplateModel.CardTemplate.FrameImage}";
                 costImage = new KalikoImage(Resources.cost);
             }
             else
@@ -1281,7 +1283,7 @@ namespace LegendaryTools2022.Controls
             this.Cursor = Cursors.WaitCursor;
             UpdateCard(currentCardId);
 
-            coreManager.SaveCustomSet(currentCustomSetModel, currentCustomSetPath);
+            coreManager.SaveCustomSet(currentCustomSetModel, $"{currentCustomSetModel.BaseWorkPath}\\{currentCustomSetModel.SetName}");
 
             PopulateDeckTree(kryptonListBox1.SelectedIndex);
             this.Cursor = Cursors.Default;

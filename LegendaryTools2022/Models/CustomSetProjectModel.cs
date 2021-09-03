@@ -20,6 +20,9 @@ namespace LegendaryTools2022.Models
         [JsonProperty("display_name")]
         public string DisplayName { get; set; }
 
+        [JsonProperty("base_work_path")]
+        public string BaseWorkPath { get; set; }
+
         [JsonProperty("date_created")]
         public DateTimeOffset DateCreated { get; set; }
 

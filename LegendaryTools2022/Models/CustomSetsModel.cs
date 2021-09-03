@@ -9,7 +9,7 @@ namespace LegendaryTools2022.Models
 {
     public partial class CustomSetsModel
     {
-        [JsonProperty("custom-sets")]
+        [JsonProperty("custom_sets")]
         public List<CustomSetModel> CustomSets { get; set; }
     }
 
@@ -21,13 +21,19 @@ namespace LegendaryTools2022.Models
         [JsonProperty("set_name")]
         public string SetName { get; set; }
 
+        [JsonProperty("base_work_path")]
+        public string BaseWorkPath { get; set; }
+
+        [JsonProperty("json_file")]
+        public string DataFile { get; set; }
+
         [JsonProperty("display_name")]
         public string DisplayName { get; set; }
 
         [JsonProperty("date_created")]
-        public DateTimeOffset DateCreated { get; set; }
+        public DateTime DateCreated { get; set; }
 
         [JsonProperty("date_updated")]
-        public DateTimeOffset DateUpdated { get; set; }
+        public DateTime? DateUpdated { get; set; }
     }
 }

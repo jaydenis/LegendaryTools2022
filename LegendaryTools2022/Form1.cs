@@ -61,9 +61,10 @@ namespace LegendaryTools2022
             TreeNode root = new TreeNode("Custom Sets");
             foreach (CustomSetModel item in customSets.CustomSets)
             {
+                
                 TreeNode setNode = new TreeNode(item.DisplayName);
                 setNode.Tag = item;
-                customSetProject = coreManager.OpenCustomSet(item.SetName);
+                customSetProject = coreManager.OpenCustomSet($"{item.BaseWorkPath}\\{item.DataFile}");
 
                 foreach (var deckType in coreManager.GetDeckTypes())
                 {
