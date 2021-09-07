@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -413,14 +414,7 @@ namespace LegendaryTools2022.Controls
 
             infoImage.BlitImage(artworkImage);
 
-            var textBackground = new KalikoImage(Resources.transparent_bg);
-            int textBackgroundHeight = 85;
-            if (currentDeckModel.DeckType.ToLower() == "mastermind")
-                textBackgroundHeight = 70;
-
-            textBackground.Resize(picWidth, textBackgroundHeight);
-
-            infoImage.BlitImage(textBackground, 0, 16);
+            
 
             if (backTextImage != null)
                 infoImage.BlitImage(backTextImage);
@@ -543,7 +537,7 @@ namespace LegendaryTools2022.Controls
 
             TextField txtFieldTitle = new TextField(txtCardName.Text.ToUpper());
             txtFieldTitle.Font = fontTitle;
-            txtFieldTitle.TargetArea = new Rectangle(30, 18, 430, 60);
+            txtFieldTitle.TargetArea = new Rectangle(30, 18, 430, fontTitle.Height + 20);
             txtFieldTitle.Alignment = StringAlignment.Center;
             txtFieldTitle.TextColor = Color.Gold;
             txtFieldTitle.Outline = 3;
@@ -561,11 +555,38 @@ namespace LegendaryTools2022.Controls
 
             TextField txtFieldSubTitle = new TextField(txtCardSubName.Text.ToUpper());
             txtFieldSubTitle.Font = fontSubTitle;
-            txtFieldSubTitle.TargetArea = new Rectangle(30, txtFieldTitle.TargetArea.Height - 5, 430, 60);
+            txtFieldSubTitle.TargetArea = new Rectangle(30, fontTitle.Height + 15, 430, 60);
             txtFieldSubTitle.Alignment = StringAlignment.Center;
             txtFieldSubTitle.TextColor = Color.Gold;
             txtFieldSubTitle.Outline = 2;
-            txtFieldSubTitle.OutlineColor = Color.Black;
+            txtFieldSubTitle.OutlineColor = Color.Black;          
+
+            // create blank bitmap with same size
+            Bitmap combinedImageL = new Bitmap(picWidth/2, fontTitle.Height + fontSubTitle.Height);
+            Bitmap combinedImageR = new Bitmap(picWidth / 2, fontTitle.Height + fontSubTitle.Height);
+
+            // create graphics object on new blank bitmap
+            Graphics gL = Graphics.FromImage(combinedImageL);
+            Graphics gR = Graphics.FromImage(combinedImageR);
+
+            LinearGradientBrush linearGradientBrushL = new  LinearGradientBrush(
+                new Rectangle(0, 0, picWidth / 2, combinedImageL.Height),
+               Color.FromArgb(5, Color.White), 
+               Color.FromArgb(170, Color.GhostWhite),
+                0f);
+            
+            gL.FillRectangle(linearGradientBrushL, 0, 0, picWidth / 2, combinedImageL.Height);
+            infoImage.BlitImage(combinedImageL, 0, 16);
+
+            LinearGradientBrush linearGradientBrushR = new LinearGradientBrush(
+               new Rectangle(0, 0, picWidth / 2, combinedImageR.Height),
+                Color.FromArgb(170, Color.GhostWhite), 
+                Color.FromArgb(5, Color.White), 
+                LinearGradientMode.Horizontal);
+
+            gR.FillRectangle(linearGradientBrushR, 0, 0, picWidth / 2, combinedImageR.Height);
+            infoImage.BlitImage(combinedImageR, picWidth / 2, 16);
+
 
             infoImage.DrawText(txtFieldTitle);
             infoImage.DrawText(txtFieldSubTitle);
