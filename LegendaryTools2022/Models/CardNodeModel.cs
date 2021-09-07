@@ -11,7 +11,7 @@ namespace LegendaryTools2022.Models
         public CustomSetProjectModel SelectedSetModel { get; set; }
         public DeckModel SelectedDeckModel { get; set; }
         public CardModel SelectedCardModel { get; set; }
-
-        public string CurrentCustomSetPath { get; set; }
+        public string SelectedSetPath { get; set; }
+        public string SelectedSetDataFile { get; set; }
     }
 }

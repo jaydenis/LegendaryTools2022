@@ -27,6 +27,7 @@ namespace LegendaryTools2022.Controls
         
         public KalikoImage activeImage;
         string currentCustomSetPath;
+        string currentSetDataFile;
         CoreManager coreManager = new CoreManager();
        
         CardModel currentCardModel;
@@ -96,10 +97,12 @@ namespace LegendaryTools2022.Controls
         {
             InitializeComponent();
 
-            currentCustomSetPath = cardNodeModel.CurrentCustomSetPath;
+            currentCustomSetPath = cardNodeModel.SelectedSetPath;
             currentCustomSetModel = cardNodeModel.SelectedSetModel;
             currentDeckModel = cardNodeModel.SelectedDeckModel;
-            
+
+            currentSetDataFile = cardNodeModel.SelectedSetDataFile;
+
             origDeckModel = cardNodeModel.SelectedDeckModel;
             origCardModel = cardNodeModel.SelectedCardModel;
 
@@ -298,7 +301,7 @@ namespace LegendaryTools2022.Controls
                     {
                         try
                         {
-                            artworkImage = new KalikoImage($"{currentCustomSetModel.BaseWorkPath}\\artwork\\{model.ArtWorkPath}");
+                            artworkImage = new KalikoImage($"{model.ArtWorkPath}");
                             lblArtworkPath.Text = model.ArtWorkPath;
                         }
                         catch {
@@ -406,15 +409,11 @@ namespace LegendaryTools2022.Controls
             KalikoImage infoImage = new KalikoImage(picWidth, picHeight);
             infoImage.VerticalResolution = 600;
             infoImage.HorizontalResolution = 600;
-            infoImage.SetResolution(600, 600);
             infoImage.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
 
             artworkImage.Resize(picWidth, picHeight);
-            //pictureBoxTemplate.BackgroundImage = artWork.GetAsBitmap();
 
-            infoImage.BlitImage(artworkImage);
-
-            
+            infoImage.BlitImage(artworkImage);            
 
             if (backTextImage != null)
                 infoImage.BlitImage(backTextImage);
@@ -426,9 +425,7 @@ namespace LegendaryTools2022.Controls
                 frameImage.Resize(picWidth, picHeight);
             }
 
-            infoImage.BlitImage(frameImage);
-
-           
+            infoImage.BlitImage(frameImage);          
 
 
             if (powerImage != null && currentTemplateModel.FormControls.ShowPower)
@@ -511,18 +508,18 @@ namespace LegendaryTools2022.Controls
                   FontStyle.Bold,
                   GraphicsUnit.Pixel);
 
-                TextField txtFieldCost = new TextField(txtCardCostValue.Text);
-                txtFieldCost.Font = cardCostFont;
-                txtFieldCost.Alignment = StringAlignment.Center;
-                txtFieldCost.TextColor = Color.White;
+                TextField txtFieldCost = new TextField(txtCardCostValue.Text)
+                {
+                    Font = cardCostFont,
+                    Alignment = StringAlignment.Center,
+                    TextColor = Color.White
+                };
+
                 if (currentTemplateModel.FormControls.ShowAttackCost)
-                {
                     txtFieldCost.Point = new Point(424, 610);
-                }
                 else
-                {
                     txtFieldCost.Point = new Point(424, 595);
-                }
+
                 txtFieldCost.Outline = 4;
                 txtFieldCost.OutlineColor = Color.Black;
                 infoImage.DrawText(txtFieldCost);
@@ -535,16 +532,18 @@ namespace LegendaryTools2022.Controls
                FontStyle.Bold,
                GraphicsUnit.Pixel);
 
-            TextField txtFieldTitle = new TextField(txtCardName.Text.ToUpper());
-            txtFieldTitle.Font = fontTitle;
-            txtFieldTitle.TargetArea = new Rectangle(30, 18, 430, fontTitle.Height + 20);
-            txtFieldTitle.Alignment = StringAlignment.Center;
-            txtFieldTitle.TextColor = Color.Gold;
-            txtFieldTitle.Outline = 3;
-            txtFieldTitle.OutlineColor = Color.Black;
-            
+            TextField txtFieldTitle = new TextField(txtCardName.Text.ToUpper())
+            {
+                Font = fontTitle,
+                TargetArea = new Rectangle(30, 18, 430, fontTitle.Height + 20),
+                Alignment = StringAlignment.Center,
+                TextColor = Color.Gold,
+                Outline = 3,
+                OutlineColor = Color.Black
+            };
 
-           
+
+
 
 
             Font fontSubTitle = new Font(
@@ -553,13 +552,15 @@ namespace LegendaryTools2022.Controls
                FontStyle.Bold,
                GraphicsUnit.Pixel);
 
-            TextField txtFieldSubTitle = new TextField(txtCardSubName.Text.ToUpper());
-            txtFieldSubTitle.Font = fontSubTitle;
-            txtFieldSubTitle.TargetArea = new Rectangle(30, fontTitle.Height + 15, 430, 60);
-            txtFieldSubTitle.Alignment = StringAlignment.Center;
-            txtFieldSubTitle.TextColor = Color.Gold;
-            txtFieldSubTitle.Outline = 2;
-            txtFieldSubTitle.OutlineColor = Color.Black;          
+            TextField txtFieldSubTitle = new TextField(txtCardSubName.Text.ToUpper())
+            {
+                Font = fontSubTitle,
+                TargetArea = new Rectangle(30, fontTitle.Height + 15, 430, 60),
+                Alignment = StringAlignment.Center,
+                TextColor = Color.Gold,
+                Outline = 2,
+                OutlineColor = Color.Black
+            };
 
             // create blank bitmap with same size
             Bitmap combinedImageL = new Bitmap(picWidth/2, fontTitle.Height + fontSubTitle.Height);
@@ -571,17 +572,17 @@ namespace LegendaryTools2022.Controls
 
             LinearGradientBrush linearGradientBrushL = new  LinearGradientBrush(
                 new Rectangle(0, 0, picWidth / 2, combinedImageL.Height),
-               Color.FromArgb(5, Color.White), 
-               Color.FromArgb(170, Color.GhostWhite),
+               Color.FromArgb(0, Color.White), 
+               Color.FromArgb(225, Color.DimGray),
                 0f);
             
             gL.FillRectangle(linearGradientBrushL, 0, 0, picWidth / 2, combinedImageL.Height);
-            infoImage.BlitImage(combinedImageL, 0, 16);
+            infoImage.BlitImage(combinedImageL, 30, 16);
 
             LinearGradientBrush linearGradientBrushR = new LinearGradientBrush(
                new Rectangle(0, 0, picWidth / 2, combinedImageR.Height),
-                Color.FromArgb(170, Color.GhostWhite), 
-                Color.FromArgb(5, Color.White), 
+                Color.FromArgb(225, Color.DimGray), 
+                Color.FromArgb(0, Color.White), 
                 LinearGradientMode.Horizontal);
 
             gR.FillRectangle(linearGradientBrushR, 0, 0, picWidth / 2, combinedImageR.Height);
@@ -601,13 +602,15 @@ namespace LegendaryTools2022.Controls
                 }
 
                 Size textSizeRecruitAttack = TextRenderer.MeasureText(txtCardRecruitValue.Text, attributesFont);
-                TextField txtFieldRecruit = new TextField(txtCardRecruitValue.Text);
-                txtFieldRecruit.Font = attributesFont;
-                txtFieldRecruit.TargetArea = new Rectangle(14, 467, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height);
-                txtFieldRecruit.TextColor = Color.White;
-                txtFieldRecruit.Outline = 4;
-                txtFieldRecruit.OutlineColor = Color.Black;
-                txtFieldRecruit.Alignment = StringAlignment.Near;
+                TextField txtFieldRecruit = new TextField(txtCardRecruitValue.Text)
+                {
+                    Font = attributesFont,
+                    TargetArea = new Rectangle(14, 467, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                    TextColor = Color.White,
+                    Outline = 4,
+                    OutlineColor = Color.Black,
+                    Alignment = StringAlignment.Near
+                };
                 infoImage.DrawText(txtFieldRecruit);
 
                 if (containsPlus)
@@ -618,13 +621,15 @@ namespace LegendaryTools2022.Controls
                       FontStyle.Bold,
                       GraphicsUnit.Pixel);
 
-                    TextField txtFieldRecruitPlus = new TextField("+");
-                    txtFieldRecruitPlus.Font = font;
-                    txtFieldRecruitPlus.TargetArea = new Rectangle(txtFieldRecruit.TargetArea.Width - 20, txtFieldRecruit.TargetArea.Y + 20, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height);
-                    txtFieldRecruitPlus.TextColor = Color.White;
-                    txtFieldRecruitPlus.Outline = 4;
-                    txtFieldRecruitPlus.OutlineColor = Color.Black;
-                    txtFieldRecruitPlus.Alignment = StringAlignment.Near;
+                    TextField txtFieldRecruitPlus = new TextField("+")
+                    {
+                        Font = font,
+                        TargetArea = new Rectangle(txtFieldRecruit.TargetArea.Width - 20, txtFieldRecruit.TargetArea.Y + 20, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                        TextColor = Color.White,
+                        Outline = 4,
+                        OutlineColor = Color.Black,
+                        Alignment = StringAlignment.Near
+                    };
                     infoImage.DrawText(txtFieldRecruitPlus);
                     txtCardRecruitValue.Text = txtCardRecruitValue.Text + "+";
                 }
@@ -638,13 +643,15 @@ namespace LegendaryTools2022.Controls
                 }
 
                 textSizeRecruitAttack = TextRenderer.MeasureText(txtCardAttackValue.Text, attributesFont);
-                TextField txtFieldAttack = new TextField(txtCardAttackValue.Text);
-                txtFieldAttack.Font = attributesFont;
-                txtFieldAttack.TargetArea = new Rectangle(14, 582, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height);
-                txtFieldAttack.TextColor = Color.White;
-                txtFieldAttack.Outline = 4;
-                txtFieldAttack.OutlineColor = Color.Black;
-                txtFieldAttack.Alignment = StringAlignment.Near;
+                TextField txtFieldAttack = new TextField(txtCardAttackValue.Text)
+                {
+                    Font = attributesFont,
+                    TargetArea = new Rectangle(14, 582, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                    TextColor = Color.White,
+                    Outline = 4,
+                    OutlineColor = Color.Black,
+                    Alignment = StringAlignment.Near
+                };
                 infoImage.DrawText(txtFieldAttack);
 
 
@@ -657,13 +664,15 @@ namespace LegendaryTools2022.Controls
                       FontStyle.Bold,
                       GraphicsUnit.Pixel);
 
-                    TextField txtFieldAttackPlus = new TextField("+");
-                    txtFieldAttackPlus.Font = font;
-                    txtFieldAttackPlus.TargetArea = new Rectangle(txtFieldAttack.TargetArea.Width - 20, txtFieldAttack.TargetArea.Y + 20, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height);
-                    txtFieldAttackPlus.TextColor = Color.White;
-                    txtFieldAttackPlus.Outline = 4;
-                    txtFieldAttackPlus.OutlineColor = Color.Black;
-                    txtFieldAttackPlus.Alignment = StringAlignment.Near;
+                    TextField txtFieldAttackPlus = new TextField("+")
+                    {
+                        Font = font,
+                        TargetArea = new Rectangle(txtFieldAttack.TargetArea.Width - 20, txtFieldAttack.TargetArea.Y + 20, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                        TextColor = Color.White,
+                        Outline = 4,
+                        OutlineColor = Color.Black,
+                        Alignment = StringAlignment.Near
+                    };
                     infoImage.DrawText(txtFieldAttackPlus);
                     txtCardAttackValue.Text = txtCardAttackValue.Text + "+";
                 }
@@ -676,13 +685,15 @@ namespace LegendaryTools2022.Controls
                 }
 
                 textSizeRecruitAttack = TextRenderer.MeasureText(txtCardPiercingValue.Text, attributesFont);
-                TextField txtFieldPiercing = new TextField(txtCardPiercingValue.Text);
-                txtFieldPiercing.Font = attributesFont;
-                txtFieldPiercing.TargetArea = new Rectangle(14, 582, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height);
-                txtFieldPiercing.TextColor = Color.White;
-                txtFieldPiercing.Outline = 4;
-                txtFieldPiercing.OutlineColor = Color.Black;
-                txtFieldPiercing.Alignment = StringAlignment.Near;
+                TextField txtFieldPiercing = new TextField(txtCardPiercingValue.Text)
+                {
+                    Font = attributesFont,
+                    TargetArea = new Rectangle(14, 582, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                    TextColor = Color.White,
+                    Outline = 4,
+                    OutlineColor = Color.Black,
+                    Alignment = StringAlignment.Near
+                };
                 infoImage.DrawText(txtFieldPiercing);
 
 
@@ -694,13 +705,15 @@ namespace LegendaryTools2022.Controls
                       FontStyle.Bold,
                       GraphicsUnit.Pixel);
 
-                    TextField txtFieldPiercingPlus = new TextField("+");
-                    txtFieldPiercingPlus.Font = font;
-                    txtFieldPiercingPlus.TargetArea = new Rectangle(txtFieldPiercing.TargetArea.Width - 20, txtFieldPiercing.TargetArea.Y + 20, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height);
-                    txtFieldPiercingPlus.TextColor = Color.White;
-                    txtFieldPiercingPlus.Outline = 4;
-                    txtFieldPiercingPlus.OutlineColor = Color.Black;
-                    txtFieldPiercingPlus.Alignment = StringAlignment.Near;
+                    TextField txtFieldPiercingPlus = new TextField("+")
+                    {
+                        Font = font,
+                        TargetArea = new Rectangle(txtFieldPiercing.TargetArea.Width - 20, txtFieldPiercing.TargetArea.Y + 20, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                        TextColor = Color.White,
+                        Outline = 4,
+                        OutlineColor = Color.Black,
+                        Alignment = StringAlignment.Near
+                    };
                     infoImage.DrawText(txtFieldPiercingPlus);
                     txtCardPiercingValue.Text = txtCardPiercingValue.Text + "+";
                 }
@@ -822,11 +835,13 @@ namespace LegendaryTools2022.Controls
                                     }
 
 
-                                    TextField txtFieldDetails = new TextField(s);
-                                    txtFieldDetails.Point = new Point(x, y);
-                                    txtFieldDetails.Font = currentFont;
-                                    txtFieldDetails.TextBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
-                                    txtFieldDetails.TextColor = Color.Black;
+                                    TextField txtFieldDetails = new TextField(s)
+                                    {
+                                        Point = new Point(x, y),
+                                        Font = currentFont,
+                                        TextBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black),
+                                        TextColor = Color.Black
+                                    };
 
                                     //infoImage.DrawText(txtFieldDetails);
                                     cardTextFields.Add(txtFieldDetails);
@@ -850,14 +865,14 @@ namespace LegendaryTools2022.Controls
                                 if (x + iconImage.Width > GetPercentage(endX, scale))
                                 {
                                     y += iconImage.Height + GetPercentage(iconImage.Height, gapSizeBetweenLines);
-                                    y = y - 6;
+                                    y -= 6;
                                     x = getXStart(y);
                                 }
 
                                 int modifiedY = ((int)(((y - (currentFont.Height - 6)) + ascentPixel)));
 
                                 if (lastCharIsNumeric)
-                                    x = x - 12;
+                                    x -= 12;
                                
                                 var imgX = new CardTextIcon
                                 {
@@ -867,7 +882,7 @@ namespace LegendaryTools2022.Controls
                                 cardTextIcons.Add(imgX);
 
 
-                                x = (x + (iconImage.Width));
+                                x += (iconImage.Width);
                             }
                         }
                     }
@@ -900,37 +915,37 @@ namespace LegendaryTools2022.Controls
             return imageIcon;
         }
 
-        private void ExportCardImages()
-        {
+        //private void ExportCardImages()
+        //{
 
-            foreach (var card in currentDeckModel.Cards)
-            {
-                if (card != null)
-                {
-                    //card.CardName =txtCardName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower()+"_"+ txtCardSubName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower();
-                    //card.CardNameSub = txtCardSubName.Text;
+        //    foreach (var card in currentDeckModel.Cards)
+        //    {
+        //        if (card != null)
+        //        {
+        //            //card.CardName =txtCardName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower()+"_"+ txtCardSubName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower();
+        //            //card.CardNameSub = txtCardSubName.Text;
 
-                    var exportedImageName = $"{card.CardName.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower()}_{card.CardNameSub.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower()}_{card.CardTypeTemplate.ToLower()}_{card.CardId}.png";
+        //            var exportedImageName = $"{card.CardName.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower()}_{card.CardNameSub.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower()}_{card.CardTypeTemplate.ToLower()}_{card.CardId}.png";
 
                     
 
-                    KalikoImage exportImage = renderedCards.Where(x => x.Key == exportedImageName).FirstOrDefault().Value;
-                    if (exportImage != null)
-                    {
+        //            KalikoImage exportImage = renderedCards.Where(x => x.Key == exportedImageName).FirstOrDefault().Value;
+        //            if (exportImage != null)
+        //            {
 
-                        var cardPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
-                        DirectoryInfo directory = new DirectoryInfo(cardPath);
-                        if (!directory.Exists)
-                            directory.Create();
+        //                var cardPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
+        //                DirectoryInfo directory = new DirectoryInfo(cardPath);
+        //                if (!directory.Exists)
+        //                    directory.Create();
 
-                        var exportedCardImage = $"{cardPath}\\{exportedImageName}";
+        //                var exportedCardImage = $"{cardPath}\\{exportedImageName}";
                         
 
-                        exportImage.SaveImage(exportedCardImage, System.Drawing.Imaging.ImageFormat.Png);
-                    }
-                }
-            }
-        }
+        //                exportImage.SaveImage(exportedCardImage, System.Drawing.Imaging.ImageFormat.Png);
+        //            }
+        //        }
+        //    }
+        //}
 
         public bool IsInPolygon(Point[] poly, Point p)
         {
@@ -1120,7 +1135,7 @@ namespace LegendaryTools2022.Controls
                 artworkImage = imageSlicer.imageResult;
                 orignalArtwork = artworkImage;
 
-                var cardPath = $"{currentCustomSetModel.BaseWorkPath}\\{currentCustomSetModel.SetName}\\artwork";
+                var cardPath = $"{currentCustomSetPath}\\artwork";
                 DirectoryInfo directory = new DirectoryInfo(cardPath);
                 if (!directory.Exists)
                     directory.Create();
@@ -1170,7 +1185,8 @@ namespace LegendaryTools2022.Controls
             powerImage = new KalikoImage(image);
             currentCardModel.Power = $"<{iconName.Replace(".png", ">").ToUpper()}";
             currentCardModel.PowerIcon = cmbPower1.SelectedIndex;
-            currentCardModel.FrameImage = $"{currentCardModel.CardTypeTemplate}_{iconName}";
+            if(currentCardModel.CardTypeTemplate != "hero_rare")
+                currentCardModel.FrameImage = $"{currentCardModel.CardTypeTemplate}_{iconName}";
 
             LoadImage(currentCardModel);
         }
@@ -1232,12 +1248,9 @@ namespace LegendaryTools2022.Controls
 
         private void UpdateCard(int cardId)
         {
-            var cardToUpdate = currentDeckModel.Cards.Where(x => x.CardId == cardId).FirstOrDefault();
+            var cardToUpdate = currentDeckModel.Cards.Where(x => x.CardId == cardId).FirstOrDefault();                        
 
-            cardToUpdate.CardName = txtCardSubName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower() + "_" + txtCardName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower();
-            cardToUpdate.CardNameSub = txtCardSubName.Text;
-
-            var exportedImageName = $"{cardToUpdate.CardName.ToLower()}_{cardToUpdate.CardTypeTemplate.ToLower()}_{cardToUpdate.CardId}.png";
+            var exportedImageName = $"{txtCardSubName.Text.Replace(" ", "_").Replace("'", "_").Replace("-", "_").ToLower()}_{cardToUpdate.CardTypeTemplate.ToLower()}_{cardToUpdate.CardId}.png";
 
             cardToUpdate.ArtWorkSize = $"{artworkImage.Size.Width},{artworkImage.Size.Height}";
             cardToUpdate.AttributesAttack = txtCardAttackValue.Text;
@@ -1250,10 +1263,8 @@ namespace LegendaryTools2022.Controls
             cardToUpdate.CardNameSub = txtCardSubName.Text;
             cardToUpdate.CardNameSubFontSize = Convert.ToInt32(numCardSubTitleSize.Value);
             cardToUpdate.CardText = txtCardTextBox.Text;
-            cardToUpdate.CardTextFontSize = Convert.ToInt32(numCardTextSize.Value);
-            
+            cardToUpdate.CardTextFontSize = Convert.ToInt32(numCardTextSize.Value);            
             cardToUpdate.TeamIcon = cmbTeam.SelectedIndex;
-
 
             var cardTypeModel = currentCardTypesList.Where(x => x.Displayname == cmbCardType.SelectedItem.ToString()).FirstOrDefault();
             cardToUpdate.CardTypeTemplate = cardTypeModel.Name;
@@ -1261,20 +1272,10 @@ namespace LegendaryTools2022.Controls
 
             KalikoImage exportImage = RenderCardImage(cardToUpdate);
 
-            var cardPath = $"{currentCustomSetModel.BaseWorkPath}\\{currentCustomSetModel.SetName}\\cards";
-            DirectoryInfo directory = new DirectoryInfo(cardPath);
-            if (!directory.Exists)
-                directory.Create();
-
-            cardToUpdate.ExportedCardImage = $"{cardPath}\\{exportedImageName}";
-
             if (renderedCards.ContainsKey(exportedImageName))
                 renderedCards.Remove(exportedImageName);
 
             renderedCards.Add(exportedImageName, exportImage);            
-
-            //exportImage.SaveImage(cardToUpdate.ExportedCardImage, System.Drawing.Imaging.ImageFormat.Png);
-
         }
 
         #endregion
@@ -1294,7 +1295,7 @@ namespace LegendaryTools2022.Controls
 
             if (currentCardModel.CardTypeTemplate == "hero_rare")
             {
-                currentCardModel.FrameImage = $"{currentTemplateDirectory}\\{currentTemplateModel.CardTemplate.FrameImage}";
+                currentCardModel.FrameImage = "hero_rare_back_text.png";
                 costImage = new KalikoImage(Resources.cost);
             }
             else
@@ -1316,7 +1317,8 @@ namespace LegendaryTools2022.Controls
             this.Cursor = Cursors.WaitCursor;
             UpdateCard(currentCardId);
 
-            coreManager.SaveCustomSet(currentCustomSetModel, $"{currentCustomSetModel.BaseWorkPath}\\{currentCustomSetModel.SetName}");
+            currentCustomSetModel.DateUpdated = DateTime.Now;
+            coreManager.SaveCustomSet(currentCustomSetModel, $"{currentCustomSetPath}\\{currentSetDataFile}");
 
             PopulateDeckTree(kryptonListBox1.SelectedIndex);
             this.Cursor = Cursors.Default;
@@ -1325,22 +1327,21 @@ namespace LegendaryTools2022.Controls
         private void btnExport_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-
             foreach (var item in renderedCards)
             {
                 KalikoImage exportImage = item.Value;
                 if (exportImage != null)
-                {
-                    var cardPath = $"{settings.lastFolder}\\sets\\{currentCustomSetModel.SetName}";
-                    DirectoryInfo directory = new DirectoryInfo($"{cardPath}");
+                {                    
+                    DirectoryInfo directory = new DirectoryInfo($"{currentCustomSetPath}\\cards");
                     if (!directory.Exists)
                         directory.Create();
-                    var x = $"{cardPath}\\{item.Key}";
+
+                    var x = $"{currentCustomSetPath}\\cards\\{item.Key}";
                     exportImage.SaveImage(x, System.Drawing.Imaging.ImageFormat.Png);
                 }
             }
-
-            coreManager.SaveCustomSet(currentCustomSetModel, currentCustomSetPath);
+            currentCustomSetModel.DateUpdated = DateTime.Now;
+            coreManager.SaveCustomSet(currentCustomSetModel, $"{currentCustomSetPath}\\{currentSetDataFile}");
 
             this.Cursor = Cursors.Default;
         }
@@ -1351,8 +1352,8 @@ namespace LegendaryTools2022.Controls
             LoadImage(currentCardModel);
 
             UpdateCard(currentCardId);
-
-            coreManager.SaveCustomSet(currentCustomSetModel, currentCustomSetPath);
+            currentCustomSetModel.DateUpdated = DateTime.Now;
+            coreManager.SaveCustomSet(currentCustomSetModel, $"{currentCustomSetPath}\\{currentSetDataFile}");
 
             this.Cursor = Cursors.Default;
         }

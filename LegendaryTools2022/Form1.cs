@@ -80,7 +80,8 @@ namespace LegendaryTools2022
                         {
                             SelectedSetModel = customSetProject,
                             SelectedDeckModel = deck,
-                            CurrentCustomSetPath = item.SetName
+                            SelectedSetPath = item.BaseWorkPath,
+                            SelectedSetDataFile = item.DataFile
                         };
 
                         deckTypeNode.Nodes.Add(deckNode);
