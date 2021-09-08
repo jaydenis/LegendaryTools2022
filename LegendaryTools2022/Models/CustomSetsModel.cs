@@ -1,39 +1,81 @@
-﻿using Newtonsoft.Json;
+﻿using LegendaryTools2022.Models.Entities;
+using LegendaryTools2022.Utilities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LegendaryTools2022.Models
 {
-    public partial class CustomSetsModel
+
+
+    public partial class XCustomSetsViewModel
     {
-        [JsonProperty("custom_sets")]
-        public List<CustomSetModel> CustomSets { get; set; }
+        public List<CustomSetViewModel> CustomSets { get; set; } = new List<CustomSetViewModel>();
     }
 
-    public class CustomSetModel
-    {
-        [JsonProperty("set_id")]
-        public long SetId { get; set; }
-
-        [JsonProperty("set_name")]
-        public string SetName { get; set; }
-
-        [JsonProperty("base_work_path")]
-        public string BaseWorkPath { get; set; }
-
-        [JsonProperty("json_file")]
-        public string DataFile { get; set; }
-
-        [JsonProperty("display_name")]
-        public string DisplayName { get; set; }
-
-        [JsonProperty("date_created")]
-        public DateTime DateCreated { get; set; }
-
-        [JsonProperty("date_updated")]
-        public DateTime? DateUpdated { get; set; }
+    public partial class CustomSetViewModel 
+    {        
+        public List<DeckViewModel> Decks { get; set; } = new List<DeckViewModel>();
     }
+
+    public partial class DeckViewModel 
+    {
+  
+        public List<CardViewModel> Cards { get; set; } = new List<CardViewModel>();
+
+    }
+
+    public partial class CardViewModel 
+    {
+
+    }
+
+    public partial class CardTypeViewModel
+    {
+        public Int64 CardTypeId { get; set; }
+        public string CardTypeName { get; set; }
+
+        public string CardTypeDisplayname { get; set; }
+
+        public int DeckTypeId { get; set; }
+    }
+
+    public partial class DeckTypeViewModel
+    {
+        public Int64 DeckTypeId { get; set; }
+        public string DeckTypeName { get; set; }
+    }
+
+    public partial class CardTemplateViewModel
+    {
+        public Int64 TemplateId { get; set; }
+        public string TemplateName { get; set; }
+        public string TemplateDisplayName { get; set; }
+        public string RectXArray { get; set; }
+        public string RectYArray { get; set; }
+        public int CardHeight { get; set; }
+        public int CardWidth { get; set; }
+        public string FrameImage { get; set; }
+        public string CostImage { get; set; }
+        public string TextImage { get; set; }
+        public string UnderlayImage { get; set; }
+        public bool FormShowTeam { get; set; }
+        public bool FormShowPowerPrimary { get; set; }
+        public bool FormShowPowerSecondary { get; set; }
+        public bool FormShowAttributes { get; set; }
+        public bool FormShowAttributesCost { get; set; }
+        public bool FormShowAttributesRecruit { get; set; }
+        public bool FormShowAttributesAttack { get; set; }
+        public bool FormShowAttributesPiercing { get; set; }
+        public bool FormShowVictoryPoints { get; set; }
+        public bool FormShowAttackCost { get; set; }
+
+    }
+
+
+
+
+
 }

@@ -1,5 +1,7 @@
 ﻿using LegendaryTools2022.Utilities;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,10 @@ namespace LegendaryTools2022.Models
 
         [JsonProperty("deck", Required = Required.Always)]
         public string Deck { get; set; }
+
+        [JsonProperty("card_type_template, Required = Required.Always")]
+        [JsonConverter(typeof(CustomStringEnumConverter))]
+        public CardTypeTemplateEnum CardTypeTemplate { get; set; }
 
         [JsonProperty("rectxarray", Required = Required.Always)]
         public string Rectxarray { get; set; }

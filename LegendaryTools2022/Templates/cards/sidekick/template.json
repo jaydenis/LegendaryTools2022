@@ -9,10 +9,10 @@
 				"rectyarray": "522,522,670,670",
 				"cardwidth": 750,
 				"cardheight": 1050,
-				"frame_image": "back_none.png",
+				"frame_image": "sidekick_none.png",
 				"back_cost": "back_cost.png",
 				"back_text": "back_text.png",
-				"back_underlay": "back_none.png"
+				"back_underlay": "sidekick_none.png"
 			},
 			"form_controls": {
 				"show_team": true,

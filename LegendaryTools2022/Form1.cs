@@ -1,7 +1,10 @@
 ﻿using Kaliko.ImageLibrary;
 using LegendaryTools2022.Controls;
+using LegendaryTools2022.Data;
 using LegendaryTools2022.Managers;
 using LegendaryTools2022.Models;
+using LegendaryTools2022.Models.Entities;
+using LegendaryTools2022.Models.ViewModels;
 using LegendaryTools2022.Properties;
 using LegendaryTools2022.Utilities;
 using System;
@@ -20,17 +23,32 @@ namespace LegendaryTools2022
 {
     public partial class Form1 : Form
     {
-        CoreManager coreManager = new CoreManager();
-        CustomSetProjectModel customSetProject;
-        CustomSetsModel customSets;
-        SystemSettings settings;
+        private readonly IRepositoryCard repositoryCard;
+        private readonly IRepositoryCardType repositoryCardType;
+        private readonly IRepositoryCustomSet repositoryCustomSet;
+        private readonly IRepositoryDeck repositoryDeck;
+        private readonly IRepositoryDeckType repositoryDeckType;
+        private readonly IRepositoryCardTemplate repositoryCardTemplate;
 
+        private CustomSetsViewModel customSet;      
+       
+        SystemSettings settings;
+        string currentDataFile;
 
         
 
-        public Form1()
+        public Form1(IRepositoryCard repositoryCard, IRepositoryCardType repositoryCardType, IRepositoryCustomSet repositoryCustomSet, IRepositoryDeck repositoryDeck, IRepositoryDeckType repositoryDeckType, IRepositoryCardTemplate repositoryCardTemplate)
         {
             InitializeComponent();
+
+            this.repositoryCard = repositoryCard;
+            this.repositoryCardType = repositoryCardType;
+            this.repositoryCustomSet = repositoryCustomSet;
+            this.repositoryDeck = repositoryDeck;
+            this.repositoryDeckType = repositoryDeckType;
+            this.repositoryCardTemplate = repositoryCardTemplate;
+
+
             settings = SystemSettings.Load();
             
             settings.Save();
@@ -42,15 +60,18 @@ namespace LegendaryTools2022
             //LegendaryIconList = new List<LegendaryIconModel>();
             // LegendaryIconList = coreManager.LoadIconsFromDirectory();
 
-            if (settings.lastProject != string.Empty)
-                LoadCustomSet(settings.lastProject);
-            else
-                OpenFile();
+            //if (settings.lastProject != string.Empty)
+               LoadCustomSet(settings.lastProject);
+            //else
+            //    OpenFile();
         }
 
         private void LoadCustomSet(string path)
-        {
-            customSets = coreManager.OpenCustomSets(path);
+        {   
+         
+            customSet = this.repositoryCustomSet.GetCustomSet();
+            currentDataFile = path;        
+
             PopulateDeckTree();
         }
 
@@ -59,29 +80,29 @@ namespace LegendaryTools2022
             treeViewCards.Nodes.Clear();
             tabControlMain.Controls.Clear();
             TreeNode root = new TreeNode("Custom Sets");
-            foreach (CustomSetModel item in customSets.CustomSets)
+            foreach (CustomSets itemSet in customSet.CustomSets)
             {
                 
-                TreeNode setNode = new TreeNode(item.DisplayName);
-                setNode.Tag = item;
-                customSetProject = coreManager.OpenCustomSet($"{item.BaseWorkPath}\\{item.DataFile}");
+                TreeNode setNode = new TreeNode(itemSet.SetDisplayName);
+                setNode.Tag = itemSet;
+               // customSetProject = coreManager.OpenCustomSet($"{item.BaseWorkPath}\\{item.DataFile}");
 
-                foreach (var deckType in coreManager.GetDeckTypes())
+                foreach (var deckType in this.repositoryDeckType.GetAll())
                 {
-                    TreeNode deckTypeNode = new TreeNode(deckType.DisplayName);
+                    TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
 
-                    foreach (var deck in customSetProject.Decks.Where(x=>x.DeckType == deckType.Name))
+                    foreach (var deck in itemSet.Decks.Where(x=>x.DeckTypeId == deckType.DeckTypeId))
                     {
-                        TreeNode deckNode = new TreeNode(deck.Name);
-                        deckNode.ImageIndex = deck.TeamIcon;
-                        deckNode.SelectedImageIndex = deck.TeamIcon;
+                        TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
+                        deckNode.ImageIndex = deck.TeamIconId.GetValueOrDefault(0);
+                        deckNode.SelectedImageIndex = deck.TeamIconId.GetValueOrDefault(0);
 
-                        deckNode.Tag = new CardNodeModel
+                        deckNode.Tag = new CurrentWorkingViewModel
                         {
-                            SelectedSetModel = customSetProject,
-                            SelectedDeckModel = deck,
-                            SelectedSetPath = item.BaseWorkPath,
-                            SelectedSetDataFile = item.DataFile
+                            CurrentSetModel = itemSet,
+                            CurrentDeckModel = deck,
+                            CurrentSetPath = itemSet.SetWorkPath,
+                            CurrentSetDataFile = currentDataFile
                         };
 
                         deckTypeNode.Nodes.Add(deckNode);
@@ -120,13 +141,13 @@ namespace LegendaryTools2022
         {
             if (e.Node.Tag != null)
             {
-                if (e.Node.Tag is CardNodeModel)
+                if (e.Node.Tag is CurrentWorkingViewModel)
                 {
                     this.Cursor = Cursors.WaitCursor;
-                    var deckModel = (CardNodeModel)e.Node.Tag;
+                    var deckModel = (CurrentWorkingViewModel)e.Node.Tag;
 
-                    TabPage deckTab = new TabPage(deckModel.SelectedDeckModel.Name);
-                    deckTab.Tag = deckModel.SelectedDeckModel;
+                    TabPage deckTab = new TabPage(deckModel.CurrentDeckModel.DeckDisplayName);
+                    deckTab.Tag = deckModel.CurrentDeckModel;
                     foreach (TabPage tp in tabControlMain.TabPages)
                     {
                         if (tp.Tag != null && tp.Tag.Equals(deckTab.Tag))
@@ -139,9 +160,11 @@ namespace LegendaryTools2022
                     }
 
 
-                    deckTab.Tag = deckModel.SelectedDeckModel;
-                    CardEditorForm cardEditorForm = new CardEditorForm(deckModel);
-                    cardEditorForm.Dock = DockStyle.Fill;
+                    deckTab.Tag = deckModel.CurrentDeckModel;
+                    CardEditorForm cardEditorForm = new CardEditorForm(deckModel, repositoryCard, repositoryCardType, repositoryCustomSet, repositoryDeck, repositoryDeckType, repositoryCardTemplate)
+                    {
+                        Dock = DockStyle.Fill
+                    };
                     deckTab.Controls.Add(cardEditorForm);
 
                     tabControlMain.Controls.Add(deckTab);

@@ -9,10 +9,10 @@
         "rectyarray": "522,522,670,670",
         "cardwidth": 750,
         "cardheight": 1050,
-        "frame_image": "bystander_underlay.png",
-        "back_cost": "bystander_underlay.png",
-        "back_text": "bystander_underlay.png",
-        "back_underlay": "bystander_underlay.png"
+        "frame_image": "bystander.png",
+        "back_cost": "bystander.png",
+        "back_text": "bystander.png",
+        "back": "bystander.png"
       },
       "form_controls": {
         "show_team": false,
@@ -36,10 +36,10 @@
         "rectyarray": "522,522,670,670",
         "cardwidth": 750,
         "cardheight": 1050,
-        "frame_image": "bystander_villain_underlay.png",
-        "back_cost": "bystander_villain_underlay.png",
-        "back_text": "bystander_villain_underlay.png",
-        "back_underlay": "bystander_villain_underlay.png"
+        "frame_image": "bystander_villain.png",
+        "back_cost": "bystander_villain.png",
+        "back_text": "bystander_villain.png",
+        "back": "bystander_villain.png"
       },
       "form_controls": {
         "show_team": false,
@@ -63,10 +63,10 @@
         "rectyarray": "522,522,670,670",
         "cardwidth": 750,
         "cardheight": 1050,
-        "frame_image": "bystander_wound_underlay.png",
-        "back_cost": "bystander_wound_underlay.png",
-        "back_text": "bystander_wound_underlay.png",
-        "back_underlay": "bystander_wound_underlay.png"
+        "frame_image": "bystander_wound.png",
+        "back_cost": "bystander_wound.png",
+        "back_text": "bystander_wound.png",
+        "back": "bystander_wound.png"
       },
       "form_controls": {
         "show_team": false,

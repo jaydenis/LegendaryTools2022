@@ -1,24 +1,17 @@
 ﻿using Newtonsoft.Json;
+using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LegendaryTools2022.Models
 {
     public partial class CardTypeModel
     {
-        [JsonProperty("category")]
-        public string Category { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public Int64 ID { get; set; }
+        public string CardTypeName { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        public string CardTypeDisplayname { get; set; }
 
-        [JsonProperty("displayname")]
-        public string Displayname { get; set; }
-
-        [JsonProperty("deck")]
-        public string Deck { get; set; }
+        public int DeckTypeId { get; set; }
     }
 }

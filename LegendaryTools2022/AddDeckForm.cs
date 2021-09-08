@@ -46,57 +46,57 @@ namespace LegendaryTools2022
 
         private void listBoxDeckTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
-            KryptonListItem item = (KryptonListItem)listBoxDeckTypes.SelectedItem;
-            currentDeckModel = (DeckTypeModel)item.Tag;
+            //this.Cursor = Cursors.WaitCursor;
+            //KryptonListItem item = (KryptonListItem)listBoxDeckTypes.SelectedItem;
+            //currentDeckModel = (DeckTypeModel)item.Tag;
            
-            listBoxCardTypes.Items.Clear();
-            foreach (var card in coreManager.GetCardTypes().Where(x=>x.Deck.ToUpper() == currentDeckModel.Name.ToUpper()))
-            {
+            //listBoxCardTypes.Items.Clear();
+            //foreach (var card in coreManager.GetCardTypes().Where(x=>x.Deck.ToUpper() == currentDeckModel.Name.ToUpper()))
+            //{
                
-                    KryptonListItem lvItem = new KryptonListItem();
-                    lvItem.ShortText = $"{card.Displayname}";
-                    lvItem.LongText = $"({card.Deck})";
-                    lvItem.Tag = card;
-                    listBoxCardTypes.Items.Add(lvItem);
+            //        KryptonListItem lvItem = new KryptonListItem();
+            //        lvItem.ShortText = $"{card.Displayname}";
+            //        lvItem.LongText = $"({card.Deck})";
+            //        lvItem.Tag = card;
+            //        listBoxCardTypes.Items.Add(lvItem);
                 
-            }           
-            this.Cursor = Cursors.Default;
+            //}           
+            //this.Cursor = Cursors.Default;
         }
 
        
 
         private void listBoxCardTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                KryptonListItem item = (KryptonListItem)listBoxCardTypes.SelectedItem;
-                var currentCardModel = (CardTypeModel)item.Tag;
-                //load card type template
-                var templatePath = $"{settings.baseFolder}\\cards\\{currentCardModel.Deck}";
+        //    try
+        //    {
+        //        KryptonListItem item = (KryptonListItem)listBoxCardTypes.SelectedItem;
+        //        var currentCardModel = (CardTypeModel)item.Tag;
+        //        //load card type template
+        //        var templatePath = $"{settings.baseFolder}\\cards\\{currentCardModel.Deck}";
 
-                currentTemplateDirectory = new DirectoryInfo(templatePath);
-                string frameImageFromTemplate = "";
+        //        currentTemplateDirectory = new DirectoryInfo(templatePath);
+        //        string frameImageFromTemplate = "";
 
-                pictureBox1.Image = null;
-                foreach (var file in currentTemplateDirectory.GetFiles().Where(x => x.Extension == ".json"))
-                {
+        //        pictureBox1.Image = null;
+        //        foreach (var file in currentTemplateDirectory.GetFiles().Where(x => x.Extension == ".json"))
+        //        {
 
-                    templateModelList = coreManager.ReadTemplateSettings(currentCardModel.Deck.ToLower());
-                    currentTemplateModel = templateModelList.Templates.Where(x => x.CardTemplate.Name.ToLower() == currentCardModel.Name.ToLower()).FirstOrDefault();
+        //            templateModelList = coreManager.ReadTemplateSettings(currentCardModel.Deck.ToLower());
+        //            currentTemplateModel = templateModelList.Templates.Where(x => x.CardTemplate.Name.ToLower() == currentCardModel.Name.ToLower()).FirstOrDefault();
 
-                    frameImageFromTemplate = $"{currentTemplateDirectory}\\{currentTemplateModel.CardTemplate.FrameImage}";
+        //            frameImageFromTemplate = $"{currentTemplateDirectory}\\{currentTemplateModel.CardTemplate.FrameImage}";
 
-                    var backTextImage = new KalikoImage(frameImageFromTemplate);
-                    pictureBox1.Image = backTextImage.GetAsBitmap();
-                    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+        //            var backTextImage = new KalikoImage(frameImageFromTemplate);
+        //            pictureBox1.Image = backTextImage.GetAsBitmap();
+        //            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+        //        }
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LegendaryTools2022.Models
+namespace LegendaryTools2022.Models.ViewModels
 {
-    public partial class LegendaryIconModel
+    public partial class LegendaryIconViewModel
     {
         [JsonProperty("category")]
         public string Category { get; set; }
