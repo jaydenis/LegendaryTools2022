@@ -56,8 +56,10 @@ namespace LegendaryCardEditor.Models
 
         public int TeamIconId { get; set; } = 0;
 
+        [ForeignKey("SetId")]
         public virtual CustomSets CustomSet { get; set; }
 
+        [ForeignKey("DeckTypeId")]
         public virtual DeckTypes DeckType { get; set; }
 
         public virtual ICollection<Cards> Cards { get; set; }
@@ -125,6 +127,7 @@ namespace LegendaryCardEditor.Models
         [MaxLength(254)]
         public String ExportedCardFile { get; set; }
 
+        [ForeignKey("DeckId")]
         public virtual Decks Deck { get; set; }
 
         public int TeamIconId { get; set; }

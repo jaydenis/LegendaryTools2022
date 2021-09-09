@@ -35,7 +35,7 @@ namespace LegendaryCardEditor.Controls
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmbDeckTeam = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
-            this.imageListTeams = new System.Windows.Forms.ImageList(this.components);
+            this.imageListTeamsFull = new System.Windows.Forms.ImageList(this.components);
             this.txtDeckName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnDeckUpdate = new System.Windows.Forms.Button();
@@ -68,9 +68,9 @@ namespace LegendaryCardEditor.Controls
             this.label3 = new System.Windows.Forms.Label();
             this.txtCardTextBox = new System.Windows.Forms.TextBox();
             this.cmbAttributesTeams = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
-            this.imageListTeamsFull = new System.Windows.Forms.ImageList(this.components);
             this.groupBoxPower2 = new System.Windows.Forms.GroupBox();
             this.cmbPower2 = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
+            this.imageListPowersFullSize = new System.Windows.Forms.ImageList(this.components);
             this.chkPower2Visible = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtCardPiercingValue = new System.Windows.Forms.TextBox();
@@ -94,7 +94,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardSubName = new System.Windows.Forms.TextBox();
             this.numCardTitleSize = new System.Windows.Forms.NumericUpDown();
             this.txtCardName = new System.Windows.Forms.TextBox();
-            this.imageListPowersFullSize = new System.Windows.Forms.ImageList(this.components);
+            this.imageListTeams = new System.Windows.Forms.ImageList(this.components);
             this.imageListAttributesOther = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -177,38 +177,38 @@ namespace LegendaryCardEditor.Controls
             this.cmbDeckTeam.TabIndex = 75;
             this.cmbDeckTeam.SelectedIndexChanged += new System.EventHandler(this.cmbTeam_SelectedIndexChanged);
             // 
-            // imageListTeams
+            // imageListTeamsFull
             // 
-            this.imageListTeams.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-            this.imageListTeams.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeams.ImageStream")));
-            this.imageListTeams.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListTeams.Images.SetKeyName(0, "a_force.png");
-            this.imageListTeams.Images.SetKeyName(1, "avengers.png");
-            this.imageListTeams.Images.SetKeyName(2, "brotherhood.png");
-            this.imageListTeams.Images.SetKeyName(3, "cabal.png");
-            this.imageListTeams.Images.SetKeyName(4, "champions.png");
-            this.imageListTeams.Images.SetKeyName(5, "Crime_Syndicate.png");
-            this.imageListTeams.Images.SetKeyName(6, "defenders.png");
-            this.imageListTeams.Images.SetKeyName(7, "fantastic_four.png");
-            this.imageListTeams.Images.SetKeyName(8, "Foes_of_Asgard.png");
-            this.imageListTeams.Images.SetKeyName(9, "foot_clan.png");
-            this.imageListTeams.Images.SetKeyName(10, "guardians.png");
-            this.imageListTeams.Images.SetKeyName(11, "heroes_for_hire.png");
-            this.imageListTeams.Images.SetKeyName(12, "hydra.png");
-            this.imageListTeams.Images.SetKeyName(13, "illuminati.png");
-            this.imageListTeams.Images.SetKeyName(14, "legion_of_monsters.png");
-            this.imageListTeams.Images.SetKeyName(15, "marvel_knights.png");
-            this.imageListTeams.Images.SetKeyName(16, "mercs_4_money.png");
-            this.imageListTeams.Images.SetKeyName(17, "Monsters_Unleashed_logo_sm.png");
-            this.imageListTeams.Images.SetKeyName(18, "mutants.png");
-            this.imageListTeams.Images.SetKeyName(19, "runaways.png");
-            this.imageListTeams.Images.SetKeyName(20, "shield.png");
-            this.imageListTeams.Images.SetKeyName(21, "sinister6.png");
-            this.imageListTeams.Images.SetKeyName(22, "spider_friends.png");
-            this.imageListTeams.Images.SetKeyName(23, "thunderbolts.png");
-            this.imageListTeams.Images.SetKeyName(24, "us_army.png");
-            this.imageListTeams.Images.SetKeyName(25, "x_force.png");
-            this.imageListTeams.Images.SetKeyName(26, "x_men.png");
+            this.imageListTeamsFull.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageListTeamsFull.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeamsFull.ImageStream")));
+            this.imageListTeamsFull.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListTeamsFull.Images.SetKeyName(0, "a_force.png");
+            this.imageListTeamsFull.Images.SetKeyName(1, "avengers.png");
+            this.imageListTeamsFull.Images.SetKeyName(2, "brotherhood.png");
+            this.imageListTeamsFull.Images.SetKeyName(3, "cabal.png");
+            this.imageListTeamsFull.Images.SetKeyName(4, "champions.png");
+            this.imageListTeamsFull.Images.SetKeyName(5, "Crime_Syndicate.png");
+            this.imageListTeamsFull.Images.SetKeyName(6, "defenders.png");
+            this.imageListTeamsFull.Images.SetKeyName(7, "fantastic_four.png");
+            this.imageListTeamsFull.Images.SetKeyName(8, "Foes_of_Asgard.png");
+            this.imageListTeamsFull.Images.SetKeyName(9, "foot_clan.png");
+            this.imageListTeamsFull.Images.SetKeyName(10, "guardians.png");
+            this.imageListTeamsFull.Images.SetKeyName(11, "heroes_for_hire.png");
+            this.imageListTeamsFull.Images.SetKeyName(12, "hydra.png");
+            this.imageListTeamsFull.Images.SetKeyName(13, "illuminati.png");
+            this.imageListTeamsFull.Images.SetKeyName(14, "legion_of_monsters.png");
+            this.imageListTeamsFull.Images.SetKeyName(15, "marvel_knights.png");
+            this.imageListTeamsFull.Images.SetKeyName(16, "mercs_4_money.png");
+            this.imageListTeamsFull.Images.SetKeyName(17, "Monsters_Unleashed_logo_sm.png");
+            this.imageListTeamsFull.Images.SetKeyName(18, "mutants.png");
+            this.imageListTeamsFull.Images.SetKeyName(19, "runaways.png");
+            this.imageListTeamsFull.Images.SetKeyName(20, "shield.png");
+            this.imageListTeamsFull.Images.SetKeyName(21, "sinister6.png");
+            this.imageListTeamsFull.Images.SetKeyName(22, "spider_friends.png");
+            this.imageListTeamsFull.Images.SetKeyName(23, "thunderbolts.png");
+            this.imageListTeamsFull.Images.SetKeyName(24, "us_army.png");
+            this.imageListTeamsFull.Images.SetKeyName(25, "x_force.png");
+            this.imageListTeamsFull.Images.SetKeyName(26, "x_men.png");
             // 
             // txtDeckName
             // 
@@ -504,6 +504,7 @@ namespace LegendaryCardEditor.Controls
             this.btnExport.TabIndex = 88;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // numNumberInDeck
             // 
@@ -692,39 +693,6 @@ namespace LegendaryCardEditor.Controls
             this.cmbAttributesTeams.TabIndex = 78;
             this.cmbAttributesTeams.SelectedIndexChanged += new System.EventHandler(this.cmbAttributesTeams_SelectedIndexChanged);
             // 
-            // imageListTeamsFull
-            // 
-            this.imageListTeamsFull.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageListTeamsFull.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeamsFull.ImageStream")));
-            this.imageListTeamsFull.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListTeamsFull.Images.SetKeyName(0, "a_force.png");
-            this.imageListTeamsFull.Images.SetKeyName(1, "avengers.png");
-            this.imageListTeamsFull.Images.SetKeyName(2, "brotherhood.png");
-            this.imageListTeamsFull.Images.SetKeyName(3, "cabal.png");
-            this.imageListTeamsFull.Images.SetKeyName(4, "champions.png");
-            this.imageListTeamsFull.Images.SetKeyName(5, "Crime_Syndicate.png");
-            this.imageListTeamsFull.Images.SetKeyName(6, "defenders.png");
-            this.imageListTeamsFull.Images.SetKeyName(7, "fantastic_four.png");
-            this.imageListTeamsFull.Images.SetKeyName(8, "Foes_of_Asgard.png");
-            this.imageListTeamsFull.Images.SetKeyName(9, "foot_clan.png");
-            this.imageListTeamsFull.Images.SetKeyName(10, "guardians.png");
-            this.imageListTeamsFull.Images.SetKeyName(11, "heroes_for_hire.png");
-            this.imageListTeamsFull.Images.SetKeyName(12, "hydra.png");
-            this.imageListTeamsFull.Images.SetKeyName(13, "illuminati.png");
-            this.imageListTeamsFull.Images.SetKeyName(14, "legion_of_monsters.png");
-            this.imageListTeamsFull.Images.SetKeyName(15, "marvel_knights.png");
-            this.imageListTeamsFull.Images.SetKeyName(16, "mercs_4_money.png");
-            this.imageListTeamsFull.Images.SetKeyName(17, "Monsters_Unleashed_logo_sm.png");
-            this.imageListTeamsFull.Images.SetKeyName(18, "mutants.png");
-            this.imageListTeamsFull.Images.SetKeyName(19, "runaways.png");
-            this.imageListTeamsFull.Images.SetKeyName(20, "shield.png");
-            this.imageListTeamsFull.Images.SetKeyName(21, "sinister6.png");
-            this.imageListTeamsFull.Images.SetKeyName(22, "spider_friends.png");
-            this.imageListTeamsFull.Images.SetKeyName(23, "thunderbolts.png");
-            this.imageListTeamsFull.Images.SetKeyName(24, "us_army.png");
-            this.imageListTeamsFull.Images.SetKeyName(25, "x_force.png");
-            this.imageListTeamsFull.Images.SetKeyName(26, "x_men.png");
-            // 
             // groupBoxPower2
             // 
             this.groupBoxPower2.BackColor = System.Drawing.Color.Transparent;
@@ -752,6 +720,17 @@ namespace LegendaryCardEditor.Controls
             this.cmbPower2.Size = new System.Drawing.Size(236, 35);
             this.cmbPower2.TabIndex = 7;
             this.cmbPower2.SelectedIndexChanged += new System.EventHandler(this.cmbPower2_SelectedIndexChanged);
+            // 
+            // imageListPowersFullSize
+            // 
+            this.imageListPowersFullSize.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageListPowersFullSize.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListPowersFullSize.ImageStream")));
+            this.imageListPowersFullSize.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListPowersFullSize.Images.SetKeyName(0, "covert.png");
+            this.imageListPowersFullSize.Images.SetKeyName(1, "instinct.png");
+            this.imageListPowersFullSize.Images.SetKeyName(2, "range.png");
+            this.imageListPowersFullSize.Images.SetKeyName(3, "strength.png");
+            this.imageListPowersFullSize.Images.SetKeyName(4, "tech.png");
             // 
             // chkPower2Visible
             // 
@@ -1085,16 +1064,38 @@ namespace LegendaryCardEditor.Controls
             this.txtCardName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCardName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCardName_KeyUp);
             // 
-            // imageListPowersFullSize
+            // imageListTeams
             // 
-            this.imageListPowersFullSize.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageListPowersFullSize.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListPowersFullSize.ImageStream")));
-            this.imageListPowersFullSize.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListPowersFullSize.Images.SetKeyName(0, "covert.png");
-            this.imageListPowersFullSize.Images.SetKeyName(1, "instinct.png");
-            this.imageListPowersFullSize.Images.SetKeyName(2, "range.png");
-            this.imageListPowersFullSize.Images.SetKeyName(3, "strength.png");
-            this.imageListPowersFullSize.Images.SetKeyName(4, "tech.png");
+            this.imageListTeams.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
+            this.imageListTeams.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeams.ImageStream")));
+            this.imageListTeams.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListTeams.Images.SetKeyName(0, "a_force.png");
+            this.imageListTeams.Images.SetKeyName(1, "avengers.png");
+            this.imageListTeams.Images.SetKeyName(2, "brotherhood.png");
+            this.imageListTeams.Images.SetKeyName(3, "cabal.png");
+            this.imageListTeams.Images.SetKeyName(4, "champions.png");
+            this.imageListTeams.Images.SetKeyName(5, "Crime_Syndicate.png");
+            this.imageListTeams.Images.SetKeyName(6, "defenders.png");
+            this.imageListTeams.Images.SetKeyName(7, "fantastic_four.png");
+            this.imageListTeams.Images.SetKeyName(8, "Foes_of_Asgard.png");
+            this.imageListTeams.Images.SetKeyName(9, "foot_clan.png");
+            this.imageListTeams.Images.SetKeyName(10, "guardians.png");
+            this.imageListTeams.Images.SetKeyName(11, "heroes_for_hire.png");
+            this.imageListTeams.Images.SetKeyName(12, "hydra.png");
+            this.imageListTeams.Images.SetKeyName(13, "illuminati.png");
+            this.imageListTeams.Images.SetKeyName(14, "legion_of_monsters.png");
+            this.imageListTeams.Images.SetKeyName(15, "marvel_knights.png");
+            this.imageListTeams.Images.SetKeyName(16, "mercs_4_money.png");
+            this.imageListTeams.Images.SetKeyName(17, "Monsters_Unleashed_logo_sm.png");
+            this.imageListTeams.Images.SetKeyName(18, "mutants.png");
+            this.imageListTeams.Images.SetKeyName(19, "runaways.png");
+            this.imageListTeams.Images.SetKeyName(20, "shield.png");
+            this.imageListTeams.Images.SetKeyName(21, "sinister6.png");
+            this.imageListTeams.Images.SetKeyName(22, "spider_friends.png");
+            this.imageListTeams.Images.SetKeyName(23, "thunderbolts.png");
+            this.imageListTeams.Images.SetKeyName(24, "us_army.png");
+            this.imageListTeams.Images.SetKeyName(25, "x_force.png");
+            this.imageListTeams.Images.SetKeyName(26, "x_men.png");
             // 
             // imageListAttributesOther
             // 

@@ -18,11 +18,14 @@ namespace LegendaryCardEditor
     public partial class Form1 : Form
     {
         SystemSettings settings;
-        DataContext context = new DataContext();
         CustomSetsViewModel customSet;
+
+        private UnitOfWork unitOfWork = new UnitOfWork();
         public Form1()
         {
             InitializeComponent();
+
+            
 
             settings = SystemSettings.Load();
 
@@ -34,7 +37,7 @@ namespace LegendaryCardEditor
             //MyDbContextSeeder.Seed(context);
             customSet = new CustomSetsViewModel
             {
-                CustomSets = context.EntityCustomSets.Include(x => x.Decks).ToList()
+                CustomSets = unitOfWork.CustomSetsRepository.Get(includeProperties: "Decks").ToList()
             };
 
 
@@ -52,7 +55,7 @@ namespace LegendaryCardEditor
                 TreeNode setNode = new TreeNode(itemSet.SetDisplayName);
                 setNode.Tag = itemSet;
 
-                foreach (var deckType in context.EntityDeckTypes)
+                foreach (var deckType in unitOfWork.DeckTypesRepository.Get())
                 {
                     TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
 
@@ -72,7 +75,7 @@ namespace LegendaryCardEditor
                 root.Nodes.Add(setNode);
             }
             treeView1.Nodes.Add(root);
-
+            treeView1.ExpandAll();
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -112,5 +115,15 @@ namespace LegendaryCardEditor
             }
         }
 
+        private void helpToolStripButton_Click(object sender, EventArgs e)
+        {
+            customSet = new CustomSetsViewModel
+            {
+                CustomSets = unitOfWork.CustomSetsRepository.Get(includeProperties: "Decks").ToList()
+            };
+
+
+            PopulateDeckTree();
+        }
     }
 }

@@ -78,7 +78,7 @@ namespace LegendaryCardEditor.Controls
         Font cardInfoFont;
         Font cardCostFont;
 
-        Dictionary<string, KalikoImage> renderedCards = new Dictionary<string, KalikoImage>();
+        Dictionary<int, KalikoImage> renderedCards = new Dictionary<int, KalikoImage>();
 
         bool overridePolygon = false;
 
@@ -99,13 +99,18 @@ namespace LegendaryCardEditor.Controls
         List<LegendaryIconViewModel> LegendaryIconList { get; set; }
 
         ResourceManager rm = Resources.ResourceManager;
-        DataContext context = new DataContext();
+
+
+        private UnitOfWork unitOfWork = new UnitOfWork();
+
         public CardEditorForm2(Decks currentDeck)
         {
             InitializeComponent();
 
             currentDeckModel = currentDeck;
-            currentDeckModel.Cards = context.EntityCards.Where(x => x.Deck.DeckId == currentDeckModel.DeckId).ToList();
+            currentDeckModel.Cards = unitOfWork.CardsRepository.Get(x=>x.Deck.DeckId == currentDeckModel.DeckId).ToList();
+
+            currentCustomSetModel = currentDeckModel.CustomSet;
 
             currentCustomSetPath = currentDeckModel.CustomSet.SetWorkPath;
 
@@ -126,9 +131,9 @@ namespace LegendaryCardEditor.Controls
         {
 
             LegendaryIconList = coreManager.LoadIconsFromDirectory();
-            templateModelList = context.EntityTemplates.ToList();
-            deckTypeList = context.EntityDeckTypes.ToList();
-            cardTypeList = context.EntityCardTypes.ToList();
+            templateModelList = unitOfWork.TemplatesRepository.Get().ToList();
+            deckTypeList = unitOfWork.DeckTypesRepository.Get().ToList();
+            cardTypeList = unitOfWork.CardTypesRepository.Get().ToList();
 
             FontFamily fontFamily = new FontFamily("Percolator");
 
@@ -1317,18 +1322,18 @@ namespace LegendaryCardEditor.Controls
             currentDeckModel.TeamIconId = cmbDeckTeam.SelectedIndex;
             foreach(var card in currentDeckModel.Cards)
             {
-                context.EntityCards.Update(card);
+                card.TeamIconId = currentDeckModel.TeamIconId;
+                card.CardDisplayNameSub = txtDeckName.Text;
+                unitOfWork.CardsRepository.Update(card);
             }
-            context.EntityDecks.Update(currentDeckModel);
-            context.SaveChanges();
+           //unitOfWork.CustomSetsRepository.Update(currentCustomSetModel);
+            unitOfWork.Save();
         }
         private void UpdateCard(int cardId)
         {
             var cardToUpdate = currentDeckModel.Cards.Where(x => x.CardId == cardId).FirstOrDefault();
 
-            string exportedImageName = $"{txtCardSubName.Text}_{currentTemplateModel.TemplateName}_{cardToUpdate.CardId}.png";
-            Regex rgx = new Regex("[^a-zA-Z0-9 -]");
-            exportedImageName = rgx.Replace(exportedImageName, "_");
+            
 
 
             // cardToUpdate.ArtWorkFile = $"{artworkImage.Size.Width},{artworkImage.Size.Height}";
@@ -1351,18 +1356,18 @@ namespace LegendaryCardEditor.Controls
 
             KalikoImage exportImage = RenderCardImage(cardToUpdate);
 
-            if (renderedCards.ContainsKey(exportedImageName))
-                renderedCards.Remove(exportedImageName);
+            if (renderedCards.ContainsKey(cardId))
+                renderedCards.Remove(cardId);
 
-            renderedCards.Add(exportedImageName, exportImage);
+            renderedCards.Add(cardId, exportImage);
         }
 
-        private void SaveData()
+        private void SaveData(Cards model)
         {
-            context.EntityCards.Update(currentCardModel);
-            context.SaveChanges();
+            unitOfWork.CardsRepository.Update(model);
+            unitOfWork.Save();
 
-            currentDeckModel.Cards = context.EntityCards.Where(x => x.Deck.DeckId == currentDeckModel.DeckId).ToList();
+            currentDeckModel.Cards = unitOfWork.CardsRepository.Get(x => x.Deck.DeckId == currentDeckModel.DeckId).ToList();
         }
 
 
@@ -1373,31 +1378,7 @@ namespace LegendaryCardEditor.Controls
             PopulateCardEditor(origCardModel);
         }
 
-        private void btnChangeCardType_Click(object sender, EventArgs e)
-        {
-            //var cardTypeModel = currentCardTypesList.Where(x => x.Displayname == cmbCardType.SelectedItem.ToString()).FirstOrDefault();
-            //currentCardModel.CardTypeTemplate = cardTypeModel.Name;
-            //currentCardModel.CardType = cardTypeModel.Displayname;
-
-
-            //if (currentCardModel.CardTypeTemplate == "hero_rare")
-            //{
-            //    currentCardModel.FrameImage = "hero_rare_back_text.png";
-            //    costImage = new KalikoImage(Resources.cost);
-            //}
-            //else
-            //{
-            //    var iconName = $"{currentCardModel.CardTypeTemplate}_none.png";
-            //    if (cmbPower1.SelectedIndex != -1)
-            //        iconName = $"{currentCardModel.CardTypeTemplate}_{imageListPowers.Images.Keys[cmbPower1.SelectedIndex]}";
-
-            //    currentCardModel.FrameImage = iconName;
-            //    costImage = null;
-            //}
-
-
-            //LoadImage(currentCardModel);
-        }
+      
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
@@ -1406,7 +1387,7 @@ namespace LegendaryCardEditor.Controls
 
             currentCustomSetModel.DateUpdated = DateTime.Now;
             UpdateDeck();
-            SaveData();
+            SaveData(currentCardModel);
             PopulateDeckTree();
             this.Cursor = Cursors.Default;
         }
@@ -1414,22 +1395,37 @@ namespace LegendaryCardEditor.Controls
         private void btnExport_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            foreach (var item in renderedCards)
+            Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+            foreach (var card in currentDeckModel.Cards)
             {
-                KalikoImage exportImage = item.Value;
-                if (exportImage != null)
-                {
-                    DirectoryInfo directory = new DirectoryInfo($"{currentCustomSetPath}\\cards");
-                    if (!directory.Exists)
-                        directory.Create();
+                card.ExportedCardFile = $"{card.CardDisplayNameSub.ToLower()}_{card.CardTemplate.TemplateName.ToLower()}_{card.CardId}";
+               
+                card.ExportedCardFile = rgx.Replace(card.ExportedCardFile, "_");
+                card.ExportedCardFile += ".png";
+                KalikoImage exportImage = renderedCards.Where(x => x.Key == card.CardId).FirstOrDefault().Value;
+                    if (exportImage != null)
+                    {
+                        DirectoryInfo directory = new DirectoryInfo($"{currentCustomSetPath}\\cards");
+                        if (!directory.Exists)
+                            directory.Create();
 
-                    var x = $"{currentCustomSetPath}\\cards\\{item.Key}";
-                    exportImage.SaveImage(x, System.Drawing.Imaging.ImageFormat.Png);
-                }
+                        var x = $"{currentCustomSetPath}\\cards\\{card.ExportedCardFile}";
+                        exportImage.SaveImage(x, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                unitOfWork.CardsRepository.Update(card);
+                
+
+                // currentCustomSetModel.DateUpdated = DateTime.Now;
+
+
+                card.Deck = currentDeckModel;
+
+                PopulateCardEditor(card);
             }
-            currentCustomSetModel.DateUpdated = DateTime.Now;
-            //coreManager.SaveCustomSet(currentCustomSetModel, $"{currentCustomSetPath}\\{currentSetDataFile}");
-            SaveData();
+
+            unitOfWork.Save();
+
+            currentDeckModel.Cards = unitOfWork.CardsRepository.Get(x => x.Deck.DeckId == currentDeckModel.DeckId).ToList();
             this.Cursor = Cursors.Default;
         }
 
@@ -1442,11 +1438,11 @@ namespace LegendaryCardEditor.Controls
 
             LoadImage(currentCardModel);
             UpdateDeck();
-            UpdateCard(currentCardId);
+            //UpdateCard(currentCardId);
 
-            currentCustomSetModel.DateUpdated = DateTime.Now;
+            //currentCustomSetModel.DateUpdated = DateTime.Now;
 
-            SaveData();
+            //SaveData(currentCardModel);
 
             this.Cursor = Cursors.Default;
         }

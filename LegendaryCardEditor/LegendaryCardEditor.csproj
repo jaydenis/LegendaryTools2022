@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.0.19.19</AssemblyVersion>
-    <FileVersion>1.0.19.19</FileVersion>
+    <AssemblyVersion>1.0.45.45</AssemblyVersion>
+    <FileVersion>1.0.45.45</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -261,7 +261,9 @@
     <Content Include="Templates\cards\villain\villain_transformed.png" />
     <Content Include="Templates\cards\wound\wound.png" />
     <Content Include="Templates\card_example.png" />
-    <Content Include="Templates\default_blank_card.png" />
+    <Resource Include="Templates\default_blank_card.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Templates\icons\attributes\attack.png" />
     <Content Include="Templates\icons\attributes\attack_lg.png" />
     <Content Include="Templates\icons\attributes\cards.png" />
@@ -333,6 +335,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="SQLite.CodeFirst" Version="1.7.0.34" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.115" />
+    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.115" />
   </ItemGroup>
 
   <ItemGroup>
