@@ -57,11 +57,13 @@ namespace LegendaryTools2022
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var context = new DataContext();
+            MyDbContextSeeder.Seed(context);
             //LegendaryIconList = new List<LegendaryIconModel>();
             // LegendaryIconList = coreManager.LoadIconsFromDirectory();
 
             //if (settings.lastProject != string.Empty)
-               LoadCustomSet(settings.lastProject);
+            //  LoadCustomSet(settings.lastProject);
             //else
             //    OpenFile();
         }
@@ -91,11 +93,11 @@ namespace LegendaryTools2022
                 {
                     TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
 
-                    foreach (var deck in itemSet.Decks.Where(x=>x.DeckTypeId == deckType.DeckTypeId))
+                    foreach (var deck in itemSet.Decks.Where(x=>x.DeckType.DeckTypeId == deckType.DeckTypeId))
                     {
                         TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
-                        deckNode.ImageIndex = deck.TeamIconId.GetValueOrDefault(0);
-                        deckNode.SelectedImageIndex = deck.TeamIconId.GetValueOrDefault(0);
+                        deckNode.ImageIndex = deck.TeamIconId;
+                        deckNode.SelectedImageIndex = deck.TeamIconId;
 
                         deckNode.Tag = new CurrentWorkingViewModel
                         {

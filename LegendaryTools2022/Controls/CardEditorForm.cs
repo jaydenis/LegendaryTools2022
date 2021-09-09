@@ -19,6 +19,7 @@ using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -166,6 +167,9 @@ namespace LegendaryTools2022.Controls
 
             settings.Save();
 
+            txtDeckName.Text = currentDeckModel.DeckDisplayName;
+            cmbDeckTeam.SelectedIndex = currentDeckModel.TeamIconId;
+
 
             PopulateDeckTree();
 
@@ -212,8 +216,8 @@ namespace LegendaryTools2022.Controls
                 currentCardModel = model;
 
 
-                currentTemplateModel = templateModelList.Where(x=>x.TemplateId == model.TemplateId).FirstOrDefault();
-                currentDeckType = deckTypeList.Where(x=>x.DeckTypeId == currentDeckModel.DeckTypeId.Value).FirstOrDefault();
+                currentTemplateModel = templateModelList.Where(x=>x.TemplateId == model.CardTemplate.TemplateId).FirstOrDefault();
+                currentDeckType = deckTypeList.Where(x=>x.DeckTypeId == currentDeckModel.DeckType.DeckTypeId).FirstOrDefault();
                 //load card type template
                 var templatePath = $"{settings.baseFolder}\\cards\\{currentDeckType.DeckTypeName}";
 
@@ -236,23 +240,23 @@ namespace LegendaryTools2022.Controls
                 
 
                 toolStripLabelDeckName.Text = "Deck Name: " + currentDeckModel.DeckDisplayName;
-                cmbCardType.SelectedItem = model.CardTypeId;
+                cmbCardType.SelectedItem = model.CardType.CardTypeId;
                 txtCardName.Text = model.CardDisplayName;
-                numCardTitleSize.Value = model.CardDisplayNameFont.Value;
+                numCardTitleSize.Value = model.CardDisplayNameFont;
                 txtCardSubName.Text = model.CardDisplayNameSub == "Card Sub-Title" ? currentDeckModel.DeckDisplayName : model.CardDisplayNameSub;
-                numCardSubTitleSize.Value = model.CardDisplayNameSubFont.Value;
+                numCardSubTitleSize.Value = model.CardDisplayNameSubFont;
                 txtCardAttackValue.Text = model.AttributeAttack != "-1" ? model.AttributeAttack : string.Empty;
                 txtCardCostValue.Text = model.AttributeCost != "-1" ? model.AttributeCost : string.Empty;
                 txtCardPiercingValue.Text = model.AttributePiercing != "-1" ? model.AttributePiercing : string.Empty;
                 txtCardRecruitValue.Text = model.AttributeRecruit != "-1" ? model.AttributeRecruit : string.Empty;
                 txtCardTextBox.Text = model.CardText;
-                numCardTextSize.Value = model.CardTextFont.Value;
+                numCardTextSize.Value = model.CardTextFont;
                 txtCardVictoryPointsValue.Text = model.AttributeVictoryPoints != "-1" ? model.AttributeVictoryPoints : string.Empty;
 
 
-                if (model.TeamIconId.Value != -1)
+                if (model.TeamIconId != -1)
                 {
-                    cmbTeam.SelectedIndex = model.TeamIconId.Value;
+                    cmbTeam.SelectedIndex = model.TeamIconId;
 
                     Image image = imageListTeamsFull.Images[cmbTeam.SelectedIndex];
                     teamImage = new KalikoImage(image);
@@ -260,7 +264,7 @@ namespace LegendaryTools2022.Controls
 
                 if (model.PowerPrimaryIconId != -1)
                 {
-                    cmbPower1.SelectedIndex = model.PowerPrimaryIconId.Value;
+                    cmbPower1.SelectedIndex = model.PowerPrimaryIconId;
 
                     Image imagePower = imageListPowersFullSize.Images[cmbPower1.SelectedIndex];
                     powerImage = new KalikoImage(imagePower);
@@ -271,7 +275,7 @@ namespace LegendaryTools2022.Controls
                     if (model.PowerSecondaryIconId != -1)
                     {
                         cmbPower2.Enabled = false;
-                        cmbPower2.SelectedIndex = model.PowerSecondaryIconId.Value;
+                        cmbPower2.SelectedIndex = model.PowerSecondaryIconId;
                         Image imagePower2 = imageListPowersFullSize.Images[cmbPower2.SelectedIndex];
                         powerImage2 = new KalikoImage(imagePower2);
 
@@ -330,32 +334,32 @@ namespace LegendaryTools2022.Controls
             if (model != null)
             {
                 
-                    lblCardAttackValue.Visible = model.FormShowAttributesAttack.GetValueOrDefault(false);
-                    txtCardAttackValue.Visible = model.FormShowAttributesAttack.GetValueOrDefault(false);
+                    lblCardAttackValue.Visible = model.FormShowAttributesAttack;
+                    txtCardAttackValue.Visible = model.FormShowAttributesAttack;
 
-                lblCardRecruitValue.Visible = model.FormShowAttributesRecruit.GetValueOrDefault(false);
-                txtCardRecruitValue.Visible = model.FormShowAttributesRecruit.GetValueOrDefault(false);
+                lblCardRecruitValue.Visible = model.FormShowAttributesRecruit;
+                txtCardRecruitValue.Visible = model.FormShowAttributesRecruit;
 
-                lblCardPiercingValue.Visible = model.FormShowAttributesPiercing.GetValueOrDefault(false);
-                txtCardPiercingValue.Visible = model.FormShowAttributesPiercing.GetValueOrDefault(false);
+                lblCardPiercingValue.Visible = model.FormShowAttributesPiercing;
+                txtCardPiercingValue.Visible = model.FormShowAttributesPiercing;
 
-                lblCardCostValue.Visible = model.FormShowAttributesCost.GetValueOrDefault(false);
-                txtCardCostValue.Visible = model.FormShowAttributesCost.GetValueOrDefault(false);
+                lblCardCostValue.Visible = model.FormShowAttributesCost;
+                txtCardCostValue.Visible = model.FormShowAttributesCost;
 
-                lblCardVictoryPointsValue.Visible = model.FormShowVictoryPoints.GetValueOrDefault(false);
-                txtCardVictoryPointsValue.Visible = model.FormShowVictoryPoints.GetValueOrDefault(false);
+                lblCardVictoryPointsValue.Visible = model.FormShowVictoryPoints;
+                txtCardVictoryPointsValue.Visible = model.FormShowVictoryPoints;
 
-                groupBoxPower.Visible = model.FormShowPowerPrimary.GetValueOrDefault(false);
-                cmbPower1.Enabled = model.FormShowPowerPrimary.GetValueOrDefault(false);
+                groupBoxPower.Visible = model.FormShowPowerPrimary;
+                cmbPower1.Enabled = model.FormShowPowerPrimary;
 
-                groupBoxPower2.Visible = model.FormShowPowerSecondary.GetValueOrDefault(false);
-                cmbPower2.Enabled = model.FormShowPowerSecondary.GetValueOrDefault(false);
+                groupBoxPower2.Visible = model.FormShowPowerSecondary;
+                cmbPower2.Enabled = model.FormShowPowerSecondary;
 
                 chkPowerVisible.Enabled = cmbPower1.Enabled;
                     chkPower2Visible.Enabled = cmbPower2.Enabled;
 
                     //groupBoxTeam.Visible = model.FormControls.ShowTeam;
-                    cmbTeam.Visible = model.FormShowTeam.GetValueOrDefault(false);
+                    cmbTeam.Visible = model.FormShowTeam;
 
                 attackImage = new KalikoImage(Resources.attack);
                     recruitImage = new KalikoImage(Resources.recruit);
@@ -376,9 +380,10 @@ namespace LegendaryTools2022.Controls
 
             foreach (var card in currentDeckModel.Cards)
             {
+               
                 KryptonListItem item = new KryptonListItem();
                 item.ShortText = $"{card.CardDisplayName}";
-                item.LongText = templateModelList.Where(x=>x.TemplateId == card.TemplateId).FirstOrDefault().TemplateDisplayName;
+                item.LongText = templateModelList.Where(x=>x.TemplateId == card.CardTemplate.TemplateId).FirstOrDefault().TemplateDisplayName;
                 item.Tag = card;
                 kryptonListBox1.Items.Add(item);
             }
@@ -393,6 +398,8 @@ namespace LegendaryTools2022.Controls
             KryptonListItem item = (KryptonListItem)kryptonListBox1.SelectedItem;
             origCardModel = (Cards)item.Tag;
             currentCardId = (int)origCardModel.CardId;
+            cmbTeam.SelectedIndex = cmbDeckTeam.SelectedIndex;
+            txtCardSubName.Text = txtDeckName.Text;
             PopulateCardEditor(origCardModel);
             this.Cursor = Cursors.Default;
         }
@@ -452,7 +459,7 @@ namespace LegendaryTools2022.Controls
                 infoImage.BlitImage(backUnderLay);
             }
 
-            if (currentTemplateModel.FormShowAttributes.GetValueOrDefault(false))
+            if (currentTemplateModel.FormShowAttributes)
             {
 
                 frameImage = new KalikoImage($"{currentTemplateDirectory}\\{currentTemplateModel.FrameImage}");
@@ -462,25 +469,25 @@ namespace LegendaryTools2022.Controls
             infoImage.BlitImage(frameImage);          
 
 
-            if (powerImage != null && currentTemplateModel.FormShowPowerPrimary.GetValueOrDefault(false))
+            if (powerImage != null && currentTemplateModel.FormShowPowerPrimary)
             {
                 powerImage.Resize(40, 40);
                 infoImage.BlitImage(powerImage, 15, 62);
 
-                if (powerImage2 != null && currentTemplateModel.FormShowPowerPrimary.GetValueOrDefault(false))
+                if (powerImage2 != null && currentTemplateModel.FormShowPowerPrimary)
                 {
                     powerImage2.Resize(40, 40);
                     infoImage.BlitImage(powerImage2, 15, 102);
                 }
             }
 
-            if (teamImage != null && currentTemplateModel.FormShowTeam.GetValueOrDefault(false))
+            if (teamImage != null && currentTemplateModel.FormShowTeam)
             {
                 teamImage.Resize(40, 40);
                 infoImage.BlitImage(teamImage, 15, 17);
             }
 
-            if (currentTemplateModel.FormShowVictoryPoints.GetValueOrDefault(false))
+            if (currentTemplateModel.FormShowVictoryPoints)
             {
                 victoryPointsImage = new KalikoImage(Resources.victory);
                 victoryPointsImage.Resize(40, 40);
@@ -502,39 +509,39 @@ namespace LegendaryTools2022.Controls
                 infoImage.DrawText(txtFieldVP);
             }
 
-            if (txtCardRecruitValue.Text.Length > 0 && currentTemplateModel.FormShowAttributesRecruit.GetValueOrDefault(false) && recruitImage != null)
+            if (txtCardRecruitValue.Text.Length > 0 && currentTemplateModel.FormShowAttributesRecruit && recruitImage != null)
             {
                 recruitImage.Resize(90, 90);
                 infoImage.BlitImage(recruitImage, 13, 465);
             }
 
-            if (txtCardAttackValue.Text.Length > 0 && currentTemplateModel.FormShowAttributesAttack.GetValueOrDefault(false) && attackImage != null)
+            if (txtCardAttackValue.Text.Length > 0 && currentTemplateModel.FormShowAttributesAttack && attackImage != null)
             {
                 attackImage.Resize(90, 90);
                 infoImage.BlitImage(attackImage, 13, 580);
             }
 
-            if (txtCardPiercingValue.Text.Length > 0 && currentTemplateModel.FormShowAttributesPiercing.GetValueOrDefault(false) && piercingImage != null)
+            if (txtCardPiercingValue.Text.Length > 0 && currentTemplateModel.FormShowAttributesPiercing && piercingImage != null)
             {
                 piercingImage.Resize(90, 90);
                 infoImage.BlitImage(piercingImage, 13, 580);
             }
 
 
-            if (currentTemplateModel.FormShowAttackCost.GetValueOrDefault(false))
+            if (currentTemplateModel.FormShowAttackCost)
             {
                 attackImage.Resize(95, 95);
                 infoImage.BlitImage(attackImage, 380, 610);
             }
 
-            if (currentTemplateModel.FormShowAttributesCost.GetValueOrDefault(false) && costImage != null)
+            if (currentTemplateModel.FormShowAttributesCost && costImage != null)
             {
                 costImage.Resize(102, 102);
                 infoImage.BlitImage(costImage, 373, 585);
             }
 
 
-            if (txtCardCostValue.Text.Length > 0 && (currentTemplateModel.FormShowAttributesCost.GetValueOrDefault(false) || currentTemplateModel.FormShowAttackCost.GetValueOrDefault(false)))
+            if (txtCardCostValue.Text.Length > 0 && (currentTemplateModel.FormShowAttributesCost || currentTemplateModel.FormShowAttackCost))
             {
                 cardCostFont = new Font(
                   fontFamily,
@@ -549,7 +556,7 @@ namespace LegendaryTools2022.Controls
                     TextColor = Color.White
                 };
 
-                if (currentTemplateModel.FormShowAttackCost.GetValueOrDefault(false))
+                if (currentTemplateModel.FormShowAttackCost)
                     txtFieldCost.Point = new Point(424, 610);
                 else
                     txtFieldCost.Point = new Point(424, 595);
@@ -626,7 +633,7 @@ namespace LegendaryTools2022.Controls
             infoImage.DrawText(txtFieldTitle);
             infoImage.DrawText(txtFieldSubTitle);
 
-            if (txtCardAttackValue.Text.Length > 0 || txtCardRecruitValue.Text.Length > 0 || txtCardPiercingValue.Text.Length > 0 && (currentTemplateModel.FormShowAttributesAttack.GetValueOrDefault(false) || currentTemplateModel.FormShowAttributesRecruit.GetValueOrDefault(false) || currentTemplateModel.FormShowAttributesPiercing.GetValueOrDefault(false)))
+            if (txtCardAttackValue.Text.Length > 0 || txtCardRecruitValue.Text.Length > 0 || txtCardPiercingValue.Text.Length > 0 && (currentTemplateModel.FormShowAttributesAttack || currentTemplateModel.FormShowAttributesRecruit || currentTemplateModel.FormShowAttributesPiercing))
             {
                 bool containsPlus = false;
                 if (txtCardRecruitValue.Text.Contains("+"))
@@ -1189,9 +1196,9 @@ namespace LegendaryTools2022.Controls
             powerImage = new KalikoImage(image);
             currentCardModel.PowerPrimary = $"<{iconName.Replace(".png", ">").ToUpper()}";
             currentCardModel.PowerPrimaryIconId = cmbPower1.SelectedIndex;
-            if (currentCardModel.CardTypeId != 3)
+            if (currentCardModel.CardType.CardTypeId != 3)
             {                
-                currentTemplateModel.FrameImage = $"{cardTypeList.Where(x => x.CardTypeId == currentCardModel.CardTypeId).FirstOrDefault().CardTypeName}_{iconName}";
+                currentTemplateModel.FrameImage = $"{cardTypeList.Where(x => x.CardTypeId == currentCardModel.CardType.CardTypeId).FirstOrDefault().CardTypeName}_{iconName}";
             }
             LoadImage(currentCardModel);
         }
@@ -1214,7 +1221,7 @@ namespace LegendaryTools2022.Controls
         {
             Image image = imageListTeamsFull.Images[cmbTeam.SelectedIndex];
             teamImage = new KalikoImage(image);
-            currentCardModel.TeamIconId = cmbTeam.SelectedIndex;
+           
 
             LoadImage(currentCardModel);
         }
@@ -1251,6 +1258,17 @@ namespace LegendaryTools2022.Controls
             LoadImage(currentCardModel);
         }       
 
+        private void UpdateDeck()
+        {
+            currentDeckModel.DeckDisplayName = txtDeckName.Text;
+            string str = currentDeckModel.DeckDisplayName;
+            Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+            str = rgx.Replace(str, "_");
+
+            currentDeckModel.DeckName = str;
+            currentDeckModel.TeamIconId = cmbDeckTeam.SelectedIndex;
+            this.repositoryDeck.Update(currentDeckModel);
+        }
         private void UpdateCard(int cardId)
         {
             var cardToUpdate = currentDeckModel.Cards.Where(x => x.CardId == cardId).FirstOrDefault();
@@ -1328,7 +1346,7 @@ namespace LegendaryTools2022.Controls
             UpdateCard(currentCardId);
 
             currentCustomSetModel.DateUpdated = DateTime.Now;
-            // coreManager.SaveCustomSet(currentCustomSetModel, $"{currentSetDataFile}");
+            UpdateDeck();
             SaveData();
             PopulateDeckTree(kryptonListBox1.SelectedIndex);
             this.Cursor = Cursors.Default;
@@ -1359,11 +1377,16 @@ namespace LegendaryTools2022.Controls
         private void btnUpdateCard_Click(object sender, EventArgs e)
         {            
             this.Cursor = Cursors.WaitCursor;
-            LoadImage(currentCardModel);
 
+            txtCardSubName.Text = txtDeckName.Text;
+            cmbTeam.SelectedIndex = cmbDeckTeam.SelectedIndex;
+
+            LoadImage(currentCardModel);
+            UpdateDeck();
             UpdateCard(currentCardId);
+
             currentCustomSetModel.DateUpdated = DateTime.Now;
-            //coreManager.SaveCustomSet(currentCustomSetModel, $"{currentCustomSetPath}\\{currentSetDataFile}");
+            
             SaveData();
 
             this.Cursor = Cursors.Default;

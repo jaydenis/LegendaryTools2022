@@ -2,28 +2,35 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LegendaryTools2022.Models.Entities
 {
+
     public partial class CustomSetsViewModel
     {
         public List<CustomSets> CustomSets { get; set; } = new List<CustomSets>();
     }
 
+    [Table("CustomSets")]
     public partial class CustomSets
     {
         [Key]
-        public Int64 SetId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long SetId { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public String SetName { get; set; }
 
+        [Required]
         [MaxLength(254)]
         public String SetWorkPath { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public String SetDisplayName { get; set; }
 
@@ -31,56 +38,65 @@ namespace LegendaryTools2022.Models.Entities
 
         public DateTime? DateUpdated { get; set; }
 
-        public virtual IEnumerable<Decks> Decks { get; set; }
+        public virtual ICollection<Decks> Decks { get; set; }
     }
 
+    [Table("Decks")]
     public partial class Decks
     {
         [Key]
-        public Int64 DeckId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long DeckId { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public String DeckName { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public String DeckDisplayName { get; set; }
 
-        public Int32? DeckTypeId { get; set; }
+        public int TeamIconId { get; set; } = 0;
 
-        public Int32? TeamIconId { get; set; }
+        public virtual CustomSets CustomSet { get; set; }
 
-        public Int32? SetId { get; set; }
+        public virtual DeckTypes DeckType { get; set; }
 
-        public virtual IEnumerable<Cards> Cards { get; set; }
+        public virtual ICollection<Cards> Cards { get; set; }
 
     }
 
+    [Table("Cards")]
     public partial class Cards
     {
         [Key]
-        public Int64 CardId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long CardId { get; set; }
 
+        [Required]
         [MaxLength(254)]
         public String CardName { get; set; }
 
+        [Required]
         [MaxLength(254)]
         public String CardDisplayName { get; set; }
 
-        public Int32? CardDisplayNameFont { get; set; }
+        public int CardDisplayNameFont { get; set; } = 32;
 
+        [Required]
         [MaxLength(254)]
         public String CardDisplayNameSub { get; set; }
 
-        public Int32? CardDisplayNameSubFont { get; set; }
+        public int CardDisplayNameSubFont { get; set; } = 28;
 
-        public Int32? CardTypeId { get; set; }
+        public virtual CardTypes CardType { get; set; }
 
-        public Int32 TemplateId { get; set; }
+        public virtual Templates CardTemplate { get; set; }
 
-        [MaxLength(254)]
+        [MaxLength(25)]
         public String PowerPrimary { get; set; }
 
-        [MaxLength(254)]
+        [MaxLength(25)]
         public String PowerSecondary { get; set; }
 
         [MaxLength(4)]
@@ -95,15 +111,15 @@ namespace LegendaryTools2022.Models.Entities
         [MaxLength(4)]
         public String AttributePiercing { get; set; }
 
-        [MaxLength(254)]
+        [MaxLength(4)]
         public String AttributeVictoryPoints { get; set; }
 
         [MaxLength(500)]
         public String CardText { get; set; }
 
-        public Int32? CardTextFont { get; set; }
+        public int CardTextFont { get; set; } = 22;
 
-        public Int32? NumberInDeck { get; set; }
+        public int NumberInDeck { get; set; } = 1;
 
         [MaxLength(254)]
         public String ArtWorkFile { get; set; }
@@ -111,62 +127,76 @@ namespace LegendaryTools2022.Models.Entities
         [MaxLength(254)]
         public String ExportedCardFile { get; set; }
 
-        public Int32? DeckId { get; set; }
+        public virtual Decks Deck { get; set; }
 
-        public Int32? TeamIconId { get; set; }
+        public int TeamIconId { get; set; }
 
-        public Int32? PowerPrimaryIconId { get; set; }
+        public int PowerPrimaryIconId { get; set; }
 
-        public Int32? PowerSecondaryIconId { get; set; }
+        public int PowerSecondaryIconId { get; set; }
 
     }
 
+    [Table("CardTypes")]
     public partial class CardTypes
     {
         [Key]
-        public Int64 CardTypeId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long CardTypeId { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public String CardTypeName { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public String CardTypeDisplayName { get; set; }
 
-        public Int32? DeckTypeId { get; set; }
+
 
     }
 
+    [Table("DeckTypes")]
     public partial class DeckTypes
     {
         [Key]
-        public Int64 DeckTypeId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long DeckTypeId { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public String DeckTypeName { get; set; }
 
     }
 
+    [Table("Templates")]
     public partial class Templates
     {
         [Key]
-        public Int64 TemplateId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long TemplateId { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public String TemplateName { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public String TemplateDisplayName { get; set; }
 
+        [Required]
         [MaxLength(254)]
         public String RectXArray { get; set; }
 
+        [Required]
         [MaxLength(254)]
         public String RectYArray { get; set; }
 
-        public Int32? CardWidth { get; set; }
+        public int CardWidth { get; set; } = 504;
 
-        public Int32? CardHeight { get; set; }
+        public int CardHeight { get; set; } = 750;
 
+        [Required]
         [MaxLength(254)]
         public String FrameImage { get; set; }
 
@@ -179,25 +209,27 @@ namespace LegendaryTools2022.Models.Entities
         [MaxLength(254)]
         public String UnderlayImage { get; set; }
 
-        public Boolean? FormShowTeam { get; set; }
+        public bool FormShowTeam { get; set; } = false;
 
-        public Boolean? FormShowPowerPrimary { get; set; }
+        public bool FormShowPowerPrimary { get; set; } = false;
 
-        public Boolean? FormShowPowerSecondary { get; set; }
+        public bool FormShowPowerSecondary { get; set; } = false;
 
-        public Boolean? FormShowAttributes { get; set; }
+        public bool FormShowAttributes { get; set; } = false;
 
-        public Boolean? FormShowAttributesCost { get; set; }
+        public bool FormShowAttributesCost { get; set; } = false;
 
-        public Boolean? FormShowAttributesRecruit { get; set; }
+        public bool FormShowAttributesRecruit { get; set; } = false;
 
-        public Boolean? FormShowAttributesAttack { get; set; }
+        public bool FormShowAttributesAttack { get; set; } = false;
 
-        public Boolean? FormShowAttributesPiercing { get; set; }
+        public bool FormShowAttributesPiercing { get; set; } = false;
 
-        public Boolean? FormShowVictoryPoints { get; set; }
+        public bool FormShowVictoryPoints { get; set; } = false;
 
-        public Boolean? FormShowAttackCost { get; set; }
+        public bool FormShowAttackCost { get; set; } = false;
+
+        public virtual Cards Card { get; set; }
 
     }
 }

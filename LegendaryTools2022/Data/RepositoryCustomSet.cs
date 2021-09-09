@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace LegendaryTools2022.Data
 {
@@ -33,27 +34,7 @@ namespace LegendaryTools2022.Data
 
                 using (var db = new DataContext())
                 {
-                    
-                    customSetsModel.CustomSets = db.EntityCustomSets.ToList();                   
-
-
-                    foreach(var item in customSetsModel.CustomSets)
-                    {
-                        if (item.Decks == null)
-                            item.Decks = new List<Decks>();
-
-                        item.Decks = db.EntityDecks.Where(x => x.SetId == item.SetId).ToList();
-                        //foreach(var deck in item.Decks)
-                        //{
-                        //    if (deck.Cards == null)
-                        //        deck.Cards = new List<Cards>();
-
-                        //    deck.Cards = db.EntityCards.Where(x => x.DeckId == deck.DeckId).ToList();
-                           
-                        //}
-                    }
-
-
+                    customSetsModel.CustomSets = db.EntityCustomSets.Include(b => b.Decks).ToList();   
                 }
                 return customSetsModel;
             }

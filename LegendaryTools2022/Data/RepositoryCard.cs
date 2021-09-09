@@ -61,7 +61,7 @@ namespace LegendaryTools2022.Data
             {
                 using (var db = new DataContext())
                 {
-                    var result = db.EntityCards.Where(x=>x.DeckId == deckId).ToList();
+                    var result = db.EntityCards.Where(x=>x.Deck.DeckId == deckId).ToList();
 
                     return result;
                 }
@@ -113,7 +113,7 @@ namespace LegendaryTools2022.Data
                         DataCompareResult dcr = DataTools.CompareObjects(model, entity);
                         if (dcr.ObjectIdentical == false)
                         {
-                            db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                            db.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
                             db.SaveChanges();
                         }

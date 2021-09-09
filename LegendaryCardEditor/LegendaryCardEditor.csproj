@@ -1,0 +1,357 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyVersion>1.0.19.19</AssemblyVersion>
+    <FileVersion>1.0.19.19</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\icons\attributes\attack.png" />
+    <None Remove="Images\icons\attributes\attack_lg.png" />
+    <None Remove="Images\icons\attributes\cards.png" />
+    <None Remove="Images\icons\attributes\cost.png" />
+    <None Remove="Images\icons\attributes\piercing.png" />
+    <None Remove="Images\icons\attributes\piercing_lg.png" />
+    <None Remove="Images\icons\attributes\published.xml" />
+    <None Remove="Images\icons\attributes\recruit.png" />
+    <None Remove="Images\icons\attributes\recruit_lg.png" />
+    <None Remove="Images\icons\attributes\victory.png" />
+    <None Remove="Images\icons\misc\focus.png" />
+    <None Remove="Images\icons\misc\published.xml" />
+    <None Remove="Images\icons\misc\token.png" />
+    <None Remove="Images\icons\powers\covert.png" />
+    <None Remove="Images\icons\powers\instinct.png" />
+    <None Remove="Images\icons\powers\published.xml" />
+    <None Remove="Images\icons\powers\range.png" />
+    <None Remove="Images\icons\powers\strength.png" />
+    <None Remove="Images\icons\powers\tech.png" />
+    <None Remove="Images\icons\teams\avengers.png" />
+    <None Remove="Images\icons\teams\a_force.png" />
+    <None Remove="Images\icons\teams\brotherhood.png" />
+    <None Remove="Images\icons\teams\cabal.png" />
+    <None Remove="Images\icons\teams\champions.png" />
+    <None Remove="Images\icons\teams\Crime_Syndicate.png" />
+    <None Remove="Images\icons\teams\defenders.png" />
+    <None Remove="Images\icons\teams\fantastic_four.png" />
+    <None Remove="Images\icons\teams\Foes_of_Asgard.png" />
+    <None Remove="Images\icons\teams\foot_clan.png" />
+    <None Remove="Images\icons\teams\guardians.png" />
+    <None Remove="Images\icons\teams\heroes_for_hire.png" />
+    <None Remove="Images\icons\teams\hydra.png" />
+    <None Remove="Images\icons\teams\illuminati.png" />
+    <None Remove="Images\icons\teams\legion_of_monsters.png" />
+    <None Remove="Images\icons\teams\marvel_knights.png" />
+    <None Remove="Images\icons\teams\mercs_4_money.png" />
+    <None Remove="Images\icons\teams\Monsters_Unleashed_logo_sm.png" />
+    <None Remove="Images\icons\teams\mutants.png" />
+    <None Remove="Images\icons\teams\runaways.png" />
+    <None Remove="Images\icons\teams\shield.png" />
+    <None Remove="Images\icons\teams\sinister6.png" />
+    <None Remove="Images\icons\teams\spider_friends.png" />
+    <None Remove="Images\icons\teams\thunderbolts.png" />
+    <None Remove="Images\icons\teams\us_army.png" />
+    <None Remove="Images\icons\teams\x_force.png" />
+    <None Remove="Images\icons\teams\x_men.png" />
+    <None Remove="Images\icons_sm\covert_sm.png" />
+    <None Remove="Images\icons_sm\instinct_sm.png" />
+    <None Remove="Images\icons_sm\range_sm.png" />
+    <None Remove="Images\icons_sm\strength_sm.png" />
+    <None Remove="Images\icons_sm\tech_sm.png" />
+    <None Remove="Templates\artwork.jpg" />
+    <None Remove="Templates\cards\bystander\bystander.png" />
+    <None Remove="Templates\cards\bystander\bystander_villain.png" />
+    <None Remove="Templates\cards\bystander\bystander_wound.png" />
+    <None Remove="Templates\cards\hero\back_cost.png" />
+    <None Remove="Templates\cards\hero\back_text.png" />
+    <None Remove="Templates\cards\hero\back_underlay.png" />
+    <None Remove="Templates\cards\hero\hero_common_covert.png" />
+    <None Remove="Templates\cards\hero\hero_common_instinct.png" />
+    <None Remove="Templates\cards\hero\hero_common_none.png" />
+    <None Remove="Templates\cards\hero\hero_common_range.png" />
+    <None Remove="Templates\cards\hero\hero_common_strength.png" />
+    <None Remove="Templates\cards\hero\hero_common_tech.png" />
+    <None Remove="Templates\cards\hero\hero_rare.png" />
+    <None Remove="Templates\cards\hero\hero_uncommon_covert.png" />
+    <None Remove="Templates\cards\hero\hero_uncommon_instinct.png" />
+    <None Remove="Templates\cards\hero\hero_uncommon_none.png" />
+    <None Remove="Templates\cards\hero\hero_uncommon_range.png" />
+    <None Remove="Templates\cards\hero\hero_uncommon_strength.png" />
+    <None Remove="Templates\cards\hero\hero_uncommon_tech.png" />
+    <None Remove="Templates\cards\mastermind\mastermind_back_text.png" />
+    <None Remove="Templates\cards\mastermind\mastermind_back_underlay.png" />
+    <None Remove="Templates\cards\mastermind\mastermind_tactic_back_text.png" />
+    <None Remove="Templates\cards\mastermind\mastermind_tactic_back_underlay.png" />
+    <None Remove="Templates\cards\mastermind\mastermind_token.png" />
+    <None Remove="Templates\cards\mastermind\mastermind_transformed.png" />
+    <None Remove="Templates\cards\sidekick\back_cost.png" />
+    <None Remove="Templates\cards\sidekick\back_text.png" />
+    <None Remove="Templates\cards\sidekick\sidekick_covert.png" />
+    <None Remove="Templates\cards\sidekick\sidekick_instinct.png" />
+    <None Remove="Templates\cards\sidekick\sidekick_none.png" />
+    <None Remove="Templates\cards\sidekick\sidekick_range.png" />
+    <None Remove="Templates\cards\sidekick\sidekick_strength.png" />
+    <None Remove="Templates\cards\sidekick\sidekick_tech.png" />
+    <None Remove="Templates\cards\villain\henchmen.png" />
+    <None Remove="Templates\cards\villain\henchmen_location.png" />
+    <None Remove="Templates\cards\villain\villain.png" />
+    <None Remove="Templates\cards\villain\villain_location.png" />
+    <None Remove="Templates\cards\villain\villain_token.png" />
+    <None Remove="Templates\cards\villain\villain_transformed.png" />
+    <None Remove="Templates\cards\wound\wound.png" />
+    <None Remove="Templates\card_example.png" />
+    <None Remove="Templates\default_blank_card.png" />
+    <None Remove="Templates\icons\attributes\attack.png" />
+    <None Remove="Templates\icons\attributes\attack_lg.png" />
+    <None Remove="Templates\icons\attributes\cards.png" />
+    <None Remove="Templates\icons\attributes\cost.png" />
+    <None Remove="Templates\icons\attributes\piercing.png" />
+    <None Remove="Templates\icons\attributes\piercing_lg.png" />
+    <None Remove="Templates\icons\attributes\published.xml" />
+    <None Remove="Templates\icons\attributes\recruit.png" />
+    <None Remove="Templates\icons\attributes\recruit_lg.png" />
+    <None Remove="Templates\icons\attributes\victory.png" />
+    <None Remove="Templates\icons\misc\focus.png" />
+    <None Remove="Templates\icons\misc\published.xml" />
+    <None Remove="Templates\icons\misc\token.png" />
+    <None Remove="Templates\icons\powers\covert.png" />
+    <None Remove="Templates\icons\powers\instinct.png" />
+    <None Remove="Templates\icons\powers\published.xml" />
+    <None Remove="Templates\icons\powers\range.png" />
+    <None Remove="Templates\icons\powers\strength.png" />
+    <None Remove="Templates\icons\powers\tech.png" />
+    <None Remove="Templates\icons\teams\A-Force.png" />
+    <None Remove="Templates\icons\teams\autobot.png" />
+    <None Remove="Templates\icons\teams\avengers.png" />
+    <None Remove="Templates\icons\teams\brotherhood.png" />
+    <None Remove="Templates\icons\teams\cabal.png" />
+    <None Remove="Templates\icons\teams\champions.png" />
+    <None Remove="Templates\icons\teams\Crime_Syndicate.png" />
+    <None Remove="Templates\icons\teams\cybertron.png" />
+    <None Remove="Templates\icons\teams\decepticon.png" />
+    <None Remove="Templates\icons\teams\defenders.png" />
+    <None Remove="Templates\icons\teams\dinobot.png" />
+    <None Remove="Templates\icons\teams\fantastic-four.png" />
+    <None Remove="Templates\icons\teams\Foes_of_Asgard.png" />
+    <None Remove="Templates\icons\teams\footclan.png" />
+    <None Remove="Templates\icons\teams\foot_clan.png" />
+    <None Remove="Templates\icons\teams\guardians.png" />
+    <None Remove="Templates\icons\teams\heroes_for_hire.png" />
+    <None Remove="Templates\icons\teams\hydra.png" />
+    <None Remove="Templates\icons\teams\icons.svg" />
+    <None Remove="Templates\icons\teams\illuminati.png" />
+    <None Remove="Templates\icons\teams\legion_of_monsters.png" />
+    <None Remove="Templates\icons\teams\marvel-knights.png" />
+    <None Remove="Templates\icons\teams\mercs_4_money.png" />
+    <None Remove="Templates\icons\teams\Monsters_Unleashed_logo_sm.png" />
+    <None Remove="Templates\icons\teams\mutants.png" />
+    <None Remove="Templates\icons\teams\predacon.png" />
+    <None Remove="Templates\icons\teams\Quintesson.png" />
+    <None Remove="Templates\icons\teams\runaways.png" />
+    <None Remove="Templates\icons\teams\shield.png" />
+    <None Remove="Templates\icons\teams\sinister6.png" />
+    <None Remove="Templates\icons\teams\spider-friends.png" />
+    <None Remove="Templates\icons\teams\squirrels.png" />
+    <None Remove="Templates\icons\teams\thunderbolts.png" />
+    <None Remove="Templates\icons\teams\turtles.png" />
+    <None Remove="Templates\icons\teams\us_army.png" />
+    <None Remove="Templates\icons\teams\x-force.png" />
+    <None Remove="Templates\icons\teams\x-men.png" />
+    <None Remove="Templates\icons_sm\covert_sm.png" />
+    <None Remove="Templates\icons_sm\instinct_sm.png" />
+    <None Remove="Templates\icons_sm\range_sm.png" />
+    <None Remove="Templates\icons_sm\strength_sm.png" />
+    <None Remove="Templates\icons_sm\tech_sm.png" />
+    <None Remove="Templates\Spinner.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\icons\attributes\attack.png" />
+    <Content Include="Images\icons\attributes\attack_lg.png" />
+    <Content Include="Images\icons\attributes\cards.png" />
+    <Content Include="Images\icons\attributes\cost.png" />
+    <Content Include="Images\icons\attributes\piercing.png" />
+    <Content Include="Images\icons\attributes\piercing_lg.png" />
+    <Content Include="Images\icons\attributes\published.xml" />
+    <Content Include="Images\icons\attributes\recruit.png" />
+    <Content Include="Images\icons\attributes\recruit_lg.png" />
+    <Content Include="Images\icons\attributes\victory.png" />
+    <Content Include="Images\icons\misc\focus.png" />
+    <Content Include="Images\icons\misc\published.xml" />
+    <Content Include="Images\icons\misc\token.png" />
+    <Content Include="Images\icons\powers\covert.png" />
+    <Content Include="Images\icons\powers\instinct.png" />
+    <Content Include="Images\icons\powers\published.xml" />
+    <Content Include="Images\icons\powers\range.png" />
+    <Content Include="Images\icons\powers\strength.png" />
+    <Content Include="Images\icons\powers\tech.png" />
+    <Content Include="Images\icons\teams\a_force.png" />
+    <Content Include="Images\icons\teams\avengers.png" />
+    <Content Include="Images\icons\teams\brotherhood.png" />
+    <Content Include="Images\icons\teams\cabal.png" />
+    <Content Include="Images\icons\teams\champions.png" />
+    <Content Include="Images\icons\teams\Crime_Syndicate.png" />
+    <Content Include="Images\icons\teams\defenders.png" />
+    <Content Include="Images\icons\teams\fantastic_four.png" />
+    <Content Include="Images\icons\teams\Foes_of_Asgard.png" />
+    <Content Include="Images\icons\teams\foot_clan.png" />
+    <Content Include="Images\icons\teams\guardians.png" />
+    <Content Include="Images\icons\teams\heroes_for_hire.png" />
+    <Content Include="Images\icons\teams\hydra.png" />
+    <Content Include="Images\icons\teams\illuminati.png" />
+    <Content Include="Images\icons\teams\legion_of_monsters.png" />
+    <Content Include="Images\icons\teams\marvel_knights.png" />
+    <Content Include="Images\icons\teams\mercs_4_money.png" />
+    <Content Include="Images\icons\teams\Monsters_Unleashed_logo_sm.png" />
+    <Content Include="Images\icons\teams\mutants.png" />
+    <Content Include="Images\icons\teams\runaways.png" />
+    <Content Include="Images\icons\teams\shield.png" />
+    <Content Include="Images\icons\teams\sinister6.png" />
+    <Content Include="Images\icons\teams\spider_friends.png" />
+    <Content Include="Images\icons\teams\thunderbolts.png" />
+    <Content Include="Images\icons\teams\us_army.png" />
+    <Content Include="Images\icons\teams\x_force.png" />
+    <Content Include="Images\icons\teams\x_men.png" />
+    <Content Include="Images\icons_sm\covert_sm.png" />
+    <Content Include="Images\icons_sm\instinct_sm.png" />
+    <Content Include="Images\icons_sm\range_sm.png" />
+    <Content Include="Images\icons_sm\strength_sm.png" />
+    <Content Include="Images\icons_sm\tech_sm.png" />
+    <Content Include="Templates\artwork.jpg" />
+    <Content Include="Templates\cards\bystander\bystander.png" />
+    <Content Include="Templates\cards\bystander\bystander_villain.png" />
+    <Content Include="Templates\cards\bystander\bystander_wound.png" />
+    <Content Include="Templates\cards\hero\back_cost.png" />
+    <Content Include="Templates\cards\hero\back_text.png" />
+    <Content Include="Templates\cards\hero\back_underlay.png" />
+    <Content Include="Templates\cards\hero\hero_common_covert.png" />
+    <Content Include="Templates\cards\hero\hero_common_instinct.png" />
+    <Content Include="Templates\cards\hero\hero_common_none.png" />
+    <Content Include="Templates\cards\hero\hero_common_range.png" />
+    <Content Include="Templates\cards\hero\hero_common_strength.png" />
+    <Content Include="Templates\cards\hero\hero_common_tech.png" />
+    <Content Include="Templates\cards\hero\hero_rare.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_covert.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_instinct.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_none.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_range.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_strength.png" />
+    <Content Include="Templates\cards\hero\hero_uncommon_tech.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_back_text.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_back_underlay.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_tactic_back_text.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_tactic_back_underlay.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_token.png" />
+    <Content Include="Templates\cards\mastermind\mastermind_transformed.png" />
+    <Content Include="Templates\cards\sidekick\back_cost.png" />
+    <Content Include="Templates\cards\sidekick\back_text.png" />
+    <Content Include="Templates\cards\sidekick\sidekick_covert.png" />
+    <Content Include="Templates\cards\sidekick\sidekick_instinct.png" />
+    <Content Include="Templates\cards\sidekick\sidekick_none.png" />
+    <Content Include="Templates\cards\sidekick\sidekick_range.png" />
+    <Content Include="Templates\cards\sidekick\sidekick_strength.png" />
+    <Content Include="Templates\cards\sidekick\sidekick_tech.png" />
+    <Content Include="Templates\cards\villain\henchmen.png" />
+    <Content Include="Templates\cards\villain\henchmen_location.png" />
+    <Content Include="Templates\cards\villain\villain.png" />
+    <Content Include="Templates\cards\villain\villain_location.png" />
+    <Content Include="Templates\cards\villain\villain_token.png" />
+    <Content Include="Templates\cards\villain\villain_transformed.png" />
+    <Content Include="Templates\cards\wound\wound.png" />
+    <Content Include="Templates\card_example.png" />
+    <Content Include="Templates\default_blank_card.png" />
+    <Content Include="Templates\icons\attributes\attack.png" />
+    <Content Include="Templates\icons\attributes\attack_lg.png" />
+    <Content Include="Templates\icons\attributes\cards.png" />
+    <Content Include="Templates\icons\attributes\cost.png" />
+    <Content Include="Templates\icons\attributes\piercing.png" />
+    <Content Include="Templates\icons\attributes\piercing_lg.png" />
+    <Content Include="Templates\icons\attributes\published.xml" />
+    <Content Include="Templates\icons\attributes\recruit.png" />
+    <Content Include="Templates\icons\attributes\recruit_lg.png" />
+    <Content Include="Templates\icons\attributes\victory.png" />
+    <Content Include="Templates\icons\misc\focus.png" />
+    <Content Include="Templates\icons\misc\published.xml" />
+    <Content Include="Templates\icons\misc\token.png" />
+    <Content Include="Templates\icons\powers\covert.png" />
+    <Content Include="Templates\icons\powers\instinct.png" />
+    <Content Include="Templates\icons\powers\published.xml" />
+    <Content Include="Templates\icons\powers\range.png" />
+    <Content Include="Templates\icons\powers\strength.png" />
+    <Content Include="Templates\icons\powers\tech.png" />
+    <Content Include="Templates\icons\teams\A-Force.png" />
+    <Content Include="Templates\icons\teams\autobot.png" />
+    <Content Include="Templates\icons\teams\avengers.png" />
+    <Content Include="Templates\icons\teams\brotherhood.png" />
+    <Content Include="Templates\icons\teams\cabal.png" />
+    <Content Include="Templates\icons\teams\champions.png" />
+    <Content Include="Templates\icons\teams\Crime_Syndicate.png" />
+    <Content Include="Templates\icons\teams\cybertron.png" />
+    <Content Include="Templates\icons\teams\decepticon.png" />
+    <Content Include="Templates\icons\teams\defenders.png" />
+    <Content Include="Templates\icons\teams\dinobot.png" />
+    <Content Include="Templates\icons\teams\fantastic-four.png" />
+    <Content Include="Templates\icons\teams\Foes_of_Asgard.png" />
+    <Content Include="Templates\icons\teams\footclan.png" />
+    <Content Include="Templates\icons\teams\foot_clan.png" />
+    <Content Include="Templates\icons\teams\guardians.png" />
+    <Content Include="Templates\icons\teams\heroes_for_hire.png" />
+    <Content Include="Templates\icons\teams\hydra.png" />
+    <Content Include="Templates\icons\teams\icons.svg" />
+    <Content Include="Templates\icons\teams\illuminati.png" />
+    <Content Include="Templates\icons\teams\legion_of_monsters.png" />
+    <Content Include="Templates\icons\teams\marvel-knights.png" />
+    <Content Include="Templates\icons\teams\mercs_4_money.png" />
+    <Content Include="Templates\icons\teams\Monsters_Unleashed_logo_sm.png" />
+    <Content Include="Templates\icons\teams\mutants.png" />
+    <Content Include="Templates\icons\teams\predacon.png" />
+    <Content Include="Templates\icons\teams\Quintesson.png" />
+    <Content Include="Templates\icons\teams\runaways.png" />
+    <Content Include="Templates\icons\teams\shield.png" />
+    <Content Include="Templates\icons\teams\sinister6.png" />
+    <Content Include="Templates\icons\teams\spider-friends.png" />
+    <Content Include="Templates\icons\teams\squirrels.png" />
+    <Content Include="Templates\icons\teams\thunderbolts.png" />
+    <Content Include="Templates\icons\teams\turtles.png" />
+    <Content Include="Templates\icons\teams\us_army.png" />
+    <Content Include="Templates\icons\teams\x-force.png" />
+    <Content Include="Templates\icons\teams\x-men.png" />
+    <Content Include="Templates\icons_sm\covert_sm.png" />
+    <Content Include="Templates\icons_sm\instinct_sm.png" />
+    <Content Include="Templates\icons_sm\range_sm.png" />
+    <Content Include="Templates\icons_sm\strength_sm.png" />
+    <Content Include="Templates\icons_sm\tech_sm.png" />
+    <Content Include="Templates\Spinner.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ComponentFactory.Krypton.Toolkit" Version="1.0.0" />
+    <PackageReference Include="ImageLibrary" Version="3.0.2" />
+    <PackageReference Include="Krypton.Components.Suite" Version="4.5.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Templates\cards\officer\" />
+  </ItemGroup>
+
+</Project>
