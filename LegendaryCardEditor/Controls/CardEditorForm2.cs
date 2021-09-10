@@ -35,14 +35,11 @@ namespace LegendaryCardEditor.Controls
         
         DeckTypeModel currentDeckType;
         List<DeckTypeModel> deckTypeList;
-        CardTypeModel currentCardType;
         List<CardTypeModel> cardTypeList;
-        readonly Deck origDeckModel;
 
         List<PictureBox> cardList;
         PictureBox activePictureBox;
 
-        int currentCardId = 0;
         
 
 
@@ -335,7 +332,7 @@ namespace LegendaryCardEditor.Controls
 
             foreach (var card in currentActiveSet.ActiveDeck.Cards)
             {
-                KalikoImage cardImage = new KalikoImage(100, 200);
+                KalikoImage cardImage = new KalikoImage(103, 141);
 
                 string curFile = $"{currentActiveSet.ActiveSetPath}\\cards\\{card.ExportedCardFile}";
 
@@ -351,7 +348,7 @@ namespace LegendaryCardEditor.Controls
                     Tag = card,
                     Image = cardImage.GetAsBitmap(),
                     ImageLocation = Convert.ToString(curFile),
-                    Size = new Size(100, 200),
+                    Size = new Size(103, 141),
                     SizeMode = PictureBoxSizeMode.StretchImage
                 };
                 pictureBox.MouseClick += PictureBox_MouseClick;
@@ -363,7 +360,10 @@ namespace LegendaryCardEditor.Controls
             }
 
             if (cardList.Count > 0)
+            {
                 flowLayoutPanel1.Controls.AddRange(cardList.ToArray());
+                SelectBox(cardList[0]);
+            }
 
             this.Cursor = Cursors.Default;
 
@@ -412,7 +412,6 @@ namespace LegendaryCardEditor.Controls
                 this.Cursor = Cursors.WaitCursor;
                 
                 origCardModel = (Card)activePictureBox.Tag;
-                currentCardId = (int)origCardModel.CardId;
                 cmbTeam.SelectedIndex = cmbDeckTeam.SelectedIndex;
                 txtCardSubName.Text = txtDeckName.Text;
                 PopulateCardEditor(origCardModel);
