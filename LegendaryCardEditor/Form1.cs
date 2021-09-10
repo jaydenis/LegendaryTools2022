@@ -1,8 +1,7 @@
 ﻿using LegendaryCardEditor.Controls;
-using LegendaryCardEditor.Data;
+using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;
 using LegendaryCardEditor.Utilities;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +17,10 @@ namespace LegendaryCardEditor
     public partial class Form1 : Form
     {
         SystemSettings settings;
-        CustomSetsViewModel customSet;
-
-        private UnitOfWork unitOfWork = new UnitOfWork();
+        LegendaryCustomSet customSet;
+        CoreManager coreManager = new CoreManager();
+        CustomSetsModel customSets;
+        DeckList deckList;
         public Form1()
         {
             InitializeComponent();
@@ -34,13 +34,18 @@ namespace LegendaryCardEditor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //MyDbContextSeeder.Seed(context);
-            customSet = new CustomSetsViewModel
-            {
-                CustomSets = unitOfWork.CustomSetsRepository.Get(includeProperties: "Decks").ToList()
-            };
+            //LegendaryIconList = new List<LegendaryIconModel>();
+            // LegendaryIconList = coreManager.LoadIconsFromDirectory();
 
+            if (settings.lastProject != string.Empty)
+                LoadCustomSet(settings.lastProject);
+            else
+                OpenFile();
+        }
 
+        private void LoadCustomSet(string path)
+        {
+            customSet = coreManager.OpenCustomSets(path);
             PopulateDeckTree();
         }
 
@@ -49,23 +54,32 @@ namespace LegendaryCardEditor
             treeView1.Nodes.Clear();
             tabControlMain.Controls.Clear();
             TreeNode root = new TreeNode("Custom Sets");
-            foreach (CustomSets itemSet in customSet.CustomSets)
+            foreach (CustomSet item in customSet.CustomSets)
             {
 
-                TreeNode setNode = new TreeNode(itemSet.SetDisplayName);
-                setNode.Tag = itemSet;
+                TreeNode setNode = new TreeNode(item.SetDisplayName);
+                setNode.Tag = item;
+                //customSetProject = coreManager.OpenCustomSet($"{item.BaseWorkPath}\\{item.DataFile}");
 
-                foreach (var deckType in unitOfWork.DeckTypesRepository.Get())
+                foreach (var deckType in coreManager.GetDeckTypes())
                 {
                     TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
-
-                    foreach (var deck in itemSet.Decks.Where(x => x.DeckType.DeckTypeId == deckType.DeckTypeId))
+                    var dataFile = $"{item.SetWorkPath}\\{item.SetName}.json";
+                    deckList = coreManager.GetDecks(dataFile);
+                    foreach (var deck in deckList.Decks.Where(x => x.DeckTypeId == deckType.DeckTypeId))
                     {
                         TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
                         deckNode.ImageIndex = deck.TeamIconId;
                         deckNode.SelectedImageIndex = deck.TeamIconId;
 
-                        deckNode.Tag = deck;
+                        deckNode.Tag = new CurrentActiveDataModel
+                        {
+                            ActiveDeck = deck,
+                            ActiveSetDataFile = dataFile,
+                            ActiveSetPath = item.SetWorkPath,
+                            AllDecksInSet = deckList
+
+                        };
 
                         deckTypeNode.Nodes.Add(deckNode);
                     }
@@ -82,13 +96,13 @@ namespace LegendaryCardEditor
         {
             if (e.Node.Tag != null)
             {
-                if (e.Node.Tag is Decks)
+                if (e.Node.Tag is CurrentActiveDataModel)
                 {
                     this.Cursor = Cursors.WaitCursor;
-                    var deckModel = (Decks)e.Node.Tag;
+                    var activeSet = (CurrentActiveDataModel)e.Node.Tag;
 
-                    TabPage deckTab = new TabPage(deckModel.DeckDisplayName);
-                    deckTab.Tag = deckModel;
+                    TabPage deckTab = new TabPage(activeSet.ActiveDeck.DeckDisplayName);
+                    deckTab.Tag = activeSet.ActiveDeck;
                     foreach (TabPage tp in tabControlMain.TabPages)
                     {
                         if (tp.Tag != null && tp.Tag.Equals(deckTab.Tag))
@@ -101,8 +115,8 @@ namespace LegendaryCardEditor
                     }
 
 
-                    deckTab.Tag = deckModel;
-                    CardEditorForm2 cardEditorForm = new CardEditorForm2(deckModel)
+                    deckTab.Tag = activeSet.ActiveDeck;
+                    CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet)
                     {
                         Dock = DockStyle.Fill
                     };
@@ -115,15 +129,30 @@ namespace LegendaryCardEditor
             }
         }
 
+        private void OpenFile()
+        {
+            OpenFileDialog Dlg = new OpenFileDialog
+            {
+                Filter = "Json files (*.json)|*.json",
+                Title = "Select Custom Set"
+            };
+            if (Dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Cursor = Cursors.WaitCursor;
+                settings.lastFolder = System.IO.Path.GetDirectoryName(Dlg.FileName);
+
+                LoadCustomSet(Dlg.FileName);
+
+                settings.lastProject = Dlg.FileName;
+                settings.Save();
+
+                this.Cursor = Cursors.Default;
+            }
+        }
+
         private void helpToolStripButton_Click(object sender, EventArgs e)
         {
-            customSet = new CustomSetsViewModel
-            {
-                CustomSets = unitOfWork.CustomSetsRepository.Get(includeProperties: "Decks").ToList()
-            };
-
-
-            PopulateDeckTree();
+            LoadCustomSet(settings.lastProject);
         }
     }
 }

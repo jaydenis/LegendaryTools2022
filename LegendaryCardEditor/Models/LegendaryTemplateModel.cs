@@ -44,34 +44,34 @@ namespace LegendaryCardEditor.Models
         public string UnderlayImage { get; set; }
 
         [JsonProperty("FormShowTeam", Required = Required.Always)]
-        public long FormShowTeam { get; set; }
+        public bool FormShowTeam { get; set; }
 
         [JsonProperty("FormShowPowerPrimary", Required = Required.Always)]
-        public long FormShowPowerPrimary { get; set; }
+        public bool FormShowPowerPrimary { get; set; }
 
         [JsonProperty("FormShowPowerSecondary", Required = Required.Always)]
-        public long FormShowPowerSecondary { get; set; }
+        public bool FormShowPowerSecondary { get; set; }
 
         [JsonProperty("FormShowAttributes", Required = Required.Always)]
-        public long FormShowAttributes { get; set; }
+        public bool FormShowAttributes { get; set; }
 
         [JsonProperty("FormShowAttributesCost", Required = Required.Always)]
-        public long FormShowAttributesCost { get; set; }
+        public bool FormShowAttributesCost { get; set; }
 
         [JsonProperty("FormShowAttributesRecruit", Required = Required.Always)]
-        public long FormShowAttributesRecruit { get; set; }
+        public bool FormShowAttributesRecruit { get; set; }
 
         [JsonProperty("FormShowAttributesAttack", Required = Required.Always)]
-        public long FormShowAttributesAttack { get; set; }
+        public bool FormShowAttributesAttack { get; set; }
 
         [JsonProperty("FormShowAttributesPiercing", Required = Required.Always)]
-        public long FormShowAttributesPiercing { get; set; }
+        public bool FormShowAttributesPiercing { get; set; }
 
         [JsonProperty("FormShowVictoryPoints", Required = Required.Always)]
-        public long FormShowVictoryPoints { get; set; }
+        public bool FormShowVictoryPoints { get; set; }
 
         [JsonProperty("FormShowAttackCost", Required = Required.Always)]
-        public long FormShowAttackCost { get; set; }
+        public bool FormShowAttackCost { get; set; }
     }
 
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LegendaryCardEditor.Models
+namespace LegendaryCardEditor.Models.Entities
 {
     public partial class CustomSetsViewModel
     {

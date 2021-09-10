@@ -1,0 +1,16 @@
+{
+	"CustomSets": [
+		{
+			"SetId": 1,
+			"SetName": "battleworld_killville",
+			"SetWorkPath": "C:\\Repos\\CustomSets\\sets\\battleworld-killville",
+			"SetDisplayName": "Battleworld - Killville"
+		},
+		{
+			"SetId": 2,
+			"SetName": "battleworld_wasteland",
+			"SetWorkPath": "C:\\Repos\\CustomSets\\sets\\battleworld_wasteland",
+			"SetDisplayName": "Battleworld - Wasteland"
+		}
+	]
+}

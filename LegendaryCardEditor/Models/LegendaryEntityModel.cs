@@ -8,7 +8,7 @@ using Newtonsoft.Json.Converters;
 namespace LegendaryCardEditor.Models
 {
 
-    public partial class CustomSetsModel
+    public partial class LegendaryCustomSet
     {
         [JsonProperty("CustomSets", Required = Required.Always)]
         public List<CustomSet> CustomSets { get; set; }
@@ -27,21 +27,18 @@ namespace LegendaryCardEditor.Models
 
         [JsonProperty("SetDisplayName", Required = Required.Always)]
         public string SetDisplayName { get; set; }
+    }
 
-        [JsonProperty("DateCreated", Required = Required.Always)]
-        public DateTime DateCreated { get; set; }
-
-        [JsonProperty("DateUpdated", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? DateUpdated { get; set; }
-
-        [JsonProperty("Decks", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
+    public partial class DeckList
+    {
+        [JsonProperty("Decks", Required = Required.Always)]
         public List<Deck> Decks { get; set; }
     }
 
     public partial class Deck
     {
         [JsonProperty("DeckId", Required = Required.Always)]
-        public long DeckId { get; set; }
+        public int DeckId { get; set; }
 
         [JsonProperty("DeckName", Required = Required.Always)]
         public string DeckName { get; set; }
@@ -50,13 +47,13 @@ namespace LegendaryCardEditor.Models
         public string DeckDisplayName { get; set; }
 
         [JsonProperty("TeamIconId", Required = Required.Always)]
-        public long TeamIconId { get; set; }
+        public int TeamIconId { get; set; }
 
         [JsonProperty("CustomSetSetId", Required = Required.Always)]
-        public long CustomSetSetId { get; set; }
+        public int CustomSetSetId { get; set; }
 
         [JsonProperty("DeckTypeId", Required = Required.Always)]
-        public long DeckTypeId { get; set; }
+        public int DeckTypeId { get; set; }
 
         [JsonProperty("Cards", Required = Required.Always)]
         public List<Card> Cards { get; set; }
@@ -65,7 +62,7 @@ namespace LegendaryCardEditor.Models
     public partial class Card
     {
         [JsonProperty("CardId", Required = Required.Always)]
-        public long CardId { get; set; }
+        public int CardId { get; set; }
 
         [JsonProperty("CardName", Required = Required.Always)]
         public string CardName { get; set; }
@@ -74,51 +71,51 @@ namespace LegendaryCardEditor.Models
         public string CardDisplayName { get; set; }
 
         [JsonProperty("CardDisplayNameFont", Required = Required.Always)]
-        public long CardDisplayNameFont { get; set; }
+        public int CardDisplayNameFont { get; set; }
 
         [JsonProperty("CardDisplayNameSub", Required = Required.Always)]
         public string CardDisplayNameSub { get; set; }
 
         [JsonProperty("CardDisplayNameSubFont", Required = Required.Always)]
-        public long CardDisplayNameSubFont { get; set; }
+        public int CardDisplayNameSubFont { get; set; }
 
         [JsonProperty("CardTypeId", Required = Required.Always)]
-        public long CardTypeId { get; set; }
+        public int CardTypeId { get; set; }
 
-        [JsonProperty("CardTemplateTemplateId", Required = Required.Always)]
-        public long CardTemplateTemplateId { get; set; }
+        [JsonProperty("TemplateId", Required = Required.Always)]
+        public int TemplateId { get; set; }
 
-        [JsonProperty("PowerPrimary", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("PowerPrimary", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string PowerPrimary { get; set; }
 
-        [JsonProperty("PowerSecondary", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("PowerSecondary", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string PowerSecondary { get; set; }
 
-        [JsonProperty("AttributeCost", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long AttributeCost { get; set; }
+        [JsonProperty("AttributeCost", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
+        
+        public string AttributeCost { get; set; }
 
-        [JsonProperty("AttributeAttack", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long AttributeAttack { get; set; }
+        [JsonProperty("AttributeAttack", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
+        
+        public string AttributeAttack { get; set; }
 
-        [JsonProperty("AttributeRecruit", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("AttributeRecruit", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string AttributeRecruit { get; set; }
 
-        [JsonProperty("AttributePiercing", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("AttributePiercing", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string AttributePiercing { get; set; }
 
-        [JsonProperty("AttributeVictoryPoints", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("AttributeVictoryPoints", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string AttributeVictoryPoints { get; set; }
 
-        [JsonProperty("CardText", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("CardText", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string CardText { get; set; }
 
-        [JsonProperty("CardTextFont", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
-        public long CardTextFont { get; set; }
+        [JsonProperty("CardTextFont", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
+        public int CardTextFont { get; set; }
 
         [JsonProperty("NumberInDeck", Required = Required.Always)]
-        public long NumberInDeck { get; set; }
+        public int NumberInDeck { get; set; }
 
         [JsonProperty("ArtWorkFile", Required = Required.Always)]
         public string ArtWorkFile { get; set; }
@@ -127,16 +124,16 @@ namespace LegendaryCardEditor.Models
         public string ExportedCardFile { get; set; }
 
         [JsonProperty("DeckId", Required = Required.Always)]
-        public long DeckId { get; set; }
+        public int DeckId { get; set; }
 
         [JsonProperty("TeamIconId", Required = Required.Always)]
-        public long TeamIconId { get; set; }
+        public int TeamIconId { get; set; }
 
         [JsonProperty("PowerPrimaryIconId", Required = Required.Always)]
-        public long PowerPrimaryIconId { get; set; }
+        public int PowerPrimaryIconId { get; set; }
 
-        [JsonProperty("PowerSecondaryIconId", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
-        public long PowerSecondaryIconId { get; set; }
+        [JsonProperty("PowerSecondaryIconId", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
+        public int PowerSecondaryIconId { get; set; }
     }
 
     public partial class CustomSetsModel
@@ -172,7 +169,7 @@ namespace LegendaryCardEditor.Models
     {
         public override bool CanConvert(Type t)
         {
-            return t == typeof(long) || t == typeof(long?);
+            return t == typeof(int) || t == typeof(int?);
         }
 
         public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
@@ -184,7 +181,7 @@ namespace LegendaryCardEditor.Models
             {
                 return l;
             }
-            throw new Exception("Cannot unmarshal type long");
+            throw new Exception("Cannot unmarshal type int");
         }
 
         public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
@@ -194,7 +191,7 @@ namespace LegendaryCardEditor.Models
                 serializer.Serialize(writer, null);
                 return;
             }
-            var value = (long)untypedValue;
+            var value = (int)untypedValue;
             serializer.Serialize(writer, value.ToString());
             return;
         }

@@ -139,18 +139,21 @@ namespace LegendaryCardEditor.Controls
             this.splitContainer1.Panel2.Controls.Add(this.panelImagePreview);
             this.splitContainer1.Panel2.Controls.Add(this.panelCardEditor);
             this.splitContainer1.Size = new System.Drawing.Size(1390, 881);
-            this.splitContainer1.SplitterDistance = 241;
+            this.splitContainer1.SplitterDistance = 259;
             this.splitContainer1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 190);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(241, 691);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(259, 691);
             this.flowLayoutPanel1.TabIndex = 1;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
             // panel1
             // 
@@ -162,7 +165,7 @@ namespace LegendaryCardEditor.Controls
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(241, 190);
+            this.panel1.Size = new System.Drawing.Size(259, 190);
             this.panel1.TabIndex = 0;
             // 
             // cmbDeckTeam
@@ -173,7 +176,7 @@ namespace LegendaryCardEditor.Controls
             this.cmbDeckTeam.Name = "cmbDeckTeam";
             this.cmbDeckTeam.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDeckTeam.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
-            this.cmbDeckTeam.Size = new System.Drawing.Size(216, 46);
+            this.cmbDeckTeam.Size = new System.Drawing.Size(230, 46);
             this.cmbDeckTeam.TabIndex = 75;
             this.cmbDeckTeam.SelectedIndexChanged += new System.EventHandler(this.cmbTeam_SelectedIndexChanged);
             // 
@@ -239,7 +242,7 @@ namespace LegendaryCardEditor.Controls
             this.btnDeckUpdate.TabIndex = 76;
             this.btnDeckUpdate.Text = "Update";
             this.btnDeckUpdate.UseVisualStyleBackColor = true;
-            this.btnDeckUpdate.Click += new System.EventHandler(this.btnUpdateCard_Click);
+            this.btnDeckUpdate.Click += new System.EventHandler(this.btnDeckUpdate_Click);
             // 
             // panelImagePreview
             // 
@@ -250,8 +253,9 @@ namespace LegendaryCardEditor.Controls
             this.panelImagePreview.Cursor = System.Windows.Forms.Cursors.Default;
             this.panelImagePreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelImagePreview.Location = new System.Drawing.Point(0, 0);
+            this.panelImagePreview.MaximumSize = new System.Drawing.Size(550, 880);
             this.panelImagePreview.Name = "panelImagePreview";
-            this.panelImagePreview.Size = new System.Drawing.Size(553, 881);
+            this.panelImagePreview.Size = new System.Drawing.Size(535, 880);
             this.panelImagePreview.TabIndex = 0;
             // 
             // groupBox1
@@ -266,7 +270,7 @@ namespace LegendaryCardEditor.Controls
             this.groupBox1.Controls.Add(this.numX2);
             this.groupBox1.Controls.Add(this.numY1);
             this.groupBox1.Controls.Add(this.numX1);
-            this.groupBox1.Location = new System.Drawing.Point(74, 680);
+            this.groupBox1.Location = new System.Drawing.Point(70, 643);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -284,6 +288,7 @@ namespace LegendaryCardEditor.Controls
             this.btnChangePolygon.TabIndex = 2;
             this.btnChangePolygon.Text = "Change";
             this.btnChangePolygon.UseVisualStyleBackColor = true;
+            this.btnChangePolygon.Click += new System.EventHandler(this.btnChangePolygon_Click);
             // 
             // numY4
             // 
@@ -431,18 +436,19 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnResetCard
             // 
-            this.btnResetCard.Location = new System.Drawing.Point(74, 637);
+            this.btnResetCard.Location = new System.Drawing.Point(70, 608);
             this.btnResetCard.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnResetCard.Name = "btnResetCard";
             this.btnResetCard.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
             this.btnResetCard.Size = new System.Drawing.Size(105, 29);
             this.btnResetCard.TabIndex = 66;
             this.btnResetCard.Values.Text = "Reset";
+            this.btnResetCard.Click += new System.EventHandler(this.btnResetCard_Click);
             // 
             // pictureBoxTemplate
             // 
-            this.pictureBoxTemplate.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBoxTemplate.Location = new System.Drawing.Point(74, 36);
+            this.pictureBoxTemplate.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pictureBoxTemplate.Location = new System.Drawing.Point(70, 8);
             this.pictureBoxTemplate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxTemplate.MaximumSize = new System.Drawing.Size(588, 808);
             this.pictureBoxTemplate.MinimumSize = new System.Drawing.Size(355, 462);
@@ -450,6 +456,7 @@ namespace LegendaryCardEditor.Controls
             this.pictureBoxTemplate.Size = new System.Drawing.Size(404, 594);
             this.pictureBoxTemplate.TabIndex = 65;
             this.pictureBoxTemplate.TabStop = false;
+            this.pictureBoxTemplate.DoubleClick += new System.EventHandler(this.pictureBoxTemplate_DoubleClick);
             // 
             // panelCardEditor
             // 
@@ -479,7 +486,8 @@ namespace LegendaryCardEditor.Controls
             this.panelCardEditor.Controls.Add(this.txtCardName);
             this.panelCardEditor.Cursor = System.Windows.Forms.Cursors.Default;
             this.panelCardEditor.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelCardEditor.Location = new System.Drawing.Point(553, 0);
+            this.panelCardEditor.Location = new System.Drawing.Point(535, 0);
+            this.panelCardEditor.MinimumSize = new System.Drawing.Size(590, 880);
             this.panelCardEditor.Name = "panelCardEditor";
             this.panelCardEditor.Size = new System.Drawing.Size(592, 881);
             this.panelCardEditor.TabIndex = 1;
@@ -550,6 +558,7 @@ namespace LegendaryCardEditor.Controls
             this.btnGap.TabIndex = 84;
             this.btnGap.Text = "Gap";
             this.btnGap.UseVisualStyleBackColor = true;
+            this.btnGap.Click += new System.EventHandler(this.btnGap_Click);
             // 
             // btnRegular
             // 
@@ -560,6 +569,7 @@ namespace LegendaryCardEditor.Controls
             this.btnRegular.TabIndex = 85;
             this.btnRegular.Text = "Regular";
             this.btnRegular.UseVisualStyleBackColor = true;
+            this.btnRegular.Click += new System.EventHandler(this.btnRegular_Click);
             // 
             // btnKeyword
             // 
@@ -571,6 +581,7 @@ namespace LegendaryCardEditor.Controls
             this.btnKeyword.TabIndex = 86;
             this.btnKeyword.Text = "Keyword";
             this.btnKeyword.UseVisualStyleBackColor = true;
+            this.btnKeyword.Click += new System.EventHandler(this.btnKeyword_Click);
             // 
             // cmbAttributesOther
             // 

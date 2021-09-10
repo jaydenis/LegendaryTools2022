@@ -9,6 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\DataContext.cs" />
+    <Compile Remove="Data\GenericRepository.cs" />
+    <Compile Remove="Data\MyDbContextSeeder.cs" />
+    <Compile Remove="Data\UnitOfWork.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Data\legendary_tools_db.sqlite" />
+    <None Remove="Data\legendary_tools_db.sqlite-shm" />
+    <None Remove="Data\legendary_tools_db.sqlite-wal" />
     <None Remove="Images\icons\attributes\attack.png" />
     <None Remove="Images\icons\attributes\attack_lg.png" />
     <None Remove="Images\icons\attributes\cards.png" />

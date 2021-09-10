@@ -38,6 +38,16 @@ namespace LegendaryCardEditor.Managers
             return dataModel;
         }
 
+        public List<LegendaryTemplateModel> GetTemplates()
+        {
+            string path = settings.baseFolder + "\\" + settings.json_templates;
+            string jsonText = File.ReadAllText(path);
+
+            var dataModel = JsonConvert.DeserializeObject<IList<LegendaryTemplateModel>>(jsonText).ToList();
+
+            return dataModel;
+        }
+
         //public CardTemplates ReadTemplateSettings(string templateFolder)
         //{
         //    string path = settings.baseFolder + "\\cards\\" + templateFolder + "\\" + settings.json_templates;
@@ -111,23 +121,38 @@ namespace LegendaryCardEditor.Managers
 
         }
 
-        public CustomSetsModel OpenCustomSets(string path)
+        public LegendaryCustomSet OpenCustomSets(string path)
         {
             string jsonText = File.ReadAllText(path);
-            var dataModel = JsonConvert.DeserializeObject<CustomSetsModel>(jsonText);
+            var dataModel = JsonConvert.DeserializeObject<LegendaryCustomSet>(jsonText);
 
             return dataModel;
         }
 
-        public CustomSetsModel OpenCustomSet(string path)
+        public DeckList GetDecks(string path)
         {
+
             string jsonText = File.ReadAllText(path);
-            var dataModel = JsonConvert.DeserializeObject<CustomSetsModel>(jsonText);
+            var dataModel = JsonConvert.DeserializeObject<DeckList>(jsonText);
 
             return dataModel;
         }
 
         public bool SaveCustomSet(CustomSet model, string path)
+        {
+            try
+            {
+
+                File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool SaveDeck(DeckList model, string path)
         {
             try
             {

@@ -29,6 +29,7 @@ namespace LegendaryCardEditor
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +80,7 @@ namespace LegendaryCardEditor
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -99,7 +101,7 @@ namespace LegendaryCardEditor
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1118, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1364, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -341,7 +343,7 @@ namespace LegendaryCardEditor
             this.helpToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1118, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1364, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -430,9 +432,9 @@ namespace LegendaryCardEditor
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 677);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 754);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1118, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1364, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -444,7 +446,7 @@ namespace LegendaryCardEditor
             this.tabControl1.Location = new System.Drawing.Point(0, 49);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1118, 628);
+            this.tabControl1.Size = new System.Drawing.Size(1364, 705);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
@@ -453,9 +455,9 @@ namespace LegendaryCardEditor
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1110, 600);
+            this.tabPage1.Size = new System.Drawing.Size(1356, 677);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Decks";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
@@ -473,17 +475,21 @@ namespace LegendaryCardEditor
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControlMain);
-            this.splitContainer1.Size = new System.Drawing.Size(1104, 594);
-            this.splitContainer1.SplitterDistance = 198;
+            this.splitContainer1.Size = new System.Drawing.Size(1350, 671);
+            this.splitContainer1.SplitterDistance = 242;
             this.splitContainer1.TabIndex = 0;
             // 
             // treeView1
             // 
             this.treeView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.ImageIndex = 0;
+            this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(0, 100);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(198, 494);
+            this.treeView1.SelectedImageIndex = 2;
+            this.treeView1.Size = new System.Drawing.Size(242, 571);
+            this.treeView1.StateImageList = this.imageList1;
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -493,7 +499,7 @@ namespace LegendaryCardEditor
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(198, 100);
+            this.groupBox1.Size = new System.Drawing.Size(242, 100);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -505,7 +511,7 @@ namespace LegendaryCardEditor
             this.tabControlMain.Location = new System.Drawing.Point(0, 0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(902, 594);
+            this.tabControlMain.Size = new System.Drawing.Size(1104, 671);
             this.tabControlMain.TabIndex = 0;
             // 
             // tabPage2
@@ -513,23 +519,34 @@ namespace LegendaryCardEditor
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1110, 600);
+            this.tabPage2.Size = new System.Drawing.Size(1356, 677);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Docs Folder.ico");
+            this.imageList1.Images.SetKeyName(1, "Folder.ico");
+            this.imageList1.Images.SetKeyName(2, "Folder Open.ico");
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1118, 699);
+            this.ClientSize = new System.Drawing.Size(1364, 776);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -597,6 +614,7 @@ namespace LegendaryCardEditor
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabControl tabControlMain;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 
