@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendaryTools2022", "Legen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendaryImageSlicer", "LegendaryImageSlicer\LegendaryImageSlicer.csproj", "{74B1450F-B1DF-4216-B616-F0A1CCB6B079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendaryCardEditor", "LegendaryCardEditor\LegendaryCardEditor.csproj", "{4B8D4637-559F-429F-BEC2-9EFC77F096C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegendaryCardEditor", "LegendaryCardEditor\LegendaryCardEditor.csproj", "{4B8D4637-559F-429F-BEC2-9EFC77F096C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,42 +1,38 @@
 [
-   
-    {
-      "name": "mastermind",
-      "displayName": "Mastermind",
-      "defaultStyle": "Base",
-      "group": "Masterminds",
-      
-    },
-    {
-      "name": "hero",
-      "displayName": "Hero",
-      "defaultStyle": "Base",
-      "group": "Heroes", 
-    },
   {
-    "name": "bystander",
-    "displayName": "Bystander",
-    "defaultStyle": "Base",
-    "group": "Bystanders",
+    "DeckTypeId": 1,
+    "DeckTypeName": "Hero"
   },
   {
-    "name": "sidekick",
-    "displayName": "Special Sidekick",
-    "defaultStyle": "Base",
-    "group": "Sidekicks",
+    "DeckTypeId": 2,
+    "DeckTypeName": "Ambition"
   },
-    {
-      "name": "villain",
-      "displayName": "Villain",
-      "defaultStyle": "Base",
-      "group": "Villains",
-      
-    },
   {
-    "name": "wound",
-    "displayName": "Wound",
-    "defaultStyle": "Base",
-    "group": "Wounds",
-
-  }  
+    "DeckTypeId": 3,
+    "DeckTypeName": "Wound"
+  },
+  {
+    "DeckTypeId": 4,
+    "DeckTypeName": "S.H.I.E.L.D. Officer"
+  },
+  {
+    "DeckTypeId": 5,
+    "DeckTypeName": "Special Sidekick"
+  },
+  {
+    "DeckTypeId": 6,
+    "DeckTypeName": "Villain"
+  },
+  {
+    "DeckTypeId": 7,
+    "DeckTypeName": "Bystander"
+  },
+  {
+    "DeckTypeId": 8,
+    "DeckTypeName": "Mastermind"
+  },
+  {
+    "DeckTypeId": 9,
+    "DeckTypeName": "Horror"
+  }
 ]

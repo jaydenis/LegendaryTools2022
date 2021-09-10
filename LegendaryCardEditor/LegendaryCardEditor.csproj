@@ -101,7 +101,6 @@
     <None Remove="Templates\cards\villain\villain_token.png" />
     <None Remove="Templates\cards\villain\villain_transformed.png" />
     <None Remove="Templates\cards\wound\wound.png" />
-    <None Remove="Templates\card_example.png" />
     <None Remove="Templates\default_blank_card.png" />
     <None Remove="Templates\icons\attributes\attack.png" />
     <None Remove="Templates\icons\attributes\attack_lg.png" />
@@ -260,7 +259,6 @@
     <Content Include="Templates\cards\villain\villain_token.png" />
     <Content Include="Templates\cards\villain\villain_transformed.png" />
     <Content Include="Templates\cards\wound\wound.png" />
-    <Content Include="Templates\card_example.png" />
     <Resource Include="Templates\default_blank_card.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -356,6 +354,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\Json\" />
     <Folder Include="Templates\cards\officer\" />
   </ItemGroup>
 
