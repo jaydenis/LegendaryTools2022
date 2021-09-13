@@ -79,8 +79,6 @@ namespace LegendaryCardEditor.Models
         [JsonProperty("CardDisplayNameSubFont", Required = Required.Always)]
         public int CardDisplayNameSubFont { get; set; }
 
-        [JsonProperty("CardTypeId", Required = Required.Always)]
-        public int CardTypeId { get; set; }
 
         [JsonProperty("TemplateId", Required = Required.Always)]
         public int TemplateId { get; set; }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace LegendaryCardEditor
         LegendaryCustomSet customSet;
         CoreManager coreManager = new CoreManager();
         DeckList deckList;
+        string dataFile;
         public Form1()
         {
             InitializeComponent();            
@@ -38,11 +40,14 @@ namespace LegendaryCardEditor
 
         private void LoadCustomSet(string path)
         {
-            customSet = coreManager.OpenCustomSets(path);
+            // customSet = coreManager.OpenCustomSets(path);
+            dataFile = path;
+
+            deckList = coreManager.GetDecks(dataFile);
             PopulateDeckTree();
         }
 
-        private void PopulateDeckTree()
+        private void PopulateCustomSetTree()
         {
             treeView1.Nodes.Clear();
             tabControlMain.Controls.Clear();
@@ -82,6 +87,38 @@ namespace LegendaryCardEditor
 
                 root.Nodes.Add(setNode);
             }
+            treeView1.Nodes.Add(root);
+            treeView1.ExpandAll();
+        }
+
+        private void PopulateDeckTree()
+        {
+            treeView1.Nodes.Clear();
+            tabControlMain.Controls.Clear();
+            TreeNode root = new TreeNode("Decks");
+            root.ImageIndex = 27;
+
+            foreach (var deck in deckList.Decks)
+            {
+                var fi1 = new FileInfo(dataFile);
+
+                TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
+                deckNode.ImageIndex = deck.TeamIconId;
+                deckNode.SelectedImageIndex = deck.TeamIconId;
+
+                deckNode.Tag = new CurrentActiveDataModel
+                {
+                    ActiveDeck = deck,
+                    ActiveSetDataFile = dataFile,
+                    ActiveSetPath = fi1.DirectoryName,
+                    AllDecksInSet = deckList
+                };
+
+                root.Nodes.Add(deckNode);
+            }
+
+
+
             treeView1.Nodes.Add(root);
             treeView1.ExpandAll();
         }

@@ -1058,6 +1058,7 @@ namespace LegendaryCardEditor.Controls
             0,
             0});
             this.numCardTitleSize.ValueChanged += new System.EventHandler(this.cardFontSize_Changed);
+            this.numCardTitleSize.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCardName_KeyUp);
             // 
             // txtCardName
             // 
