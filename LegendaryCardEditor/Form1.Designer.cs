@@ -77,10 +77,12 @@ namespace LegendaryCardEditor
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.treeViewMenuAddCard = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -89,6 +91,7 @@ namespace LegendaryCardEditor
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -481,17 +484,54 @@ namespace LegendaryCardEditor
             // 
             // treeView1
             // 
+            this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.ImageIndex = 0;
+            this.treeView1.ImageIndex = 27;
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(0, 100);
             this.treeView1.Name = "treeView1";
-            this.treeView1.SelectedImageIndex = 2;
+            this.treeView1.SelectedImageIndex = 29;
             this.treeView1.Size = new System.Drawing.Size(242, 571);
             this.treeView1.StateImageList = this.imageList1;
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "a_force.png");
+            this.imageList1.Images.SetKeyName(1, "avengers.png");
+            this.imageList1.Images.SetKeyName(2, "brotherhood.png");
+            this.imageList1.Images.SetKeyName(3, "cabal.png");
+            this.imageList1.Images.SetKeyName(4, "champions.png");
+            this.imageList1.Images.SetKeyName(5, "Crime_Syndicate.png");
+            this.imageList1.Images.SetKeyName(6, "defenders.png");
+            this.imageList1.Images.SetKeyName(7, "fantastic_four.png");
+            this.imageList1.Images.SetKeyName(8, "Foes_of_Asgard.png");
+            this.imageList1.Images.SetKeyName(9, "foot_clan.png");
+            this.imageList1.Images.SetKeyName(10, "guardians.png");
+            this.imageList1.Images.SetKeyName(11, "heroes_for_hire.png");
+            this.imageList1.Images.SetKeyName(12, "hydra.png");
+            this.imageList1.Images.SetKeyName(13, "illuminati.png");
+            this.imageList1.Images.SetKeyName(14, "legion_of_monsters.png");
+            this.imageList1.Images.SetKeyName(15, "marvel_knights.png");
+            this.imageList1.Images.SetKeyName(16, "mercs_4_money.png");
+            this.imageList1.Images.SetKeyName(17, "Monsters_Unleashed_logo_sm.png");
+            this.imageList1.Images.SetKeyName(18, "mutants.png");
+            this.imageList1.Images.SetKeyName(19, "runaways.png");
+            this.imageList1.Images.SetKeyName(20, "shield.png");
+            this.imageList1.Images.SetKeyName(21, "sinister6.png");
+            this.imageList1.Images.SetKeyName(22, "spider_friends.png");
+            this.imageList1.Images.SetKeyName(23, "thunderbolts.png");
+            this.imageList1.Images.SetKeyName(24, "us_army.png");
+            this.imageList1.Images.SetKeyName(25, "x_force.png");
+            this.imageList1.Images.SetKeyName(26, "x_men.png");
+            this.imageList1.Images.SetKeyName(27, "Home.ico");
+            this.imageList1.Images.SetKeyName(28, "Folder.ico");
+            this.imageList1.Images.SetKeyName(29, "Folder Open.ico");
             // 
             // groupBox1
             // 
@@ -524,14 +564,20 @@ namespace LegendaryCardEditor
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // imageList1
+            // contextMenuStrip1
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Docs Folder.ico");
-            this.imageList1.Images.SetKeyName(1, "Folder.ico");
-            this.imageList1.Images.SetKeyName(2, "Folder Open.ico");
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.treeViewMenuAddCard});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            // 
+            // treeViewMenuAddCard
+            // 
+            this.treeViewMenuAddCard.Image = global::LegendaryCardEditor.Properties.Resources.cards;
+            this.treeViewMenuAddCard.Name = "treeViewMenuAddCard";
+            this.treeViewMenuAddCard.Size = new System.Drawing.Size(180, 22);
+            this.treeViewMenuAddCard.Text = "Add Card";
+            this.treeViewMenuAddCard.Click += new System.EventHandler(this.treeViewMenuAddCard_Click);
             // 
             // Form1
             // 
@@ -558,6 +604,7 @@ namespace LegendaryCardEditor
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -615,6 +662,8 @@ namespace LegendaryCardEditor
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem treeViewMenuAddCard;
     }
 }
 

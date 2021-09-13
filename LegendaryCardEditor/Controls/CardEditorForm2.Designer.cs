@@ -148,9 +148,9 @@ namespace LegendaryCardEditor.Controls
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 190);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 143);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(259, 691);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(259, 738);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // panel1
@@ -163,13 +163,13 @@ namespace LegendaryCardEditor.Controls
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(259, 190);
+            this.panel1.Size = new System.Drawing.Size(259, 143);
             this.panel1.TabIndex = 0;
             // 
             // cmbDeckTeam
             // 
             this.cmbDeckTeam.ImageList = this.imageListTeamsFull;
-            this.cmbDeckTeam.Location = new System.Drawing.Point(12, 58);
+            this.cmbDeckTeam.Location = new System.Drawing.Point(12, 40);
             this.cmbDeckTeam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDeckTeam.Name = "cmbDeckTeam";
             this.cmbDeckTeam.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -233,7 +233,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnDeckUpdate
             // 
-            this.btnDeckUpdate.Location = new System.Drawing.Point(12, 128);
+            this.btnDeckUpdate.Location = new System.Drawing.Point(12, 92);
             this.btnDeckUpdate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDeckUpdate.Name = "btnDeckUpdate";
             this.btnDeckUpdate.Size = new System.Drawing.Size(216, 27);

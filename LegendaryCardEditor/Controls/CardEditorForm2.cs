@@ -1,4 +1,5 @@
 ﻿using Kaliko.ImageLibrary;
+using Kaliko.ImageLibrary.Scaling;
 using LegendaryCardEditor.ImageEditor;
 using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;
@@ -102,6 +103,16 @@ namespace LegendaryCardEditor.Controls
 
             settings = SystemSettings.Load();
             settings.Save();
+
+            DirectoryInfo directory = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\artwork");
+            if (!directory.Exists)
+                directory.Create();
+
+            directory = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\cards");
+            if (!directory.Exists)
+                directory.Create();
+
+
 
             FontFamily fontFamily = new FontFamily("Percolator");
 
@@ -332,14 +343,14 @@ namespace LegendaryCardEditor.Controls
 
             foreach (var card in currentActiveSet.ActiveDeck.Cards)
             {
-                KalikoImage cardImage = new KalikoImage(103, 141);
 
                 string curFile = $"{currentActiveSet.ActiveSetPath}\\cards\\{card.ExportedCardFile}";
 
-                if (File.Exists(curFile))
-                    cardImage = new KalikoImage(curFile);
-                else
-                    cardImage = new KalikoImage($"{settings.baseFolder}\\{settings.default_blank_card}");
+                if (!File.Exists(curFile))
+                    curFile = $"{settings.baseFolder}\\{settings.default_blank_card}";
+
+
+                KalikoImage cardImage = new KalikoImage(curFile);               
 
 
                 PictureBox pictureBox = new PictureBox
@@ -353,16 +364,15 @@ namespace LegendaryCardEditor.Controls
                 };
                 pictureBox.MouseClick += PictureBox_MouseClick;
                 pictureBox.Paint += PictureBox_Paint;
-                pictureBox.Name = $"picture_{cardList.Count}";
+                pictureBox.Name = card.CardName;// $"picture_{cardList.Count}";
 
                 cardList.Add(pictureBox);
-
+                LoadImageThumbnail(card);
             }
 
             if (cardList.Count > 0)
             {
                 flowLayoutPanel1.Controls.AddRange(cardList.ToArray());
-                SelectBox(cardList[0]);
             }
 
             this.Cursor = Cursors.Default;
@@ -434,6 +444,21 @@ namespace LegendaryCardEditor.Controls
                 return false;
             else
                 return true;
+        }
+
+        private void LoadImageThumbnail(Card model)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            KalikoImage cardImage = RenderCardImage(model);
+            if (cardImage != null)
+            {
+                
+                pictureBoxTemplate.Image = null;
+                pictureBoxTemplate.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBoxTemplate.Image = cardImage.Scale(new FitScaling(103,141)).GetAsBitmap();
+                orignalArtwork = cardImage;
+            }
+            this.Cursor = Cursors.Default;
         }
 
         private void LoadImage(Card model)
@@ -1170,9 +1195,7 @@ namespace LegendaryCardEditor.Controls
                 orignalArtwork = artworkImage;
 
                 var cardPath = $"{currentActiveSet.ActiveSetPath}\\artwork";
-                DirectoryInfo directory = new DirectoryInfo(cardPath);
-                if (!directory.Exists)
-                    directory.Create();
+
 
                 currentActiveSet.SelectedCard.ArtWorkFile = $"img_{Dlg.FileName.GetHashCode()}.png";
                 lblArtworkPath.Text = $"{cardPath}\\{currentActiveSet.SelectedCard.ArtWorkFile}";
@@ -1312,32 +1335,41 @@ namespace LegendaryCardEditor.Controls
             {
                 card.TeamIconId = currentActiveSet.ActiveDeck.TeamIconId;
                 card.CardDisplayNameSub = txtDeckName.Text;
+
+                KalikoImage exportImage = RenderCardImage(card);
+
+                if (renderedCards.ContainsKey(card.CardId))
+                    renderedCards.Remove(card.CardId);
+
+                renderedCards.Add(card.CardId, exportImage);
             }
 
             
         }
         private void UpdateSelectedCard()
         {
+            if (currentActiveSet.SelectedCard != null)
+            {
+                currentActiveSet.SelectedCard.AttributeAttack = txtCardAttackValue.Text;
+                currentActiveSet.SelectedCard.AttributeCost = txtCardCostValue.Text;
+                currentActiveSet.SelectedCard.AttributePiercing = txtCardPiercingValue.Text;
+                currentActiveSet.SelectedCard.AttributeRecruit = txtCardRecruitValue.Text;
+                currentActiveSet.SelectedCard.AttributeVictoryPoints = txtCardVictoryPointsValue.Text;
+                currentActiveSet.SelectedCard.CardDisplayName = txtCardName.Text;
+                currentActiveSet.SelectedCard.CardDisplayNameFont = Convert.ToInt32(numCardTitleSize.Value);
+                currentActiveSet.SelectedCard.CardDisplayNameSub = txtCardSubName.Text;
+                currentActiveSet.SelectedCard.CardDisplayNameSubFont = Convert.ToInt32(numCardSubTitleSize.Value);
+                currentActiveSet.SelectedCard.CardText = txtCardTextBox.Text;
+                currentActiveSet.SelectedCard.CardTextFont = Convert.ToInt32(numCardTextSize.Value);
+                currentActiveSet.SelectedCard.TeamIconId = cmbTeam.SelectedIndex;
 
-            currentActiveSet.SelectedCard.AttributeAttack = txtCardAttackValue.Text;
-            currentActiveSet.SelectedCard.AttributeCost = txtCardCostValue.Text;
-            currentActiveSet.SelectedCard.AttributePiercing = txtCardPiercingValue.Text;
-            currentActiveSet.SelectedCard.AttributeRecruit = txtCardRecruitValue.Text;
-            currentActiveSet.SelectedCard.AttributeVictoryPoints = txtCardVictoryPointsValue.Text;
-            currentActiveSet.SelectedCard.CardDisplayName = txtCardName.Text;
-            currentActiveSet.SelectedCard.CardDisplayNameFont = Convert.ToInt32(numCardTitleSize.Value);
-            currentActiveSet.SelectedCard.CardDisplayNameSub = txtCardSubName.Text;
-            currentActiveSet.SelectedCard.CardDisplayNameSubFont = Convert.ToInt32(numCardSubTitleSize.Value);
-            currentActiveSet.SelectedCard.CardText = txtCardTextBox.Text;
-            currentActiveSet.SelectedCard.CardTextFont = Convert.ToInt32(numCardTextSize.Value);
-            currentActiveSet.SelectedCard.TeamIconId = cmbTeam.SelectedIndex;
+                KalikoImage exportImage = RenderCardImage(currentActiveSet.SelectedCard);
 
-            KalikoImage exportImage = RenderCardImage(currentActiveSet.SelectedCard);
+                if (renderedCards.ContainsKey(currentActiveSet.SelectedCard.CardId))
+                    renderedCards.Remove(currentActiveSet.SelectedCard.CardId);
 
-            if (renderedCards.ContainsKey(currentActiveSet.SelectedCard.CardId))
-                renderedCards.Remove(currentActiveSet.SelectedCard.CardId);
-
-            renderedCards.Add(currentActiveSet.SelectedCard.CardId, exportImage);
+                renderedCards.Add(currentActiveSet.SelectedCard.CardId, exportImage);
+            }
         }
 
         private void SaveData()
@@ -1370,48 +1402,49 @@ namespace LegendaryCardEditor.Controls
         private void btnExport_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
+
+           
+
             Regex rgx = new Regex("[^a-zA-Z0-9 -]");
             foreach (var card in currentActiveSet.ActiveDeck.Cards)
             {
                 var template = templateModelList.Where(x => x.TemplateId == card.TemplateId).FirstOrDefault();
                 card.ExportedCardFile = $"{card.CardDisplayNameSub.ToLower()}_{template.TemplateName.ToLower()}_{card.CardId}";
-               
+
                 card.ExportedCardFile = rgx.Replace(card.ExportedCardFile, "_");
                 card.ExportedCardFile += ".png";
                 KalikoImage exportImage = renderedCards.Where(x => x.Key == card.CardId).FirstOrDefault().Value;
-                    if (exportImage != null)
-                    {
-                        DirectoryInfo directory = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\cards");
-                        if (!directory.Exists)
-                            directory.Create();
+                if (exportImage != null)
+                {
+                    var x = $"{currentActiveSet.ActiveSetPath}\\cards\\{card.ExportedCardFile}";
+                    exportImage.SaveImage(x, System.Drawing.Imaging.ImageFormat.Png);
+                }
 
-                        var x = $"{currentActiveSet.ActiveSetPath}\\cards\\{card.ExportedCardFile}";
-                        exportImage.SaveImage(x, System.Drawing.Imaging.ImageFormat.Png);
-                    }
-              
-                
+
                 card.DeckId = currentActiveSet.ActiveDeck.DeckId;
 
-                PopulateCardEditor(card);
+                // PopulateCardEditor(card);
             }
             SaveData();
 
-            currentActiveSet.ActiveDeck = coreManager.GetDecks(currentActiveSet.ActiveSetDataFile).Decks.Where(x=>x.DeckId == currentActiveSet.ActiveDeck.DeckId).FirstOrDefault();
-           
+            currentActiveSet.ActiveDeck = coreManager.GetDecks(currentActiveSet.ActiveSetDataFile).Decks.Where(x => x.DeckId == currentActiveSet.ActiveDeck.DeckId).FirstOrDefault();
+
             this.Cursor = Cursors.Default;
         }
 
         private void btnUpdateCard_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
+            if (currentActiveSet.SelectedCard != null)
+            {
+                txtCardSubName.Text = txtDeckName.Text;
+                cmbTeam.SelectedIndex = cmbDeckTeam.SelectedIndex;
+                UpdateSelectedCard();
+                //LoadImage(currentActiveSet.SelectedCard);
+                //UpdateDeck();
 
-            txtCardSubName.Text = txtDeckName.Text;
-            cmbTeam.SelectedIndex = cmbDeckTeam.SelectedIndex;
-            UpdateSelectedCard();
-            //LoadImage(currentActiveSet.SelectedCard);
-            //UpdateDeck();
-
-            SaveData();
+                SaveData();
+            }
 
             this.Cursor = Cursors.Default;
         }

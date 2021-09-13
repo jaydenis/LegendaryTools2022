@@ -19,24 +19,17 @@ namespace LegendaryCardEditor
         SystemSettings settings;
         LegendaryCustomSet customSet;
         CoreManager coreManager = new CoreManager();
-        CustomSetsModel customSets;
         DeckList deckList;
         public Form1()
         {
-            InitializeComponent();
-
-            
+            InitializeComponent();            
 
             settings = SystemSettings.Load();
-
             settings.Save();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //LegendaryIconList = new List<LegendaryIconModel>();
-            // LegendaryIconList = coreManager.LoadIconsFromDirectory();
-
             if (settings.lastProject != string.Empty)
                 LoadCustomSet(settings.lastProject);
             else
@@ -54,16 +47,18 @@ namespace LegendaryCardEditor
             treeView1.Nodes.Clear();
             tabControlMain.Controls.Clear();
             TreeNode root = new TreeNode("Custom Sets");
+            root.ImageIndex = 27;
             foreach (CustomSet item in customSet.CustomSets)
             {
-
                 TreeNode setNode = new TreeNode(item.SetDisplayName);
                 setNode.Tag = item;
-                //customSetProject = coreManager.OpenCustomSet($"{item.BaseWorkPath}\\{item.DataFile}");
-
+                setNode.ImageIndex = 28;
+                setNode.SelectedImageIndex = 29;
                 foreach (var deckType in coreManager.GetDeckTypes())
                 {
                     TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
+                    deckTypeNode.ImageIndex = 28;
+                    deckTypeNode.SelectedImageIndex = 29;
                     var dataFile = $"{item.SetWorkPath}\\{item.SetName}.json";
                     deckList = coreManager.GetDecks(dataFile);
                     foreach (var deck in deckList.Decks.Where(x => x.DeckTypeId == deckType.DeckTypeId))
@@ -78,7 +73,6 @@ namespace LegendaryCardEditor
                             ActiveSetDataFile = dataFile,
                             ActiveSetPath = item.SetWorkPath,
                             AllDecksInSet = deckList
-
                         };
 
                         deckTypeNode.Nodes.Add(deckNode);
@@ -113,7 +107,6 @@ namespace LegendaryCardEditor
                             return;
                         }
                     }
-
 
                     deckTab.Tag = activeSet.ActiveDeck;
                     CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet)
@@ -152,7 +145,12 @@ namespace LegendaryCardEditor
 
         private void helpToolStripButton_Click(object sender, EventArgs e)
         {
-            LoadCustomSet(settings.lastProject);
+            //LoadCustomSet(settings.lastProject);
+        }
+
+        private void treeViewMenuAddCard_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -93,6 +93,16 @@ namespace LegendaryCardEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cards {
+            get {
+                object obj = ResourceManager.GetObject("cards", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cost {
             get {
                 object obj = ResourceManager.GetObject("cost", resourceCulture);
