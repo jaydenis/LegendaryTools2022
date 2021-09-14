@@ -104,27 +104,34 @@ namespace LegendaryCardEditor
             tabControlMain.Controls.Clear();
             TreeNode root = new TreeNode("Decks");
             root.ImageIndex = 27;
-
-            foreach (var deck in deckList.Decks)
+            foreach (var deckType in coreManager.GetDeckTypes())
             {
-                var fi1 = new FileInfo(dataFile);
-
-                TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
-                deckNode.ImageIndex = deck.TeamIconId;
-                deckNode.SelectedImageIndex = deck.TeamIconId;
-
-                deckNode.Tag = new CurrentActiveDataModel
+                TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
+                deckTypeNode.ImageIndex = 28;
+                deckTypeNode.SelectedImageIndex = 29;
+                foreach (var deck in deckList.Decks.Where(x => x.DeckTypeId == deckType.DeckTypeId))
                 {
-                    ActiveDeck = deck,
-                    ActiveSetDataFile = dataFile,
-                    ActiveSetPath = fi1.DirectoryName,
-                    AllDecksInSet = deckList
-                };
+                    var fi1 = new FileInfo(dataFile);
 
-                root.Nodes.Add(deckNode);
+                    TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
+                    deckNode.ImageIndex = deck.TeamIconId;
+                    deckNode.SelectedImageIndex = deck.TeamIconId;
+
+                    deckNode.Tag = new CurrentActiveDataModel
+                    {
+                        ActiveDeck = deck,
+                        ActiveSetDataFile = dataFile,
+                        ActiveSetPath = fi1.DirectoryName,
+                        AllDecksInSet = deckList
+                    };
+
+                    deckTypeNode.Nodes.Add(deckNode);
+                }
+                //root.Nodes.Add(deckTypeNode);
+                treeView1.Nodes.Add(deckTypeNode);
             }
 
-            treeView1.Nodes.Add(root);
+            
             treeView1.ExpandAll();
         }
 
