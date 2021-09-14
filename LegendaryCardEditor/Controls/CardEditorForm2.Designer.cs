@@ -782,7 +782,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardPiercingValue.BackColor = System.Drawing.Color.OrangeRed;
             this.txtCardPiercingValue.Font = new System.Drawing.Font("Eurostile", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtCardPiercingValue.ForeColor = System.Drawing.Color.Black;
-            this.txtCardPiercingValue.Location = new System.Drawing.Point(420, 28);
+            this.txtCardPiercingValue.Location = new System.Drawing.Point(420, 29);
             this.txtCardPiercingValue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCardPiercingValue.MaxLength = 3;
             this.txtCardPiercingValue.Name = "txtCardPiercingValue";
@@ -848,7 +848,7 @@ namespace LegendaryCardEditor.Controls
             // 
             this.lblCardPiercingValue.AutoSize = true;
             this.lblCardPiercingValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblCardPiercingValue.Location = new System.Drawing.Point(288, 33);
+            this.lblCardPiercingValue.Location = new System.Drawing.Point(288, 32);
             this.lblCardPiercingValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCardPiercingValue.Name = "lblCardPiercingValue";
             this.lblCardPiercingValue.Size = new System.Drawing.Size(60, 15);
@@ -870,7 +870,7 @@ namespace LegendaryCardEditor.Controls
             // 
             this.lblCardVictoryPointsValue.AutoSize = true;
             this.lblCardVictoryPointsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblCardVictoryPointsValue.Location = new System.Drawing.Point(288, 82);
+            this.lblCardVictoryPointsValue.Location = new System.Drawing.Point(288, 96);
             this.lblCardVictoryPointsValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCardVictoryPointsValue.Name = "lblCardVictoryPointsValue";
             this.lblCardVictoryPointsValue.Size = new System.Drawing.Size(93, 15);
@@ -882,7 +882,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardVictoryPointsValue.BackColor = System.Drawing.Color.Red;
             this.txtCardVictoryPointsValue.Font = new System.Drawing.Font("Eurostile", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtCardVictoryPointsValue.ForeColor = System.Drawing.Color.Black;
-            this.txtCardVictoryPointsValue.Location = new System.Drawing.Point(420, 76);
+            this.txtCardVictoryPointsValue.Location = new System.Drawing.Point(420, 92);
             this.txtCardVictoryPointsValue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCardVictoryPointsValue.MaxLength = 3;
             this.txtCardVictoryPointsValue.Name = "txtCardVictoryPointsValue";

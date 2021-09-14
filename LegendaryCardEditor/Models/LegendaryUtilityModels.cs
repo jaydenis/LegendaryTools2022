@@ -14,6 +14,8 @@ namespace LegendaryCardEditor.Models
 
         [JsonProperty("DeckTypeName", Required = Required.Always)]
         public string DeckTypeName { get; set; }
+        [JsonProperty("NumberOfCards", Required = Required.Always)]
+        public int NumberOfCards { get; set; }
     }
 
     public partial class CardTypeModel

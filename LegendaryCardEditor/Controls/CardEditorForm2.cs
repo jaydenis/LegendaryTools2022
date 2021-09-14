@@ -72,7 +72,7 @@ namespace LegendaryCardEditor.Controls
         Font cardInfoFont;
         Font cardCostFont;
 
-        Dictionary<int, KalikoImage> renderedCards = new Dictionary<int, KalikoImage>();
+        Dictionary<string, KalikoImage> renderedCards = new Dictionary<string, KalikoImage>();
 
         bool overridePolygon = false;
 
@@ -172,7 +172,8 @@ namespace LegendaryCardEditor.Controls
                 powerImage2 = null;
                 victoryPointsImage = null;
 
-                ToggleFormControls(currentActiveSet.SelectedCard.ActiveTemplate);
+                currentActiveSet.SelectedCard = model;
+                ToggleFormControls(model.ActiveTemplate);
 
                
                 txtCardName.Text = model.ActiveCard.CardDisplayName;
@@ -238,8 +239,8 @@ namespace LegendaryCardEditor.Controls
             if (model != null)
             {
 
-                lblCardAttackValue.Visible = model.FormShowAttributesAttack;
-                txtCardAttackValue.Visible = model.FormShowAttributesAttack;
+                lblCardAttackValue.Visible = model.FormShowAttributesAttack || model.FormShowAttackCost;
+                txtCardAttackValue.Visible = model.FormShowAttributesAttack || model.FormShowAttackCost;
 
                 lblCardRecruitValue.Visible = model.FormShowAttributesRecruit;
                 txtCardRecruitValue.Visible = model.FormShowAttributesRecruit;
@@ -249,6 +250,7 @@ namespace LegendaryCardEditor.Controls
 
                 lblCardCostValue.Visible = model.FormShowAttributesCost;
                 txtCardCostValue.Visible = model.FormShowAttributesCost;
+
 
                 lblCardVictoryPointsValue.Visible = model.FormShowVictoryPoints;
                 txtCardVictoryPointsValue.Visible = model.FormShowVictoryPoints;
@@ -264,6 +266,8 @@ namespace LegendaryCardEditor.Controls
 
                 //groupBoxTeam.Visible = model.FormControls.ShowTeam;
                 cmbTeam.Visible = model.FormShowTeam;
+
+                
 
                 
 
@@ -443,9 +447,10 @@ namespace LegendaryCardEditor.Controls
 
                     frameImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.FrameImage}");
                     frameImage.Resize(picWidth, picHeight);
+                    infoImage.BlitImage(frameImage);
                 }
 
-                infoImage.BlitImage(frameImage);
+                
 
                 attackImage = new KalikoImage(Resources.attack);
                 recruitImage = new KalikoImage(Resources.recruit);
@@ -515,7 +520,7 @@ namespace LegendaryCardEditor.Controls
                 }
 
 
-                if (model.ActiveTemplate.FormShowAttackCost)
+                if (model.ActiveCard.AttributeAttack.Length > 0 && model.ActiveTemplate.FormShowAttackCost && attackImage != null)
                 {
                     attackImage.Resize(95, 95);
                     infoImage.BlitImage(attackImage, 380, 610);
@@ -528,7 +533,7 @@ namespace LegendaryCardEditor.Controls
                 }
 
 
-                if (model.ActiveCard.AttributeCost.Length > 0 && (model.ActiveTemplate.FormShowAttributesCost || model.ActiveTemplate.FormShowAttackCost))
+                if (model.ActiveCard.AttributeCost.Length > 0 && model.ActiveTemplate.FormShowAttributesCost)
                 {
                     cardCostFont = new Font(
                       fontFamily,
@@ -543,14 +548,65 @@ namespace LegendaryCardEditor.Controls
                         TextColor = Color.White
                     };
 
-                    if (model.ActiveTemplate.FormShowAttackCost)
-                        txtFieldCost.Point = new Point(424, 610);
-                    else
+                   
                         txtFieldCost.Point = new Point(424, 595);
 
-                    txtFieldCost.Outline = 4;
-                    txtFieldCost.OutlineColor = Color.Black;
-                    infoImage.DrawText(txtFieldCost);
+                        txtFieldCost.Outline = 4;
+                        txtFieldCost.OutlineColor = Color.Black;
+                        infoImage.DrawText(txtFieldCost);
+                    
+                }
+
+                if (model.ActiveCard.AttributeAttack.Length > 0 &&  model.ActiveTemplate.FormShowAttackCost)
+                {
+                    cardCostFont = new Font(
+                      fontFamily,
+                      82,
+                      FontStyle.Bold,
+                      GraphicsUnit.Pixel);
+
+
+
+                    bool containsPlus = model.ActiveCard.AttributeAttack.Contains("+");
+
+                        if (containsPlus)
+                        {
+                           model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack.Replace("+", "");
+                        }
+                        Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeRecruit, cardCostFont);
+                        textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, cardCostFont);
+                        TextField txtFieldAttack = new TextField(model.ActiveCard.AttributeAttack)
+                        {
+                            Font = cardCostFont,
+                            TargetArea = new Rectangle(380, 610, textSizeAttack.Width + 2, textSizeAttack.Height),
+                            TextColor = Color.White,
+                            Outline = 4,
+                            OutlineColor = Color.Black,
+                            Alignment = StringAlignment.Near
+                        };
+                        infoImage.DrawText(txtFieldAttack);
+
+                    if (containsPlus)
+                    {
+                        font = new Font(
+                          attributesFont.FontFamily,
+                          (attributesFont.Size / 2),
+                          FontStyle.Bold,
+                          GraphicsUnit.Pixel);
+
+                        TextField txtFieldAttackPlus = new TextField("+")
+                        {
+                            Font = font,
+                            TargetArea = new Rectangle(txtFieldAttack.TargetArea.X + 40, txtFieldAttack.TargetArea.Y + 20, textSizeAttack.Width + 2, textSizeAttack.Height),
+                            TextColor = Color.White,
+                            Outline = 4,
+                            OutlineColor = Color.Black,
+                            Alignment = StringAlignment.Near
+                        };
+                        infoImage.DrawText(txtFieldAttackPlus);
+                        model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack + "+";
+                    }
+
                 }
 
 
@@ -580,7 +636,32 @@ namespace LegendaryCardEditor.Controls
                    FontStyle.Bold,
                    GraphicsUnit.Pixel);
 
-                TextField txtFieldSubTitle = new TextField(model.ActiveCard.CardDisplayNameSub.ToUpper())
+                string tempSubName = model.ActiveTemplate.TemplateDisplayName.ToUpper();
+
+                if(model.ActiveCard.TemplateId == 1 || model.ActiveCard.TemplateId == 2 || model.ActiveCard.TemplateId == 3)
+                {
+                    tempSubName = model.ActiveCard.CardDisplayNameSub.ToUpper();
+                }
+
+                if (model.ActiveCard.TemplateId == 4)
+                {
+                    tempSubName = "Mastermind";
+                }
+
+                if (model.ActiveCard.TemplateId == 5)
+                {
+                    tempSubName = "Mastermind Tactic - " + model.ActiveCard.CardDisplayNameSub.ToUpper();
+                }
+
+                if (model.ActiveCard.TemplateId == 6 || model.ActiveCard.TemplateId == 7)
+                {
+                    tempSubName = model.ActiveTemplate.TemplateDisplayName.ToUpper()+" - "+ model.ActiveCard.CardDisplayNameSub.ToUpper();
+                }
+
+                
+
+
+                TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
                 {
                     Font = fontSubTitle,
                     TargetArea = new Rectangle(30, fontTitle.Height + 15, 430, 60),
@@ -620,7 +701,7 @@ namespace LegendaryCardEditor.Controls
                 infoImage.DrawText(txtFieldTitle);
                 infoImage.DrawText(txtFieldSubTitle);
 
-                if (model.ActiveCard.AttributeRecruit.Length > 0 || model.ActiveCard.AttributeAttack.Length > 0 || model.ActiveCard.AttributePiercing.Length > 0 || model.ActiveCard.AttributePiercing.Length > 0 && (model.ActiveTemplate.FormShowAttributesAttack || model.ActiveTemplate.FormShowAttributesRecruit || model.ActiveTemplate.FormShowAttributesPiercing))
+                if ((model.ActiveCard.AttributeRecruit.Length > 0 || model.ActiveCard.AttributeAttack.Length > 0 || model.ActiveCard.AttributePiercing.Length > 0) && (model.ActiveTemplate.FormShowAttributesAttack || model.ActiveTemplate.FormShowAttributesRecruit || model.ActiveTemplate.FormShowAttributesPiercing))
                 {
                     bool containsPlus = false;
                     if (model.ActiveCard.AttributeRecruit.Contains("+"))
@@ -1238,7 +1319,7 @@ namespace LegendaryCardEditor.Controls
                 powerImage = new KalikoImage(image);
                 currentActiveSet.SelectedCard.ActiveCard.PowerPrimary = iconName.Replace(".png", "").ToUpper();
                 currentActiveSet.SelectedCard.ActiveCard.PowerPrimaryIconId = cmbPower1.SelectedIndex;
-                if (currentActiveSet.SelectedCard.ActiveCard.TemplateId != 3)
+                if (currentActiveSet.SelectedCard.ActiveCard.TemplateId == 1 || currentActiveSet.SelectedCard.ActiveCard.TemplateId == 2)
                 {
                     currentActiveSet.SelectedCard.ActiveTemplate.FrameImage = $"{currentActiveSet.SelectedCard.ActiveTemplate.TemplateName}_{iconName}";
                 }
@@ -1374,23 +1455,24 @@ namespace LegendaryCardEditor.Controls
 
                 cardModel.ActiveCard.ExportedCardFile = CleanString(tempImageName.ToLower()) + ".png";
 
-                if (cardModel.ActiveCard.TemplateId != 3)
-                    cardModel.ActiveTemplate.FrameImage = $"{cardModel.ActiveTemplate.TemplateName}_{cardModel.ActiveCard.PowerPrimary.ToLower()}.png";
-
-
-                Image image = imageListTeamsFull.Images[cardModel.ActiveCard.TeamIconId];
-                teamImage = new KalikoImage(image);
-
-                image = imageListPowersFullSize.Images[cardModel.ActiveCard.PowerPrimaryIconId];
-                powerImage = new KalikoImage(image);
-
-                if (cardModel.ActiveCard.PowerSecondaryIconId != -1)
+                if (cardModel.ActiveCard.TemplateId == 1 || cardModel.ActiveCard.TemplateId == 2)
                 {
-                    image = imageListPowersFullSize.Images[cardModel.ActiveCard.PowerSecondaryIconId];
-                    powerImage2 = new KalikoImage(image);
+                    cardModel.ActiveTemplate.FrameImage = $"{cardModel.ActiveTemplate.TemplateName}_{cardModel.ActiveCard.PowerPrimary.ToLower()}.png";
+                                       
+
+                    Image image = imageListPowersFullSize.Images[cardModel.ActiveCard.PowerPrimaryIconId];
+                    powerImage = new KalikoImage(image);
+
+                    if (cardModel.ActiveCard.PowerSecondaryIconId != -1)
+                    {
+                        image = imageListPowersFullSize.Images[cardModel.ActiveCard.PowerSecondaryIconId];
+                        powerImage2 = new KalikoImage(image);
+                    }
                 }
 
-               
+                Image imageTeam = imageListTeamsFull.Images[cardModel.ActiveCard.TeamIconId];
+                teamImage = new KalikoImage(imageTeam);
+
 
                 return cardModel;
             }

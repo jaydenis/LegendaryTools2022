@@ -40,6 +40,9 @@ namespace LegendaryCardEditor.Models
         [JsonProperty("DeckId", Required = Required.Always)]
         public int DeckId { get; set; }
 
+        [JsonProperty("FolderName", Required = Required.Always)]
+        public string FolderName { get; set; }
+
         [JsonProperty("DeckName", Required = Required.Always)]
         public string DeckName { get; set; }
 
@@ -62,7 +65,7 @@ namespace LegendaryCardEditor.Models
     public partial class Card
     {
         [JsonProperty("CardId", Required = Required.Always)]
-        public int CardId { get; set; }
+        public string CardId { get; set; }
 
         [JsonProperty("CardName", Required = Required.Always)]
         public string CardName { get; set; }

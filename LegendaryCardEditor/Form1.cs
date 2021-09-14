@@ -32,10 +32,17 @@ namespace LegendaryCardEditor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (settings.lastProject != string.Empty)
-                LoadCustomSet(settings.lastProject);
-            else
+            try
+            {
+                if (settings.lastProject != string.Empty)
+                    LoadCustomSet(settings.lastProject);
+                else
+                    OpenFile();
+            }
+            catch
+            {
                 OpenFile();
+            }
         }
 
         private void LoadCustomSet(string path)
@@ -188,6 +195,17 @@ namespace LegendaryCardEditor
         private void treeViewMenuAddCard_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAddDeck_Click(object sender, EventArgs e)
+        {
+            AddDeckForm addDeckForm = new AddDeckForm(dataFile);
+            addDeckForm.ShowDialog();
+        }
+
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            OpenFile();
         }
     }
 }
