@@ -481,6 +481,9 @@ namespace LegendaryCardEditor.Controls
 
                 if (model.ActiveTemplate.FormShowVictoryPoints)
                 {
+                    if (model.ActiveCard.AttributeVictoryPoints == null)
+                        model.ActiveCard.AttributeVictoryPoints = "0";
+
                     victoryPointsImage = new KalikoImage(Resources.victory);
                     victoryPointsImage.Resize(40, 40);
                     infoImage.BlitImage(victoryPointsImage, 430, 440);
@@ -501,26 +504,26 @@ namespace LegendaryCardEditor.Controls
                     infoImage.DrawText(txtFieldVP);
                 }
 
-                if (model.ActiveCard.AttributeRecruit.Length > 0 && model.ActiveTemplate.FormShowAttributesRecruit && recruitImage != null)
+                if (model.ActiveCard.AttributeRecruit != null && model.ActiveTemplate.FormShowAttributesRecruit && recruitImage != null)
                 {
                     recruitImage.Resize(90, 90);
                     infoImage.BlitImage(recruitImage, 13, 465);
                 }
 
-                if (model.ActiveCard.AttributeAttack.Length > 0 && model.ActiveTemplate.FormShowAttributesAttack && attackImage != null)
+                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttributesAttack && attackImage != null)
                 {
                     attackImage.Resize(90, 90);
                     infoImage.BlitImage(attackImage, 13, 580);
                 }
 
-                if (model.ActiveCard.AttributePiercing.Length > 0 && model.ActiveTemplate.FormShowAttributesPiercing && piercingImage != null)
+                if (model.ActiveCard.AttributePiercing != null && model.ActiveTemplate.FormShowAttributesPiercing && piercingImage != null)
                 {
                     piercingImage.Resize(90, 90);
                     infoImage.BlitImage(piercingImage, 13, 580);
                 }
 
 
-                if (model.ActiveCard.AttributeAttack.Length > 0 && model.ActiveTemplate.FormShowAttackCost && attackImage != null)
+                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttackCost && attackImage != null)
                 {
                     attackImage.Resize(95, 95);
                     infoImage.BlitImage(attackImage, 380, 610);
@@ -533,7 +536,7 @@ namespace LegendaryCardEditor.Controls
                 }
 
 
-                if (model.ActiveCard.AttributeCost.Length > 0 && model.ActiveTemplate.FormShowAttributesCost)
+                if (model.ActiveCard.AttributeCost != null && model.ActiveTemplate.FormShowAttributesCost)
                 {
                     cardCostFont = new Font(
                       fontFamily,
@@ -557,7 +560,7 @@ namespace LegendaryCardEditor.Controls
                     
                 }
 
-                if (model.ActiveCard.AttributeAttack.Length > 0 &&  model.ActiveTemplate.FormShowAttackCost)
+                if (model.ActiveCard.AttributeAttack != null &&  model.ActiveTemplate.FormShowAttackCost)
                 {
                     cardCostFont = new Font(
                       fontFamily,
@@ -701,7 +704,7 @@ namespace LegendaryCardEditor.Controls
                 infoImage.DrawText(txtFieldTitle);
                 infoImage.DrawText(txtFieldSubTitle);
 
-                if ((model.ActiveCard.AttributeRecruit.Length > 0 || model.ActiveCard.AttributeAttack.Length > 0 || model.ActiveCard.AttributePiercing.Length > 0) && (model.ActiveTemplate.FormShowAttributesAttack || model.ActiveTemplate.FormShowAttributesRecruit || model.ActiveTemplate.FormShowAttributesPiercing))
+                if ((model.ActiveCard.AttributeRecruit != null || model.ActiveCard.AttributeAttack != null || model.ActiveCard.AttributePiercing != null) && (model.ActiveTemplate.FormShowAttributesAttack || model.ActiveTemplate.FormShowAttributesRecruit || model.ActiveTemplate.FormShowAttributesPiercing))
                 {
                     bool containsPlus = false;
                     if (model.ActiveCard.AttributeRecruit.Contains("+"))

@@ -84,7 +84,14 @@ namespace LegendaryCardEditor.Controls
 
             if (deckType.NumberOfCards == 1)
             {
-                newDeck.Cards.Add(GetNewCard(deckType.DeckTypeName, newDeck.DeckName, newDeck.DeckId,2,"Blank"));
+                int templateId = 2;
+
+                if (deckType.DeckTypeId == 4)
+                    templateId = 7;
+
+               
+
+                newDeck.Cards.Add(GetNewCard(deckType.DeckTypeName, newDeck.DeckName, newDeck.DeckId, templateId, "Blank"));
             }
             else
             {
