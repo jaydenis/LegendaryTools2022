@@ -135,6 +135,8 @@ namespace LegendaryCardEditor.Models
 
         [JsonProperty("PowerSecondaryIconId", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public int PowerSecondaryIconId { get; set; }
+
+
     }
 
     public partial class CustomSetsModel

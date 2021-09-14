@@ -123,7 +123,7 @@ namespace LegendaryCardEditor.Controls
 
         private void CardEditorForm_Load(object sender, EventArgs e)
         {
-
+            txtErrorConsole.Visible = false;
             LegendaryIconList = coreManager.LoadIconsFromDirectory();
             templateModelList = coreManager.GetTemplates();
             deckTypeList = coreManager.GetDeckTypes();
@@ -230,7 +230,8 @@ namespace LegendaryCardEditor.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                txtErrorConsole.Text = ex.ToString();
+                txtErrorConsole.Visible = true;
             }
         }
 
@@ -239,33 +240,32 @@ namespace LegendaryCardEditor.Controls
             if (model != null)
             {
 
-                lblCardAttackValue.Visible = model.FormShowAttributesAttack || model.FormShowAttackCost;
-                txtCardAttackValue.Visible = model.FormShowAttributesAttack || model.FormShowAttackCost;
+                lblCardAttackValue.Enabled = model.FormShowAttributesAttack || model.FormShowAttackCost;
+                txtCardAttackValue.Enabled = model.FormShowAttributesAttack || model.FormShowAttackCost;
 
-                lblCardRecruitValue.Visible = model.FormShowAttributesRecruit;
-                txtCardRecruitValue.Visible = model.FormShowAttributesRecruit;
+                lblCardRecruitValue.Enabled = model.FormShowAttributesRecruit;
+                txtCardRecruitValue.Enabled = model.FormShowAttributesRecruit;
 
-                lblCardPiercingValue.Visible = model.FormShowAttributesPiercing;
-                txtCardPiercingValue.Visible = model.FormShowAttributesPiercing;
+                lblCardPiercingValue.Enabled = model.FormShowAttributesPiercing;
+                txtCardPiercingValue.Enabled = model.FormShowAttributesPiercing;
 
-                lblCardCostValue.Visible = model.FormShowAttributesCost;
-                txtCardCostValue.Visible = model.FormShowAttributesCost;
+                lblCardCostValue.Enabled = model.FormShowAttributesCost;
+                txtCardCostValue.Enabled = model.FormShowAttributesCost;
 
+                lblCardVictoryPointsValue.Enabled = model.FormShowVictoryPoints;
+                txtCardVictoryPointsValue.Enabled = model.FormShowVictoryPoints;
 
-                lblCardVictoryPointsValue.Visible = model.FormShowVictoryPoints;
-                txtCardVictoryPointsValue.Visible = model.FormShowVictoryPoints;
-
-                groupBoxPower.Visible = model.FormShowPowerPrimary;
+                groupBoxPower.Enabled = model.FormShowPowerPrimary;
                 cmbPower1.Enabled = model.FormShowPowerPrimary;
 
-                groupBoxPower2.Visible = model.FormShowPowerSecondary;
+                groupBoxPower2.Enabled = model.FormShowPowerSecondary;
                 cmbPower2.Enabled = model.FormShowPowerSecondary;
 
                 chkPowerVisible.Enabled = cmbPower1.Enabled;
                 chkPower2Visible.Enabled = cmbPower2.Enabled;
 
                 //groupBoxTeam.Visible = model.FormControls.ShowTeam;
-                cmbTeam.Visible = model.FormShowTeam;
+                cmbTeam.Enabled = model.FormShowTeam;
 
                 
 
@@ -400,6 +400,9 @@ namespace LegendaryCardEditor.Controls
         {
             try
             {
+                txtErrorConsole.Text = string.Empty;
+                txtErrorConsole.Visible = false;
+
                 templateModel = model.ActiveTemplate;
 
                 FontFamily fontFamily = new FontFamily("Percolator");
@@ -831,19 +834,22 @@ namespace LegendaryCardEditor.Controls
                     }
                 }
 
+                if (model.ActiveCard.CardText != null)
+                {
+                    GetCardText(model);
 
-                GetCardText(model);
+                    foreach (var icon in cardTextIcons)
+                        infoImage.BlitImage(icon.IconImage, icon.Position.X, icon.Position.Y);
 
-                foreach (var icon in cardTextIcons)
-                    infoImage.BlitImage(icon.IconImage, icon.Position.X, icon.Position.Y);
-
-                foreach (var item in cardTextFields)
-                    infoImage.DrawText(item);
+                    foreach (var item in cardTextFields)
+                        infoImage.DrawText(item);
+                }
 
                 return infoImage;
             }catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                txtErrorConsole.Text = ex.ToString();
+                txtErrorConsole.Visible = true;
                 return null;
             }
         }
@@ -1007,7 +1013,9 @@ namespace LegendaryCardEditor.Controls
             }
             catch (Exception ex)
             {
-                throw ex;
+                txtErrorConsole.Text = ex.ToString();
+                txtErrorConsole.Visible = true;
+              
             }
         }
 
@@ -1254,7 +1262,8 @@ namespace LegendaryCardEditor.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                txtErrorConsole.Text = ex.ToString();
+                txtErrorConsole.Visible = true;
             }
 
         }
@@ -1284,7 +1293,8 @@ namespace LegendaryCardEditor.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                txtErrorConsole.Text = ex.ToString();
+                txtErrorConsole.Visible = true;
             }
         }
 
@@ -1306,7 +1316,8 @@ namespace LegendaryCardEditor.Controls
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                txtErrorConsole.Text = ex.ToString();
+                txtErrorConsole.Visible = true;
             }
         }
 
@@ -1481,7 +1492,8 @@ namespace LegendaryCardEditor.Controls
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                txtErrorConsole.Text = ex.ToString();
+                txtErrorConsole.Visible = true;
                 return null;
             }
         }
@@ -1515,37 +1527,45 @@ namespace LegendaryCardEditor.Controls
 
         private void btnExport_Click(object sender, EventArgs e)
         {
+
             this.Cursor = Cursors.WaitCursor;
-
-            currentActiveSet.ActiveDeck.DeckName = CleanString(txtDeckName.Text.ToLower());
-            currentActiveSet.ActiveDeck.TeamIconId = cmbDeckTeam.SelectedIndex;
-            DirectoryInfo di = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}");
-
-            foreach (FileInfo file in di.EnumerateFiles())
+            try
             {
-                file.Delete();
-            }
+                currentActiveSet.ActiveDeck.DeckName = CleanString(txtDeckName.Text.ToLower());
+                currentActiveSet.ActiveDeck.TeamIconId = cmbDeckTeam.SelectedIndex;
+                DirectoryInfo di = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}");
 
-            foreach (var cardModel in selectedCards)
-            {
-                var updatedCardModel = UpdateCardModel(cardModel);
-                KalikoImage exportImage = RenderCardImage(updatedCardModel);
-                if (exportImage != null)
+                foreach (FileInfo file in di.EnumerateFiles())
                 {
-                    var imagePath = $"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}\\{updatedCardModel.ActiveCard.ExportedCardFile}";
-                    exportImage.SaveImage(imagePath, System.Drawing.Imaging.ImageFormat.Png);
+                    file.Delete();
                 }
 
+                foreach (var cardModel in selectedCards)
+                {
+                    var updatedCardModel = UpdateCardModel(cardModel);
+                    KalikoImage exportImage = RenderCardImage(updatedCardModel);
+                    if (exportImage != null)
+                    {
+                        var imagePath = $"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}\\{updatedCardModel.ActiveCard.ExportedCardFile}";
+                        exportImage.SaveImage(imagePath, System.Drawing.Imaging.ImageFormat.Png);
+                    }
 
-                updatedCardModel.ActiveCard.DeckId = currentActiveSet.ActiveDeck.DeckId;
 
-                // PopulateCardEditor(card);
+                    updatedCardModel.ActiveCard.DeckId = currentActiveSet.ActiveDeck.DeckId;
+
+                    // PopulateCardEditor(card);
+                }
+                SaveData();
+
+                currentActiveSet.ActiveDeck = coreManager.GetDecks(currentActiveSet.ActiveSetDataFile).Decks.Where(x => x.DeckId == currentActiveSet.ActiveDeck.DeckId).FirstOrDefault();
+
+                PopulateDeckTree();
             }
-            SaveData();
-
-            currentActiveSet.ActiveDeck = coreManager.GetDecks(currentActiveSet.ActiveSetDataFile).Decks.Where(x => x.DeckId == currentActiveSet.ActiveDeck.DeckId).FirstOrDefault();
-
-            PopulateDeckTree();
+            catch(Exception ex)
+            {
+                txtErrorConsole.Text = ex.ToString();
+                txtErrorConsole.Visible = true;
+            }
 
             this.Cursor = Cursors.Default;
         }

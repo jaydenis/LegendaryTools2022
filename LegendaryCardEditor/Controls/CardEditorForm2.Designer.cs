@@ -53,6 +53,7 @@ namespace LegendaryCardEditor.Controls
             this.btnResetCard = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.pictureBoxTemplate = new System.Windows.Forms.PictureBox();
             this.panelCardEditor = new System.Windows.Forms.Panel();
+            this.txtErrorConsole = new System.Windows.Forms.TextBox();
             this.btnUpdateCard = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.numNumberInDeck = new System.Windows.Forms.NumericUpDown();
@@ -458,6 +459,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // panelCardEditor
             // 
+            this.panelCardEditor.Controls.Add(this.txtErrorConsole);
             this.panelCardEditor.Controls.Add(this.btnUpdateCard);
             this.panelCardEditor.Controls.Add(this.btnExport);
             this.panelCardEditor.Controls.Add(this.numNumberInDeck);
@@ -489,6 +491,18 @@ namespace LegendaryCardEditor.Controls
             this.panelCardEditor.Name = "panelCardEditor";
             this.panelCardEditor.Size = new System.Drawing.Size(592, 881);
             this.panelCardEditor.TabIndex = 1;
+            // 
+            // txtErrorConsole
+            // 
+            this.txtErrorConsole.BackColor = System.Drawing.Color.Black;
+            this.txtErrorConsole.ForeColor = System.Drawing.Color.Lime;
+            this.txtErrorConsole.Location = new System.Drawing.Point(26, 764);
+            this.txtErrorConsole.Multiline = true;
+            this.txtErrorConsole.Name = "txtErrorConsole";
+            this.txtErrorConsole.ReadOnly = true;
+            this.txtErrorConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtErrorConsole.Size = new System.Drawing.Size(543, 114);
+            this.txtErrorConsole.TabIndex = 91;
             // 
             // btnUpdateCard
             // 
@@ -1221,5 +1235,6 @@ namespace LegendaryCardEditor.Controls
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnDeckUpdate;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.TextBox txtErrorConsole;
     }
 }

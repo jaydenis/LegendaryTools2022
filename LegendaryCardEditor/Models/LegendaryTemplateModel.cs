@@ -72,6 +72,8 @@ namespace LegendaryCardEditor.Models
 
         [JsonProperty("FormShowAttackCost", Required = Required.Always)]
         public bool FormShowAttackCost { get; set; }
+        [JsonProperty("NumberInDeck", Required = Required.Always)]
+        public int NumberInDeck { get; set; }
     }
 
 }

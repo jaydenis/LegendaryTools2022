@@ -22,7 +22,7 @@ namespace LegendaryCardEditor.Controls
         SystemSettings settings;
         List<DeckTypeModel> deckTypeList;
         DeckList deckList;
-
+        int selectedTeamId = 0;
         int selectedDeckTypeId = 0;
         public AddDeckForm(string path)
         {
@@ -63,7 +63,11 @@ namespace LegendaryCardEditor.Controls
 
         private void cmbDeckTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmbDeckTeam.SelectedIndex != -1)
+            {
+                selectedTeamId = cmbDeckTeam.SelectedIndex;
 
+            }
         }
 
         private void btnCreateDeck_Click(object sender, EventArgs e)
@@ -76,8 +80,8 @@ namespace LegendaryCardEditor.Controls
                 DeckDisplayName = txtNewDeckName.Text,
                 DeckTypeId = selectedDeckTypeId,
                 Cards = new List<Card>(),
-                FolderName = Helper.GenerateID(txtNewDeckName.Text.ToLower()).ToLower()
-
+                FolderName = Helper.GenerateID(txtNewDeckName.Text.ToLower()).ToLower(),
+                TeamIconId = selectedTeamId
             };
 
             var deckType = deckTypeList.Where(x => x.DeckTypeId == selectedDeckTypeId).FirstOrDefault();            
@@ -91,27 +95,27 @@ namespace LegendaryCardEditor.Controls
 
                
 
-                newDeck.Cards.Add(GetNewCard(deckType.DeckTypeName, newDeck.DeckName, newDeck.DeckId, templateId, "Blank"));
+                newDeck.Cards.Add(GetNewCard(deckType, newDeck, templateId, "Blank"));
             }
             else
             {
                 int cardId = newDeck.DeckId * 10;
                 if (deckType.DeckTypeId == 1)
                 {
-                    cardsList.Add(GetNewCard(deckType.DeckTypeName, newDeck.DeckName, newDeck.DeckId, 2, "Hero - Common 1"));
-                    cardsList.Add(GetNewCard(deckType.DeckTypeName, newDeck.DeckName, newDeck.DeckId, 2, "Hero - Common 2"));
-                    cardsList.Add(GetNewCard(deckType.DeckTypeName, newDeck.DeckName, newDeck.DeckId, 1, "Hero - Uncommon"));
-                    cardsList.Add(GetNewCard(deckType.DeckTypeName, newDeck.DeckName, newDeck.DeckId, 3, "Hero - Rare"));
+                    cardsList.Add(GetNewCard(deckType, newDeck, 2, "Hero Common 1", cardId + 1,5));
+                    cardsList.Add(GetNewCard(deckType, newDeck, 2, "Hero Common 2", cardId + 2,5));
+                    cardsList.Add(GetNewCard(deckType, newDeck, 1, "Hero Uncommon", cardId + 3,3));
+                    cardsList.Add(GetNewCard(deckType, newDeck, 3, "Hero Rare", cardId + 4,1));
                 }
 
                 if (deckType.DeckTypeId == 2)
                 {
-                    cardsList.Add(GetNewCard("Mastermind", newDeck.DeckName, newDeck.DeckId,4,"Mastermind"));                   
+                    cardsList.Add(GetNewCard(deckType, newDeck,4,"Mastermind",cardId+1));                   
 
                     for (int i=1; i < 5; i++)
                     {
                         cardId = cardId + i + 1;
-                        cardsList.Add(GetNewCard("Mastermind Tatic", newDeck.DeckName, newDeck.DeckId, 5, $"Mastermind Tatic {cardId}"));                        
+                        cardsList.Add(GetNewCard(deckType, newDeck, 5, $"Mastermind Tatic {cardId}",cardId,4));                        
                     }
                 }
 
@@ -121,7 +125,7 @@ namespace LegendaryCardEditor.Controls
                     for (int i = 0; i < 4; i++)
                     {
                         cardId = cardId + i + 1;
-                        cardsList.Add(GetNewCard("Villain", newDeck.DeckName, newDeck.DeckId, 6, $"Villain {cardId}"));
+                        cardsList.Add(GetNewCard(deckType, newDeck, 6, $"Villain {cardId}",cardId,8));
                     }
                 }
 
@@ -135,24 +139,25 @@ namespace LegendaryCardEditor.Controls
             //coreManager.SaveDeck(currentActiveSet.AllDecksInSet, currentActiveSet.ActiveSetDataFile);
         }
 
-        private Card GetNewCard(string deckTypeName, string deckName, int deckId, int templateId,string cardName )
+        private Card GetNewCard(DeckTypeModel deckType, Deck deck, int templateId,string cardName,int id = 1 ,int numberInDeck = 1)
         {
             var tempCard = new Card
             {
-                CardId = Helper.GenerateID($"{deckTypeName}_{deckName}_{cardName}_{templateId}").ToLower(),
+                CardId = ($"{deckType.DeckTypeId}{templateId}{id}").ToLower(),
                 CardName = Helper.CleanString(cardName).ToLower(),
                 CardDisplayName = cardName,
                 CardDisplayNameFont = 32,
-                CardDisplayNameSub = deckTypeName,
+                CardDisplayNameSub = deckType.DeckTypeName + " - " +deck.DeckDisplayName,
                 CardDisplayNameSubFont = 28,
                 CardText = "Card Rules",
                 CardTextFont = 22,
                 TemplateId = templateId,
-                TeamIconId = cmbDeckTeam.SelectedIndex,
+                TeamIconId = selectedTeamId,
                 ArtWorkFile = $"{settings.baseFolder}\\{settings.default_blank_card}",
                 ExportedCardFile = "",
-                DeckId = deckId,
-                PowerPrimaryIconId = -1
+                DeckId = deck.DeckId,
+                PowerPrimaryIconId = -1,
+                 NumberInDeck = numberInDeck
             };
 
             return tempCard;
