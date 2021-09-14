@@ -17,18 +17,18 @@ namespace LegendaryCardEditor.Controls
 {
     public partial class AddDeckForm : Form
     {
-        CurrentActiveDataModel currentActiveSet;
         CoreManager coreManager = new CoreManager();
         SystemSettings settings;
         List<DeckTypeModel> deckTypeList;
         DeckList deckList;
+        string dataFilePath;
         int selectedTeamId = 0;
         int selectedDeckTypeId = 0;
         public AddDeckForm(string path)
         {
-            InitializeComponent();            
-
-            deckList = coreManager.GetDecks(path);
+            InitializeComponent();
+            dataFilePath = path;
+            deckList = coreManager.GetDecks(dataFilePath);
 
             settings = SystemSettings.Load();
             settings.Save();
@@ -134,9 +134,11 @@ namespace LegendaryCardEditor.Controls
 
             deckList.Decks.Add(newDeck);
             // currentActiveSet.AllDecksInSet.Decks.Add(newDeck);
-            var x = JsonConvert.SerializeObject(deckList, Formatting.Indented);
-            x = x.Trim();
-            //coreManager.SaveDeck(currentActiveSet.AllDecksInSet, currentActiveSet.ActiveSetDataFile);
+            //var x = JsonConvert.SerializeObject(deckList, Formatting.Indented);
+           // x = x.Trim();
+            coreManager.SaveDeck(deckList, dataFilePath);
+
+            this.Close();
         }
 
         private Card GetNewCard(DeckTypeModel deckType, Deck deck, int templateId,string cardName,int id = 1 ,int numberInDeck = 1)

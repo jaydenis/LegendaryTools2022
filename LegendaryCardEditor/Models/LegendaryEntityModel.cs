@@ -136,6 +136,9 @@ namespace LegendaryCardEditor.Models
         [JsonProperty("PowerSecondaryIconId", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public int PowerSecondaryIconId { get; set; }
 
+        //[JsonProperty("CardTypeId", Required = Required.Always)]
+        //public int CardTypeId { get; set; }
+
 
     }
 

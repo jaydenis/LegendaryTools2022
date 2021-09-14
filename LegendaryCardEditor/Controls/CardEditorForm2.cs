@@ -1416,7 +1416,7 @@ namespace LegendaryCardEditor.Controls
         private void UpdateDeck()
         {           
 
-            currentActiveSet.ActiveDeck.DeckName = CleanString(txtDeckName.Text.ToLower());
+            currentActiveSet.ActiveDeck.DeckName = Helper.CleanString(txtDeckName.Text.ToLower());
             currentActiveSet.ActiveDeck.TeamIconId = cmbDeckTeam.SelectedIndex;
             foreach(var card in currentActiveSet.ActiveDeck.Cards)
             {
@@ -1467,7 +1467,7 @@ namespace LegendaryCardEditor.Controls
 
                 string tempImageName = $"{cardModel.ActiveCard.CardDisplayNameSub.ToLower()}_{cardModel.ActiveTemplate.TemplateName.ToLower()}_{cardModel.ActiveCard.CardId}";
 
-                cardModel.ActiveCard.ExportedCardFile = CleanString(tempImageName.ToLower()) + ".png";
+                cardModel.ActiveCard.ExportedCardFile = Helper.CleanString(tempImageName.ToLower()) + ".png";
 
                 if (cardModel.ActiveCard.TemplateId == 1 || cardModel.ActiveCard.TemplateId == 2)
                 {
@@ -1531,7 +1531,7 @@ namespace LegendaryCardEditor.Controls
             this.Cursor = Cursors.WaitCursor;
             try
             {
-                currentActiveSet.ActiveDeck.DeckName = CleanString(txtDeckName.Text.ToLower());
+                currentActiveSet.ActiveDeck.DeckName = Helper.CleanString(txtDeckName.Text.ToLower());
                 currentActiveSet.ActiveDeck.TeamIconId = cmbDeckTeam.SelectedIndex;
                 DirectoryInfo di = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}");
 
@@ -1672,11 +1672,7 @@ namespace LegendaryCardEditor.Controls
             UpdateDeck();
         }
 
-        private string CleanString(string strIn)
-        {
-            
-            return Regex.Replace(strIn, @"(\s+|@|&|'|\(|\)|<|>|#|-)", "_");
-        }
+        
     }
     
 }

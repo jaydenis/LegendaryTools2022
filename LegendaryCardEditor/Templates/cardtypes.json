@@ -1,11 +1,11 @@
 [
   {
-    "CardTypeId": 1,
+    "CardTypeId": 5,
     "CardTypeName": "mastermind_tactic",
     "CardTypeDisplayName": "Mastermind - Tactic"
   },
   {
-    "CardTypeId": 2,
+    "CardTypeId": 4,
     "CardTypeName": "mastermind",
     "CardTypeDisplayName": "Mastermind"
   },
@@ -15,13 +15,33 @@
     "CardTypeDisplayName": "Hero - Rare"
   },
   {
-    "CardTypeId": 4,
+    "CardTypeId": 2,
     "CardTypeName": "hero_uncommon",
     "CardTypeDisplayName": "Hero - Unommon"
   },
   {
-    "CardTypeId": 5,
+    "CardTypeId": 1,
     "CardTypeName": "hero_common",
     "CardTypeDisplayName": "Hero - Common"
+  },
+  {
+    "CardTypeId": 6,
+    "CardTypeName": "villain",
+    "CardTypeDisplayName": "Villain"
+  },
+  {
+    "CardTypeId": 7,
+    "CardTypeName": "villain_location",
+    "CardTypeDisplayName": "Villain Location"
+  },
+  {
+    "CardTypeId":8,
+    "CardTypeName": "henchmen",
+    "CardTypeDisplayName": "Henchmen"
+  },
+  {
+    "CardTypeId": 9,
+    "CardTypeName": "special_sidekick",
+    "CardTypeDisplayName": "Special Sidekick"
   }
 ]

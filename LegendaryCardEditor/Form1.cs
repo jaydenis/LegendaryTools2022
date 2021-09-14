@@ -124,8 +124,6 @@ namespace LegendaryCardEditor
                 root.Nodes.Add(deckNode);
             }
 
-
-
             treeView1.Nodes.Add(root);
             treeView1.ExpandAll();
         }
@@ -137,6 +135,7 @@ namespace LegendaryCardEditor
                 if (e.Node.Tag is CurrentActiveDataModel)
                 {
                     this.Cursor = Cursors.WaitCursor;
+                    tabControlMain.Controls.Clear();
                     var activeSet = (CurrentActiveDataModel)e.Node.Tag;
 
                     TabPage deckTab = new TabPage(activeSet.ActiveDeck.DeckDisplayName);
@@ -201,6 +200,9 @@ namespace LegendaryCardEditor
         {
             AddDeckForm addDeckForm = new AddDeckForm(dataFile);
             addDeckForm.ShowDialog();
+            
+                LoadCustomSet(dataFile);
+            
         }
 
         private void openToolStripButton_Click(object sender, EventArgs e)

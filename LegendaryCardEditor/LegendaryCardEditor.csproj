@@ -341,11 +341,7 @@
     <PackageReference Include="ImageLibrary" Version="3.0.2" />
     <PackageReference Include="Krypton.Components.Suite" Version="4.5.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="SQLite.CodeFirst" Version="1.7.0.34" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.115" />
-    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.115" />
   </ItemGroup>
 
   <ItemGroup>
