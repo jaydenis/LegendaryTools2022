@@ -84,7 +84,7 @@ namespace LegendaryCardEditor.Controls
             
 
             currentDeckType = deckTypeList.Where(x => x.DeckTypeId == currentActiveSet.ActiveDeck.DeckTypeId).FirstOrDefault();
-            var templatePath = $"{settings.baseFolder}\\templates\\cards\\{currentDeckType.DeckTypeName}";
+            var templatePath = $"{settings.templatesFolder}\\cards\\{currentDeckType.DeckTypeName}";
 
 
 
@@ -250,7 +250,7 @@ namespace LegendaryCardEditor.Controls
                 string curFile = $"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}\\{card.ActiveCard.ExportedCardFile}";
 
                 if (!File.Exists(curFile))
-                    curFile = $"{settings.baseFolder}\\{settings.default_blank_card}";
+                    curFile = $"{settings.imagesFolder}\\{settings.default_blank_card}";
 
 
                 KalikoImage cardImage = new KalikoImage(curFile);

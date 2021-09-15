@@ -21,7 +21,7 @@ namespace LegendaryCardEditor.Managers
         }
         public List<DeckTypeModel> GetDeckTypes()
         {
-            var path = settings.baseFolder + "\\" + settings.json_decktypes;
+            var path = settings.templatesFolder + "\\" + settings.json_decktypes;
             string jsonText = File.ReadAllText(path);
             var dataModel = JsonConvert.DeserializeObject<IList<DeckTypeModel>>(jsonText).ToList();
 
@@ -30,7 +30,7 @@ namespace LegendaryCardEditor.Managers
 
         public LegendaryTemplateModel ReadTemplateSettings()
         {
-            string path = settings.baseFolder + "\\" + settings.json_templates;
+            string path = settings.templatesFolder + "\\" + settings.json_templates;
             string jsonText = File.ReadAllText(path);
 
             var dataModel = JsonConvert.DeserializeObject<LegendaryTemplateModel>(jsonText);
@@ -40,7 +40,7 @@ namespace LegendaryCardEditor.Managers
 
         public List<LegendaryTemplateModel> GetTemplates()
         {
-            string path = settings.baseFolder + "\\" + settings.json_templates;
+            string path = settings.templatesFolder + "\\" + settings.json_templates;
             string jsonText = File.ReadAllText(path);
 
             var dataModel = JsonConvert.DeserializeObject<IList<LegendaryTemplateModel>>(jsonText).ToList();
@@ -95,7 +95,7 @@ namespace LegendaryCardEditor.Managers
         public List<CardTypeModel> GetCardTypes()
         {
 
-            var path = settings.baseFolder + "\\" + settings.json_cardtypes;
+            var path = settings.templatesFolder + "\\" + settings.json_cardtypes;
             string jsonText = File.ReadAllText(path);
             var dataModel = JsonConvert.DeserializeObject<IList<CardTypeModel>>(jsonText).ToList();
 
@@ -105,14 +105,14 @@ namespace LegendaryCardEditor.Managers
         public List<LegendaryIconViewModel> LoadIconsFromDirectory()
         {
 
-            string jsonText = File.ReadAllText(settings.baseFolder + "\\" + settings.json_icons);
+            string jsonText = File.ReadAllText(settings.templatesFolder + "\\" + settings.json_icons);
             var dataModel = JsonConvert.DeserializeObject<IList<LegendaryIconViewModel>>(jsonText).ToList();
 
             var result = new List<LegendaryIconViewModel>();
 
             foreach (LegendaryIconViewModel item in dataModel.ToList())
             {
-                item.FileName = ($@"{settings.baseFolder + "\\" + settings.iconsFolder}\{item.Category}\{item.FileName}").ToLower();
+                item.FileName = ($@"{settings.iconsFolder}\{item.Category}\{item.FileName}").ToLower();
                 result.Add(item);
             }
 

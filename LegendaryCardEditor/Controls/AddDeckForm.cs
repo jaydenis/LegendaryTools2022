@@ -155,7 +155,7 @@ namespace LegendaryCardEditor.Controls
                 CardTextFont = 22,
                 TemplateId = templateId,
                 TeamIconId = selectedTeamId,
-                ArtWorkFile = $"{settings.baseFolder}\\{settings.default_blank_card}",
+                ArtWorkFile = $"{settings.imagesFolder}\\{settings.default_blank_card}",
                 ExportedCardFile = "",
                 DeckId = deck.DeckId,
                 PowerPrimaryIconId = -1,

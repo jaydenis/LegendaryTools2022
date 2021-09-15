@@ -12,13 +12,15 @@ namespace LegendaryCardEditor.Utilities
         public string lastProject = "";
 
         public string baseFolder = @"C:\Repos\LegendaryTools2022\LegendaryCardEditor";
-        public string iconsFolder = "images\\icons";
+        public string imagesFolder = @"C:\Repos\LegendaryTools2022\LegendaryCardEditor\images";
+        public string iconsFolder = @"C:\Repos\LegendaryTools2022\LegendaryCardEditor\images\icons";
+        public string templatesFolder = @"C:\Repos\LegendaryTools2022\LegendaryCardEditor\Templates";
 
-        public string json_decktypes = "Templates\\decktypes.json";
-        public string json_cardgroups = "Templates\\cardgroups.json";
-        public string json_icons = "Templates\\icons.json";
-        public string json_cardtypes = "Templates\\cardtypes.json";
-        public string json_templates = "Templates\\template.json";
-        public string default_blank_card = "images\\default_blank_card.png";
+        public string json_decktypes = "decktypes.json";
+        public string json_cardgroups = "cardgroups.json";
+        public string json_icons = "icons.json";
+        public string json_cardtypes = "cardtypes.json";
+        public string json_templates = "template.json";
+        public string default_blank_card = "default_blank_card.png";
     }
 }
