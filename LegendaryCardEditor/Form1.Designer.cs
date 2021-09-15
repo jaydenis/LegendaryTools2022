@@ -85,6 +85,7 @@ namespace LegendaryCardEditor
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
+            this.propertyGridSettings = new System.Windows.Forms.PropertyGrid();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -95,6 +96,7 @@ namespace LegendaryCardEditor
             this.splitContainer1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -586,6 +588,7 @@ namespace LegendaryCardEditor
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.propertyGridSettings);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -597,6 +600,13 @@ namespace LegendaryCardEditor
             // kryptonManager1
             // 
             this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.SparkleBlue;
+            // 
+            // propertyGridSettings
+            // 
+            this.propertyGridSettings.Location = new System.Drawing.Point(65, 28);
+            this.propertyGridSettings.Name = "propertyGridSettings";
+            this.propertyGridSettings.Size = new System.Drawing.Size(937, 563);
+            this.propertyGridSettings.TabIndex = 0;
             // 
             // Form1
             // 
@@ -625,6 +635,7 @@ namespace LegendaryCardEditor
             this.splitContainer1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -686,6 +697,7 @@ namespace LegendaryCardEditor
         private System.Windows.Forms.ToolStripMenuItem treeViewMenuAddCard;
         private System.Windows.Forms.Button btnAddDeck;
         private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
+        private System.Windows.Forms.PropertyGrid propertyGridSettings;
     }
 }
 

@@ -22,6 +22,10 @@ namespace LegendaryCardEditor
         CoreManager coreManager = new CoreManager();
         DeckList deckList;
         string dataFile;
+
+        List<LegendaryIconViewModel> legendaryIconList;
+        List<LegendaryTemplateModel> templateModelList;
+        List<DeckTypeModel> deckTypeList;
         public Form1()
         {
             InitializeComponent();            
@@ -32,8 +36,8 @@ namespace LegendaryCardEditor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-                try
-            {
+            try
+            {                
                 if (settings.lastProject != string.Empty)
                     LoadCustomSet(settings.lastProject);
                 else
@@ -51,6 +55,12 @@ namespace LegendaryCardEditor
             dataFile = path;
 
             deckList = coreManager.GetDecks(dataFile);
+
+            legendaryIconList = coreManager.LoadIconsFromDirectory();
+            templateModelList = coreManager.GetTemplates();
+            deckTypeList = coreManager.GetDeckTypes();
+
+            //propertyGridSettings.SelectedObject = new SettingPropertyGridProxy(settings);
             PopulateDeckTree();
         }
 
@@ -61,7 +71,7 @@ namespace LegendaryCardEditor
             tabControlMain.Controls.Clear();
             TreeNode root = new TreeNode("Decks");
             root.ImageIndex = 27;
-            foreach (var deckType in coreManager.GetDeckTypes())
+            foreach (var deckType in deckTypeList)
             {
                 TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
                 deckTypeNode.ImageIndex = 28;
@@ -117,7 +127,7 @@ namespace LegendaryCardEditor
 
                     deckTab.Tag = activeSet.ActiveDeck;
 
-                    CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet)
+                    CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet, legendaryIconList,deckTypeList,templateModelList)
                     {
                         Dock = DockStyle.Fill
                     };

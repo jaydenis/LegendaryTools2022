@@ -85,8 +85,8 @@
   },
   {
     "category": "TEAMS",
-    "name": "A-FORCE",
-    "fileName": "a-force.png",
+    "name": "A_FORCE",
+    "fileName": "a_force.png",
     "minimizedUnderlay": "false"
   },
   {
@@ -140,7 +140,7 @@
   {
     "category": "TEAMS",
     "name": "FANTASTIC_FOUR",
-    "fileName": "fantastic-four.png",
+    "fileName": "fantastic_four.png",
     "minimizedUnderlay": "false"
   },
   {
@@ -231,7 +231,7 @@
   {
     "category": "TEAMS",
     "name": "SPIDER_FRIENDS",
-    "fileName": "spider-friends.png",
+    "fileName": "spider_friends.png",
     "minimizedUnderlay": "false"
   },
   {
@@ -261,13 +261,13 @@
   {
     "category": "TEAMS",
     "name": "X_FORCE",
-    "fileName": "x-force.png",
+    "fileName": "x_force.png",
     "minimizedUnderlay": "false"
   },
   {
     "category": "TEAMS",
     "name": "X_MEN",
-    "fileName": "x-men.png",
+    "fileName": "x_men.png",
     "minimizedUnderlay": "false"
   },
   {

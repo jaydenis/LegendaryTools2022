@@ -57,16 +57,18 @@ namespace LegendaryCardEditor.Utilities
 
         int picWidth = 504;
         int picHeight = 700;
-        List<LegendaryIconViewModel> LegendaryIconList { get; set; }
+        List<LegendaryIconViewModel> legendaryIconList { get; set; }
 
         ResourceManager rm = Resources.ResourceManager;
 
         string activeSetPath;
         DirectoryInfo currentTemplateDirectory;
-        public ImageTools(string ActiveSetPath, string CurrentTemplateDirectory)
+        public ImageTools(string ActiveSetPath, string CurrentTemplateDirectory, List<LegendaryIconViewModel> LegendaryIconList)
         {
             activeSetPath = ActiveSetPath;
             currentTemplateDirectory = new DirectoryInfo(CurrentTemplateDirectory);
+
+            legendaryIconList = LegendaryIconList;
 
             FontFamily fontFamily = new FontFamily("Percolator");
 
@@ -658,7 +660,7 @@ namespace LegendaryCardEditor.Utilities
                                 int stringLength = textSize.Width;
                                 if (stringLength > 0)
                                 {
-                                    if (!IsInPolygon(startPoint, new Point(x + stringLength, y)))
+                                    if (!IsInPolygon(startPoint, new Point(x-2 + stringLength, y)))
                                     {
                                         y += currentFont.Height;
                                         x = getXStart(y);
@@ -702,7 +704,7 @@ namespace LegendaryCardEditor.Utilities
                                 int modifiedY = ((int)(((y - (currentFont.Height - 6)) + ascentPixel)));
 
                                 if (lastCharIsNumeric)
-                                    x -= 12;
+                                    x -= 10;
 
                                 var imgX = new CardTextIconViewModel
                                 {
@@ -910,7 +912,7 @@ namespace LegendaryCardEditor.Utilities
                     return null;
 
                 str = str.Replace("<", "").Replace(">", "");
-                LegendaryIconViewModel i = LegendaryIconList.Where(x => x.Name == str).FirstOrDefault();
+                LegendaryIconViewModel i = legendaryIconList.Where(x => x.Name == str).FirstOrDefault();
                 return i;
             }
             catch (Exception e)
