@@ -314,7 +314,8 @@ namespace LegendaryCardEditor.Controls
                     Image = cardImage.GetAsBitmap(),
                     ImageLocation = Convert.ToString(curFile),
                     Size = new Size(103, 141),
-                    SizeMode = PictureBoxSizeMode.StretchImage
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    
                 };
                 pictureBox.MouseClick += PictureBox_MouseClick;
                 pictureBox.Paint += PictureBox_Paint;
@@ -347,10 +348,10 @@ namespace LegendaryCardEditor.Controls
             if (activePictureBox == pb)
             {
                 ControlPaint.DrawBorder(e.Graphics, pb.ClientRectangle,
-                   Color.LightSkyBlue, 1, ButtonBorderStyle.Solid,  // Left
-                   Color.LightSkyBlue, 1, ButtonBorderStyle.Solid,  // Top
-                   Color.LightSkyBlue, 1, ButtonBorderStyle.Solid,  // Right
-                   Color.LightSkyBlue, 1, ButtonBorderStyle.Solid); // Bottom
+                   Color.LimeGreen, 2, ButtonBorderStyle.Solid,  // Left
+                   Color.LimeGreen, 2, ButtonBorderStyle.Solid,  // Top
+                   Color.LimeGreen, 2, ButtonBorderStyle.Solid,  // Right
+                   Color.LimeGreen, 2, ButtonBorderStyle.Solid); // Bottom
             }
             this.Cursor = Cursors.Default;
         }
@@ -404,6 +405,8 @@ namespace LegendaryCardEditor.Controls
                 txtErrorConsole.Visible = false;
 
                 templateModel = model.ActiveTemplate;
+
+                bool containsPlus = false;
 
                 FontFamily fontFamily = new FontFamily("Percolator");
 
@@ -509,20 +512,29 @@ namespace LegendaryCardEditor.Controls
 
                 if (model.ActiveCard.AttributeRecruit != null && model.ActiveTemplate.FormShowAttributesRecruit && recruitImage != null)
                 {
-                    recruitImage.Resize(90, 90);
-                    infoImage.BlitImage(recruitImage, 13, 465);
+                    if (model.ActiveCard.AttributeRecruit.Length > 0)
+                    {
+                        recruitImage.Resize(90, 90);
+                        infoImage.BlitImage(recruitImage, 13, 465);
+                    }
                 }
 
                 if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttributesAttack && attackImage != null)
                 {
-                    attackImage.Resize(90, 90);
-                    infoImage.BlitImage(attackImage, 13, 580);
+                    if (model.ActiveCard.AttributeAttack.Length > 0)
+                    {
+                        attackImage.Resize(90, 90);
+                        infoImage.BlitImage(attackImage, 13, 580);
+                    }
                 }
 
                 if (model.ActiveCard.AttributePiercing != null && model.ActiveTemplate.FormShowAttributesPiercing && piercingImage != null)
                 {
-                    piercingImage.Resize(90, 90);
-                    infoImage.BlitImage(piercingImage, 13, 580);
+                    if (model.ActiveCard.AttributePiercing.Length > 0)
+                    {
+                        piercingImage.Resize(90, 90);
+                        infoImage.BlitImage(piercingImage, 13, 580);
+                    }
                 }
 
 
@@ -565,19 +577,22 @@ namespace LegendaryCardEditor.Controls
 
                 if (model.ActiveCard.AttributeAttack != null &&  model.ActiveTemplate.FormShowAttackCost)
                 {
-                    cardCostFont = new Font(
-                      fontFamily,
-                      82,
-                      FontStyle.Bold,
-                      GraphicsUnit.Pixel);
+                    if (model.ActiveCard.AttributeAttack.Length > 0)
+                    {
+                        cardCostFont = new Font(
+                          fontFamily,
+                          82,
+                          FontStyle.Bold,
+                          GraphicsUnit.Pixel);
 
 
 
-                    bool containsPlus = model.ActiveCard.AttributeAttack.Contains("+");
+                       
 
-                        if (containsPlus)
+                        if (model.ActiveCard.AttributeAttack.Contains("+"))
                         {
-                           model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack.Replace("+", "");
+                            containsPlus = true;
+                            model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack.Replace("+", "");
                         }
                         Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeRecruit, cardCostFont);
                         textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, cardCostFont);
@@ -592,25 +607,26 @@ namespace LegendaryCardEditor.Controls
                         };
                         infoImage.DrawText(txtFieldAttack);
 
-                    if (containsPlus)
-                    {
-                        font = new Font(
-                          attributesFont.FontFamily,
-                          (attributesFont.Size / 2),
-                          FontStyle.Bold,
-                          GraphicsUnit.Pixel);
-
-                        TextField txtFieldAttackPlus = new TextField("+")
+                        if (containsPlus)
                         {
-                            Font = font,
-                            TargetArea = new Rectangle(txtFieldAttack.TargetArea.X + 40, txtFieldAttack.TargetArea.Y + 20, textSizeAttack.Width + 2, textSizeAttack.Height),
-                            TextColor = Color.White,
-                            Outline = 4,
-                            OutlineColor = Color.Black,
-                            Alignment = StringAlignment.Near
-                        };
-                        infoImage.DrawText(txtFieldAttackPlus);
-                        model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack + "+";
+                            font = new Font(
+                              attributesFont.FontFamily,
+                              (attributesFont.Size / 2),
+                              FontStyle.Bold,
+                              GraphicsUnit.Pixel);
+
+                            TextField txtFieldAttackPlus = new TextField("+")
+                            {
+                                Font = font,
+                                TargetArea = new Rectangle(txtFieldAttack.TargetArea.X + 40, txtFieldAttack.TargetArea.Y + 20, textSizeAttack.Width + 2, textSizeAttack.Height),
+                                TextColor = Color.White,
+                                Outline = 4,
+                                OutlineColor = Color.Black,
+                                Alignment = StringAlignment.Near
+                            };
+                            infoImage.DrawText(txtFieldAttackPlus);
+                            model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack + "+";
+                        }
                     }
 
                 }
@@ -707,20 +723,22 @@ namespace LegendaryCardEditor.Controls
                 infoImage.DrawText(txtFieldTitle);
                 infoImage.DrawText(txtFieldSubTitle);
 
-                if ((model.ActiveCard.AttributeRecruit != null || model.ActiveCard.AttributeAttack != null || model.ActiveCard.AttributePiercing != null) && (model.ActiveTemplate.FormShowAttributesAttack || model.ActiveTemplate.FormShowAttributesRecruit || model.ActiveTemplate.FormShowAttributesPiercing))
+                
+                     containsPlus = false;
+                if (model.ActiveCard.AttributeRecruit != null)
                 {
-                    bool containsPlus = false;
+
                     if (model.ActiveCard.AttributeRecruit.Contains("+"))
                     {
                         containsPlus = true;
                         model.ActiveCard.AttributeRecruit = model.ActiveCard.AttributeRecruit.Replace("+", "");
                     }
 
-                    Size textSizeRecruitAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeRecruit, attributesFont);
+                    Size textSizeRecruit = TextRenderer.MeasureText(model.ActiveCard.AttributeRecruit, attributesFont);
                     TextField txtFieldRecruit = new TextField(model.ActiveCard.AttributeRecruit)
                     {
                         Font = attributesFont,
-                        TargetArea = new Rectangle(14, 467, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                        TargetArea = new Rectangle(14, 467, textSizeRecruit.Width + 2, textSizeRecruit.Height),
                         TextColor = Color.White,
                         Outline = 4,
                         OutlineColor = Color.Black,
@@ -739,7 +757,7 @@ namespace LegendaryCardEditor.Controls
                         TextField txtFieldRecruitPlus = new TextField("+")
                         {
                             Font = font,
-                            TargetArea = new Rectangle(txtFieldRecruit.TargetArea.Width - 20, txtFieldRecruit.TargetArea.Y + 20, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                            TargetArea = new Rectangle(txtFieldRecruit.TargetArea.Width - 20, txtFieldRecruit.TargetArea.Y + 20, textSizeRecruit.Width + 2, textSizeRecruit.Height),
                             TextColor = Color.White,
                             Outline = 4,
                             OutlineColor = Color.Black,
@@ -748,20 +766,24 @@ namespace LegendaryCardEditor.Controls
                         infoImage.DrawText(txtFieldRecruitPlus);
                         model.ActiveCard.AttributeRecruit = model.ActiveCard.AttributeRecruit + "+";
                     }
-
+                }
 
                     containsPlus = false;
+
+
+                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttributesAttack)
+                {
+
                     if (model.ActiveCard.AttributeAttack.Contains("+"))
                     {
                         containsPlus = true;
                         model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack.Replace("+", "");
                     }
-
-                    textSizeRecruitAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, attributesFont);
+                    Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, attributesFont);
                     TextField txtFieldAttack = new TextField(model.ActiveCard.AttributeAttack)
                     {
                         Font = attributesFont,
-                        TargetArea = new Rectangle(14, 582, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                        TargetArea = new Rectangle(14, 582, textSizeAttack.Width + 2, textSizeAttack.Height),
                         TextColor = Color.White,
                         Outline = 4,
                         OutlineColor = Color.Black,
@@ -782,7 +804,7 @@ namespace LegendaryCardEditor.Controls
                         TextField txtFieldAttackPlus = new TextField("+")
                         {
                             Font = font,
-                            TargetArea = new Rectangle(txtFieldAttack.TargetArea.Width - 20, txtFieldAttack.TargetArea.Y + 20, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                            TargetArea = new Rectangle(txtFieldAttack.TargetArea.Width - 20, txtFieldAttack.TargetArea.Y + 20, textSizeAttack.Width + 2, textSizeAttack.Height),
                             TextColor = Color.White,
                             Outline = 4,
                             OutlineColor = Color.Black,
@@ -791,19 +813,22 @@ namespace LegendaryCardEditor.Controls
                         infoImage.DrawText(txtFieldAttackPlus);
                         model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack + "+";
                     }
+                }
 
                     containsPlus = false;
+                if (model.ActiveCard.AttributePiercing != null)
+                {
                     if (model.ActiveCard.AttributePiercing.Contains("+"))
                     {
                         containsPlus = true;
                         model.ActiveCard.AttributePiercing = model.ActiveCard.AttributePiercing.Replace("+", "");
                     }
 
-                    textSizeRecruitAttack = TextRenderer.MeasureText(model.ActiveCard.AttributePiercing, attributesFont);
+                    Size textSizePiercing = TextRenderer.MeasureText(model.ActiveCard.AttributePiercing, attributesFont);
                     TextField txtFieldPiercing = new TextField(model.ActiveCard.AttributePiercing)
                     {
                         Font = attributesFont,
-                        TargetArea = new Rectangle(14, 582, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                        TargetArea = new Rectangle(14, 582, textSizePiercing.Width + 2, textSizePiercing.Height),
                         TextColor = Color.White,
                         Outline = 4,
                         OutlineColor = Color.Black,
@@ -823,7 +848,7 @@ namespace LegendaryCardEditor.Controls
                         TextField txtFieldPiercingPlus = new TextField("+")
                         {
                             Font = font,
-                            TargetArea = new Rectangle(txtFieldPiercing.TargetArea.Width - 20, txtFieldPiercing.TargetArea.Y + 20, textSizeRecruitAttack.Width + 2, textSizeRecruitAttack.Height),
+                            TargetArea = new Rectangle(txtFieldPiercing.TargetArea.Width - 20, txtFieldPiercing.TargetArea.Y + 20, textSizePiercing.Width + 2, textSizePiercing.Height),
                             TextColor = Color.White,
                             Outline = 4,
                             OutlineColor = Color.Black,
@@ -833,6 +858,7 @@ namespace LegendaryCardEditor.Controls
                         model.ActiveCard.AttributePiercing = model.ActiveCard.AttributePiercing + "+";
                     }
                 }
+                
 
                 if (model.ActiveCard.CardText != null)
                 {
@@ -1034,7 +1060,7 @@ namespace LegendaryCardEditor.Controls
                 return null;
             }
 
-            imageIcon.Resize(w, h);
+            imageIcon.Resize(w+2, h+2);
 
 
             return imageIcon;
@@ -1207,8 +1233,8 @@ namespace LegendaryCardEditor.Controls
 
         private void txtCardName_KeyUp(object sender, KeyEventArgs e)
         {
-            currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-            LoadImage(currentActiveSet.SelectedCard);
+            //currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
+            //LoadImage(currentActiveSet.SelectedCard);
         }
 
 
@@ -1234,8 +1260,9 @@ namespace LegendaryCardEditor.Controls
 
                 var cardPath = $"{currentActiveSet.ActiveSetPath}\\artwork";
 
-                var artWorkName = $"img_{Dlg.FileName}.png";
-                currentActiveSet.SelectedCard.ActiveCard.ArtWorkFile = $"{artWorkName.GetHashCode()}.png";
+               
+                string artWorkName = Helper.GenerateID(Dlg.SafeFileName);
+                currentActiveSet.SelectedCard.ActiveCard.ArtWorkFile = $"img_{artWorkName}.png";
                 lblArtworkPath.Text = $"{cardPath}\\{currentActiveSet.SelectedCard.ActiveCard.ArtWorkFile}";
                 artworkImage.SaveImage(lblArtworkPath.Text, System.Drawing.Imaging.ImageFormat.Png);
 
@@ -1257,7 +1284,7 @@ namespace LegendaryCardEditor.Controls
                     txtCardTextBox.Focus();
 
                     currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                    LoadImage(currentActiveSet.SelectedCard);
+                   // LoadImage(currentActiveSet.SelectedCard);
                 }
             }
             catch (Exception ex)
@@ -1288,7 +1315,7 @@ namespace LegendaryCardEditor.Controls
                     txtCardTextBox.Focus();
 
                     currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                    LoadImage(currentActiveSet.SelectedCard);
+                    //LoadImage(currentActiveSet.SelectedCard);
                 }
             }
             catch (Exception ex)
@@ -1311,7 +1338,7 @@ namespace LegendaryCardEditor.Controls
                     txtCardTextBox.Focus();
 
                     currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                    LoadImage(currentActiveSet.SelectedCard);
+                   // LoadImage(currentActiveSet.SelectedCard);
                 }
             }
             catch(Exception ex)
@@ -1323,41 +1350,12 @@ namespace LegendaryCardEditor.Controls
 
         private void cmbPower1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbPower1.SelectedIndex != -1)
-            {
-                var iconName = imageListPowers.Images.Keys[cmbPower1.SelectedIndex];
 
-                Image image = imageListPowersFullSize.Images[cmbPower1.SelectedIndex];
-                powerImage = null;
-
-                powerImage = new KalikoImage(image);
-                currentActiveSet.SelectedCard.ActiveCard.PowerPrimary = iconName.Replace(".png", "").ToUpper();
-                currentActiveSet.SelectedCard.ActiveCard.PowerPrimaryIconId = cmbPower1.SelectedIndex;
-                if (currentActiveSet.SelectedCard.ActiveCard.TemplateId == 1 || currentActiveSet.SelectedCard.ActiveCard.TemplateId == 2)
-                {
-                    currentActiveSet.SelectedCard.ActiveTemplate.FrameImage = $"{currentActiveSet.SelectedCard.ActiveTemplate.TemplateName}_{iconName}";
-                }
-                currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                LoadImage(currentActiveSet.SelectedCard);
-            }
         }
 
         private void cmbPower2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbPower2.SelectedIndex != -1)
-            {
-                var iconName = imageListPowers.Images.Keys[cmbPower2.SelectedIndex];
 
-                Image image = imageListPowersFullSize.Images[cmbPower2.SelectedIndex];
-                powerImage2 = null;
-
-                powerImage2 = new KalikoImage(image);
-                currentActiveSet.SelectedCard.ActiveCard.PowerSecondary = iconName.Replace(".png", "").ToUpper();
-                currentActiveSet.SelectedCard.ActiveCard.PowerSecondaryIconId = cmbPower2.SelectedIndex;
-
-                currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                LoadImage(currentActiveSet.SelectedCard);
-            }
         }
 
         private void cmbTeam_SelectedIndexChanged(object sender, EventArgs e)
@@ -1376,7 +1374,7 @@ namespace LegendaryCardEditor.Controls
                 }
 
                 currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                LoadImage(currentActiveSet.SelectedCard);
+               // LoadImage(currentActiveSet.SelectedCard);
             }
         }
 
@@ -1410,7 +1408,7 @@ namespace LegendaryCardEditor.Controls
                 cmbPower2.Enabled = false;
             }
             currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-            LoadImage(currentActiveSet.SelectedCard);
+            //LoadImage(currentActiveSet.SelectedCard);
         }
 
         private void UpdateDeck()
@@ -1439,18 +1437,53 @@ namespace LegendaryCardEditor.Controls
             
             if (cardModel != null)
             {
-                cardModel.ActiveCard.AttributeAttack = txtCardAttackValue.Text;
-                cardModel.ActiveCard.AttributeCost = txtCardCostValue.Text;
-                cardModel.ActiveCard.AttributePiercing = txtCardPiercingValue.Text;
-                cardModel.ActiveCard.AttributeRecruit = txtCardRecruitValue.Text;
-                cardModel.ActiveCard.AttributeVictoryPoints = txtCardVictoryPointsValue.Text;
+                cardModel.ActiveCard.AttributeAttack = cardModel.ActiveTemplate.FormShowAttributesAttack ? txtCardAttackValue.Text : null;
+                cardModel.ActiveCard.AttributeCost = cardModel.ActiveTemplate.FormShowAttributesCost ? txtCardCostValue.Text : null;
+                cardModel.ActiveCard.AttributePiercing = cardModel.ActiveTemplate.FormShowAttributesPiercing ? txtCardPiercingValue.Text : null;
+                cardModel.ActiveCard.AttributeRecruit = cardModel.ActiveTemplate.FormShowAttributesRecruit ? txtCardRecruitValue.Text : null;
+                cardModel.ActiveCard.AttributeVictoryPoints = cardModel.ActiveTemplate.FormShowVictoryPoints ? txtCardVictoryPointsValue.Text : null;
                 cardModel.ActiveCard.CardDisplayName = txtCardName.Text;
                 cardModel.ActiveCard.CardDisplayNameFont = Convert.ToInt32(numCardTitleSize.Value);
                 cardModel.ActiveCard.CardDisplayNameSub = txtCardSubName.Text;
                 cardModel.ActiveCard.CardDisplayNameSubFont = Convert.ToInt32(numCardSubTitleSize.Value);
                 cardModel.ActiveCard.CardText = txtCardTextBox.Text;
                 cardModel.ActiveCard.CardTextFont = Convert.ToInt32(numCardTextSize.Value);
-                cardModel.ActiveCard.TeamIconId = cmbTeam.SelectedIndex;
+                cardModel.ActiveCard.TeamIconId = cardModel.ActiveTemplate.FormShowTeam ? cmbTeam.SelectedIndex : -1;
+
+                if (cardModel.ActiveTemplate.FormShowPowerPrimary)
+                {
+                    if (cmbPower1.SelectedIndex != -1 && chkPowerVisible.Checked == true)
+                    {
+                        var iconName = imageListPowers.Images.Keys[cmbPower1.SelectedIndex];
+
+                        Image image = imageListPowersFullSize.Images[cmbPower1.SelectedIndex];
+                        powerImage = null;
+
+                        powerImage = new KalikoImage(image);
+                        currentActiveSet.SelectedCard.ActiveCard.PowerPrimary = iconName.Replace(".png", "").ToUpper();
+                        currentActiveSet.SelectedCard.ActiveCard.PowerPrimaryIconId = cmbPower1.SelectedIndex;
+                        if (currentActiveSet.SelectedCard.ActiveCard.TemplateId == 1 || currentActiveSet.SelectedCard.ActiveCard.TemplateId == 2)
+                        {
+                            currentActiveSet.SelectedCard.ActiveTemplate.FrameImage = $"{currentActiveSet.SelectedCard.ActiveTemplate.TemplateName}_{iconName}";
+                        }
+
+                        if (cmbPower2.SelectedIndex != -1 && chkPower2Visible.Checked == true)
+                        {
+                            var iconName2 = imageListPowers.Images.Keys[cmbPower2.SelectedIndex];
+
+                            Image image2 = imageListPowersFullSize.Images[cmbPower2.SelectedIndex];
+                            powerImage2 = null;
+
+                            powerImage2 = new KalikoImage(image2);
+                            currentActiveSet.SelectedCard.ActiveCard.PowerSecondary = iconName2.Replace(".png", "").ToUpper();
+                            currentActiveSet.SelectedCard.ActiveCard.PowerSecondaryIconId = cmbPower2.SelectedIndex;
+                        }
+                    }
+                }
+
+             
+
+
                 return UpdateCardModel(cardModel);
             }
 
@@ -1471,16 +1504,20 @@ namespace LegendaryCardEditor.Controls
 
                 if (cardModel.ActiveCard.TemplateId == 1 || cardModel.ActiveCard.TemplateId == 2)
                 {
-                    cardModel.ActiveTemplate.FrameImage = $"{cardModel.ActiveTemplate.TemplateName}_{cardModel.ActiveCard.PowerPrimary.ToLower()}.png";
-                                       
+                    cardModel.ActiveTemplate.FrameImage = $"{cardModel.ActiveTemplate.TemplateName}_none.png";
 
-                    Image image = imageListPowersFullSize.Images[cardModel.ActiveCard.PowerPrimaryIconId];
-                    powerImage = new KalikoImage(image);
-
-                    if (cardModel.ActiveCard.PowerSecondaryIconId != -1)
+                    if (cardModel.ActiveCard.PowerPrimaryIconId != -1)
                     {
-                        image = imageListPowersFullSize.Images[cardModel.ActiveCard.PowerSecondaryIconId];
-                        powerImage2 = new KalikoImage(image);
+                        Image image = imageListPowersFullSize.Images[cardModel.ActiveCard.PowerPrimaryIconId];
+                        powerImage = new KalikoImage(image);
+
+                        if (cardModel.ActiveCard.PowerSecondaryIconId != -1)
+                        {
+                            image = imageListPowersFullSize.Images[cardModel.ActiveCard.PowerSecondaryIconId];
+                            powerImage2 = new KalikoImage(image);
+                        }
+
+                        cardModel.ActiveTemplate.FrameImage = $"{cardModel.ActiveTemplate.TemplateName}_{cardModel.ActiveCard.PowerPrimary.ToLower()}.png";
                     }
                 }
 
@@ -1504,30 +1541,8 @@ namespace LegendaryCardEditor.Controls
             coreManager.SaveDeck(currentActiveSet.AllDecksInSet, currentActiveSet.ActiveSetDataFile);
         }
 
-
-
-        private void btnResetCard_Click(object sender, EventArgs e)
+        private void ExportCards()
         {
-            overridePolygon = false;
-            PopulateCardEditor(origCardModel);
-        }
-
-      
-
-        private void saveToolStripButton_Click(object sender, EventArgs e)
-        {
-            this.Cursor = Cursors.WaitCursor;
-            //UpdateCard(currentCardId);
-
-            //UpdateDeck();
-            //SaveData();
-            //PopulateDeckTree();
-            this.Cursor = Cursors.Default;
-        }
-
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-
             this.Cursor = Cursors.WaitCursor;
             try
             {
@@ -1561,13 +1576,38 @@ namespace LegendaryCardEditor.Controls
 
                 PopulateDeckTree();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
                 txtErrorConsole.Visible = true;
             }
 
             this.Cursor = Cursors.Default;
+        }
+
+        private void btnResetCard_Click(object sender, EventArgs e)
+        {
+            overridePolygon = false;
+            PopulateCardEditor(origCardModel);
+        }
+
+      
+
+        private void saveToolStripButton_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            //UpdateCard(currentCardId);
+
+            //UpdateDeck();
+            //SaveData();
+            //PopulateDeckTree();
+            this.Cursor = Cursors.Default;
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
+            ExportCards();
         }
 
         private void btnUpdateCard_Click(object sender, EventArgs e)
@@ -1598,7 +1638,7 @@ namespace LegendaryCardEditor.Controls
                 txtCardTextBox.Focus();
                 
                 currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);     
-                LoadImage(currentActiveSet.SelectedCard);
+                //LoadImage(currentActiveSet.SelectedCard);
 
             }
             
@@ -1615,7 +1655,7 @@ namespace LegendaryCardEditor.Controls
                 txtCardTextBox.Focus();
 
                 currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                LoadImage(currentActiveSet.SelectedCard);
+                //LoadImage(currentActiveSet.SelectedCard);
 
 
             }
@@ -1632,7 +1672,7 @@ namespace LegendaryCardEditor.Controls
                 txtCardTextBox.Focus();
 
                 currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                LoadImage(currentActiveSet.SelectedCard);
+                //LoadImage(currentActiveSet.SelectedCard);
 
             }
             this.Cursor = Cursors.Default;
