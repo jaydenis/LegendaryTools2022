@@ -73,26 +73,6 @@ namespace LegendaryCardEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap back_none {
-            get {
-                object obj = ResourceManager.GetObject("back_none", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap back_text {
-            get {
-                object obj = ResourceManager.GetObject("back_text", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap cards {
             get {
                 object obj = ResourceManager.GetObject("cards", resourceCulture);
@@ -186,16 +166,6 @@ namespace LegendaryCardEditor.Properties {
         internal static System.Drawing.Bitmap tech {
             get {
                 object obj = ResourceManager.GetObject("tech", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap transparent_bg {
-            get {
-                object obj = ResourceManager.GetObject("transparent_bg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

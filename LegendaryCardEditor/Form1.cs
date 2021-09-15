@@ -1,4 +1,5 @@
-﻿using LegendaryCardEditor.Controls;
+﻿using ComponentFactory.Krypton.Toolkit;
+using LegendaryCardEditor.Controls;
 using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;
 using LegendaryCardEditor.Utilities;
@@ -31,7 +32,7 @@ namespace LegendaryCardEditor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            try
+                try
             {
                 if (settings.lastProject != string.Empty)
                     LoadCustomSet(settings.lastProject);
@@ -115,6 +116,7 @@ namespace LegendaryCardEditor
                     }
 
                     deckTab.Tag = activeSet.ActiveDeck;
+
                     CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet)
                     {
                         Dock = DockStyle.Fill

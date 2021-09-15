@@ -97,6 +97,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardName = new System.Windows.Forms.TextBox();
             this.imageListTeams = new System.Windows.Forms.ImageList(this.components);
             this.imageListAttributesOther = new System.Windows.Forms.ImageList(this.components);
+            this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -1121,6 +1122,10 @@ namespace LegendaryCardEditor.Controls
             this.imageListAttributesOther.ImageSize = new System.Drawing.Size(16, 16);
             this.imageListAttributesOther.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // kryptonManager1
+            // 
+            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.SparkleBlue;
+            // 
             // CardEditorForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1230,5 +1235,6 @@ namespace LegendaryCardEditor.Controls
         private System.Windows.Forms.Button btnDeckUpdate;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TextBox txtErrorConsole;
+        private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
     }
 }
