@@ -18,7 +18,6 @@ namespace LegendaryCardEditor
     public partial class Form1 : Form
     {
         SystemSettings settings;
-        LegendaryCustomSet customSet;
         CoreManager coreManager = new CoreManager();
         DeckList deckList;
         string dataFile;
@@ -54,50 +53,7 @@ namespace LegendaryCardEditor
             PopulateDeckTree();
         }
 
-        private void PopulateCustomSetTree()
-        {
-            treeView1.Nodes.Clear();
-            tabControlMain.Controls.Clear();
-            TreeNode root = new TreeNode("Custom Sets");
-            root.ImageIndex = 27;
-            foreach (CustomSet item in customSet.CustomSets)
-            {
-                TreeNode setNode = new TreeNode(item.SetDisplayName);
-                setNode.Tag = item;
-                setNode.ImageIndex = 28;
-                setNode.SelectedImageIndex = 29;
-                foreach (var deckType in coreManager.GetDeckTypes())
-                {
-                    TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
-                    deckTypeNode.ImageIndex = 28;
-                    deckTypeNode.SelectedImageIndex = 29;
-                    var dataFile = $"{item.SetWorkPath}\\{item.SetName}.json";
-                    deckList = coreManager.GetDecks(dataFile);
-                    foreach (var deck in deckList.Decks.Where(x => x.DeckTypeId == deckType.DeckTypeId))
-                    {
-                        TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
-                        deckNode.ImageIndex = deck.TeamIconId;
-                        deckNode.SelectedImageIndex = deck.TeamIconId;
-
-                        deckNode.Tag = new CurrentActiveDataModel
-                        {
-                            ActiveDeck = deck,
-                            ActiveSetDataFile = dataFile,
-                            ActiveSetPath = item.SetWorkPath,
-                            AllDecksInSet = deckList
-                        };
-
-                        deckTypeNode.Nodes.Add(deckNode);
-                    }
-                    setNode.Nodes.Add(deckTypeNode);
-                }
-
-                root.Nodes.Add(setNode);
-            }
-            treeView1.Nodes.Add(root);
-            treeView1.ExpandAll();
-        }
-
+       
         private void PopulateDeckTree()
         {
             treeView1.Nodes.Clear();
