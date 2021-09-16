@@ -11,7 +11,7 @@ namespace LegendaryCardEditor.Models
     public partial class LegendaryTemplateModel
     {
         [JsonProperty("TemplateId", Required = Required.Always)]
-        public long TemplateId { get; set; }
+        public int TemplateId { get; set; }
 
         [JsonProperty("TemplateName", Required = Required.Always)]
         public string TemplateName { get; set; }
@@ -72,8 +72,12 @@ namespace LegendaryCardEditor.Models
 
         [JsonProperty("FormShowAttackCost", Required = Required.Always)]
         public bool FormShowAttackCost { get; set; }
+
         [JsonProperty("NumberInDeck", Required = Required.Always)]
         public int NumberInDeck { get; set; }
+
+ [JsonProperty("TemplateType", Required = Required.Always)]
+        public string TemplateType { get; set; }
     }
 
 }

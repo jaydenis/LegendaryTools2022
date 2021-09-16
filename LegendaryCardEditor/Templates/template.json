@@ -21,7 +21,8 @@
 		"FormShowAttributesPiercing": 1,
 		"FormShowVictoryPoints": 0,
 		"FormShowAttackCost": 0,
-		"NumberInDeck": 5
+		"NumberInDeck": 5,
+		"TemplateType": "hero"
 	},
 	{
 		"TemplateId": 2,
@@ -45,7 +46,8 @@
 		"FormShowAttributesPiercing": 1,
 		"FormShowVictoryPoints": 0,
 		"FormShowAttackCost": 0,
-		"NumberInDeck": 3
+		"NumberInDeck": 3,
+		"TemplateType": "hero"
 	},
 	{
 		"TemplateId": 3,
@@ -69,7 +71,8 @@
 		"FormShowAttributesPiercing": 0,
 		"FormShowVictoryPoints": 0,
 		"FormShowAttackCost": 0,
-		"NumberInDeck": 1
+		"NumberInDeck": 1,
+		"TemplateType": "hero"
 	},
 	{
 		"TemplateId": 4,
@@ -93,7 +96,8 @@
 		"FormShowAttributesPiercing": 0,
 		"FormShowVictoryPoints": 1,
 		"FormShowAttackCost": 1,
-		"NumberInDeck": 1
+		"NumberInDeck": 1,
+		"TemplateType": "mastermind"
 	},
 	{
 		"TemplateId": 5,
@@ -117,7 +121,8 @@
 		"FormShowAttributesPiercing": 0,
 		"FormShowVictoryPoints": 1,
 		"FormShowAttackCost": 1,
-		"NumberInDeck": 4
+		"NumberInDeck": 4,
+		"TemplateType": "mastermind"
 	},
 	{
 		"TemplateId": 6,
@@ -141,7 +146,8 @@
 		"FormShowAttributesPiercing": 0,
 		"FormShowVictoryPoints": 1,
 		"FormShowAttackCost": 1,
-		"NumberInDeck": 8
+		"NumberInDeck": 8,
+		"TemplateType": "villain"
 	},
 	{
 		"TemplateId": 7,
@@ -165,7 +171,8 @@
 		"FormShowAttributesPiercing": 0,
 		"FormShowVictoryPoints": 1,
 		"FormShowAttackCost": 1,
-		"NumberInDeck": 10
+		"NumberInDeck": 10,
+		"TemplateType": "villain"
 	},
 	{
 		"TemplateId": 8,
@@ -189,7 +196,8 @@
 		"FormShowAttributesPiercing": 0,
 		"FormShowVictoryPoints": 1,
 		"FormShowAttackCost": 1,
-		"NumberInDeck": 1
+		"NumberInDeck": 1,
+		"TemplateType": "villain"
 	},
 	{
 		"TemplateId": 9,
@@ -213,6 +221,7 @@
 		"FormShowAttributesPiercing": 1,
 		"FormShowVictoryPoints": 0,
 		"FormShowAttackCost": 0,
-		"NumberInDeck": 1
+		"NumberInDeck": 1,
+		"TemplateType": "officer"
 	}
 ]

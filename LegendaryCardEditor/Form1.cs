@@ -163,7 +163,8 @@ namespace LegendaryCardEditor
 
         private void helpToolStripButton_Click(object sender, EventArgs e)
         {
-            //LoadCustomSet(settings.lastProject);
+            LegendaryTemplateEditor templateEditor = new LegendaryTemplateEditor(deckTypeList,templateModelList,legendaryIconList);
+            templateEditor.ShowDialog();
         }
 
         private void treeViewMenuAddCard_Click(object sender, EventArgs e)
