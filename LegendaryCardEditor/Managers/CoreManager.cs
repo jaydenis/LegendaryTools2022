@@ -92,15 +92,15 @@ namespace LegendaryCardEditor.Managers
         //    return result;
         //}
 
-        public List<CardTypeModel> GetCardTypes()
-        {
+        //public List<CardTypeModel> GetCardTypes()
+        //{
 
-            var path = settings.templatesFolder + "\\" + settings.json_cardtypes;
-            string jsonText = File.ReadAllText(path);
-            var dataModel = JsonConvert.DeserializeObject<IList<CardTypeModel>>(jsonText).ToList();
+        //    var path = settings.templatesFolder + "\\" + settings.json_cardtypes;
+        //    string jsonText = File.ReadAllText(path);
+        //    var dataModel = JsonConvert.DeserializeObject<IList<CardTypeModel>>(jsonText).ToList();
 
-            return dataModel;           
-        }
+        //    return dataModel;           
+        //}
 
         public List<LegendaryIconViewModel> LoadIconsFromDirectory()
         {

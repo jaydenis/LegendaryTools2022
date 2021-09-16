@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.0.98.98</AssemblyVersion>
-    <FileVersion>1.0.98.98</FileVersion>
+    <AssemblyVersion>1.0.106.106</AssemblyVersion>
+    <FileVersion>1.0.106.106</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +26,11 @@
     <None Remove="Images\icons\powers\range.png" />
     <None Remove="Images\icons\powers\strength.png" />
     <None Remove="Images\icons\powers\tech.png" />
+    <None Remove="Images\icons\powers_orig\covert.png" />
+    <None Remove="Images\icons\powers_orig\instinct.png" />
+    <None Remove="Images\icons\powers_orig\range.png" />
+    <None Remove="Images\icons\powers_orig\strength.png" />
+    <None Remove="Images\icons\powers_orig\tech.png" />
     <None Remove="Images\icons\teams\avengers.png" />
     <None Remove="Images\icons\teams\a_force.png" />
     <None Remove="Images\icons\teams\brotherhood.png" />
@@ -34,6 +39,7 @@
     <None Remove="Images\icons\teams\Crime_Syndicate.png" />
     <None Remove="Images\icons\teams\fantastic_four.png" />
     <None Remove="Images\icons\teams\Foes_of_Asgard.png" />
+    <None Remove="Images\icons\teams\footclan.png" />
     <None Remove="Images\icons\teams\guardians.png" />
     <None Remove="Images\icons\teams\heroes_for_hire.png" />
     <None Remove="Images\icons\teams\hydra.png" />
@@ -43,6 +49,7 @@
     <None Remove="Images\icons\teams\mercs_4_money.png" />
     <None Remove="Images\icons\teams\Monsters_Unleashed_logo_sm.png" />
     <None Remove="Images\icons\teams\mutants.png" />
+    <None Remove="Images\icons\teams\Quintesson.png" />
     <None Remove="Images\icons\teams\runaways.png" />
     <None Remove="Images\icons\teams\shield.png" />
     <None Remove="Images\icons\teams\sinister6.png" />
@@ -76,8 +83,18 @@
     <None Remove="Templates\cards\mastermind\mastermind_tactic_back_underlay.png" />
     <None Remove="Templates\cards\mastermind\mastermind_token.png" />
     <None Remove="Templates\cards\mastermind\mastermind_transformed.png" />
+    <None Remove="Templates\cards\officer\back_cost.png" />
+    <None Remove="Templates\cards\officer\back_text.png" />
+    <None Remove="Templates\cards\officer\back_underlay.png" />
+    <None Remove="Templates\cards\officer\officer_covert.png" />
+    <None Remove="Templates\cards\officer\officer_instinct.png" />
+    <None Remove="Templates\cards\officer\officer_none.png" />
+    <None Remove="Templates\cards\officer\officer_range.png" />
+    <None Remove="Templates\cards\officer\officer_strength.png" />
+    <None Remove="Templates\cards\officer\officer_tech.png" />
     <None Remove="Templates\cards\sidekick\back_cost.png" />
     <None Remove="Templates\cards\sidekick\back_text.png" />
+    <None Remove="Templates\cards\sidekick\back_underlay.png" />
     <None Remove="Templates\cards\sidekick\sidekick_covert.png" />
     <None Remove="Templates\cards\sidekick\sidekick_instinct.png" />
     <None Remove="Templates\cards\sidekick\sidekick_none.png" />
@@ -86,98 +103,315 @@
     <None Remove="Templates\cards\sidekick\sidekick_tech.png" />
     <None Remove="Templates\cards\villain\henchmen.png" />
     <None Remove="Templates\cards\villain\henchmen_location.png" />
+    <None Remove="Templates\cards\villain\template.json" />
     <None Remove="Templates\cards\villain\villain.png" />
     <None Remove="Templates\cards\villain\villain_location.png" />
     <None Remove="Templates\cards\villain\villain_token.png" />
     <None Remove="Templates\cards\villain\villain_transformed.png" />
     <None Remove="Templates\cards\wound\wound.png" />
+    <None Remove="Templates\decktypes.json" />
+    <None Remove="Templates\icons.json" />
+    <None Remove="Templates\template.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\icons\attributes\attack.png" />
-    <Content Include="Images\icons\attributes\attack_lg.png" />
-    <Content Include="Images\icons\attributes\cards.png" />
-    <Content Include="Images\icons\attributes\cost.png" />
-    <Content Include="Images\icons\attributes\piercing.png" />
-    <Content Include="Images\icons\attributes\piercing_lg.png" />
-    <Content Include="Images\icons\attributes\recruit.png" />
-    <Content Include="Images\icons\attributes\recruit_lg.png" />
-    <Content Include="Images\icons\attributes\victory.png" />
-    <Content Include="Images\icons\misc\focus.png" />
-    <Content Include="Images\icons\misc\token.png" />
-    <Content Include="Images\icons\powers\covert.png" />
-    <Content Include="Images\icons\powers\instinct.png" />
-    <Content Include="Images\icons\powers\range.png" />
-    <Content Include="Images\icons\powers\strength.png" />
-    <Content Include="Images\icons\powers\tech.png" />
-    <Content Include="Images\icons\teams\a_force.png" />
-    <Content Include="Images\icons\teams\avengers.png" />
-    <Content Include="Images\icons\teams\brotherhood.png" />
-    <Content Include="Images\icons\teams\cabal.png" />
-    <Content Include="Images\icons\teams\champions.png" />
-    <Content Include="Images\icons\teams\Crime_Syndicate.png" />
-    <Content Include="Images\icons\teams\fantastic_four.png" />
-    <Content Include="Images\icons\teams\Foes_of_Asgard.png" />
-    <Content Include="Images\icons\teams\guardians.png" />
-    <Content Include="Images\icons\teams\heroes_for_hire.png" />
-    <Content Include="Images\icons\teams\hydra.png" />
-    <Content Include="Images\icons\teams\illuminati.png" />
-    <Content Include="Images\icons\teams\legion_of_monsters.png" />
-    <Content Include="Images\icons\teams\marvel_knights.png" />
-    <Content Include="Images\icons\teams\mercs_4_money.png" />
-    <Content Include="Images\icons\teams\Monsters_Unleashed_logo_sm.png" />
-    <Content Include="Images\icons\teams\mutants.png" />
-    <Content Include="Images\icons\teams\runaways.png" />
-    <Content Include="Images\icons\teams\shield.png" />
-    <Content Include="Images\icons\teams\sinister6.png" />
-    <Content Include="Images\icons\teams\spider_friends.png" />
-    <Content Include="Images\icons\teams\thunderbolts.png" />
-    <Content Include="Images\icons\teams\us_army.png" />
-    <Content Include="Images\icons\teams\x_force.png" />
-    <Content Include="Images\icons\teams\x_men.png" />
-    <Content Include="Templates\cards\bystander\bystander.png" />
-    <Content Include="Templates\cards\bystander\bystander_villain.png" />
-    <Content Include="Templates\cards\bystander\bystander_wound.png" />
-    <Content Include="Templates\cards\hero\back_cost.png" />
-    <Content Include="Templates\cards\hero\back_text.png" />
-    <Content Include="Templates\cards\hero\back_underlay.png" />
-    <Content Include="Templates\cards\hero\hero_common_covert.png" />
-    <Content Include="Templates\cards\hero\hero_common_instinct.png" />
-    <Content Include="Templates\cards\hero\hero_common_none.png" />
-    <Content Include="Templates\cards\hero\hero_common_range.png" />
-    <Content Include="Templates\cards\hero\hero_common_strength.png" />
-    <Content Include="Templates\cards\hero\hero_common_tech.png" />
-    <Content Include="Templates\cards\hero\hero_rare.png" />
-    <Content Include="Templates\cards\hero\hero_uncommon_covert.png" />
-    <Content Include="Templates\cards\hero\hero_uncommon_instinct.png" />
-    <Content Include="Templates\cards\hero\hero_uncommon_none.png" />
-    <Content Include="Templates\cards\hero\hero_uncommon_range.png" />
-    <Content Include="Templates\cards\hero\hero_uncommon_strength.png" />
-    <Content Include="Templates\cards\hero\hero_uncommon_tech.png" />
+    <Content Include="Images\icons\attributes\attack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\attributes\attack_lg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\attributes\cards.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\attributes\cost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\attributes\piercing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\attributes\piercing_lg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\attributes\recruit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\attributes\recruit_lg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\attributes\victory.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\misc\focus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\misc\token.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\powers\covert.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\powers\instinct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\powers\range.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\powers\strength.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\powers\tech.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\powers_orig\covert.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\powers_orig\instinct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\powers_orig\range.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\powers_orig\strength.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\powers_orig\tech.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\a_force.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\avengers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\brotherhood.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\cabal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\champions.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\Crime_Syndicate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\fantastic_four.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\Foes_of_Asgard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\footclan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\guardians.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\heroes_for_hire.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\hydra.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\illuminati.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\legion_of_monsters.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\marvel_knights.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\mercs_4_money.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\Monsters_Unleashed_logo_sm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\mutants.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\Quintesson.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\runaways.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\shield.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\sinister6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\spider_friends.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\thunderbolts.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\us_army.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\x_force.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons\teams\x_men.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\bystander\bystander.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\bystander\bystander_villain.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\bystander\bystander_wound.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\back_cost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\back_text.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\back_underlay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_common_covert.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_common_instinct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_common_none.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_common_range.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_common_strength.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_common_tech.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_rare.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_uncommon_covert.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_uncommon_instinct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_uncommon_none.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_uncommon_range.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_uncommon_strength.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_uncommon_tech.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\cards\mastermind\mastermind_back_text.png" />
     <Content Include="Templates\cards\mastermind\mastermind_back_underlay.png" />
     <Content Include="Templates\cards\mastermind\mastermind_tactic_back_text.png" />
     <Content Include="Templates\cards\mastermind\mastermind_tactic_back_underlay.png" />
     <Content Include="Templates\cards\mastermind\mastermind_token.png" />
     <Content Include="Templates\cards\mastermind\mastermind_transformed.png" />
-    <Content Include="Templates\cards\sidekick\back_cost.png" />
-    <Content Include="Templates\cards\sidekick\back_text.png" />
-    <Content Include="Templates\cards\sidekick\sidekick_covert.png" />
-    <Content Include="Templates\cards\sidekick\sidekick_instinct.png" />
-    <Content Include="Templates\cards\sidekick\sidekick_none.png" />
-    <Content Include="Templates\cards\sidekick\sidekick_range.png" />
-    <Content Include="Templates\cards\sidekick\sidekick_strength.png" />
-    <Content Include="Templates\cards\sidekick\sidekick_tech.png" />
-    <Content Include="Templates\cards\villain\henchmen.png" />
-    <Content Include="Templates\cards\villain\henchmen_location.png" />
-    <Content Include="Templates\cards\villain\villain.png" />
-    <Content Include="Templates\cards\villain\villain_location.png" />
-    <Content Include="Templates\cards\villain\villain_token.png" />
-    <Content Include="Templates\cards\villain\villain_transformed.png" />
-    <Content Include="Templates\cards\wound\wound.png" />
-    <Resource Include="Images\default_blank_card.png">
+    <Content Include="Templates\cards\officer\back_cost.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
+    <Content Include="Templates\cards\officer\back_text.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\officer\back_underlay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\officer\officer_covert.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\officer\officer_instinct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\officer\officer_none.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\officer\officer_range.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\officer\officer_strength.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\officer\officer_tech.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\sidekick\back_cost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\sidekick\back_text.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\sidekick\back_underlay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\sidekick\sidekick_covert.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\sidekick\sidekick_instinct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\sidekick\sidekick_none.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\sidekick\sidekick_range.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\sidekick\sidekick_strength.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\sidekick\sidekick_tech.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\villain\henchmen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\villain\henchmen_location.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\villain\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\villain\villain.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\villain\villain_location.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\villain\villain_token.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\villain\villain_transformed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\wound\wound.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\default_blank_card.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\decktypes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\icons.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -194,6 +428,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Settings1.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings1.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -204,7 +443,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Templates\cards\officer\" />
+    <None Update="Settings1.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

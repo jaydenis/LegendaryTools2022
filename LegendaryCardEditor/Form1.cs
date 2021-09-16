@@ -26,20 +26,37 @@ namespace LegendaryCardEditor
         List<LegendaryIconViewModel> legendaryIconList;
         List<LegendaryTemplateModel> templateModelList;
         List<DeckTypeModel> deckTypeList;
+
+        string applicationDirectory = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
         public Form1()
         {
-            InitializeComponent();            
+            InitializeComponent();
 
-            settings = SystemSettings.Load();
+
+            settings = SystemSettings.Load($"{applicationDirectory}\\settings.json");
+
+            settings.baseFolder = applicationDirectory;
+            settings.imagesFolder = $"{applicationDirectory}\\images";
+            settings.iconsFolder = $"{applicationDirectory}\\images\\icons";
+            settings.templatesFolder = $"{applicationDirectory}\\templates";
+
+
+
             settings.Save();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
-            {                
+            {
+                
+
+
                 if (settings.lastProject != string.Empty)
-                    LoadCustomSet(settings.lastProject);
+                    if (File.Exists(settings.lastProject))
+                        LoadCustomSet(settings.lastProject);
+                    else
+                        OpenFile();
                 else
                     OpenFile();
             }
@@ -51,7 +68,7 @@ namespace LegendaryCardEditor
 
         private void LoadCustomSet(string path)
         {
-            // customSet = coreManager.OpenCustomSets(path);
+            
             dataFile = path;
 
             deckList = coreManager.GetDecks(dataFile);
