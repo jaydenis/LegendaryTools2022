@@ -123,6 +123,16 @@ namespace LegendaryCardEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Legendary_Mat {
+            get {
+                object obj = ResourceManager.GetObject("Legendary_Mat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap piercing {
             get {
                 object obj = ResourceManager.GetObject("piercing", resourceCulture);

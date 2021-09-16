@@ -82,7 +82,6 @@ namespace LegendaryCardEditor
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddDeck = new System.Windows.Forms.Button();
-            this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.menuStrip1.SuspendLayout();
@@ -91,7 +90,6 @@ namespace LegendaryCardEditor
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -481,7 +479,8 @@ namespace LegendaryCardEditor
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.tabControlMain);
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.splitContainer1.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.splitContainer1.Size = new System.Drawing.Size(1350, 671);
             this.splitContainer1.SplitterDistance = 177;
             this.splitContainer1.TabIndex = 0;
@@ -491,11 +490,15 @@ namespace LegendaryCardEditor
             this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.FullRowSelect = true;
+            this.treeView1.HideSelection = false;
             this.treeView1.ImageIndex = 27;
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(0, 100);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 29;
+            this.treeView1.ShowLines = false;
+            this.treeView1.ShowRootLines = false;
             this.treeView1.Size = new System.Drawing.Size(177, 571);
             this.treeView1.StateImageList = this.imageList1;
             this.treeView1.TabIndex = 0;
@@ -548,12 +551,13 @@ namespace LegendaryCardEditor
             this.imageList1.Images.SetKeyName(24, "us_army.png");
             this.imageList1.Images.SetKeyName(25, "x_force.png");
             this.imageList1.Images.SetKeyName(26, "x_men.png");
-            this.imageList1.Images.SetKeyName(27, "Home.ico");
-            this.imageList1.Images.SetKeyName(28, "Folder.ico");
-            this.imageList1.Images.SetKeyName(29, "Folder Open.ico");
+            this.imageList1.Images.SetKeyName(27, "SHIELD.ico");
+            this.imageList1.Images.SetKeyName(28, "Home.ico");
+            this.imageList1.Images.SetKeyName(29, "SystemFolder.ico");
             // 
             // groupBox1
             // 
+            this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.groupBox1.Controls.Add(this.btnAddDeck);
             this.groupBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -562,7 +566,6 @@ namespace LegendaryCardEditor
             this.groupBox1.Size = new System.Drawing.Size(177, 100);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             // 
             // btnAddDeck
             // 
@@ -573,16 +576,6 @@ namespace LegendaryCardEditor
             this.btnAddDeck.Text = "Add Deck";
             this.btnAddDeck.UseVisualStyleBackColor = true;
             this.btnAddDeck.Click += new System.EventHandler(this.btnAddDeck_Click);
-            // 
-            // tabControlMain
-            // 
-            this.tabControlMain.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlMain.Location = new System.Drawing.Point(0, 0);
-            this.tabControlMain.Name = "tabControlMain";
-            this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1169, 671);
-            this.tabControlMain.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -620,7 +613,6 @@ namespace LegendaryCardEditor
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
@@ -680,7 +672,6 @@ namespace LegendaryCardEditor
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem treeViewMenuAddCard;

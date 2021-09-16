@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace LegendaryCardEditor
 {
-    public partial class Form1 : Form
+    public partial class Form1 : KryptonForm
     {
         SystemSettings settings;
         CoreManager coreManager = new CoreManager();
@@ -85,14 +85,14 @@ namespace LegendaryCardEditor
         private void PopulateDeckTree()
         {
             treeView1.Nodes.Clear();
-            tabControlMain.Controls.Clear();
+           splitContainer1.Panel2.Controls.Clear();
             TreeNode root = new TreeNode("Decks");
             root.ImageIndex = 27;
             foreach (var deckType in deckTypeList)
             {
                 TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
-                deckTypeNode.ImageIndex = 28;
-                deckTypeNode.SelectedImageIndex = 29;
+                deckTypeNode.ImageIndex = 27;
+                deckTypeNode.SelectedImageIndex = 27;
                 foreach (var deck in deckList.Decks.Where(x => x.DeckTypeId == deckType.DeckTypeId))
                 {
                     var fi1 = new FileInfo(dataFile);
@@ -126,32 +126,15 @@ namespace LegendaryCardEditor
                 if (e.Node.Tag is CurrentActiveDataModel)
                 {
                     this.Cursor = Cursors.WaitCursor;
-                    tabControlMain.Controls.Clear();
+                    splitContainer1.Panel2.Controls.Clear();
                     var activeSet = (CurrentActiveDataModel)e.Node.Tag;
-
-                    TabPage deckTab = new TabPage(activeSet.ActiveDeck.DeckDisplayName);
-                    deckTab.Tag = activeSet.ActiveDeck;
-                    foreach (TabPage tp in tabControlMain.TabPages)
-                    {
-                        if (tp.Tag != null && tp.Tag.Equals(deckTab.Tag))
-                        {
-                            tabControlMain.SelectedTab = tp;
-                            tp.Focus();
-                            this.Cursor = Cursors.Default;
-                            return;
-                        }
-                    }
-
-                    deckTab.Tag = activeSet.ActiveDeck;
-
                     CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet, legendaryIconList,deckTypeList,templateModelList)
                     {
                         Dock = DockStyle.Fill
                     };
-                    deckTab.Controls.Add(cardEditorForm);
+                    splitContainer1.Panel2.Controls.Add(cardEditorForm);
 
-                    tabControlMain.Controls.Add(deckTab);
-                    tabControlMain.SelectedTab = deckTab;
+                   
                     this.Cursor = Cursors.Default;
                 }
             }
