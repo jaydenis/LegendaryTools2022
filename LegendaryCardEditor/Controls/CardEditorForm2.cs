@@ -50,7 +50,7 @@ namespace LegendaryCardEditor.Controls
 
         ImageTools imageTools;
 
-        bool iconsListLoaded = false;
+        bool isDirty = false;
 
         public CardEditorForm2(CurrentActiveDataModel activeDataModel, List<LegendaryIconViewModel> legendaryIconList, List<DeckTypeModel> deckTypeList, List<LegendaryTemplateModel> templateModelList)
         {
@@ -65,9 +65,6 @@ namespace LegendaryCardEditor.Controls
             if (!directory.Exists)
                 directory.Create();
 
-            //directory = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\cards");
-            //if (!directory.Exists)
-            //    directory.Create();
 
             directory = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}");
             if (!directory.Exists)
@@ -96,12 +93,10 @@ namespace LegendaryCardEditor.Controls
                 i++;
             }
 
-            i = 0;
             foreach (var icon in legendaryIconList.Where(x => x.Category == "ATTRIBUTES").OrderBy(o => o.Name))
             {
                 Image image = Image.FromFile(icon.FileName);
-                cmbAttributesOther.ImageList.Images.Add(icon.Name.ToString(), image);
-                i++;
+                cmbAttributesOther.ImageList.Images.Add(icon.Name.ToString(), image);               
             }
 
         }
@@ -110,12 +105,12 @@ namespace LegendaryCardEditor.Controls
         {
             txtErrorConsole.Visible = false;
             panelCardEditor.Enabled = false;
+            btnDeckUpdate.Enabled = false;
+            btnUpdateCard.Enabled = false;
 
 
-              currentDeckType = deckTypeList.Where(x => x.DeckTypeId == currentActiveSet.ActiveDeck.DeckTypeId).FirstOrDefault();
+            currentDeckType = deckTypeList.Where(x => x.DeckTypeId == currentActiveSet.ActiveDeck.DeckTypeId).FirstOrDefault();
             var templatePath = $"{settings.templatesFolder}\\cards\\{currentDeckType.DeckTypeName}";
-
-
 
 
             settings.Save();
@@ -138,9 +133,8 @@ namespace LegendaryCardEditor.Controls
             imageTools = new ImageTools(currentActiveSet.ActiveSetPath, templatePath, legendaryIconList);
 
             PopulateDeckTree();
-
+            isDirty = false;
         }
-
 
         private void PopulateCardEditor(CardModel model)
         {
@@ -339,26 +333,32 @@ namespace LegendaryCardEditor.Controls
 
         private void SelectBox(PictureBox pb)
         {
+            this.Cursor = Cursors.WaitCursor;
+
+            if (isDirty)
+                UpdateSelectedCard(currentActiveSet.SelectedCard);
+
             if (activePictureBox != pb)
-            {
-                activePictureBox = pb;
+            {               
+                activePictureBox = pb;                
 
-                this.Cursor = Cursors.WaitCursor;
                 panelCardEditor.Enabled = true;
-                string id = (string)activePictureBox.Tag;
 
+                string id = (string)activePictureBox.Tag;
                 
                 txtCardSubName.Text = txtDeckName.Text;
-                PopulateCardEditor(currentActiveSet.AllCardsInDeck.Where(x=>x.Id == id).FirstOrDefault());
 
-                this.Cursor = Cursors.Default;
+                PopulateCardEditor(currentActiveSet.AllCardsInDeck.Where(x=>x.Id == id).FirstOrDefault());                
             }
+
+            isDirty = false;
+            btnUpdateCard.Enabled = isDirty;
 
             // Cause each box to repaint
             foreach (var box in cardList) box.Invalidate();
+            
+            this.Cursor = Cursors.Default;
         }
-
-
 
         #endregion
 
@@ -378,24 +378,22 @@ namespace LegendaryCardEditor.Controls
             this.Cursor = Cursors.Default;
         }
 
-
-
         private void cardFontSize_Changed(object sender, EventArgs e)
         {
-           // LoadImage(currentActiveSet.SelectedCard);
+            isDirty = true;
+            btnUpdateCard.Enabled = isDirty;
         }
 
         private void txtCardName_TextChanged(object sender, EventArgs e)
         {
-            //LoadImage(currentActiveSet.SelectedCard);
+            isDirty = true;
+            btnUpdateCard.Enabled = isDirty;
         }
 
         private void txtCardName_KeyUp(object sender, KeyEventArgs e)
         {
-            //currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-            //LoadImage(currentActiveSet.SelectedCard);
+            isDirty = true;
         }
-
 
         private void pictureBoxTemplate_DoubleClick(object sender, EventArgs e)
         {
@@ -436,14 +434,15 @@ namespace LegendaryCardEditor.Controls
             {
                 if (cmbAttributesTeams.SelectedIndex != -1)
                 {
-                    var iconName = imageListTeams.Images.Keys[cmbAttributesTeams.SelectedIndex];
+                    var iconName = imageListAttributesTeams.Images.Keys[cmbAttributesTeams.SelectedIndex];
                     iconName = $"<{iconName.ToUpper()}>";
                     Clipboard.SetText(iconName);
                     txtCardTextBox.Paste();
                     txtCardTextBox.Focus();
 
                     currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                   // LoadImage(currentActiveSet.SelectedCard);
+                    isDirty = true;
+                    btnUpdateCard.Enabled = isDirty;
                 }
             }
             catch (Exception ex)
@@ -469,7 +468,8 @@ namespace LegendaryCardEditor.Controls
                     txtCardTextBox.Focus();
 
                     currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                    //LoadImage(currentActiveSet.SelectedCard);
+                    isDirty = true;
+                    btnUpdateCard.Enabled = isDirty;
                 }
             }
             catch (Exception ex)
@@ -485,14 +485,15 @@ namespace LegendaryCardEditor.Controls
             {
                 if (cmbAttributesPower.SelectedIndex != -1)
                 {
-                    var iconName = imageListPowers.Images.Keys[cmbAttributesPower.SelectedIndex];
+                    var iconName = imageListAttributesPowers.Images.Keys[cmbAttributesPower.SelectedIndex];
                     iconName = $"<{iconName.ToUpper()}>";
                     Clipboard.SetText(iconName);
                     txtCardTextBox.Paste();
                     txtCardTextBox.Focus();
 
                     currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                   // LoadImage(currentActiveSet.SelectedCard);
+                    isDirty = true;
+                    btnUpdateCard.Enabled = isDirty;
                 }
             }
             catch(Exception ex)
@@ -506,11 +507,8 @@ namespace LegendaryCardEditor.Controls
         {
             try
             {
-                //if (cmbPower1.SelectedIndex != -1)
-                //{
-                //    currentActiveSet.SelectedCard.ActiveCard.PowerPrimaryIconId = Convert.ToInt32(imageListPowers.Images.Keys[cmbPower1.SelectedIndex]);
-                //    currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);                    
-                //}
+                isDirty = true;
+                btnUpdateCard.Enabled = isDirty;
             }
             catch (Exception ex)
             {
@@ -523,11 +521,8 @@ namespace LegendaryCardEditor.Controls
         {
             try
             {
-                //if (cmbPower2.SelectedIndex != -1)
-                //{
-                //    currentActiveSet.SelectedCard.ActiveCard.PowerSecondaryIconId = Convert.ToInt32(imageListPowers.Images.Keys[cmbPower2.SelectedIndex]);
-                //    currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                //}
+                isDirty = true;
+                btnUpdateCard.Enabled = isDirty;
             }
             catch (Exception ex)
             {
@@ -537,19 +532,13 @@ namespace LegendaryCardEditor.Controls
         }
 
         private void cmbTeam_SelectedIndexChanged(object sender, EventArgs e)
-        {  txtErrorConsole.Visible = true;
+        {  
             try
             {
-                //if (cmbTeam.SelectedIndex != -1 && currentActiveSet.SelectedCard != null)
-                //{
-                //    //var icon =legendaryIconList.Where(x => x.IconId == cmbTeam.SelectedIndex && x.Category == "TEAMS").FirstOrDefault();
-                //    txtErrorConsole.Text += $"TeamIconId: {currentActiveSet.SelectedCard.ActiveCard.TeamIconId} {System.Environment.NewLine}";
-                //    txtErrorConsole.Text += $"cmbTeam.ImageList.Images.IndexOfKey: {cmbTeam.ImageList.Images.IndexOfKey(cmbTeam.SelectedIndex.ToString())}{System.Environment.NewLine}";
-                //    txtErrorConsole.Text += $"cmbTeam.SelectedIndex: {cmbTeam.SelectedIndex.ToString()}{System.Environment.NewLine}";
-                //    currentActiveSet.SelectedCard.ActiveCard.TeamIconId = cmbTeam.SelectedIndex;
-                //    currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                //    txtErrorConsole.Text += $"TeamIconId: {currentActiveSet.SelectedCard.ActiveCard.TeamIconId} {System.Environment.NewLine}";
-                //}
+                if (currentActiveSet.ActiveDeck.TeamIconId != cmbDeckTeam.SelectedIndex)
+                    btnDeckUpdate.Enabled = true;
+                else
+                    btnDeckUpdate.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -568,17 +557,7 @@ namespace LegendaryCardEditor.Controls
             if (chkPower2Visible.Checked)
             {
                 cmbPower2.Enabled = true;
-                //if (cmbPower2.SelectedIndex != -1)
-                //{
-                //    var iconName = imageListPowers.Images.Keys[cmbPower2.SelectedIndex];
-
-                //    Image image = imageListPowers.Images[cmbPower2.SelectedIndex];
-                //    imageTools.powerImage2 = null;
-
-                //    imageTools.powerImage2 = new KalikoImage(image);
-                //    currentActiveSet.SelectedCard.ActiveCard.PowerSecondary = iconName.Replace(".png", "").ToUpper();
-                //    currentActiveSet.SelectedCard.ActiveCard.PowerSecondaryIconId = cmbPower2.SelectedIndex;
-                //}
+               
             }
             else
             {
@@ -587,8 +566,8 @@ namespace LegendaryCardEditor.Controls
                 currentActiveSet.SelectedCard.ActiveCard.PowerSecondaryIconId = -1;
                 cmbPower2.Enabled = false;
             }
-            //currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-            //LoadImage(currentActiveSet.SelectedCard);
+
+            isDirty = true;
         }
 
         private void UpdateDeck()
@@ -759,9 +738,7 @@ namespace LegendaryCardEditor.Controls
         {
             //overridePolygon = false;
             //PopulateCardEditor(origCardModel);
-        }
-
-      
+        }      
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
@@ -807,9 +784,9 @@ namespace LegendaryCardEditor.Controls
                 txtCardTextBox.Paste();
                 txtCardTextBox.Focus();
                 
-                currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);     
-                //LoadImage(currentActiveSet.SelectedCard);
-
+              //  currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
+                isDirty = true;
+                btnUpdateCard.Enabled = isDirty;
             }
             
             this.Cursor = Cursors.Default;
@@ -824,8 +801,9 @@ namespace LegendaryCardEditor.Controls
                 txtCardTextBox.Paste();
                 txtCardTextBox.Focus();
 
-                currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                //LoadImage(currentActiveSet.SelectedCard);
+                //currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
+                isDirty = true;
+                btnUpdateCard.Enabled = isDirty;
 
 
             }
@@ -841,15 +819,13 @@ namespace LegendaryCardEditor.Controls
                 txtCardTextBox.Paste();
                 txtCardTextBox.Focus();
 
-                currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
-                //LoadImage(currentActiveSet.SelectedCard);
+                //currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
+                isDirty = true;
+                btnUpdateCard.Enabled = isDirty;
 
             }
             this.Cursor = Cursors.Default;
         }
-
-
-
 
         private void btnChangePolygon_Click(object sender, EventArgs e)
         {
@@ -923,6 +899,42 @@ namespace LegendaryCardEditor.Controls
             };
 
             return tempCard;
+        }
+
+        private void txtDeckName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (currentActiveSet.ActiveDeck.DeckDisplayName != txtDeckName.Text)
+                    btnDeckUpdate.Enabled = true;
+                else
+                    btnDeckUpdate.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                txtErrorConsole.Text = ex.ToString();
+                txtErrorConsole.Visible = true;
+            }
+        }
+
+        private void txtCardTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                if (currentActiveSet.SelectedCard.ActiveCard.CardText != txtCardTextBox.Text)
+                {                   
+                    isDirty = true;
+                    btnUpdateCard.Enabled = isDirty;
+
+                }
+                this.Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                txtErrorConsole.Text = ex.ToString();
+                txtErrorConsole.Visible = true;
+            }
         }
     }
     

@@ -207,6 +207,7 @@ namespace LegendaryCardEditor.Controls
             this.txtDeckName.Name = "txtDeckName";
             this.txtDeckName.Size = new System.Drawing.Size(230, 23);
             this.txtDeckName.TabIndex = 74;
+            this.txtDeckName.Leave += new System.EventHandler(this.txtDeckName_Leave);
             // 
             // label5
             // 
@@ -645,7 +646,6 @@ namespace LegendaryCardEditor.Controls
             0,
             0,
             0});
-            this.numCardTextSize.ValueChanged += new System.EventHandler(this.cardFontSize_Changed);
             // 
             // label3
             // 
@@ -677,6 +677,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardTextBox.Size = new System.Drawing.Size(543, 152);
             this.txtCardTextBox.TabIndex = 79;
             this.txtCardTextBox.Text = "Card Rules <CARDS>";
+            this.txtCardTextBox.TextChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
             // 
             // cmbAttributesTeams
             // 
