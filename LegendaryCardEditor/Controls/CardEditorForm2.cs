@@ -104,7 +104,7 @@ namespace LegendaryCardEditor.Controls
         private void CardEditorForm_Load(object sender, EventArgs e)
         {
             txtErrorConsole.Visible = false;
-            panelCardEditor.Enabled = false;
+            panelImagePreview.Enabled = false;
             btnDeckUpdate.Enabled = false;
             btnUpdateCard.Enabled = false;
 
@@ -288,7 +288,7 @@ namespace LegendaryCardEditor.Controls
                     Tag = card.Id,
                     Image = cardImage.GetAsBitmap(),
                     ImageLocation = Convert.ToString(curFile),
-                    Size = new Size(103, 141),
+                    Size = new Size(165, 225),
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     
                 };
@@ -340,9 +340,9 @@ namespace LegendaryCardEditor.Controls
 
             if (activePictureBox != pb)
             {               
-                activePictureBox = pb;                
+                activePictureBox = pb;
 
-                panelCardEditor.Enabled = true;
+                panelImagePreview.Enabled = true;
 
                 string id = (string)activePictureBox.Tag;
                 
@@ -393,6 +393,7 @@ namespace LegendaryCardEditor.Controls
         private void txtCardName_KeyUp(object sender, KeyEventArgs e)
         {
             isDirty = true;
+            btnUpdateCard.Enabled = isDirty;
         }
 
         private void pictureBoxTemplate_DoubleClick(object sender, EventArgs e)
@@ -424,6 +425,8 @@ namespace LegendaryCardEditor.Controls
                 imageTools.artworkImage.SaveImage(lblArtworkPath.Text, System.Drawing.Imaging.ImageFormat.Png);
 
                 LoadImage(currentActiveSet.SelectedCard);
+                isDirty = true;
+                btnUpdateCard.Enabled = isDirty;
             }
         }
 
@@ -697,20 +700,32 @@ namespace LegendaryCardEditor.Controls
             {
                 currentActiveSet.ActiveDeck.DeckName = Helper.CleanString(txtDeckName.Text.ToLower());
                 currentActiveSet.ActiveDeck.TeamIconId = cmbDeckTeam.SelectedIndex;
-                DirectoryInfo di = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}");
 
-                foreach (FileInfo file in di.EnumerateFiles())
-                {
-                    file.Delete();
-                }
+                //DirectoryInfo di = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}");
+
+                //foreach (FileInfo file in di.EnumerateFiles())
+                //{
+                //    file.Delete();
+                //}
 
                 foreach (var cardModel in currentActiveSet.AllCardsInDeck)
                 {
+                    string exportsCardsPath = $"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}";
+
+                    if (cardModel.ActiveTemplate.TemplateType == "wound" || cardModel.ActiveTemplate.TemplateType == "bystander")
+                    {
+                        exportsCardsPath = $"{currentActiveSet.ActiveSetPath}\\cards\\{cardModel.ActiveTemplate.TemplateType}";
+                        DirectoryInfo directory = new DirectoryInfo(exportsCardsPath);
+                        if (!directory.Exists)
+                            directory.Create();
+                    }
+
+
                     var updatedCardModel = UpdateCardModel(cardModel);
                     KalikoImage exportImage = imageTools.RenderCardImage(updatedCardModel);
                     if (exportImage != null)
                     {
-                        var imagePath = $"{currentActiveSet.ActiveSetPath}\\cards\\{currentActiveSet.ActiveDeck.DeckName}\\{updatedCardModel.ActiveCard.ExportedCardFile}";
+                        var imagePath = $"{exportsCardsPath}\\{updatedCardModel.ActiveCard.ExportedCardFile}";
                         exportImage.SaveImage(imagePath, System.Drawing.Imaging.ImageFormat.Png);
                     }
 
@@ -860,8 +875,7 @@ namespace LegendaryCardEditor.Controls
 
         private void btnAddCard_Click(object sender, EventArgs e)
         {
-            if(currentActiveSet.SelectedCard.ActiveTemplate.TemplateId == 6)
-            {
+            
                Card newCard =  GetNewCard(currentDeckType, currentActiveSet.ActiveDeck, currentActiveSet.SelectedCard.ActiveTemplate.TemplateId, $"New {currentDeckType.DeckTypeName}", currentActiveSet.AllCardsInDeck.Count() + 1, 1);
 
                 currentActiveSet.ActiveDeck.Cards.Add(newCard);
@@ -874,7 +888,7 @@ namespace LegendaryCardEditor.Controls
                 });
                 PopulateDeckTree();
 
-            }
+            
         }
 
         private Card GetNewCard(DeckTypeModel deckType, Deck deck, int templateId, string cardName, int id = 1, int numberInDeck = 1)

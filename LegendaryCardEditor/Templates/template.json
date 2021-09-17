@@ -273,5 +273,30 @@
 		"FormShowAttackCost": 0,
 		"NumberInDeck": 1,
 		"TemplateType": "sidekick"
+	},
+	{
+		"TemplateId": 12,
+		"TemplateName": "bystander",
+		"TemplateDisplayName": "Bystander",
+		"RectXArray": "92,440,350,192",
+		"RectYArray": "552,552,670,670",
+		"CardWidth": 750,
+		"CardHeight": 1050,
+		"FrameImage": "bystander.png",
+		"CostImage": "bystander.png",
+		"TextImage": "bystander.png",
+		"UnderlayImage": "bystander.png",
+		"FormShowTeam": 0,
+		"FormShowPowerPrimary": 0,
+		"FormShowPowerSecondary": 0,
+		"FormShowAttributes": 0,
+		"FormShowAttributesCost": 0,
+		"FormShowAttributesRecruit": 0,
+		"FormShowAttributesAttack": 0,
+		"FormShowAttributesPiercing": 0,
+		"FormShowVictoryPoints": 0,
+		"FormShowAttackCost": 0,
+		"NumberInDeck": 1,
+		"TemplateType": "bystander"
 	}
 ]

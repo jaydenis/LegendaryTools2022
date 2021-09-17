@@ -29,7 +29,6 @@ namespace LegendaryCardEditor.ImageEditor
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageSlicer));
             this.zoomImageUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,20 +49,26 @@ namespace LegendaryCardEditor.ImageEditor
             // 
             // zoomImageUpDown1
             // 
-            this.zoomImageUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zoomImageUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.zoomImageUpDown1.Increment = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.zoomImageUpDown1.Location = new System.Drawing.Point(90, 531);
+            this.zoomImageUpDown1.Location = new System.Drawing.Point(105, 613);
+            this.zoomImageUpDown1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.zoomImageUpDown1.Maximum = new decimal(new int[] {
+            175,
+            0,
+            0,
+            0});
             this.zoomImageUpDown1.Minimum = new decimal(new int[] {
-            5,
+            25,
             0,
             0,
             0});
             this.zoomImageUpDown1.Name = "zoomImageUpDown1";
-            this.zoomImageUpDown1.Size = new System.Drawing.Size(51, 26);
+            this.zoomImageUpDown1.Size = new System.Drawing.Size(59, 26);
             this.zoomImageUpDown1.TabIndex = 10;
             this.zoomImageUpDown1.Value = new decimal(new int[] {
             100,
@@ -75,8 +80,9 @@ namespace LegendaryCardEditor.ImageEditor
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(147, 534);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(172, 616);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(24, 20);
             this.label6.TabIndex = 1;
@@ -85,8 +91,9 @@ namespace LegendaryCardEditor.ImageEditor
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(23, 534);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(27, 616);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 20);
             this.label5.TabIndex = 1;
@@ -95,9 +102,10 @@ namespace LegendaryCardEditor.ImageEditor
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(289, 578);
+            this.btnCancel.Location = new System.Drawing.Point(337, 667);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(88, 27);
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -107,18 +115,20 @@ namespace LegendaryCardEditor.ImageEditor
             // 
             this.pictureBoxResult.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pictureBoxResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxResult.Location = new System.Drawing.Point(21, 10);
+            this.pictureBoxResult.Location = new System.Drawing.Point(24, 12);
+            this.pictureBoxResult.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxResult.Name = "pictureBoxResult";
-            this.pictureBoxResult.Size = new System.Drawing.Size(343, 515);
+            this.pictureBoxResult.Size = new System.Drawing.Size(404, 551);
             this.pictureBoxResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxResult.TabIndex = 1;
             this.pictureBoxResult.TabStop = false;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(289, 531);
+            this.btnOk.Location = new System.Drawing.Point(337, 613);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.Size = new System.Drawing.Size(88, 27);
             this.btnOk.TabIndex = 5;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -126,8 +136,10 @@ namespace LegendaryCardEditor.ImageEditor
             // 
             // splitContainer1
             // 
+            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.VSplit;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -145,16 +157,18 @@ namespace LegendaryCardEditor.ImageEditor
             this.splitContainer1.Panel2.Controls.Add(this.btnOk);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.btnCancel);
-            this.splitContainer1.Size = new System.Drawing.Size(1342, 852);
-            this.splitContainer1.SplitterDistance = 925;
+            this.splitContainer1.Size = new System.Drawing.Size(1173, 983);
+            this.splitContainer1.SplitterDistance = 623;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 10;
             // 
             // pictureBoxOrig
             // 
             this.pictureBoxOrig.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.pictureBoxOrig.Location = new System.Drawing.Point(128, 40);
+            this.pictureBoxOrig.Location = new System.Drawing.Point(13, 12);
+            this.pictureBoxOrig.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxOrig.Name = "pictureBoxOrig";
-            this.pictureBoxOrig.Size = new System.Drawing.Size(600, 800);
+            this.pictureBoxOrig.Size = new System.Drawing.Size(600, 818);
             this.pictureBoxOrig.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxOrig.TabIndex = 0;
             this.pictureBoxOrig.TabStop = false;
@@ -165,23 +179,24 @@ namespace LegendaryCardEditor.ImageEditor
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(298, 3);
+            this.label8.Location = new System.Drawing.Point(348, 3);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(37, 13);
+            this.label8.Size = new System.Drawing.Size(39, 15);
             this.label8.TabIndex = 9;
             this.label8.Text = "Result";
             // 
             // ImageSlicer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1342, 852);
+            this.ClientSize = new System.Drawing.Size(1173, 983);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.label8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ImageSlicer";

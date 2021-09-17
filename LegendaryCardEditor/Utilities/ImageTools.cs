@@ -343,40 +343,41 @@ namespace LegendaryCardEditor.Utilities
 
                 string tempSubName = model.ActiveTemplate.TemplateDisplayName.ToUpper();
 
-                if (model.ActiveCard.TemplateId == 1 || model.ActiveCard.TemplateId == 2 || model.ActiveCard.TemplateId == 3)
-                {
+                if (model.ActiveTemplate.TemplateType == "hero")
                     tempSubName = model.ActiveCard.CardDisplayNameSub.ToUpper();
+
+                if (model.ActiveTemplate.TemplateType == "sidekick")
+                    tempSubName = model.ActiveTemplate.TemplateDisplayName.ToUpper();
+
+                if (model.ActiveTemplate.TemplateType == "mastermind")
+                {
+                    if (model.ActiveTemplate.TemplateName == "mastermind")
+                        tempSubName = "Mastermind";
+
+                    if (model.ActiveTemplate.TemplateName == "mastermind_tactic")
+                        tempSubName = "Mastermind Tactic - " + model.ActiveCard.CardDisplayNameSub.ToUpper();
                 }
 
-                if (model.ActiveCard.TemplateId == 4)
-                {
-                    tempSubName = "Mastermind";
-                }
-
-                if (model.ActiveCard.TemplateId == 5)
-                {
-                    tempSubName = "Mastermind Tactic - " + model.ActiveCard.CardDisplayNameSub.ToUpper();
-                }
-
-                if (model.ActiveCard.TemplateId == 6 || model.ActiveCard.TemplateId == 7)
-                {
+                if (model.ActiveTemplate.TemplateType == "villain")
                     tempSubName = model.ActiveTemplate.TemplateDisplayName.ToUpper() + " - " + model.ActiveCard.CardDisplayNameSub.ToUpper();
-                }
 
 
                 TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
                     {
                         Font = fontSubTitle,
                         TargetArea = new Rectangle(30, fontTitle.Height + 15, 430, 60),
-                        Alignment = StringAlignment.Near,
+                        Alignment = StringAlignment.Center,
                         TextColor = Color.Gold,
                         Outline = 2,
                         OutlineColor = Color.Black
                     };
-                if (model.ActiveTemplate.TemplateType == "wound")
+
+                if (model.ActiveTemplate.TemplateType == "wound" || model.ActiveTemplate.TemplateType == "bystander")
                 {
+                    txtFieldSubTitle.Text = model.ActiveTemplate.TemplateDisplayName.ToUpper();
                     txtFieldSubTitle.TargetArea = new Rectangle(38, 512, 430, 50);
                     txtFieldSubTitle.TextColor = Color.White;
+                    txtFieldSubTitle.Alignment = StringAlignment.Near;
                    
                 }
                 else

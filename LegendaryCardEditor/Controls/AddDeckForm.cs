@@ -24,11 +24,17 @@ namespace LegendaryCardEditor.Controls
         string dataFilePath;
         int selectedTeamId = 0;
         int selectedDeckTypeId = 0;
+        List<int> deckIdList = new List<int>();
         public AddDeckForm(string path)
         {
             InitializeComponent();
             dataFilePath = path;
             deckList = coreManager.GetDecks(dataFilePath);
+
+            foreach(var item in deckList.Decks.OrderBy(o=>o.DeckId))
+            {
+                deckIdList.Add(item.DeckId);
+            }
 
             settings = SystemSettings.Load();
             settings.Save();
@@ -73,9 +79,11 @@ namespace LegendaryCardEditor.Controls
         private void btnCreateDeck_Click(object sender, EventArgs e)
         {
             var cardsList = new List<Card>();
+
+            int newid = deckIdList.Last()+1;
             var newDeck = new Deck
             {
-                DeckId = deckList.Decks.Count() + 1,
+                DeckId = newid,
                 DeckName = Helper.CleanString(txtNewDeckName.Text).ToLower(),
                 DeckDisplayName = txtNewDeckName.Text,
                 DeckTypeId = selectedDeckTypeId,
@@ -97,7 +105,7 @@ namespace LegendaryCardEditor.Controls
                     templateId = 11;
 
                 if (deckType.DeckTypeId == 6)
-                    templateId = 7;
+                    templateId = 12;
 
                 if (deckType.DeckTypeId == 7)
                     templateId = 10;
