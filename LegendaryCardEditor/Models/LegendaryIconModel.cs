@@ -10,6 +10,8 @@ namespace LegendaryCardEditor.Models
 {
     public partial class LegendaryIconViewModel
     {
+        [JsonProperty("iconid")]
+        public int IconId { get; set; }
         [JsonProperty("category")]
         public string Category { get; set; }
 

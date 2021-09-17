@@ -30,17 +30,17 @@ namespace LegendaryCardEditor.Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CardEditorForm2));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAddCard = new System.Windows.Forms.Button();
             this.cmbDeckTeam = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
-            this.imageListTeamsFull = new System.Windows.Forms.ImageList(this.components);
+            this.imageListTeams = new System.Windows.Forms.ImageList(this.components);
             this.txtDeckName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnDeckUpdate = new System.Windows.Forms.Button();
             this.panelImagePreview = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbPoloygon = new System.Windows.Forms.GroupBox();
             this.btnChangePolygon = new System.Windows.Forms.Button();
             this.numY4 = new System.Windows.Forms.NumericUpDown();
             this.numX4 = new System.Windows.Forms.NumericUpDown();
@@ -64,14 +64,15 @@ namespace LegendaryCardEditor.Controls
             this.cmbAttributesOther = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
             this.imageListAttributes = new System.Windows.Forms.ImageList(this.components);
             this.cmbAttributesPower = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
-            this.imageListPowers = new System.Windows.Forms.ImageList(this.components);
+            this.imageListAttributesPowers = new System.Windows.Forms.ImageList(this.components);
             this.numCardTextSize = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCardTextBox = new System.Windows.Forms.TextBox();
             this.cmbAttributesTeams = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
+            this.imageListAttributesTeams = new System.Windows.Forms.ImageList(this.components);
             this.groupBoxPower2 = new System.Windows.Forms.GroupBox();
             this.cmbPower2 = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
-            this.imageListPowersFullSize = new System.Windows.Forms.ImageList(this.components);
+            this.imageListPowers = new System.Windows.Forms.ImageList(this.components);
             this.chkPower2Visible = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtCardPiercingValue = new System.Windows.Forms.TextBox();
@@ -95,8 +96,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardSubName = new System.Windows.Forms.TextBox();
             this.numCardTitleSize = new System.Windows.Forms.NumericUpDown();
             this.txtCardName = new System.Windows.Forms.TextBox();
-            this.imageListTeams = new System.Windows.Forms.ImageList(this.components);
-            this.imageListAttributesOther = new System.Windows.Forms.ImageList(this.components);
+            this.ctxMenuTeams = new ComponentFactory.Krypton.Toolkit.KryptonContextMenu();
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -104,7 +104,7 @@ namespace LegendaryCardEditor.Controls
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelImagePreview.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbPoloygon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numY4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numX4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numY3)).BeginInit();
@@ -157,6 +157,8 @@ namespace LegendaryCardEditor.Controls
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Controls.Add(this.btnAddCard);
             this.panel1.Controls.Add(this.cmbDeckTeam);
             this.panel1.Controls.Add(this.txtDeckName);
             this.panel1.Controls.Add(this.label5);
@@ -168,50 +170,34 @@ namespace LegendaryCardEditor.Controls
             this.panel1.Size = new System.Drawing.Size(259, 215);
             this.panel1.TabIndex = 0;
             // 
+            // btnAddCard
+            // 
+            this.btnAddCard.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddCard.Location = new System.Drawing.Point(11, 169);
+            this.btnAddCard.Name = "btnAddCard";
+            this.btnAddCard.Size = new System.Drawing.Size(75, 23);
+            this.btnAddCard.TabIndex = 77;
+            this.btnAddCard.Text = "Add Card";
+            this.btnAddCard.UseVisualStyleBackColor = false;
+            this.btnAddCard.Click += new System.EventHandler(this.btnAddCard_Click);
+            // 
             // cmbDeckTeam
             // 
-            this.cmbDeckTeam.ImageList = this.imageListTeamsFull;
+            this.cmbDeckTeam.ImageList = this.imageListTeams;
             this.cmbDeckTeam.Location = new System.Drawing.Point(11, 62);
             this.cmbDeckTeam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDeckTeam.Name = "cmbDeckTeam";
             this.cmbDeckTeam.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDeckTeam.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
-            this.cmbDeckTeam.Size = new System.Drawing.Size(230, 104);
+            this.cmbDeckTeam.Size = new System.Drawing.Size(230, 57);
             this.cmbDeckTeam.TabIndex = 75;
             this.cmbDeckTeam.SelectedIndexChanged += new System.EventHandler(this.cmbTeam_SelectedIndexChanged);
             // 
-            // imageListTeamsFull
+            // imageListTeams
             // 
-            this.imageListTeamsFull.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageListTeamsFull.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeamsFull.ImageStream")));
-            this.imageListTeamsFull.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListTeamsFull.Images.SetKeyName(0, "a_force.png");
-            this.imageListTeamsFull.Images.SetKeyName(1, "avengers.png");
-            this.imageListTeamsFull.Images.SetKeyName(2, "brotherhood.png");
-            this.imageListTeamsFull.Images.SetKeyName(3, "cabal.png");
-            this.imageListTeamsFull.Images.SetKeyName(4, "champions.png");
-            this.imageListTeamsFull.Images.SetKeyName(5, "Crime_Syndicate.png");
-            this.imageListTeamsFull.Images.SetKeyName(6, "defenders.png");
-            this.imageListTeamsFull.Images.SetKeyName(7, "fantastic_four.png");
-            this.imageListTeamsFull.Images.SetKeyName(8, "Foes_of_Asgard.png");
-            this.imageListTeamsFull.Images.SetKeyName(9, "foot_clan.png");
-            this.imageListTeamsFull.Images.SetKeyName(10, "guardians.png");
-            this.imageListTeamsFull.Images.SetKeyName(11, "heroes_for_hire.png");
-            this.imageListTeamsFull.Images.SetKeyName(12, "hydra.png");
-            this.imageListTeamsFull.Images.SetKeyName(13, "illuminati.png");
-            this.imageListTeamsFull.Images.SetKeyName(14, "legion_of_monsters.png");
-            this.imageListTeamsFull.Images.SetKeyName(15, "marvel_knights.png");
-            this.imageListTeamsFull.Images.SetKeyName(16, "mercs_4_money.png");
-            this.imageListTeamsFull.Images.SetKeyName(17, "Monsters_Unleashed_logo_sm.png");
-            this.imageListTeamsFull.Images.SetKeyName(18, "mutants.png");
-            this.imageListTeamsFull.Images.SetKeyName(19, "runaways.png");
-            this.imageListTeamsFull.Images.SetKeyName(20, "shield.png");
-            this.imageListTeamsFull.Images.SetKeyName(21, "sinister6.png");
-            this.imageListTeamsFull.Images.SetKeyName(22, "spider_friends.png");
-            this.imageListTeamsFull.Images.SetKeyName(23, "thunderbolts.png");
-            this.imageListTeamsFull.Images.SetKeyName(24, "us_army.png");
-            this.imageListTeamsFull.Images.SetKeyName(25, "x_force.png");
-            this.imageListTeamsFull.Images.SetKeyName(26, "x_men.png");
+            this.imageListTeams.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageListTeams.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageListTeams.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // txtDeckName
             // 
@@ -235,48 +221,49 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnDeckUpdate
             // 
-            this.btnDeckUpdate.Location = new System.Drawing.Point(11, 178);
+            this.btnDeckUpdate.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDeckUpdate.Location = new System.Drawing.Point(11, 125);
             this.btnDeckUpdate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDeckUpdate.Name = "btnDeckUpdate";
             this.btnDeckUpdate.Size = new System.Drawing.Size(230, 27);
             this.btnDeckUpdate.TabIndex = 76;
             this.btnDeckUpdate.Text = "Update Deck";
-            this.btnDeckUpdate.UseVisualStyleBackColor = true;
+            this.btnDeckUpdate.UseVisualStyleBackColor = false;
             this.btnDeckUpdate.Click += new System.EventHandler(this.btnDeckUpdate_Click);
             // 
             // panelImagePreview
             // 
-            this.panelImagePreview.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panelImagePreview.Controls.Add(this.groupBox1);
+            this.panelImagePreview.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panelImagePreview.Controls.Add(this.gbPoloygon);
             this.panelImagePreview.Controls.Add(this.btnResetCard);
             this.panelImagePreview.Controls.Add(this.pictureBoxTemplate);
             this.panelImagePreview.Cursor = System.Windows.Forms.Cursors.Default;
             this.panelImagePreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelImagePreview.Location = new System.Drawing.Point(0, 0);
             this.panelImagePreview.Name = "panelImagePreview";
-            this.panelImagePreview.Size = new System.Drawing.Size(511, 881);
+            this.panelImagePreview.Size = new System.Drawing.Size(415, 881);
             this.panelImagePreview.TabIndex = 0;
             // 
-            // groupBox1
+            // gbPoloygon
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.btnChangePolygon);
-            this.groupBox1.Controls.Add(this.numY4);
-            this.groupBox1.Controls.Add(this.numX4);
-            this.groupBox1.Controls.Add(this.numY3);
-            this.groupBox1.Controls.Add(this.numX3);
-            this.groupBox1.Controls.Add(this.numY2);
-            this.groupBox1.Controls.Add(this.numX2);
-            this.groupBox1.Controls.Add(this.numY1);
-            this.groupBox1.Controls.Add(this.numX1);
-            this.groupBox1.Location = new System.Drawing.Point(70, 643);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(400, 206);
-            this.groupBox1.TabIndex = 67;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Polygon Text Area";
+            this.gbPoloygon.BackColor = System.Drawing.SystemColors.Control;
+            this.gbPoloygon.Controls.Add(this.btnChangePolygon);
+            this.gbPoloygon.Controls.Add(this.numY4);
+            this.gbPoloygon.Controls.Add(this.numX4);
+            this.gbPoloygon.Controls.Add(this.numY3);
+            this.gbPoloygon.Controls.Add(this.numX3);
+            this.gbPoloygon.Controls.Add(this.numY2);
+            this.gbPoloygon.Controls.Add(this.numX2);
+            this.gbPoloygon.Controls.Add(this.numY1);
+            this.gbPoloygon.Controls.Add(this.numX1);
+            this.gbPoloygon.Location = new System.Drawing.Point(4, 638);
+            this.gbPoloygon.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.gbPoloygon.Name = "gbPoloygon";
+            this.gbPoloygon.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.gbPoloygon.Size = new System.Drawing.Size(400, 206);
+            this.gbPoloygon.TabIndex = 67;
+            this.gbPoloygon.TabStop = false;
+            this.gbPoloygon.Text = "Polygon Text Area";
             // 
             // btnChangePolygon
             // 
@@ -435,7 +422,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnResetCard
             // 
-            this.btnResetCard.Location = new System.Drawing.Point(70, 608);
+            this.btnResetCard.Location = new System.Drawing.Point(4, 603);
             this.btnResetCard.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnResetCard.Name = "btnResetCard";
             this.btnResetCard.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
@@ -447,7 +434,8 @@ namespace LegendaryCardEditor.Controls
             // pictureBoxTemplate
             // 
             this.pictureBoxTemplate.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pictureBoxTemplate.Location = new System.Drawing.Point(70, 8);
+            this.pictureBoxTemplate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxTemplate.Location = new System.Drawing.Point(4, 3);
             this.pictureBoxTemplate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxTemplate.MaximumSize = new System.Drawing.Size(588, 808);
             this.pictureBoxTemplate.MinimumSize = new System.Drawing.Size(355, 462);
@@ -459,6 +447,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // panelCardEditor
             // 
+            this.panelCardEditor.BackColor = System.Drawing.SystemColors.Control;
             this.panelCardEditor.Controls.Add(this.txtErrorConsole);
             this.panelCardEditor.Controls.Add(this.btnUpdateCard);
             this.panelCardEditor.Controls.Add(this.btnExport);
@@ -486,9 +475,9 @@ namespace LegendaryCardEditor.Controls
             this.panelCardEditor.Controls.Add(this.txtCardName);
             this.panelCardEditor.Cursor = System.Windows.Forms.Cursors.Default;
             this.panelCardEditor.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelCardEditor.Location = new System.Drawing.Point(511, 0);
+            this.panelCardEditor.Location = new System.Drawing.Point(415, 0);
             this.panelCardEditor.Name = "panelCardEditor";
-            this.panelCardEditor.Size = new System.Drawing.Size(616, 881);
+            this.panelCardEditor.Size = new System.Drawing.Size(712, 881);
             this.panelCardEditor.TabIndex = 1;
             // 
             // txtErrorConsole
@@ -608,21 +597,13 @@ namespace LegendaryCardEditor.Controls
             // 
             // imageListAttributes
             // 
-            this.imageListAttributes.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-            this.imageListAttributes.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListAttributes.ImageStream")));
+            this.imageListAttributes.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageListAttributes.ImageSize = new System.Drawing.Size(32, 32);
             this.imageListAttributes.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListAttributes.Images.SetKeyName(0, "attack.png");
-            this.imageListAttributes.Images.SetKeyName(1, "cards.png");
-            this.imageListAttributes.Images.SetKeyName(2, "cost.png");
-            this.imageListAttributes.Images.SetKeyName(3, "piercing.png");
-            this.imageListAttributes.Images.SetKeyName(4, "recruit.png");
-            this.imageListAttributes.Images.SetKeyName(5, "victory.png");
-            this.imageListAttributes.Images.SetKeyName(6, "focus.png");
-            this.imageListAttributes.Images.SetKeyName(7, "token.png");
             // 
             // cmbAttributesPower
             // 
-            this.cmbAttributesPower.ImageList = this.imageListPowers;
+            this.cmbAttributesPower.ImageList = this.imageListAttributesPowers;
             this.cmbAttributesPower.Location = new System.Drawing.Point(99, 421);
             this.cmbAttributesPower.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbAttributesPower.Name = "cmbAttributesPower";
@@ -632,16 +613,11 @@ namespace LegendaryCardEditor.Controls
             this.cmbAttributesPower.TabIndex = 82;
             this.cmbAttributesPower.SelectedIndexChanged += new System.EventHandler(this.cmbAttributesPower_SelectedIndexChanged);
             // 
-            // imageListPowers
+            // imageListAttributesPowers
             // 
-            this.imageListPowers.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-            this.imageListPowers.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListPowers.ImageStream")));
-            this.imageListPowers.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListPowers.Images.SetKeyName(0, "covert.png");
-            this.imageListPowers.Images.SetKeyName(1, "instinct.png");
-            this.imageListPowers.Images.SetKeyName(2, "range.png");
-            this.imageListPowers.Images.SetKeyName(3, "strength.png");
-            this.imageListPowers.Images.SetKeyName(4, "tech.png");
+            this.imageListAttributesPowers.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageListAttributesPowers.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageListAttributesPowers.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // numCardTextSize
             // 
@@ -700,12 +676,11 @@ namespace LegendaryCardEditor.Controls
             this.txtCardTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtCardTextBox.Size = new System.Drawing.Size(543, 152);
             this.txtCardTextBox.TabIndex = 79;
-            this.txtCardTextBox.Text = "Cubboard idear some cunnin aht rhubaahb. What a cahd bub justa smidgin Powrtland " +
-    "cah well theyah Saddee bean suppah, suppah stove-up podunk wicked cunnin\'. ";
+            this.txtCardTextBox.Text = "Card Rules <CARDS>";
             // 
             // cmbAttributesTeams
             // 
-            this.cmbAttributesTeams.ImageList = this.imageListTeamsFull;
+            this.cmbAttributesTeams.ImageList = this.imageListAttributesTeams;
             this.cmbAttributesTeams.Location = new System.Drawing.Point(26, 421);
             this.cmbAttributesTeams.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbAttributesTeams.Name = "cmbAttributesTeams";
@@ -714,6 +689,12 @@ namespace LegendaryCardEditor.Controls
             this.cmbAttributesTeams.Size = new System.Drawing.Size(68, 32);
             this.cmbAttributesTeams.TabIndex = 78;
             this.cmbAttributesTeams.SelectedIndexChanged += new System.EventHandler(this.cmbAttributesTeams_SelectedIndexChanged);
+            // 
+            // imageListAttributesTeams
+            // 
+            this.imageListAttributesTeams.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageListAttributesTeams.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageListAttributesTeams.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // groupBoxPower2
             // 
@@ -733,7 +714,8 @@ namespace LegendaryCardEditor.Controls
             // 
             // cmbPower2
             // 
-            this.cmbPower2.ImageList = this.imageListPowersFullSize;
+            this.cmbPower2.Enabled = false;
+            this.cmbPower2.ImageList = this.imageListPowers;
             this.cmbPower2.Location = new System.Drawing.Point(9, 20);
             this.cmbPower2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbPower2.Name = "cmbPower2";
@@ -741,17 +723,13 @@ namespace LegendaryCardEditor.Controls
             this.cmbPower2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
             this.cmbPower2.Size = new System.Drawing.Size(236, 35);
             this.cmbPower2.TabIndex = 7;
+            this.cmbPower2.SelectedIndexChanged += new System.EventHandler(this.cmbPower2_SelectedIndexChanged);
             // 
-            // imageListPowersFullSize
+            // imageListPowers
             // 
-            this.imageListPowersFullSize.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageListPowersFullSize.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListPowersFullSize.ImageStream")));
-            this.imageListPowersFullSize.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListPowersFullSize.Images.SetKeyName(0, "covert.png");
-            this.imageListPowersFullSize.Images.SetKeyName(1, "instinct.png");
-            this.imageListPowersFullSize.Images.SetKeyName(2, "range.png");
-            this.imageListPowersFullSize.Images.SetKeyName(3, "strength.png");
-            this.imageListPowersFullSize.Images.SetKeyName(4, "tech.png");
+            this.imageListPowers.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageListPowers.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageListPowers.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // chkPower2Visible
             // 
@@ -933,7 +911,7 @@ namespace LegendaryCardEditor.Controls
             // cmbPower1
             // 
             this.cmbPower1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.cmbPower1.ImageList = this.imageListPowersFullSize;
+            this.cmbPower1.ImageList = this.imageListPowers;
             this.cmbPower1.Location = new System.Drawing.Point(8, 20);
             this.cmbPower1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbPower1.Name = "cmbPower1";
@@ -941,6 +919,7 @@ namespace LegendaryCardEditor.Controls
             this.cmbPower1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
             this.cmbPower1.Size = new System.Drawing.Size(237, 35);
             this.cmbPower1.TabIndex = 7;
+            this.cmbPower1.SelectedIndexChanged += new System.EventHandler(this.cmbPower1_SelectedIndexChanged);
             // 
             // chkPowerVisible
             // 
@@ -959,7 +938,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // cmbTeam
             // 
-            this.cmbTeam.ImageList = this.imageListTeamsFull;
+            this.cmbTeam.ImageList = this.imageListTeams;
             this.cmbTeam.Location = new System.Drawing.Point(26, 97);
             this.cmbTeam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbTeam.Name = "cmbTeam";
@@ -1081,45 +1060,6 @@ namespace LegendaryCardEditor.Controls
             this.txtCardName.Text = "Card Title";
             this.txtCardName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // imageListTeams
-            // 
-            this.imageListTeams.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-            this.imageListTeams.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeams.ImageStream")));
-            this.imageListTeams.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListTeams.Images.SetKeyName(0, "a_force.png");
-            this.imageListTeams.Images.SetKeyName(1, "avengers.png");
-            this.imageListTeams.Images.SetKeyName(2, "brotherhood.png");
-            this.imageListTeams.Images.SetKeyName(3, "cabal.png");
-            this.imageListTeams.Images.SetKeyName(4, "champions.png");
-            this.imageListTeams.Images.SetKeyName(5, "Crime_Syndicate.png");
-            this.imageListTeams.Images.SetKeyName(6, "defenders.png");
-            this.imageListTeams.Images.SetKeyName(7, "fantastic_four.png");
-            this.imageListTeams.Images.SetKeyName(8, "Foes_of_Asgard.png");
-            this.imageListTeams.Images.SetKeyName(9, "foot_clan.png");
-            this.imageListTeams.Images.SetKeyName(10, "guardians.png");
-            this.imageListTeams.Images.SetKeyName(11, "heroes_for_hire.png");
-            this.imageListTeams.Images.SetKeyName(12, "hydra.png");
-            this.imageListTeams.Images.SetKeyName(13, "illuminati.png");
-            this.imageListTeams.Images.SetKeyName(14, "legion_of_monsters.png");
-            this.imageListTeams.Images.SetKeyName(15, "marvel_knights.png");
-            this.imageListTeams.Images.SetKeyName(16, "mercs_4_money.png");
-            this.imageListTeams.Images.SetKeyName(17, "Monsters_Unleashed_logo_sm.png");
-            this.imageListTeams.Images.SetKeyName(18, "mutants.png");
-            this.imageListTeams.Images.SetKeyName(19, "runaways.png");
-            this.imageListTeams.Images.SetKeyName(20, "shield.png");
-            this.imageListTeams.Images.SetKeyName(21, "sinister6.png");
-            this.imageListTeams.Images.SetKeyName(22, "spider_friends.png");
-            this.imageListTeams.Images.SetKeyName(23, "thunderbolts.png");
-            this.imageListTeams.Images.SetKeyName(24, "us_army.png");
-            this.imageListTeams.Images.SetKeyName(25, "x_force.png");
-            this.imageListTeams.Images.SetKeyName(26, "x_men.png");
-            // 
-            // imageListAttributesOther
-            // 
-            this.imageListAttributesOther.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageListAttributesOther.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageListAttributesOther.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // kryptonManager1
             // 
             this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.SparkleBlue;
@@ -1139,7 +1079,7 @@ namespace LegendaryCardEditor.Controls
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelImagePreview.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
+            this.gbPoloygon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numY4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numX4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numY3)).EndInit();
@@ -1170,7 +1110,7 @@ namespace LegendaryCardEditor.Controls
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panelImagePreview;
         private System.Windows.Forms.Panel panelCardEditor;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbPoloygon;
         private System.Windows.Forms.Button btnChangePolygon;
         private System.Windows.Forms.NumericUpDown numY4;
         private System.Windows.Forms.NumericUpDown numX4;
@@ -1182,12 +1122,9 @@ namespace LegendaryCardEditor.Controls
         private System.Windows.Forms.NumericUpDown numX1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnResetCard;
         private System.Windows.Forms.PictureBox pictureBoxTemplate;
-        private System.Windows.Forms.ImageList imageListTeamsFull;
         private System.Windows.Forms.ImageList imageListAttributes;
         private System.Windows.Forms.ImageList imageListPowers;
         private System.Windows.Forms.ImageList imageListTeams;
-        private System.Windows.Forms.ImageList imageListPowersFullSize;
-        private System.Windows.Forms.ImageList imageListAttributesOther;
         private System.Windows.Forms.NumericUpDown numCardTitleSize;
         private System.Windows.Forms.TextBox txtCardName;
         private ComponentFactory.Krypton.Ribbon.KryptonGallery cmbTeam;
@@ -1234,5 +1171,9 @@ namespace LegendaryCardEditor.Controls
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TextBox txtErrorConsole;
         private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
+        private System.Windows.Forms.Button btnAddCard;
+        private ComponentFactory.Krypton.Toolkit.KryptonContextMenu ctxMenuTeams;
+        private System.Windows.Forms.ImageList imageListAttributesTeams;
+        private System.Windows.Forms.ImageList imageListAttributesPowers;
     }
 }

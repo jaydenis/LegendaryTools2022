@@ -76,14 +76,14 @@ namespace LegendaryCardEditor
 
             this.Cursor = Cursors.WaitCursor;
 
-            Image teamImage = imageListTeams.Images[5];
+            Image teamImage = imageListTeams.Images[8];
             templateImageTools.teamImage = new KalikoImage(teamImage);
 
             Image powerImage = imageListPowers.Images[1];
             templateImageTools.powerImage = new KalikoImage(powerImage);
 
-            Image powerImage2 = imageListPowers.Images[2];
-            templateImageTools.powerImage2 = new KalikoImage(powerImage2);
+            //Image powerImage2 = imageListPowers.Images[2];
+            //templateImageTools.powerImage2 = new KalikoImage(powerImage2);
 
 
             KalikoImage cardImage = templateImageTools.RenderCardImage(cardModel);
@@ -96,6 +96,7 @@ namespace LegendaryCardEditor
             }
             this.Cursor = Cursors.Default;
             propertyGridTemplate.SelectedObject = templateModel;
+            propertyGridCard.SelectedObject = cardModel.ActiveCard;
 
             rtbTemplateJson.Text =  JsonConvert.SerializeObject(templateModel, Formatting.Indented);
         }
@@ -113,7 +114,7 @@ namespace LegendaryCardEditor
                 CardDisplayNameFont = 32,
                 CardDisplayNameSub = "temp_deck",
                 CardDisplayNameSubFont = 28,
-                CardText = "Card Rules",
+                CardText = "<TECH>: <k>+1 <ATTACK>",
                 CardTextFont = 22,
                 TemplateId = templateId,
                 TeamIconId = 0,
@@ -121,7 +122,13 @@ namespace LegendaryCardEditor
                 ExportedCardFile = "",
                 DeckId = 0,
                 PowerPrimaryIconId = -1,
-                NumberInDeck = 0
+                PowerSecondaryIconId = -1,
+                NumberInDeck = 0,
+                AttributeAttack = "4+",
+                AttributeCost = "3",
+                AttributePiercing = "",
+                AttributeRecruit = "4",
+                AttributeVictoryPoints = "5"
             };
 
             return tempCard;

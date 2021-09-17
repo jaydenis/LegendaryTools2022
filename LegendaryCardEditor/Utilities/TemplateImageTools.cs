@@ -270,8 +270,7 @@ namespace LegendaryCardEditor.Utilities
                             containsPlus = true;
                             model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack.Replace("+", "");
                         }
-                        Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeRecruit, cardCostFont);
-                        textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, cardCostFont);
+                        Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, cardCostFont);
                         TextField txtFieldAttack = new TextField(model.ActiveCard.AttributeAttack)
                         {
                             Font = cardCostFont,
@@ -401,7 +400,7 @@ namespace LegendaryCardEditor.Utilities
 
 
                 containsPlus = false;
-                if (model.ActiveCard.AttributeRecruit != null)
+                if (model.ActiveCard.AttributeRecruit != null && model.ActiveTemplate.FormShowAttributesRecruit)
                 {
 
                     if (model.ActiveCard.AttributeRecruit.Contains("+"))
