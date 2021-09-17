@@ -364,45 +364,53 @@ namespace LegendaryCardEditor.Utilities
                 }
 
 
-
-
                 TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
+                    {
+                        Font = fontSubTitle,
+                        TargetArea = new Rectangle(30, fontTitle.Height + 15, 430, 60),
+                        Alignment = StringAlignment.Near,
+                        TextColor = Color.Gold,
+                        Outline = 2,
+                        OutlineColor = Color.Black
+                    };
+                if (model.ActiveTemplate.TemplateType == "wound")
                 {
-                    Font = fontSubTitle,
-                    TargetArea = new Rectangle(30, fontTitle.Height + 15, 430, 60),
-                    Alignment = StringAlignment.Center,
-                    TextColor = Color.Gold,
-                    Outline = 2,
-                    OutlineColor = Color.Black
-                };
+                    txtFieldSubTitle.TargetArea = new Rectangle(38, 512, 430, 50);
+                    txtFieldSubTitle.TextColor = Color.White;
+                   
+                }
+                else
+                {
 
-                // create blank bitmap with same size
-                Bitmap combinedImageL = new Bitmap(picWidth / 2, fontTitle.Height + fontSubTitle.Height);
-                Bitmap combinedImageR = new Bitmap(picWidth / 2, fontTitle.Height + fontSubTitle.Height);
+                   
 
-                // create graphics object on new blank bitmap
-                Graphics gL = Graphics.FromImage(combinedImageL);
-                Graphics gR = Graphics.FromImage(combinedImageR);
+                    // create blank bitmap with same size
+                    Bitmap combinedImageL = new Bitmap(picWidth / 2, fontTitle.Height + fontSubTitle.Height);
+                    Bitmap combinedImageR = new Bitmap(picWidth / 2, fontTitle.Height + fontSubTitle.Height);
 
-                LinearGradientBrush linearGradientBrushL = new LinearGradientBrush(
-                    new Rectangle(0, 0, picWidth / 2, combinedImageL.Height),
-                   Color.FromArgb(0, Color.White),
-                   Color.FromArgb(225, Color.DimGray),
-                    0f);
+                    // create graphics object on new blank bitmap
+                    Graphics gL = Graphics.FromImage(combinedImageL);
+                    Graphics gR = Graphics.FromImage(combinedImageR);
 
-                gL.FillRectangle(linearGradientBrushL, 0, 0, picWidth / 2, combinedImageL.Height);
-                infoImage.BlitImage(combinedImageL, 30, 16);
+                    LinearGradientBrush linearGradientBrushL = new LinearGradientBrush(
+                        new Rectangle(0, 0, picWidth / 2, combinedImageL.Height),
+                       Color.FromArgb(0, Color.White),
+                       Color.FromArgb(225, Color.DimGray),
+                        0f);
 
-                LinearGradientBrush linearGradientBrushR = new LinearGradientBrush(
-                   new Rectangle(0, 0, picWidth / 2, combinedImageR.Height),
-                    Color.FromArgb(225, Color.DimGray),
-                    Color.FromArgb(0, Color.White),
-                    LinearGradientMode.Horizontal);
+                    gL.FillRectangle(linearGradientBrushL, 0, 0, picWidth / 2, combinedImageL.Height);
+                    infoImage.BlitImage(combinedImageL, 30, 16);
 
-                gR.FillRectangle(linearGradientBrushR, 0, 0, picWidth / 2, combinedImageR.Height);
-                infoImage.BlitImage(combinedImageR, picWidth / 2, 16);
+                    LinearGradientBrush linearGradientBrushR = new LinearGradientBrush(
+                       new Rectangle(0, 0, picWidth / 2, combinedImageR.Height),
+                        Color.FromArgb(225, Color.DimGray),
+                        Color.FromArgb(0, Color.White),
+                        LinearGradientMode.Horizontal);
 
+                    gR.FillRectangle(linearGradientBrushR, 0, 0, picWidth / 2, combinedImageR.Height);
+                    infoImage.BlitImage(combinedImageR, picWidth / 2, 16);
 
+                }
                 infoImage.DrawText(txtFieldTitle);
                 infoImage.DrawText(txtFieldSubTitle);
 

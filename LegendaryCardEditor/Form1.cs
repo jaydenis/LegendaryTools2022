@@ -23,6 +23,7 @@ namespace LegendaryCardEditor
         DeckList deckList;
         string dataFile;
 
+        List<CurrentActiveDataModel> activeDataModels;
         List<LegendaryIconViewModel> legendaryIconList;
         List<LegendaryTemplateModel> templateModelList;
         List<DeckTypeModel> deckTypeList;
@@ -49,7 +50,7 @@ namespace LegendaryCardEditor
         {
             try
             {
-                
+
 
 
                 if (settings.lastProject != string.Empty)
@@ -68,7 +69,7 @@ namespace LegendaryCardEditor
 
         private void LoadCustomSet(string path)
         {
-            
+
             dataFile = path;
 
             deckList = coreManager.GetDecks(dataFile);
@@ -77,15 +78,15 @@ namespace LegendaryCardEditor
             templateModelList = coreManager.GetTemplates();
             deckTypeList = coreManager.GetDeckTypes();
 
-            //propertyGridSettings.SelectedObject = new SettingPropertyGridProxy(settings);
+           // activeDataModels = new List<CurrentActiveDataModel>();
             PopulateDeckTree();
         }
 
-       
+
         private void PopulateDeckTree()
         {
             treeView1.Nodes.Clear();
-           splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2.Controls.Clear();
             TreeNode root = new TreeNode("Decks");
             root.ImageIndex = 27;
             foreach (var deckType in deckTypeList)
@@ -101,21 +102,23 @@ namespace LegendaryCardEditor
                     deckNode.ImageIndex = deck.TeamIconId;
                     deckNode.SelectedImageIndex = deck.TeamIconId;
 
-                    deckNode.Tag = new CurrentActiveDataModel
+                    var data = new CurrentActiveDataModel
                     {
+                        Id = deck.DeckId,
                         ActiveDeck = deck,
                         ActiveSetDataFile = dataFile,
                         ActiveSetPath = fi1.DirectoryName,
                         AllDecksInSet = deckList
                     };
-
+                    //activeDataModels.Add(data);
+                    deckNode.Tag = data;
                     deckTypeNode.Nodes.Add(deckNode);
                 }
                 //root.Nodes.Add(deckTypeNode);
                 treeView1.Nodes.Add(deckTypeNode);
             }
 
-            
+
             treeView1.ExpandAll();
         }
 
@@ -128,13 +131,13 @@ namespace LegendaryCardEditor
                     this.Cursor = Cursors.WaitCursor;
                     splitContainer1.Panel2.Controls.Clear();
                     var activeSet = (CurrentActiveDataModel)e.Node.Tag;
-                    CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet, legendaryIconList,deckTypeList,templateModelList)
+                    CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet, legendaryIconList, deckTypeList, templateModelList)
                     {
                         Dock = DockStyle.Fill
                     };
                     splitContainer1.Panel2.Controls.Add(cardEditorForm);
 
-                   
+
                     this.Cursor = Cursors.Default;
                 }
             }
@@ -163,27 +166,49 @@ namespace LegendaryCardEditor
 
         private void helpToolStripButton_Click(object sender, EventArgs e)
         {
-            LegendaryTemplateEditor templateEditor = new LegendaryTemplateEditor(deckTypeList,templateModelList,legendaryIconList);
+            LegendaryTemplateEditor templateEditor = new LegendaryTemplateEditor(deckTypeList, templateModelList, legendaryIconList);
             templateEditor.ShowDialog();
-        }
-
-        private void treeViewMenuAddCard_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnAddDeck_Click(object sender, EventArgs e)
         {
             AddDeckForm addDeckForm = new AddDeckForm(dataFile);
             addDeckForm.ShowDialog();
-            
-                LoadCustomSet(dataFile);
-            
+
+            LoadCustomSet(dataFile);
+
         }
 
         private void openToolStripButton_Click(object sender, EventArgs e)
         {
             OpenFile();
+        }
+
+        private void treeViewMenuDeleteDeck_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (treeView1.SelectedNode.Tag != null)
+                {
+                    if (treeView1.SelectedNode.Tag is CurrentActiveDataModel)
+                    {
+                        splitContainer1.Panel2.Controls.Clear();
+                        var activeSet = (CurrentActiveDataModel)treeView1.SelectedNode.Tag;
+                        
+                        var currentActiveSet = activeSet.AllDecksInSet.Decks.Where(x => x.DeckId == activeSet.ActiveDeck.DeckId).FirstOrDefault();
+
+                        activeSet.AllDecksInSet.Decks.Remove(currentActiveSet);
+
+                        treeView1.SelectedNode.Remove();
+                        coreManager.SaveDeck(activeSet.AllDecksInSet, activeSet.ActiveSetDataFile);
+                        LoadCustomSet(dataFile);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

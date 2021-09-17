@@ -8,6 +8,7 @@ namespace LegendaryCardEditor.Models
 {
     public class CurrentActiveDataModel
     {
+        public int Id { get; set; }
         public DeckList AllDecksInSet { get; set; }
         public Deck ActiveDeck { get; set; }
         public CardModel SelectedCard { get; set; }
