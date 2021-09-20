@@ -158,20 +158,20 @@ namespace LegendaryCardEditor.Controls
 
                
                 txtCardName.Text = model.ActiveCard.CardDisplayName;
-                numCardTitleSize.Value = model.ActiveCard.CardDisplayNameFont;
+                numCardTitleSize.Text = model.ActiveCard.CardDisplayNameFont.ToString();
                // txtCardSubName.Text = model.ActiveCard.CardDisplayNameSub == "Card Sub-Title" ? currentActiveSet.ActiveDeck.DeckDisplayName : model.ActiveCard.CardDisplayNameSub;
-                numCardSubTitleSize.Value = model.ActiveCard.CardDisplayNameSubFont;
+                numCardSubTitleSize.Text = model.ActiveCard.CardDisplayNameSubFont.ToString();
                 txtCardAttackValue.Text = model.ActiveCard.AttributeAttack != "-1" ? model.ActiveCard.AttributeAttack : string.Empty;
                 txtCardCostValue.Text = model.ActiveCard.AttributeCost != "-1" ? model.ActiveCard.AttributeCost : string.Empty;
                 txtCardPiercingValue.Text = model.ActiveCard.AttributePiercing != "-1" ? model.ActiveCard.AttributePiercing : string.Empty;
                 txtCardRecruitValue.Text = model.ActiveCard.AttributeRecruit != "-1" ? model.ActiveCard.AttributeRecruit : string.Empty;
                 txtCardTextBox.Text = model.ActiveCard.CardText;
-                numCardTextSize.Value = model.ActiveCard.CardTextFont;
+                numCardTextSize.Text = model.ActiveCard.CardTextFont.ToString();
                 txtCardVictoryPointsValue.Text = model.ActiveCard.AttributeVictoryPoints != "-1" ? model.ActiveCard.AttributeVictoryPoints : string.Empty;
                 cmbPower1.SelectedIndex = model.ActiveCard.PowerPrimaryIconId;
                 cmbPower2.SelectedIndex = model.ActiveCard.PowerSecondaryIconId;
                 cmbTeam.SelectedIndex = model.ActiveCard.TeamIconId;
-
+                numNumberInDeck.Text = model.ActiveCard.NumberInDeck.ToString();
                 
                 if (model.ActiveTemplate.TemplateId == 1 || model.ActiveCard.TemplateId == 2 && model.ActiveTemplate.FormShowPowerPrimary)
                 {
@@ -609,11 +609,11 @@ namespace LegendaryCardEditor.Controls
                 cardModel.ActiveCard.AttributeRecruit = cardModel.ActiveTemplate.FormShowAttributesRecruit ? txtCardRecruitValue.Text : null;
                 cardModel.ActiveCard.AttributeVictoryPoints = cardModel.ActiveTemplate.FormShowVictoryPoints ? txtCardVictoryPointsValue.Text : null;
                 cardModel.ActiveCard.CardDisplayName = txtCardName.Text;
-                cardModel.ActiveCard.CardDisplayNameFont = Convert.ToInt32(numCardTitleSize.Value);
+                cardModel.ActiveCard.CardDisplayNameFont = Convert.ToInt32(numCardTitleSize.Text);
                 cardModel.ActiveCard.CardDisplayNameSub = txtDeckName.Text;
-                cardModel.ActiveCard.CardDisplayNameSubFont = Convert.ToInt32(numCardSubTitleSize.Value);
+                cardModel.ActiveCard.CardDisplayNameSubFont = Convert.ToInt32(numCardSubTitleSize.Text);
                 cardModel.ActiveCard.CardText = txtCardTextBox.Text;
-                cardModel.ActiveCard.CardTextFont = Convert.ToInt32(numCardTextSize.Value);
+                cardModel.ActiveCard.CardTextFont = Convert.ToInt32(numCardTextSize.Text);
 
                 if (cardModel.ActiveTemplate.FormShowTeam && cmbTeam.SelectedIndex != -1)
                 {
@@ -940,11 +940,14 @@ namespace LegendaryCardEditor.Controls
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-                if (currentActiveSet.SelectedCard.ActiveCard.CardText != txtCardTextBox.Text)
-                {                   
-                    isDirty = true;
-                    btnUpdateCard.Enabled = isDirty;
+                if (currentActiveSet.SelectedCard != null)
+                {
+                    if (currentActiveSet.SelectedCard.ActiveCard.CardText != txtCardTextBox.Text)
+                    {
+                        isDirty = true;
+                        btnUpdateCard.Enabled = isDirty;
 
+                    }
                 }
                 this.Cursor = Cursors.Default;
             }

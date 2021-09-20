@@ -76,13 +76,13 @@ namespace LegendaryCardEditor
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.treeViewMenuDeleteDeck = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeView1 = new ComponentFactory.Krypton.Toolkit.KryptonTreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnAddDeck = new System.Windows.Forms.Button();
+            this.btnAddDeck = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.treeViewMenuDeleteDeck = new System.Windows.Forms.ToolStripMenuItem();
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -91,8 +91,8 @@ namespace LegendaryCardEditor
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -487,38 +487,19 @@ namespace LegendaryCardEditor
             // 
             // treeView1
             // 
-            this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.FullRowSelect = true;
-            this.treeView1.HideSelection = false;
+            this.treeView1.HotTracking = true;
             this.treeView1.ImageIndex = 27;
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(0, 58);
             this.treeView1.Name = "treeView1";
-            this.treeView1.SelectedImageIndex = 29;
-            this.treeView1.ShowLines = false;
-            this.treeView1.ShowRootLines = false;
+            this.treeView1.SelectedImageKey = "SystemFolder.ico";
             this.treeView1.Size = new System.Drawing.Size(177, 613);
-            this.treeView1.StateImageList = this.imageList1;
-            this.treeView1.TabIndex = 0;
+            this.treeView1.Sorted = true;
+            this.treeView1.TabIndex = 2;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.treeViewMenuDeleteDeck});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 26);
-            // 
-            // treeViewMenuDeleteDeck
-            // 
-            this.treeViewMenuDeleteDeck.Image = global::LegendaryCardEditor.Properties.Resources.Delete;
-            this.treeViewMenuDeleteDeck.Name = "treeViewMenuDeleteDeck";
-            this.treeViewMenuDeleteDeck.Size = new System.Drawing.Size(136, 22);
-            this.treeViewMenuDeleteDeck.Text = "Delete Deck";
-            this.treeViewMenuDeleteDeck.Click += new System.EventHandler(this.treeViewMenuDeleteDeck_Click);
             // 
             // imageList1
             // 
@@ -570,12 +551,11 @@ namespace LegendaryCardEditor
             // 
             // btnAddDeck
             // 
-            this.btnAddDeck.Location = new System.Drawing.Point(21, 22);
+            this.btnAddDeck.Location = new System.Drawing.Point(6, 22);
             this.btnAddDeck.Name = "btnAddDeck";
-            this.btnAddDeck.Size = new System.Drawing.Size(111, 23);
+            this.btnAddDeck.Size = new System.Drawing.Size(165, 25);
             this.btnAddDeck.TabIndex = 0;
-            this.btnAddDeck.Text = "Add New Deck";
-            this.btnAddDeck.UseVisualStyleBackColor = true;
+            this.btnAddDeck.Values.Text = "Add New Deck";
             this.btnAddDeck.Click += new System.EventHandler(this.btnAddDeck_Click);
             // 
             // tabPage2
@@ -588,9 +568,25 @@ namespace LegendaryCardEditor
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.treeViewMenuDeleteDeck});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 26);
+            // 
+            // treeViewMenuDeleteDeck
+            // 
+            this.treeViewMenuDeleteDeck.Image = global::LegendaryCardEditor.Properties.Resources.Delete;
+            this.treeViewMenuDeleteDeck.Name = "treeViewMenuDeleteDeck";
+            this.treeViewMenuDeleteDeck.Size = new System.Drawing.Size(136, 22);
+            this.treeViewMenuDeleteDeck.Text = "Delete Deck";
+            this.treeViewMenuDeleteDeck.Click += new System.EventHandler(this.treeViewMenuDeleteDeck_Click);
+            // 
             // kryptonManager1
             // 
-            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.SparkleBlue;
+            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2007Blue;
             // 
             // Form1
             // 
@@ -604,7 +600,7 @@ namespace LegendaryCardEditor
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Legendary Tools 2022";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -616,8 +612,8 @@ namespace LegendaryCardEditor
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -671,13 +667,13 @@ namespace LegendaryCardEditor
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem treeViewMenuDeleteDeck;
-        private System.Windows.Forms.Button btnAddDeck;
         private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
+        private ComponentFactory.Krypton.Toolkit.KryptonTreeView treeView1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddDeck;
     }
 }
 

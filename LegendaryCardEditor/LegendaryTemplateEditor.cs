@@ -133,5 +133,10 @@ namespace LegendaryCardEditor
 
             return tempCard;
         }
+
+        private void btnUpdateTemplate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

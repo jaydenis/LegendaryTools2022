@@ -38,6 +38,8 @@ namespace LegendaryCardEditor
             this.tabPageDesigner = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.pictureBoxTemplate = new System.Windows.Forms.PictureBox();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.propertyGridCard = new System.Windows.Forms.PropertyGrid();
             this.propertyGridTemplate = new System.Windows.Forms.PropertyGrid();
             this.tabPageJson = new System.Windows.Forms.TabPage();
             this.rtbTemplateJson = new System.Windows.Forms.RichTextBox();
@@ -46,9 +48,7 @@ namespace LegendaryCardEditor
             this.btnSaveJson = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.imageListPowers = new System.Windows.Forms.ImageList(this.components);
             this.imageListTeams = new System.Windows.Forms.ImageList(this.components);
-            this.propertyGridCard = new System.Windows.Forms.PropertyGrid();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnUpdateTemplate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -141,8 +141,9 @@ namespace LegendaryCardEditor
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.splitContainer3.Panel1.Controls.Add(this.btnUpdate);
+            this.splitContainer3.Panel1.Controls.Add(this.btnUpdateTemplate);
             this.splitContainer3.Panel1.Controls.Add(this.pictureBoxTemplate);
+            this.splitContainer3.Panel1.Cursor = System.Windows.Forms.Cursors.Default;
             // 
             // splitContainer3.Panel2
             // 
@@ -155,11 +156,29 @@ namespace LegendaryCardEditor
             // 
             // pictureBoxTemplate
             // 
+            this.pictureBoxTemplate.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureBoxTemplate.Location = new System.Drawing.Point(29, 26);
             this.pictureBoxTemplate.Name = "pictureBoxTemplate";
             this.pictureBoxTemplate.Size = new System.Drawing.Size(404, 594);
             this.pictureBoxTemplate.TabIndex = 0;
             this.pictureBoxTemplate.TabStop = false;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter1.Location = new System.Drawing.Point(0, 362);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(496, 3);
+            this.splitter1.TabIndex = 1;
+            this.splitter1.TabStop = false;
+            // 
+            // propertyGridCard
+            // 
+            this.propertyGridCard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGridCard.Location = new System.Drawing.Point(0, 362);
+            this.propertyGridCard.Name = "propertyGridCard";
+            this.propertyGridCard.Size = new System.Drawing.Size(496, 399);
+            this.propertyGridCard.TabIndex = 0;
             // 
             // propertyGridTemplate
             // 
@@ -261,32 +280,14 @@ namespace LegendaryCardEditor
             this.imageListTeams.Images.SetKeyName(25, "x_force.png");
             this.imageListTeams.Images.SetKeyName(26, "x_men.png");
             // 
-            // propertyGridCard
+            // btnUpdateTemplate
             // 
-            this.propertyGridCard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGridCard.Location = new System.Drawing.Point(0, 362);
-            this.propertyGridCard.Name = "propertyGridCard";
-            this.propertyGridCard.Size = new System.Drawing.Size(496, 399);
-            this.propertyGridCard.TabIndex = 0;
-            // 
-            // splitter1
-            // 
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 362);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(496, 3);
-            this.splitter1.TabIndex = 1;
-            this.splitter1.TabStop = false;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnUpdate.Location = new System.Drawing.Point(143, 670);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdateTemplate.Location = new System.Drawing.Point(29, 683);
+            this.btnUpdateTemplate.Name = "btnUpdateTemplate";
+            this.btnUpdateTemplate.Size = new System.Drawing.Size(404, 25);
+            this.btnUpdateTemplate.TabIndex = 1;
+            this.btnUpdateTemplate.Values.Text = "Update Template";
+            this.btnUpdateTemplate.Click += new System.EventHandler(this.btnUpdateTemplate_Click);
             // 
             // LegendaryTemplateEditor
             // 
@@ -334,8 +335,8 @@ namespace LegendaryCardEditor
         private System.Windows.Forms.PictureBox pictureBoxTemplate;
         private System.Windows.Forms.ImageList imageListPowers;
         private System.Windows.Forms.ImageList imageListTeams;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.PropertyGrid propertyGridCard;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnUpdateTemplate;
     }
 }
