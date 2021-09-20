@@ -68,7 +68,7 @@
 		"FormShowAttributesCost": 1,
 		"FormShowAttributesRecruit": 1,
 		"FormShowAttributesAttack": 1,
-		"FormShowAttributesPiercing": 0,
+		"FormShowAttributesPiercing": 1,
 		"FormShowVictoryPoints": 0,
 		"FormShowAttackCost": 0,
 		"NumberInDeck": 1,

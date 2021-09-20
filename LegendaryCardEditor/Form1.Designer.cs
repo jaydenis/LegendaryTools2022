@@ -494,12 +494,12 @@ namespace LegendaryCardEditor
             this.treeView1.HideSelection = false;
             this.treeView1.ImageIndex = 27;
             this.treeView1.ImageList = this.imageList1;
-            this.treeView1.Location = new System.Drawing.Point(0, 100);
+            this.treeView1.Location = new System.Drawing.Point(0, 58);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 29;
             this.treeView1.ShowLines = false;
             this.treeView1.ShowRootLines = false;
-            this.treeView1.Size = new System.Drawing.Size(177, 571);
+            this.treeView1.Size = new System.Drawing.Size(177, 613);
             this.treeView1.StateImageList = this.imageList1;
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -510,13 +510,13 @@ namespace LegendaryCardEditor
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.treeViewMenuDeleteDeck});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 26);
             // 
             // treeViewMenuDeleteDeck
             // 
             this.treeViewMenuDeleteDeck.Image = global::LegendaryCardEditor.Properties.Resources.Delete;
             this.treeViewMenuDeleteDeck.Name = "treeViewMenuDeleteDeck";
-            this.treeViewMenuDeleteDeck.Size = new System.Drawing.Size(180, 22);
+            this.treeViewMenuDeleteDeck.Size = new System.Drawing.Size(136, 22);
             this.treeViewMenuDeleteDeck.Text = "Delete Deck";
             this.treeViewMenuDeleteDeck.Click += new System.EventHandler(this.treeViewMenuDeleteDeck_Click);
             // 
@@ -564,17 +564,17 @@ namespace LegendaryCardEditor
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(177, 100);
+            this.groupBox1.Size = new System.Drawing.Size(177, 58);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // btnAddDeck
             // 
-            this.btnAddDeck.Location = new System.Drawing.Point(42, 41);
+            this.btnAddDeck.Location = new System.Drawing.Point(21, 22);
             this.btnAddDeck.Name = "btnAddDeck";
-            this.btnAddDeck.Size = new System.Drawing.Size(75, 23);
+            this.btnAddDeck.Size = new System.Drawing.Size(111, 23);
             this.btnAddDeck.TabIndex = 0;
-            this.btnAddDeck.Text = "Add Deck";
+            this.btnAddDeck.Text = "Add New Deck";
             this.btnAddDeck.UseVisualStyleBackColor = true;
             this.btnAddDeck.Click += new System.EventHandler(this.btnAddDeck_Click);
             // 

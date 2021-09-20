@@ -159,7 +159,7 @@ namespace LegendaryCardEditor.Controls
                
                 txtCardName.Text = model.ActiveCard.CardDisplayName;
                 numCardTitleSize.Value = model.ActiveCard.CardDisplayNameFont;
-                txtCardSubName.Text = model.ActiveCard.CardDisplayNameSub == "Card Sub-Title" ? currentActiveSet.ActiveDeck.DeckDisplayName : model.ActiveCard.CardDisplayNameSub;
+               // txtCardSubName.Text = model.ActiveCard.CardDisplayNameSub == "Card Sub-Title" ? currentActiveSet.ActiveDeck.DeckDisplayName : model.ActiveCard.CardDisplayNameSub;
                 numCardSubTitleSize.Value = model.ActiveCard.CardDisplayNameSubFont;
                 txtCardAttackValue.Text = model.ActiveCard.AttributeAttack != "-1" ? model.ActiveCard.AttributeAttack : string.Empty;
                 txtCardCostValue.Text = model.ActiveCard.AttributeCost != "-1" ? model.ActiveCard.AttributeCost : string.Empty;
@@ -173,7 +173,7 @@ namespace LegendaryCardEditor.Controls
                 cmbTeam.SelectedIndex = model.ActiveCard.TeamIconId;
 
                 
-                if (model.ActiveCard.TemplateId == 1 || model.ActiveCard.TemplateId == 2 && model.ActiveTemplate.FormShowPowerPrimary)
+                if (model.ActiveTemplate.TemplateId == 1 || model.ActiveCard.TemplateId == 2 && model.ActiveTemplate.FormShowPowerPrimary)
                 {
                     model.ActiveTemplate.FrameImage = $"{model.ActiveTemplate.TemplateName}_none.png";
 
@@ -346,7 +346,7 @@ namespace LegendaryCardEditor.Controls
 
                 string id = (string)activePictureBox.Tag;
                 
-                txtCardSubName.Text = txtDeckName.Text;
+               // txtCardSubName.Text = txtDeckName.Text;
 
                 PopulateCardEditor(currentActiveSet.AllCardsInDeck.Where(x=>x.Id == id).FirstOrDefault());                
             }
@@ -419,9 +419,13 @@ namespace LegendaryCardEditor.Controls
                 var cardPath = $"{currentActiveSet.ActiveSetPath}\\artwork";
 
                
-                string artWorkName = Helper.GenerateID(Dlg.SafeFileName);
+                string artWorkName = Helper.GenerateID($"{currentActiveSet.SelectedCard.ActiveCard.DeckId}{currentActiveSet.SelectedCard.ActiveCard.CardId}");
                 currentActiveSet.SelectedCard.ActiveCard.ArtWorkFile = $"img_{artWorkName}.png";
                 lblArtworkPath.Text = $"{cardPath}\\{currentActiveSet.SelectedCard.ActiveCard.ArtWorkFile}";
+
+                if (File.Exists(lblArtworkPath.Text))
+                    File.Delete(lblArtworkPath.Text);
+
                 imageTools.artworkImage.SaveImage(lblArtworkPath.Text, System.Drawing.Imaging.ImageFormat.Png);
 
                 LoadImage(currentActiveSet.SelectedCard);
@@ -606,7 +610,7 @@ namespace LegendaryCardEditor.Controls
                 cardModel.ActiveCard.AttributeVictoryPoints = cardModel.ActiveTemplate.FormShowVictoryPoints ? txtCardVictoryPointsValue.Text : null;
                 cardModel.ActiveCard.CardDisplayName = txtCardName.Text;
                 cardModel.ActiveCard.CardDisplayNameFont = Convert.ToInt32(numCardTitleSize.Value);
-                cardModel.ActiveCard.CardDisplayNameSub = txtCardSubName.Text;
+                cardModel.ActiveCard.CardDisplayNameSub = txtDeckName.Text;
                 cardModel.ActiveCard.CardDisplayNameSubFont = Convert.ToInt32(numCardSubTitleSize.Value);
                 cardModel.ActiveCard.CardText = txtCardTextBox.Text;
                 cardModel.ActiveCard.CardTextFont = Convert.ToInt32(numCardTextSize.Value);
@@ -777,7 +781,7 @@ namespace LegendaryCardEditor.Controls
             this.Cursor = Cursors.WaitCursor;
             if (currentActiveSet.SelectedCard != null)
             {
-                txtCardSubName.Text = txtDeckName.Text;
+               // txtCardSubName.Text = txtDeckName.Text;
                // cmbTeam.SelectedIndex = cmbDeckTeam.SelectedIndex;
                 currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
                 LoadImage(currentActiveSet.SelectedCard);

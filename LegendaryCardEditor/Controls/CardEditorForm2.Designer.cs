@@ -39,6 +39,8 @@ namespace LegendaryCardEditor.Controls
             this.txtDeckName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnDeckUpdate = new System.Windows.Forms.Button();
+            this.numCardSubTitleSize = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.panelImagePreview = new System.Windows.Forms.Panel();
             this.txtErrorConsole = new System.Windows.Forms.TextBox();
             this.gbPoloygon = new System.Windows.Forms.GroupBox();
@@ -60,9 +62,7 @@ namespace LegendaryCardEditor.Controls
             this.label2 = new System.Windows.Forms.Label();
             this.numCardTitleSize = new System.Windows.Forms.NumericUpDown();
             this.btnGap = new System.Windows.Forms.Button();
-            this.txtCardSubName = new System.Windows.Forms.TextBox();
             this.btnRegular = new System.Windows.Forms.Button();
-            this.numCardSubTitleSize = new System.Windows.Forms.NumericUpDown();
             this.btnKeyword = new System.Windows.Forms.Button();
             this.btnBrowseImage = new System.Windows.Forms.Button();
             this.cmbAttributesOther = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
@@ -102,6 +102,7 @@ namespace LegendaryCardEditor.Controls
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardSubTitleSize)).BeginInit();
             this.panelImagePreview.SuspendLayout();
             this.gbPoloygon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numY4)).BeginInit();
@@ -115,7 +116,6 @@ namespace LegendaryCardEditor.Controls
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNumberInDeck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTitleSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCardSubTitleSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextSize)).BeginInit();
             this.groupBoxPower.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -147,9 +147,9 @@ namespace LegendaryCardEditor.Controls
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 209);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 245);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(320, 672);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(320, 636);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // panel1
@@ -160,18 +160,20 @@ namespace LegendaryCardEditor.Controls
             this.panel1.Controls.Add(this.txtDeckName);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.btnDeckUpdate);
+            this.panel1.Controls.Add(this.numCardSubTitleSize);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 209);
+            this.panel1.Size = new System.Drawing.Size(320, 245);
             this.panel1.TabIndex = 0;
             // 
             // btnAddCard
             // 
             this.btnAddCard.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAddCard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAddCard.Location = new System.Drawing.Point(11, 169);
+            this.btnAddCard.Location = new System.Drawing.Point(11, 201);
             this.btnAddCard.Name = "btnAddCard";
             this.btnAddCard.Size = new System.Drawing.Size(75, 23);
             this.btnAddCard.TabIndex = 77;
@@ -181,12 +183,13 @@ namespace LegendaryCardEditor.Controls
             // 
             // cmbDeckTeam
             // 
+            this.cmbDeckTeam.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Gallery;
             this.cmbDeckTeam.ImageList = this.imageListTeams;
-            this.cmbDeckTeam.Location = new System.Drawing.Point(11, 62);
+            this.cmbDeckTeam.Location = new System.Drawing.Point(11, 91);
             this.cmbDeckTeam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDeckTeam.Name = "cmbDeckTeam";
             this.cmbDeckTeam.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbDeckTeam.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
+            this.cmbDeckTeam.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
             this.cmbDeckTeam.Size = new System.Drawing.Size(296, 57);
             this.cmbDeckTeam.TabIndex = 75;
             this.cmbDeckTeam.SelectedIndexChanged += new System.EventHandler(this.cmbTeam_SelectedIndexChanged);
@@ -222,7 +225,7 @@ namespace LegendaryCardEditor.Controls
             // 
             this.btnDeckUpdate.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDeckUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDeckUpdate.Location = new System.Drawing.Point(11, 125);
+            this.btnDeckUpdate.Location = new System.Drawing.Point(11, 154);
             this.btnDeckUpdate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDeckUpdate.Name = "btnDeckUpdate";
             this.btnDeckUpdate.Size = new System.Drawing.Size(296, 27);
@@ -230,6 +233,43 @@ namespace LegendaryCardEditor.Controls
             this.btnDeckUpdate.Text = "Update Deck";
             this.btnDeckUpdate.UseVisualStyleBackColor = false;
             this.btnDeckUpdate.Click += new System.EventHandler(this.btnDeckUpdate_Click);
+            // 
+            // numCardSubTitleSize
+            // 
+            this.numCardSubTitleSize.BackColor = System.Drawing.Color.White;
+            this.numCardSubTitleSize.Location = new System.Drawing.Point(239, 62);
+            this.numCardSubTitleSize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.numCardSubTitleSize.Maximum = new decimal(new int[] {
+            48,
+            0,
+            0,
+            0});
+            this.numCardSubTitleSize.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numCardSubTitleSize.Name = "numCardSubTitleSize";
+            this.numCardSubTitleSize.Size = new System.Drawing.Size(68, 23);
+            this.numCardSubTitleSize.TabIndex = 71;
+            this.numCardSubTitleSize.Value = new decimal(new int[] {
+            22,
+            0,
+            0,
+            0});
+            this.numCardSubTitleSize.ValueChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(160, 63);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 15);
+            this.label4.TabIndex = 80;
+            this.label4.Text = "Font Size:";
             // 
             // panelImagePreview
             // 
@@ -245,9 +285,7 @@ namespace LegendaryCardEditor.Controls
             this.panelImagePreview.Controls.Add(this.label2);
             this.panelImagePreview.Controls.Add(this.numCardTitleSize);
             this.panelImagePreview.Controls.Add(this.btnGap);
-            this.panelImagePreview.Controls.Add(this.txtCardSubName);
             this.panelImagePreview.Controls.Add(this.btnRegular);
-            this.panelImagePreview.Controls.Add(this.numCardSubTitleSize);
             this.panelImagePreview.Controls.Add(this.btnKeyword);
             this.panelImagePreview.Controls.Add(this.btnBrowseImage);
             this.panelImagePreview.Controls.Add(this.cmbAttributesOther);
@@ -273,13 +311,13 @@ namespace LegendaryCardEditor.Controls
             // 
             this.txtErrorConsole.BackColor = System.Drawing.Color.Black;
             this.txtErrorConsole.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtErrorConsole.ForeColor = System.Drawing.Color.Lime;
-            this.txtErrorConsole.Location = new System.Drawing.Point(416, 638);
+            this.txtErrorConsole.ForeColor = System.Drawing.Color.Red;
+            this.txtErrorConsole.Location = new System.Drawing.Point(416, 622);
             this.txtErrorConsole.Multiline = true;
             this.txtErrorConsole.Name = "txtErrorConsole";
             this.txtErrorConsole.ReadOnly = true;
             this.txtErrorConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtErrorConsole.Size = new System.Drawing.Size(543, 174);
+            this.txtErrorConsole.Size = new System.Drawing.Size(543, 190);
             this.txtErrorConsole.TabIndex = 91;
             // 
             // gbPoloygon
@@ -464,7 +502,7 @@ namespace LegendaryCardEditor.Controls
             // 
             this.btnUpdateCard.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnUpdateCard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUpdateCard.Location = new System.Drawing.Point(871, 603);
+            this.btnUpdateCard.Location = new System.Drawing.Point(871, 571);
             this.btnUpdateCard.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnUpdateCard.Name = "btnUpdateCard";
             this.btnUpdateCard.Size = new System.Drawing.Size(88, 27);
@@ -478,7 +516,7 @@ namespace LegendaryCardEditor.Controls
             this.btnResetCard.Location = new System.Drawing.Point(4, 603);
             this.btnResetCard.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnResetCard.Name = "btnResetCard";
-            this.btnResetCard.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
+            this.btnResetCard.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
             this.btnResetCard.Size = new System.Drawing.Size(105, 29);
             this.btnResetCard.TabIndex = 66;
             this.btnResetCard.Values.Text = "Reset";
@@ -488,7 +526,7 @@ namespace LegendaryCardEditor.Controls
             // 
             this.btnExport.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExport.Location = new System.Drawing.Point(416, 605);
+            this.btnExport.Location = new System.Drawing.Point(416, 573);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(88, 27);
@@ -513,7 +551,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // numNumberInDeck
             // 
-            this.numNumberInDeck.Location = new System.Drawing.Point(534, 566);
+            this.numNumberInDeck.Location = new System.Drawing.Point(534, 534);
             this.numNumberInDeck.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.numNumberInDeck.Maximum = new decimal(new int[] {
             20,
@@ -553,7 +591,7 @@ namespace LegendaryCardEditor.Controls
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(416, 567);
+            this.label2.Location = new System.Drawing.Point(416, 535);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 15);
@@ -589,7 +627,7 @@ namespace LegendaryCardEditor.Controls
             // 
             this.btnGap.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnGap.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGap.Location = new System.Drawing.Point(785, 372);
+            this.btnGap.Location = new System.Drawing.Point(785, 340);
             this.btnGap.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnGap.Name = "btnGap";
             this.btnGap.Size = new System.Drawing.Size(68, 32);
@@ -598,25 +636,11 @@ namespace LegendaryCardEditor.Controls
             this.btnGap.UseVisualStyleBackColor = false;
             this.btnGap.Click += new System.EventHandler(this.btnGap_Click);
             // 
-            // txtCardSubName
-            // 
-            this.txtCardSubName.BackColor = System.Drawing.Color.White;
-            this.txtCardSubName.Font = new System.Drawing.Font("Eurostile", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtCardSubName.Location = new System.Drawing.Point(416, 46);
-            this.txtCardSubName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtCardSubName.MaxLength = 100;
-            this.txtCardSubName.Name = "txtCardSubName";
-            this.txtCardSubName.ReadOnly = true;
-            this.txtCardSubName.Size = new System.Drawing.Size(453, 22);
-            this.txtCardSubName.TabIndex = 69;
-            this.txtCardSubName.Text = "Card Sub-Title";
-            this.txtCardSubName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // btnRegular
             // 
             this.btnRegular.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnRegular.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRegular.Location = new System.Drawing.Point(712, 372);
+            this.btnRegular.Location = new System.Drawing.Point(712, 340);
             this.btnRegular.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRegular.Name = "btnRegular";
             this.btnRegular.Size = new System.Drawing.Size(68, 32);
@@ -625,37 +649,12 @@ namespace LegendaryCardEditor.Controls
             this.btnRegular.UseVisualStyleBackColor = false;
             this.btnRegular.Click += new System.EventHandler(this.btnRegular_Click);
             // 
-            // numCardSubTitleSize
-            // 
-            this.numCardSubTitleSize.BackColor = System.Drawing.Color.White;
-            this.numCardSubTitleSize.Location = new System.Drawing.Point(891, 46);
-            this.numCardSubTitleSize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.numCardSubTitleSize.Maximum = new decimal(new int[] {
-            48,
-            0,
-            0,
-            0});
-            this.numCardSubTitleSize.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numCardSubTitleSize.Name = "numCardSubTitleSize";
-            this.numCardSubTitleSize.Size = new System.Drawing.Size(68, 23);
-            this.numCardSubTitleSize.TabIndex = 71;
-            this.numCardSubTitleSize.Value = new decimal(new int[] {
-            22,
-            0,
-            0,
-            0});
-            this.numCardSubTitleSize.ValueChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
-            // 
             // btnKeyword
             // 
             this.btnKeyword.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnKeyword.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnKeyword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnKeyword.Location = new System.Drawing.Point(629, 372);
+            this.btnKeyword.Location = new System.Drawing.Point(629, 340);
             this.btnKeyword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnKeyword.Name = "btnKeyword";
             this.btnKeyword.Size = new System.Drawing.Size(78, 32);
@@ -669,7 +668,7 @@ namespace LegendaryCardEditor.Controls
             this.btnBrowseImage.AutoSize = true;
             this.btnBrowseImage.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnBrowseImage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBrowseImage.Location = new System.Drawing.Point(891, 139);
+            this.btnBrowseImage.Location = new System.Drawing.Point(891, 107);
             this.btnBrowseImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnBrowseImage.Name = "btnBrowseImage";
             this.btnBrowseImage.Size = new System.Drawing.Size(68, 25);
@@ -681,11 +680,11 @@ namespace LegendaryCardEditor.Controls
             // cmbAttributesOther
             // 
             this.cmbAttributesOther.ImageList = this.imageListAttributes;
-            this.cmbAttributesOther.Location = new System.Drawing.Point(563, 372);
+            this.cmbAttributesOther.Location = new System.Drawing.Point(563, 340);
             this.cmbAttributesOther.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbAttributesOther.Name = "cmbAttributesOther";
             this.cmbAttributesOther.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbAttributesOther.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
+            this.cmbAttributesOther.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
             this.cmbAttributesOther.Size = new System.Drawing.Size(61, 32);
             this.cmbAttributesOther.TabIndex = 83;
             this.cmbAttributesOther.SelectedIndexChanged += new System.EventHandler(this.cmbAttributesOther_SelectedIndexChanged);
@@ -702,7 +701,7 @@ namespace LegendaryCardEditor.Controls
             this.lblArtworkPath.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblArtworkPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblArtworkPath.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblArtworkPath.Location = new System.Drawing.Point(416, 141);
+            this.lblArtworkPath.Location = new System.Drawing.Point(416, 109);
             this.lblArtworkPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArtworkPath.Name = "lblArtworkPath";
             this.lblArtworkPath.Size = new System.Drawing.Size(457, 23);
@@ -711,11 +710,11 @@ namespace LegendaryCardEditor.Controls
             // cmbAttributesPower
             // 
             this.cmbAttributesPower.ImageList = this.imageListAttributesPowers;
-            this.cmbAttributesPower.Location = new System.Drawing.Point(489, 372);
+            this.cmbAttributesPower.Location = new System.Drawing.Point(489, 340);
             this.cmbAttributesPower.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbAttributesPower.Name = "cmbAttributesPower";
             this.cmbAttributesPower.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbAttributesPower.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
+            this.cmbAttributesPower.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
             this.cmbAttributesPower.Size = new System.Drawing.Size(69, 32);
             this.cmbAttributesPower.TabIndex = 82;
             this.cmbAttributesPower.SelectedIndexChanged += new System.EventHandler(this.cmbAttributesPower_SelectedIndexChanged);
@@ -731,7 +730,7 @@ namespace LegendaryCardEditor.Controls
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(416, 123);
+            this.label1.Location = new System.Drawing.Point(416, 91);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 15);
@@ -744,7 +743,7 @@ namespace LegendaryCardEditor.Controls
             this.numCardTextSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numCardTextSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.numCardTextSize.ForeColor = System.Drawing.Color.Black;
-            this.numCardTextSize.Location = new System.Drawing.Point(909, 566);
+            this.numCardTextSize.Location = new System.Drawing.Point(909, 534);
             this.numCardTextSize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.numCardTextSize.Maximum = new decimal(new int[] {
             64,
@@ -770,11 +769,11 @@ namespace LegendaryCardEditor.Controls
             // 
             this.cmbTeam.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Gallery;
             this.cmbTeam.ImageList = this.imageListTeams;
-            this.cmbTeam.Location = new System.Drawing.Point(416, 75);
+            this.cmbTeam.Location = new System.Drawing.Point(416, 42);
             this.cmbTeam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbTeam.Name = "cmbTeam";
             this.cmbTeam.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbTeam.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
+            this.cmbTeam.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
             this.cmbTeam.Size = new System.Drawing.Size(543, 46);
             this.cmbTeam.TabIndex = 70;
             this.cmbTeam.SelectedIndexChanged += new System.EventHandler(this.cmbTeam_SelectedIndexChanged);
@@ -784,7 +783,7 @@ namespace LegendaryCardEditor.Controls
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(782, 567);
+            this.label3.Location = new System.Drawing.Point(782, 535);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 15);
@@ -798,7 +797,7 @@ namespace LegendaryCardEditor.Controls
             this.groupBoxPower.Controls.Add(this.chkPowerVisible);
             this.groupBoxPower.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBoxPower.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxPower.Location = new System.Drawing.Point(416, 181);
+            this.groupBoxPower.Location = new System.Drawing.Point(416, 149);
             this.groupBoxPower.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxPower.Name = "groupBoxPower";
             this.groupBoxPower.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -809,14 +808,14 @@ namespace LegendaryCardEditor.Controls
             // 
             // cmbPower1
             // 
-            this.cmbPower1.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
+            this.cmbPower1.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Gallery;
             this.cmbPower1.Cursor = System.Windows.Forms.Cursors.Default;
             this.cmbPower1.ImageList = this.imageListPowers;
             this.cmbPower1.Location = new System.Drawing.Point(8, 20);
             this.cmbPower1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbPower1.Name = "cmbPower1";
             this.cmbPower1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbPower1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
+            this.cmbPower1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
             this.cmbPower1.Size = new System.Drawing.Size(237, 35);
             this.cmbPower1.TabIndex = 7;
             this.cmbPower1.SelectedIndexChanged += new System.EventHandler(this.cmbPower1_SelectedIndexChanged);
@@ -851,7 +850,7 @@ namespace LegendaryCardEditor.Controls
             "<RECRUIT>"});
             this.txtCardTextBox.BackColor = System.Drawing.Color.White;
             this.txtCardTextBox.Font = new System.Drawing.Font("Eurostile", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtCardTextBox.Location = new System.Drawing.Point(416, 412);
+            this.txtCardTextBox.Location = new System.Drawing.Point(416, 380);
             this.txtCardTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCardTextBox.MaxLength = 350;
             this.txtCardTextBox.Multiline = true;
@@ -875,7 +874,7 @@ namespace LegendaryCardEditor.Controls
             this.groupBox6.Controls.Add(this.txtCardVictoryPointsValue);
             this.groupBox6.Controls.Add(this.lblCardCostValue);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox6.Location = new System.Drawing.Point(416, 251);
+            this.groupBox6.Location = new System.Drawing.Point(416, 219);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -1012,11 +1011,11 @@ namespace LegendaryCardEditor.Controls
             // cmbAttributesTeams
             // 
             this.cmbAttributesTeams.ImageList = this.imageListAttributesTeams;
-            this.cmbAttributesTeams.Location = new System.Drawing.Point(416, 372);
+            this.cmbAttributesTeams.Location = new System.Drawing.Point(416, 340);
             this.cmbAttributesTeams.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbAttributesTeams.Name = "cmbAttributesTeams";
             this.cmbAttributesTeams.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbAttributesTeams.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
+            this.cmbAttributesTeams.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
             this.cmbAttributesTeams.Size = new System.Drawing.Size(68, 32);
             this.cmbAttributesTeams.TabIndex = 78;
             this.cmbAttributesTeams.SelectedIndexChanged += new System.EventHandler(this.cmbAttributesTeams_SelectedIndexChanged);
@@ -1034,7 +1033,7 @@ namespace LegendaryCardEditor.Controls
             this.groupBoxPower2.Controls.Add(this.chkPower2Visible);
             this.groupBoxPower2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBoxPower2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxPower2.Location = new System.Drawing.Point(695, 181);
+            this.groupBoxPower2.Location = new System.Drawing.Point(695, 149);
             this.groupBoxPower2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxPower2.Name = "groupBoxPower2";
             this.groupBoxPower2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -1045,14 +1044,14 @@ namespace LegendaryCardEditor.Controls
             // 
             // cmbPower2
             // 
-            this.cmbPower2.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
+            this.cmbPower2.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Gallery;
             this.cmbPower2.Enabled = false;
             this.cmbPower2.ImageList = this.imageListPowers;
             this.cmbPower2.Location = new System.Drawing.Point(9, 20);
             this.cmbPower2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbPower2.Name = "cmbPower2";
             this.cmbPower2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbPower2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
+            this.cmbPower2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
             this.cmbPower2.Size = new System.Drawing.Size(236, 35);
             this.cmbPower2.TabIndex = 7;
             this.cmbPower2.SelectedIndexChanged += new System.EventHandler(this.cmbPower2_SelectedIndexChanged);
@@ -1088,6 +1087,7 @@ namespace LegendaryCardEditor.Controls
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardSubTitleSize)).EndInit();
             this.panelImagePreview.ResumeLayout(false);
             this.panelImagePreview.PerformLayout();
             this.gbPoloygon.ResumeLayout(false);
@@ -1102,7 +1102,6 @@ namespace LegendaryCardEditor.Controls
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNumberInDeck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTitleSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCardSubTitleSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextSize)).EndInit();
             this.groupBoxPower.ResumeLayout(false);
             this.groupBoxPower.PerformLayout();
@@ -1140,7 +1139,6 @@ namespace LegendaryCardEditor.Controls
         private System.Windows.Forms.Label lblArtworkPath;
         private System.Windows.Forms.Button btnBrowseImage;
         private System.Windows.Forms.NumericUpDown numCardSubTitleSize;
-        private System.Windows.Forms.TextBox txtCardSubName;
         private System.Windows.Forms.GroupBox groupBoxPower2;
         private ComponentFactory.Krypton.Ribbon.KryptonGallery cmbPower2;
         private System.Windows.Forms.CheckBox chkPower2Visible;
@@ -1183,5 +1181,6 @@ namespace LegendaryCardEditor.Controls
         private ComponentFactory.Krypton.Toolkit.KryptonContextMenu ctxMenuTeams;
         private System.Windows.Forms.ImageList imageListAttributesTeams;
         private System.Windows.Forms.ImageList imageListAttributesPowers;
+        private System.Windows.Forms.Label label4;
     }
 }
