@@ -533,9 +533,10 @@ namespace LegendaryCardEditor
             this.imageList1.Images.SetKeyName(24, "us_army.png");
             this.imageList1.Images.SetKeyName(25, "x_force.png");
             this.imageList1.Images.SetKeyName(26, "x_men.png");
-            this.imageList1.Images.SetKeyName(27, "SHIELD.ico");
-            this.imageList1.Images.SetKeyName(28, "Home.ico");
+            this.imageList1.Images.SetKeyName(27, "Dominicanjoker-Comic-Publisher-Folder-Marvel.ico");
+            this.imageList1.Images.SetKeyName(28, "SHIELD.ico");
             this.imageList1.Images.SetKeyName(29, "SystemFolder.ico");
+            this.imageList1.Images.SetKeyName(30, "Home.ico");
             // 
             // groupBox1
             // 

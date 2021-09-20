@@ -35,6 +35,7 @@ namespace LegendaryCardEditor.ImageEditor
         public Pen cropPen;
         public DashStyle cropDashStyle = DashStyle.Dash;
 
+        public bool makeChanges = false;
 
         public ImageSlicer(KalikoImage _imageNew, string _imageNewPath, KalikoImage _imageOrignalArtwork, string _imageOrignalArtworkPath)
         {
@@ -192,12 +193,14 @@ namespace LegendaryCardEditor.ImageEditor
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            makeChanges = true;
             this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            imageResult = imageOrignalArtwork;
+            makeChanges = false;
+            this.Close();
         }
 
         private void splitContainer1_Panel1_Resize(object sender, EventArgs e)

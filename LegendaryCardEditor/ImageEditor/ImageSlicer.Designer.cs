@@ -49,13 +49,14 @@ namespace LegendaryCardEditor.ImageEditor
             // 
             // zoomImageUpDown1
             // 
+            this.zoomImageUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.zoomImageUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.zoomImageUpDown1.Increment = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.zoomImageUpDown1.Location = new System.Drawing.Point(105, 613);
+            this.zoomImageUpDown1.Location = new System.Drawing.Point(109, 586);
             this.zoomImageUpDown1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.zoomImageUpDown1.Maximum = new decimal(new int[] {
             175,
@@ -79,9 +80,10 @@ namespace LegendaryCardEditor.ImageEditor
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(172, 616);
+            this.label6.Location = new System.Drawing.Point(176, 589);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(24, 20);
@@ -90,9 +92,10 @@ namespace LegendaryCardEditor.ImageEditor
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(27, 616);
+            this.label5.Location = new System.Drawing.Point(31, 589);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 20);
@@ -101,8 +104,9 @@ namespace LegendaryCardEditor.ImageEditor
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(337, 667);
+            this.btnCancel.Location = new System.Drawing.Point(341, 638);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 27);
@@ -113,9 +117,10 @@ namespace LegendaryCardEditor.ImageEditor
             // 
             // pictureBoxResult
             // 
+            this.pictureBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxResult.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pictureBoxResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxResult.Location = new System.Drawing.Point(24, 12);
+            this.pictureBoxResult.Location = new System.Drawing.Point(25, 12);
             this.pictureBoxResult.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxResult.Name = "pictureBoxResult";
             this.pictureBoxResult.Size = new System.Drawing.Size(404, 551);
@@ -125,7 +130,8 @@ namespace LegendaryCardEditor.ImageEditor
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(337, 613);
+            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOk.Location = new System.Drawing.Point(341, 586);
             this.btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(88, 27);
@@ -157,14 +163,15 @@ namespace LegendaryCardEditor.ImageEditor
             this.splitContainer1.Panel2.Controls.Add(this.btnOk);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.btnCancel);
-            this.splitContainer1.Size = new System.Drawing.Size(1173, 983);
-            this.splitContainer1.SplitterDistance = 623;
+            this.splitContainer1.Size = new System.Drawing.Size(1071, 848);
+            this.splitContainer1.SplitterDistance = 624;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 10;
             // 
             // pictureBoxOrig
             // 
             this.pictureBoxOrig.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.pictureBoxOrig.Cursor = System.Windows.Forms.Cursors.Cross;
             this.pictureBoxOrig.Location = new System.Drawing.Point(13, 12);
             this.pictureBoxOrig.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxOrig.Name = "pictureBoxOrig";
@@ -191,7 +198,7 @@ namespace LegendaryCardEditor.ImageEditor
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1173, 983);
+            this.ClientSize = new System.Drawing.Size(1071, 848);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.label8);

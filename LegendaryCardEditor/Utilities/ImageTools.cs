@@ -9,15 +9,13 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LegendaryCardEditor.Utilities
 {
     public class ImageTools
     {
-        LegendaryTemplateModel templateModel;
+        private LegendaryTemplateModel templateModel;
         public KalikoImage artworkImage { get; set; }
         public KalikoImage orignalArtwork { get; set; }
         public KalikoImage backTextImage { get; set; }
@@ -31,18 +29,16 @@ namespace LegendaryCardEditor.Utilities
         public KalikoImage powerImage2 { get; set; }
         public KalikoImage victoryPointsImage { get; set; }
 
-        List<CardTextIconViewModel> cardTextIcons = new List<CardTextIconViewModel>();
-        List<TextField> cardTextFields = new List<TextField>();
+        private List<CardTextIconViewModel> cardTextIcons = new List<CardTextIconViewModel>();
+        private List<TextField> cardTextFields = new List<TextField>();
 
+        private Font attributesFont;
+        private Font cardInfoFont;
+        private Font cardCostFont;
 
-        Font attributesFont;
-        Font cardInfoFont;
-        Font cardCostFont;
+        private Dictionary<string, KalikoImage> renderedCards = new Dictionary<string, KalikoImage>();
 
-        Dictionary<string, KalikoImage> renderedCards = new Dictionary<string, KalikoImage>();
-
-        bool overridePolygon = false;
-
+        private bool overridePolygon = false;
 
         private double scale = 1.0d;
 
@@ -55,14 +51,15 @@ namespace LegendaryCardEditor.Utilities
         public int startY = 50;
         public int endY = 525;
 
-        int picWidth = 504;
-        int picHeight = 700;
-        List<LegendaryIconViewModel> legendaryIconList { get; set; }
+        private int picWidth = 504;
+        private int picHeight = 700;
+        private List<LegendaryIconViewModel> legendaryIconList { get; set; }
 
-        ResourceManager rm = Resources.ResourceManager;
+        private ResourceManager rm = Resources.ResourceManager;
 
-        string activeSetPath;
-        DirectoryInfo currentTemplateDirectory;
+        private string activeSetPath;
+        private DirectoryInfo currentTemplateDirectory;
+
         public ImageTools(string ActiveSetPath, string CurrentTemplateDirectory, List<LegendaryIconViewModel> LegendaryIconList)
         {
             activeSetPath = ActiveSetPath;
@@ -85,8 +82,6 @@ namespace LegendaryCardEditor.Utilities
         {
             try
             {
-                
-
                 templateModel = model.ActiveTemplate;
 
                 bool containsPlus = false;
@@ -98,6 +93,7 @@ namespace LegendaryCardEditor.Utilities
                    82,
                    FontStyle.Bold,
                    GraphicsUnit.Pixel);
+
                 KalikoImage infoImage = new KalikoImage(picWidth, picHeight);
                 infoImage.VerticalResolution = 600;
                 infoImage.HorizontalResolution = 600;
@@ -113,13 +109,11 @@ namespace LegendaryCardEditor.Utilities
                 else
                     artworkImage = new KalikoImage(Resources.default_blank_card);
 
-
                 artworkImage.Resize(picWidth, picHeight);
 
                 infoImage.BlitImage(artworkImage);
 
                 backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.TextImage}");
-
 
                 if (backTextImage != null)
                 {
@@ -133,13 +127,10 @@ namespace LegendaryCardEditor.Utilities
 
                 if (model.ActiveTemplate.FormShowAttributes)
                 {
-
                     frameImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.FrameImage}");
                     frameImage.Resize(picWidth, picHeight);
                     infoImage.BlitImage(frameImage);
                 }
-
-
 
                 attackImage = new KalikoImage(Resources.attack);
                 recruitImage = new KalikoImage(Resources.recruit);
@@ -148,7 +139,6 @@ namespace LegendaryCardEditor.Utilities
 
                 if (model.ActiveTemplate.TemplateId == 3)
                     costImage = new KalikoImage(Resources.cost);
-
 
                 if (powerImage != null && model.ActiveTemplate.FormShowPowerPrimary)
                 {
@@ -220,7 +210,6 @@ namespace LegendaryCardEditor.Utilities
                     }
                 }
 
-
                 if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttackCost && attackImage != null)
                 {
                     attackImage.Resize(95, 95);
@@ -232,7 +221,6 @@ namespace LegendaryCardEditor.Utilities
                     costImage.Resize(102, 102);
                     infoImage.BlitImage(costImage, 373, 585);
                 }
-
 
                 if (model.ActiveCard.AttributeCost != null && model.ActiveTemplate.FormShowAttributesCost)
                 {
@@ -249,13 +237,11 @@ namespace LegendaryCardEditor.Utilities
                         TextColor = Color.White
                     };
 
-
                     txtFieldCost.Point = new Point(424, 595);
 
                     txtFieldCost.Outline = 4;
                     txtFieldCost.OutlineColor = Color.Black;
                     infoImage.DrawText(txtFieldCost);
-
                 }
 
                 if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttackCost)
@@ -267,10 +253,6 @@ namespace LegendaryCardEditor.Utilities
                           82,
                           FontStyle.Bold,
                           GraphicsUnit.Pixel);
-
-
-
-
 
                         if (model.ActiveCard.AttributeAttack.Contains("+"))
                         {
@@ -311,9 +293,7 @@ namespace LegendaryCardEditor.Utilities
                             model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack + "+";
                         }
                     }
-
                 }
-
 
                 Font fontTitle = new Font(
                    fontFamily,
@@ -330,10 +310,6 @@ namespace LegendaryCardEditor.Utilities
                     Outline = 3,
                     OutlineColor = Color.Black
                 };
-
-
-
-
 
                 Font fontSubTitle = new Font(
                    fontFamily,
@@ -361,16 +337,15 @@ namespace LegendaryCardEditor.Utilities
                 if (model.ActiveTemplate.TemplateType == "villain")
                     tempSubName = model.ActiveTemplate.TemplateDisplayName.ToUpper() + " - " + model.ActiveCard.CardDisplayNameSub.ToUpper();
 
-
                 TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
-                    {
-                        Font = fontSubTitle,
-                        TargetArea = new Rectangle(30, fontTitle.Height + 15, 430, 60),
-                        Alignment = StringAlignment.Center,
-                        TextColor = Color.Gold,
-                        Outline = 2,
-                        OutlineColor = Color.Black
-                    };
+                {
+                    Font = fontSubTitle,
+                    TargetArea = new Rectangle(30, fontTitle.Height + 15, 430, 60),
+                    Alignment = StringAlignment.Center,
+                    TextColor = Color.Gold,
+                    Outline = 2,
+                    OutlineColor = Color.Black
+                };
 
                 if (model.ActiveTemplate.TemplateType == "wound" || model.ActiveTemplate.TemplateType == "bystander")
                 {
@@ -378,13 +353,9 @@ namespace LegendaryCardEditor.Utilities
                     txtFieldSubTitle.TargetArea = new Rectangle(38, 512, 430, 50);
                     txtFieldSubTitle.TextColor = Color.White;
                     txtFieldSubTitle.Alignment = StringAlignment.Near;
-                   
                 }
                 else
                 {
-
-                   
-
                     // create blank bitmap with same size
                     Bitmap combinedImageL = new Bitmap(picWidth / 2, fontTitle.Height + fontSubTitle.Height);
                     Bitmap combinedImageR = new Bitmap(picWidth / 2, fontTitle.Height + fontSubTitle.Height);
@@ -410,16 +381,13 @@ namespace LegendaryCardEditor.Utilities
 
                     gR.FillRectangle(linearGradientBrushR, 0, 0, picWidth / 2, combinedImageR.Height);
                     infoImage.BlitImage(combinedImageR, picWidth / 2, 16);
-
                 }
                 infoImage.DrawText(txtFieldTitle);
                 infoImage.DrawText(txtFieldSubTitle);
 
-
                 containsPlus = false;
                 if (model.ActiveCard.AttributeRecruit != null)
                 {
-
                     if (model.ActiveCard.AttributeRecruit.Contains("+"))
                     {
                         containsPlus = true;
@@ -462,10 +430,8 @@ namespace LegendaryCardEditor.Utilities
 
                 containsPlus = false;
 
-
                 if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttributesAttack)
                 {
-
                     if (model.ActiveCard.AttributeAttack.Contains("+"))
                     {
                         containsPlus = true;
@@ -482,8 +448,6 @@ namespace LegendaryCardEditor.Utilities
                         Alignment = StringAlignment.Near
                     };
                     infoImage.DrawText(txtFieldAttack);
-
-
 
                     if (containsPlus)
                     {
@@ -528,7 +492,6 @@ namespace LegendaryCardEditor.Utilities
                     };
                     infoImage.DrawText(txtFieldPiercing);
 
-
                     if (containsPlus)
                     {
                         font = new Font(
@@ -551,7 +514,6 @@ namespace LegendaryCardEditor.Utilities
                     }
                 }
 
-
                 if (model.ActiveCard.CardText != null)
                 {
                     GetCardText(model);
@@ -567,11 +529,9 @@ namespace LegendaryCardEditor.Utilities
             }
             catch (Exception ex)
             {
-                
                 return null;
             }
         }
-
 
         public void GetCardText(CardModel model)
         {
@@ -603,7 +563,6 @@ namespace LegendaryCardEditor.Utilities
                       FontStyle.Bold,
                       GraphicsUnit.Pixel);
 
-
                 int x = 1;
                 int y = 1;
 
@@ -612,7 +571,6 @@ namespace LegendaryCardEditor.Utilities
 
                 // 14.484375 = 16.0 * 1854 / 2048
                 var ascentPixel = fontRegular.Size * ascent / fontFamily.GetEmHeight(FontStyle.Regular);
-
 
                 Point[] startPoint = GetPolygon(); //new Point(70,390);
                 x = startPoint[0].X;
@@ -629,7 +587,6 @@ namespace LegendaryCardEditor.Utilities
                         List<WordDefinition> words = WordDefinition.GetWordDefinitionList(sectionString);
                         foreach (WordDefinition wd in words)
                         {
-
                             String s = wd.word;
                             String spaceChar = " ";
                             if (wd.space)
@@ -669,12 +626,11 @@ namespace LegendaryCardEditor.Utilities
                                 int stringLength = textSize.Width;
                                 if (stringLength > 0)
                                 {
-                                    if (!IsInPolygon(startPoint, new Point(x-2 + stringLength, y)))
+                                    if (!IsInPolygon(startPoint, new Point(x - 2 + stringLength, y)))
                                     {
                                         y += currentFont.Height;
                                         x = getXStart(y);
                                     }
-
 
                                     TextField txtFieldDetails = new TextField(s)
                                     {
@@ -694,13 +650,10 @@ namespace LegendaryCardEditor.Utilities
                                         x += stringLength;
                                     else
                                         x += stringLength + 1;
-
                                 }
-
                             }
                             else if ((icon != null))
                             {
-
                                 var iconImage = GetIconMaxHeight(icon, GetPercentage(currentFont.Height - 1, 1.1d));
 
                                 if (x + iconImage.Width > GetPercentage(endX, scale))
@@ -722,7 +675,6 @@ namespace LegendaryCardEditor.Utilities
                                 };
                                 cardTextIcons.Add(imgX);
 
-
                                 x += (iconImage.Width);
                             }
                         }
@@ -731,8 +683,6 @@ namespace LegendaryCardEditor.Utilities
             }
             catch (Exception ex)
             {
-              
-
             }
         }
 
@@ -745,7 +695,6 @@ namespace LegendaryCardEditor.Utilities
             int w = (int)(imageIcon.Width * r);
             int h = (int)(imageIcon.Height * r);
 
-
             if (w <= 0 || h <= 0)
             {
                 return null;
@@ -753,11 +702,8 @@ namespace LegendaryCardEditor.Utilities
 
             imageIcon.Resize(w + 2, h + 2);
 
-
             return imageIcon;
         }
-
-
 
         public bool IsInPolygon(Point[] poly, Point p)
         {
@@ -802,8 +748,8 @@ namespace LegendaryCardEditor.Utilities
 
         private Point[] GetPolygon()
         {
-           // if (overridePolygon)
-           //     return SetPolygon();
+            // if (overridePolygon)
+            //     return SetPolygon();
 
             if (templateModel != null)
             {
@@ -855,7 +801,6 @@ namespace LegendaryCardEditor.Utilities
             {
                 return null;
             }
-
         }
 
         private Point[] SetPolygon()
@@ -876,7 +821,6 @@ namespace LegendaryCardEditor.Utilities
 
             return polygon;
         }
-
 
         public int getXStart(int y)
         {

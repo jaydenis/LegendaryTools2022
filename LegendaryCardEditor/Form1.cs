@@ -33,16 +33,12 @@ namespace LegendaryCardEditor
         {
             InitializeComponent();
 
-
             settings = SystemSettings.Load($"{applicationDirectory}\\settings.json");
 
             settings.baseFolder = applicationDirectory;
             settings.imagesFolder = $"{applicationDirectory}\\images";
             settings.iconsFolder = $"{applicationDirectory}\\images\\icons";
             settings.templatesFolder = $"{applicationDirectory}\\templates";
-
-
-
             settings.Save();
         }
 
@@ -50,9 +46,6 @@ namespace LegendaryCardEditor
         {
             try
             {
-
-
-
                 if (settings.lastProject != string.Empty)
                     if (File.Exists(settings.lastProject))
                         LoadCustomSet(settings.lastProject);
@@ -69,7 +62,6 @@ namespace LegendaryCardEditor
 
         private void LoadCustomSet(string path)
         {
-
             dataFile = path;
 
             deckList = coreManager.GetDecks(dataFile);
@@ -118,7 +110,6 @@ namespace LegendaryCardEditor
                 treeView1.Nodes.Add(deckTypeNode);
             }
 
-
             treeView1.ExpandAll();
         }
 
@@ -129,6 +120,7 @@ namespace LegendaryCardEditor
                 if (e.Node.Tag is CurrentActiveDataModel)
                 {
                     this.Cursor = Cursors.WaitCursor;
+
                     splitContainer1.Panel2.Controls.Clear();
                     var activeSet = (CurrentActiveDataModel)e.Node.Tag;
                     CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet, legendaryIconList, deckTypeList, templateModelList)
@@ -136,7 +128,6 @@ namespace LegendaryCardEditor
                         Dock = DockStyle.Fill
                     };
                     splitContainer1.Panel2.Controls.Add(cardEditorForm);
-
 
                     this.Cursor = Cursors.Default;
                 }
