@@ -18,45 +18,18 @@ namespace LegendaryCardEditor.Utilities
     public class TemplateImageTools
     {
         LegendaryTemplateModel templateModel;
-        public KalikoImage artworkImage { get; set; }
-        public KalikoImage orignalArtwork { get; set; }
-        public KalikoImage backTextImage { get; set; }
-        public KalikoImage attackImage { get; set; }
-        public KalikoImage recruitImage { get; set; }
-        public KalikoImage piercingImage { get; set; }
-        public KalikoImage costImage { get; set; }
-        public KalikoImage frameImage { get; set; }
-        public KalikoImage teamImage { get; set; }
-        public KalikoImage powerImage { get; set; }
-        public KalikoImage powerImage2 { get; set; }
-        public KalikoImage victoryPointsImage { get; set; }
+        public ImageFrameModel imageFrameModel;
 
         List<CardTextIconViewModel> cardTextIcons = new List<CardTextIconViewModel>();
         List<TextField> cardTextFields = new List<TextField>();
-
-
-        Font attributesFont;
-        Font cardInfoFont;
-        Font cardCostFont;
+     
 
         Dictionary<string, KalikoImage> renderedCards = new Dictionary<string, KalikoImage>();
 
         bool overridePolygon = false;
 
 
-        private double scale = 1.0d;
-
-        public String rectXArray;
-        public String rectYArray;
-        public double gapSizeBetweenLines = 0.2d;
-        public double gapSizeBetweenParagraphs = 0.6d;
-        public int startX = 0;
-        public int endX = 525;
-        public int startY = 50;
-        public int endY = 525;
-
-        int picWidth = 504;
-        int picHeight = 700;
+        
 
         ResourceManager rm = Resources.ResourceManager;
 
@@ -65,20 +38,20 @@ namespace LegendaryCardEditor.Utilities
         List<LegendaryIconViewModel> legendaryIconList;
 
 
-        public TemplateImageTools(List<LegendaryIconViewModel> LegendaryIconList,SystemSettings systemSettings)
+        public TemplateImageTools(ImageFrameModel ImageFrame, List<LegendaryIconViewModel> LegendaryIconList, SystemSettings systemSettings)
         {
-
+            imageFrameModel = ImageFrame;
             settings = systemSettings;
             this.legendaryIconList = LegendaryIconList;
-             FontFamily fontFamily = new FontFamily("Percolator");
+            imageFrameModel.frameFontFamily = new FontFamily("Percolator");
 
-            attributesFont = new Font(
-               fontFamily,
-               82,
+            imageFrameModel.attributesFont = new Font(
+               imageFrameModel.frameFontFamily,
+               imageFrameModel.attributesFontSize,
                FontStyle.Bold,
                GraphicsUnit.Pixel);
 
-            cardCostFont = attributesFont;
+            imageFrameModel.cardCostFont = imageFrameModel.attributesFont;
         }
 
         public KalikoImage RenderCardImage(CardModel model)
@@ -99,66 +72,66 @@ namespace LegendaryCardEditor.Utilities
                    82,
                    FontStyle.Bold,
                    GraphicsUnit.Pixel);
-                KalikoImage infoImage = new KalikoImage(picWidth, picHeight);
+                KalikoImage infoImage = new KalikoImage(imageFrameModel.picWidth, imageFrameModel.picHeight);
                 infoImage.VerticalResolution = 600;
                 infoImage.HorizontalResolution = 600;
                 infoImage.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
 
-                 artworkImage = new KalikoImage(Resources.default_blank_card);
+                imageFrameModel.artworkImage = new KalikoImage(Resources.default_blank_card);
 
 
-                artworkImage.Resize(picWidth, picHeight);
+                imageFrameModel.artworkImage.Resize(imageFrameModel.picWidth, imageFrameModel.picHeight);
 
-                infoImage.BlitImage(artworkImage);
+                infoImage.BlitImage(imageFrameModel.artworkImage);
 
-                backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.TextImage}");
+                imageFrameModel.backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.TextImage}");
 
 
-                if (backTextImage != null)
+                if (imageFrameModel.backTextImage != null)
                 {
-                    infoImage.BlitImage(backTextImage);
-                    backTextImage.Resize(picWidth, picHeight);
+                    infoImage.BlitImage(imageFrameModel.backTextImage);
+                    imageFrameModel.backTextImage.Resize(imageFrameModel.picWidth, imageFrameModel.picHeight);
 
                     var backUnderLay = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.UnderlayImage}");
-                    backUnderLay.Resize(picWidth, picHeight);
+                    backUnderLay.Resize(imageFrameModel.picWidth, imageFrameModel.picHeight);
                     infoImage.BlitImage(backUnderLay);
                 }
 
                 if (model.ActiveTemplate.FormShowAttributes)
                 {
 
-                    frameImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.FrameImage}");
-                    frameImage.Resize(picWidth, picHeight);
-                    infoImage.BlitImage(frameImage);
+                    imageFrameModel.frameImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.FrameImage}");
+                    imageFrameModel.frameImage.Resize(imageFrameModel.picWidth, imageFrameModel.picHeight);
+                    infoImage.BlitImage(imageFrameModel.frameImage);
                 }
 
 
 
-                attackImage = new KalikoImage(Resources.attack);
-                recruitImage = new KalikoImage(Resources.recruit);
-                piercingImage = new KalikoImage(Resources.piercing);
-                victoryPointsImage = new KalikoImage(Resources.victory);
+                imageFrameModel.attackImage = new KalikoImage(Resources.attack);
+                imageFrameModel.recruitImage = new KalikoImage(Resources.recruit);
+                imageFrameModel.piercingImage = new KalikoImage(Resources.piercing);
+                imageFrameModel.victoryPointsImage = new KalikoImage(Resources.victory);
 
                 if (model.ActiveTemplate.TemplateId == 3)
-                    costImage = new KalikoImage(Resources.cost);
+                    imageFrameModel.costImage = new KalikoImage(Resources.cost);
 
 
-                if (powerImage != null && model.ActiveTemplate.FormShowPowerPrimary)
+                if (imageFrameModel.powerImage != null && model.ActiveTemplate.FormShowPowerPrimary)
                 {
-                    powerImage.Resize(40, 40);
-                    infoImage.BlitImage(powerImage, 15, 62);
+                    imageFrameModel.powerImage.Resize(imageFrameModel.powerImageSize.Width, imageFrameModel.powerImageSize.Height);
+                    infoImage.BlitImage(imageFrameModel.powerImage, imageFrameModel.powerImagePosition.Width, imageFrameModel.powerImagePosition.Height);
 
-                    if (powerImage2 != null && model.ActiveTemplate.FormShowPowerPrimary)
+                    if (imageFrameModel.powerImage2 != null && model.ActiveTemplate.FormShowPowerPrimary)
                     {
-                        powerImage2.Resize(40, 40);
-                        infoImage.BlitImage(powerImage2, 15, 102);
+                        imageFrameModel.powerImage2.Resize(40, 40);
+                        infoImage.BlitImage(imageFrameModel.powerImage2, 15, 102);
                     }
                 }
 
-                if (teamImage != null && model.ActiveTemplate.FormShowTeam)
+                if (imageFrameModel.teamImage != null && model.ActiveTemplate.FormShowTeam)
                 {
-                    teamImage.Resize(40, 40);
-                    infoImage.BlitImage(teamImage, 15, 17);
+                    imageFrameModel.teamImage.Resize(40, 40);
+                    infoImage.BlitImage(imageFrameModel.teamImage, 15, 17);
                 }
 
                 if (model.ActiveTemplate.FormShowVictoryPoints)
@@ -166,9 +139,9 @@ namespace LegendaryCardEditor.Utilities
                     if (model.ActiveCard.AttributeVictoryPoints == null)
                         model.ActiveCard.AttributeVictoryPoints = "0";
 
-                    victoryPointsImage = new KalikoImage(Resources.victory);
-                    victoryPointsImage.Resize(40, 40);
-                    infoImage.BlitImage(victoryPointsImage, 430, 440);
+                    imageFrameModel.victoryPointsImage = new KalikoImage(Resources.victory);
+                    imageFrameModel.victoryPointsImage.Resize(40, 40);
+                    infoImage.BlitImage(imageFrameModel.victoryPointsImage, 430, 440);
 
                     font = new Font(
                    fontFamily,
@@ -186,50 +159,50 @@ namespace LegendaryCardEditor.Utilities
                     infoImage.DrawText(txtFieldVP);
                 }
 
-                if (model.ActiveCard.AttributeRecruit != null && model.ActiveTemplate.FormShowAttributesRecruit && recruitImage != null)
+                if (model.ActiveCard.AttributeRecruit != null && model.ActiveTemplate.FormShowAttributesRecruit && imageFrameModel.recruitImage != null)
                 {
                     if (model.ActiveCard.AttributeRecruit.Length > 0)
                     {
-                        recruitImage.Resize(90, 90);
-                        infoImage.BlitImage(recruitImage, 13, 465);
+                        imageFrameModel.recruitImage.Resize(90, 90);
+                        infoImage.BlitImage(imageFrameModel.recruitImage, 13, 465);
                     }
                 }
 
-                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttributesAttack && attackImage != null)
+                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttributesAttack && imageFrameModel.attackImage != null)
                 {
                     if (model.ActiveCard.AttributeAttack.Length > 0)
                     {
-                        attackImage.Resize(90, 90);
-                        infoImage.BlitImage(attackImage, 13, 580);
+                        imageFrameModel.attackImage.Resize(90, 90);
+                        infoImage.BlitImage(imageFrameModel.attackImage, 13, 580);
                     }
                 }
 
-                if (model.ActiveCard.AttributePiercing != null && model.ActiveTemplate.FormShowAttributesPiercing && piercingImage != null)
+                if (model.ActiveCard.AttributePiercing != null && model.ActiveTemplate.FormShowAttributesPiercing && imageFrameModel.piercingImage != null)
                 {
                     if (model.ActiveCard.AttributePiercing.Length > 0)
                     {
-                        piercingImage.Resize(90, 90);
-                        infoImage.BlitImage(piercingImage, 13, 580);
+                        imageFrameModel.piercingImage.Resize(90, 90);
+                        infoImage.BlitImage(imageFrameModel.piercingImage, 13, 580);
                     }
                 }
 
 
-                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttackCost && attackImage != null)
+                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttackCost && imageFrameModel.attackImage != null)
                 {
-                    attackImage.Resize(95, 95);
-                    infoImage.BlitImage(attackImage, 380, 610);
+                    imageFrameModel.attackImage.Resize(95, 95);
+                    infoImage.BlitImage(imageFrameModel.attackImage, 380, 610);
                 }
 
-                if (model.ActiveTemplate.FormShowAttributesCost && costImage != null)
+                if (model.ActiveTemplate.FormShowAttributesCost && imageFrameModel.costImage != null)
                 {
-                    costImage.Resize(102, 102);
-                    infoImage.BlitImage(costImage, 373, 585);
+                    imageFrameModel.costImage.Resize(102, 102);
+                    infoImage.BlitImage(imageFrameModel.costImage, 373, 585);
                 }
 
 
                 if (model.ActiveCard.AttributeCost != null && model.ActiveTemplate.FormShowAttributesCost)
                 {
-                    cardCostFont = new Font(
+                    imageFrameModel.cardCostFont = new Font(
                       fontFamily,
                       82,
                       FontStyle.Bold,
@@ -237,7 +210,7 @@ namespace LegendaryCardEditor.Utilities
 
                     TextField txtFieldCost = new TextField(model.ActiveCard.AttributeCost)
                     {
-                        Font = cardCostFont,
+                        Font = imageFrameModel.cardCostFont,
                         Alignment = StringAlignment.Center,
                         TextColor = Color.White
                     };
@@ -255,7 +228,7 @@ namespace LegendaryCardEditor.Utilities
                 {
                     if (model.ActiveCard.AttributeAttack.Length > 0)
                     {
-                        cardCostFont = new Font(
+                        imageFrameModel.cardCostFont = new Font(
                           fontFamily,
                           82,
                           FontStyle.Bold,
@@ -270,10 +243,10 @@ namespace LegendaryCardEditor.Utilities
                             containsPlus = true;
                             model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack.Replace("+", "");
                         }
-                        Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, cardCostFont);
+                        Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, imageFrameModel.cardCostFont);
                         TextField txtFieldAttack = new TextField(model.ActiveCard.AttributeAttack)
                         {
-                            Font = cardCostFont,
+                            Font = imageFrameModel.cardCostFont,
                             TargetArea = new Rectangle(380, 610, textSizeAttack.Width + 2, textSizeAttack.Height),
                             TextColor = Color.White,
                             Outline = 4,
@@ -285,8 +258,8 @@ namespace LegendaryCardEditor.Utilities
                         if (containsPlus)
                         {
                             font = new Font(
-                              attributesFont.FontFamily,
-                              (attributesFont.Size / 2),
+                              imageFrameModel.attributesFont.FontFamily,
+                              (imageFrameModel.attributesFont.Size / 2),
                               FontStyle.Bold,
                               GraphicsUnit.Pixel);
 
@@ -369,30 +342,30 @@ namespace LegendaryCardEditor.Utilities
                 };
 
                 // create blank bitmap with same size
-                Bitmap combinedImageL = new Bitmap(picWidth / 2, fontTitle.Height + fontSubTitle.Height);
-                Bitmap combinedImageR = new Bitmap(picWidth / 2, fontTitle.Height + fontSubTitle.Height);
+                Bitmap combinedImageL = new Bitmap(imageFrameModel.picWidth / 2, fontTitle.Height + fontSubTitle.Height);
+                Bitmap combinedImageR = new Bitmap(imageFrameModel.picWidth / 2, fontTitle.Height + fontSubTitle.Height);
 
                 // create graphics object on new blank bitmap
                 Graphics gL = Graphics.FromImage(combinedImageL);
                 Graphics gR = Graphics.FromImage(combinedImageR);
 
                 LinearGradientBrush linearGradientBrushL = new LinearGradientBrush(
-                    new Rectangle(0, 0, picWidth / 2, combinedImageL.Height),
+                    new Rectangle(0, 0, imageFrameModel.picWidth / 2, combinedImageL.Height),
                    Color.FromArgb(0, Color.White),
                    Color.FromArgb(225, Color.DimGray),
                     0f);
 
-                gL.FillRectangle(linearGradientBrushL, 0, 0, picWidth / 2, combinedImageL.Height);
+                gL.FillRectangle(linearGradientBrushL, 0, 0, imageFrameModel.picWidth / 2, combinedImageL.Height);
                 infoImage.BlitImage(combinedImageL, 30, 16);
 
                 LinearGradientBrush linearGradientBrushR = new LinearGradientBrush(
-                   new Rectangle(0, 0, picWidth / 2, combinedImageR.Height),
+                   new Rectangle(0, 0, imageFrameModel.picWidth / 2, combinedImageR.Height),
                     Color.FromArgb(225, Color.DimGray),
                     Color.FromArgb(0, Color.White),
                     LinearGradientMode.Horizontal);
 
-                gR.FillRectangle(linearGradientBrushR, 0, 0, picWidth / 2, combinedImageR.Height);
-                infoImage.BlitImage(combinedImageR, picWidth / 2, 16);
+                gR.FillRectangle(linearGradientBrushR, 0, 0, imageFrameModel.picWidth / 2, combinedImageR.Height);
+                infoImage.BlitImage(combinedImageR, imageFrameModel.picWidth / 2, 16);
 
 
                 infoImage.DrawText(txtFieldTitle);
@@ -409,10 +382,10 @@ namespace LegendaryCardEditor.Utilities
                         model.ActiveCard.AttributeRecruit = model.ActiveCard.AttributeRecruit.Replace("+", "");
                     }
 
-                    Size textSizeRecruit = TextRenderer.MeasureText(model.ActiveCard.AttributeRecruit, attributesFont);
+                    Size textSizeRecruit = TextRenderer.MeasureText(model.ActiveCard.AttributeRecruit, imageFrameModel.attributesFont);
                     TextField txtFieldRecruit = new TextField(model.ActiveCard.AttributeRecruit)
                     {
-                        Font = attributesFont,
+                        Font = imageFrameModel.attributesFont,
                         TargetArea = new Rectangle(14, 467, textSizeRecruit.Width + 2, textSizeRecruit.Height),
                         TextColor = Color.White,
                         Outline = 4,
@@ -424,8 +397,8 @@ namespace LegendaryCardEditor.Utilities
                     if (containsPlus)
                     {
                         font = new Font(
-                          attributesFont.FontFamily,
-                          (attributesFont.Size / 2),
+                          imageFrameModel.attributesFont.FontFamily,
+                          (imageFrameModel.attributesFont.Size / 2),
                           FontStyle.Bold,
                           GraphicsUnit.Pixel);
 
@@ -454,10 +427,10 @@ namespace LegendaryCardEditor.Utilities
                         containsPlus = true;
                         model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack.Replace("+", "");
                     }
-                    Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, attributesFont);
+                    Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, imageFrameModel.attributesFont);
                     TextField txtFieldAttack = new TextField(model.ActiveCard.AttributeAttack)
                     {
-                        Font = attributesFont,
+                        Font = imageFrameModel.attributesFont,
                         TargetArea = new Rectangle(14, 582, textSizeAttack.Width + 2, textSizeAttack.Height),
                         TextColor = Color.White,
                         Outline = 4,
@@ -471,8 +444,8 @@ namespace LegendaryCardEditor.Utilities
                     if (containsPlus)
                     {
                         font = new Font(
-                          attributesFont.FontFamily,
-                          (attributesFont.Size / 2),
+                          imageFrameModel.attributesFont.FontFamily,
+                          (imageFrameModel.attributesFont.Size / 2),
                           FontStyle.Bold,
                           GraphicsUnit.Pixel);
 
@@ -499,10 +472,10 @@ namespace LegendaryCardEditor.Utilities
                         model.ActiveCard.AttributePiercing = model.ActiveCard.AttributePiercing.Replace("+", "");
                     }
 
-                    Size textSizePiercing = TextRenderer.MeasureText(model.ActiveCard.AttributePiercing, attributesFont);
+                    Size textSizePiercing = TextRenderer.MeasureText(model.ActiveCard.AttributePiercing, imageFrameModel.attributesFont);
                     TextField txtFieldPiercing = new TextField(model.ActiveCard.AttributePiercing)
                     {
-                        Font = attributesFont,
+                        Font = imageFrameModel.attributesFont,
                         TargetArea = new Rectangle(14, 582, textSizePiercing.Width + 2, textSizePiercing.Height),
                         TextColor = Color.White,
                         Outline = 4,
@@ -515,8 +488,8 @@ namespace LegendaryCardEditor.Utilities
                     if (containsPlus)
                     {
                         font = new Font(
-                          attributesFont.FontFamily,
-                          (attributesFont.Size / 2),
+                          imageFrameModel.attributesFont.FontFamily,
+                          (imageFrameModel.attributesFont.Size / 2),
                           FontStyle.Bold,
                           GraphicsUnit.Pixel);
 
@@ -565,9 +538,9 @@ namespace LegendaryCardEditor.Utilities
 
                 FontFamily fontFamily = new FontFamily("Eurostile");
 
-                if (cardInfoFont == null)
+                if (imageFrameModel.cardInfoFont == null)
                 {
-                    cardInfoFont = new Font(
+                    imageFrameModel.cardInfoFont = new Font(
                       fontFamily,
                       Convert.ToInt32(model.ActiveCard.CardTextFont),
                       FontStyle.Regular,
@@ -686,9 +659,9 @@ namespace LegendaryCardEditor.Utilities
 
                                 var iconImage = GetIconMaxHeight(icon, GetPercentage(currentFont.Height - 1, 1.1d));
 
-                                if (x + iconImage.Width > GetPercentage(endX, scale))
+                                if (x + iconImage.Width > GetPercentage(imageFrameModel.endX, imageFrameModel.scale))
                                 {
-                                    y += iconImage.Height + GetPercentage(iconImage.Height, gapSizeBetweenLines);
+                                    y += iconImage.Height + GetPercentage(iconImage.Height, imageFrameModel.gapSizeBetweenLines);
                                     y -= 6;
                                     x = getXStart(y);
                                 }
@@ -791,12 +764,12 @@ namespace LegendaryCardEditor.Utilities
             if (templateModel != null)
             {
                 // overridePolygon = false;
-                rectXArray = templateModel.RectXArray;
-                rectYArray = templateModel.RectYArray;
+                imageFrameModel.rectXArray = templateModel.RectXArray;
+                imageFrameModel.rectYArray = templateModel.RectYArray;
 
-                String[] xsplit = rectXArray.Split(',');
+                String[] xsplit = imageFrameModel.rectXArray.Split(',');
                 Point[] xpoints = new Point[xsplit.Length];
-                String[] ysplit = rectYArray.Split(',');
+                String[] ysplit = imageFrameModel.rectYArray.Split(',');
                 Point[] ypoints = new Point[ysplit.Length];
 
                 Point[] polygon = new Point[xsplit.Length];
@@ -827,8 +800,8 @@ namespace LegendaryCardEditor.Utilities
                     //    numY4.Value = int.Parse(ysplit[i].Trim());
                     //}
 
-                    xpoints[i].X = GetPercentage(int.Parse(xsplit[i].Trim()), scale);
-                    xpoints[i].Y = GetPercentage(int.Parse(ysplit[i].Trim()), scale);
+                    xpoints[i].X = GetPercentage(int.Parse(xsplit[i].Trim()), imageFrameModel.scale);
+                    xpoints[i].Y = GetPercentage(int.Parse(ysplit[i].Trim()), imageFrameModel.scale);
                     polygon[xy] = xpoints[i];
                     xy++;
                 }
@@ -863,7 +836,7 @@ namespace LegendaryCardEditor.Utilities
 
         public int getXStart(int y)
         {
-            for (int i = 0; i < GetPercentage(picWidth, scale); i++)
+            for (int i = 0; i < GetPercentage(imageFrameModel.picWidth, imageFrameModel.scale); i++)
                 if (IsInPolygon(GetPolygon(), new Point(i, y)))
                     return i;
 
@@ -872,7 +845,7 @@ namespace LegendaryCardEditor.Utilities
 
         private Point getStartPosition()
         {
-            for (int i = 0; i < GetPercentage(picHeight, scale); i++)
+            for (int i = 0; i < GetPercentage(imageFrameModel.picHeight, imageFrameModel.scale); i++)
             {
                 int ypos = getYStart(i);
                 if (ypos > -1)
@@ -884,7 +857,7 @@ namespace LegendaryCardEditor.Utilities
 
         private int getYStart(int x)
         {
-            for (int i = 0; i < GetPercentage(picWidth, scale); i++)
+            for (int i = 0; i < GetPercentage(imageFrameModel.picWidth, imageFrameModel.scale); i++)
                 if (IsInPolygon(GetPolygon(), new Point(x, i)))
                     return i;
 

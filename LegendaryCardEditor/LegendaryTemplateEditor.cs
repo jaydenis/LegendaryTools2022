@@ -22,6 +22,9 @@ namespace LegendaryCardEditor
         List<LegendaryTemplateModel> templateModelList;
         List<DeckTypeModel> deckTypeList;
         TemplateImageTools templateImageTools ;
+
+        LegendaryTemplateModel selectedTemplateModel;
+
         SystemSettings settings;
         CoreManager coreManager = new CoreManager();
         public LegendaryTemplateEditor(List<DeckTypeModel> deckTypeList, List<LegendaryTemplateModel> templateModelList, List<LegendaryIconViewModel> legendaryIconList)
@@ -57,34 +60,26 @@ namespace LegendaryCardEditor
            
         }
 
-        private void listBoxTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        private void LoadTemplateDetails(ImageFrameModel imageFrame,LegendaryTemplateModel templateModel, CardModel cardModel = null)
         {
-            KryptonListItem item = (KryptonListItem)listBoxTemplates.Items[listBoxTemplates.SelectedIndex];
-
-            LegendaryTemplateModel templateModel = (LegendaryTemplateModel)item.Tag;
-
-           
-
-            templateImageTools = new TemplateImageTools(legendaryIconList, settings);
-
-            var cardModel = new CardModel
-            {
-                Id = "0",
-                ActiveCard = GetNewCard(templateModel.TemplateId),
-                ActiveTemplate = templateModel
-            };
 
             this.Cursor = Cursors.WaitCursor;
 
-            Image teamImage = imageListTeams.Images[8];
-            templateImageTools.teamImage = new KalikoImage(teamImage);
 
-            Image powerImage = imageListPowers.Images[1];
-            templateImageTools.powerImage = new KalikoImage(powerImage);
+           
+            
+            if (cardModel == null)
+            {
+                cardModel = new CardModel
+                {
+                    Id = "0",
+                    ActiveCard = GetNewCard(templateModel.TemplateId),
+                    ActiveTemplate = templateModel
+                };
+            }
 
-            //Image powerImage2 = imageListPowers.Images[2];
-            //templateImageTools.powerImage2 = new KalikoImage(powerImage2);
 
+            templateImageTools = new TemplateImageTools(imageFrame, legendaryIconList, settings);
 
             KalikoImage cardImage = templateImageTools.RenderCardImage(cardModel);
             if (cardImage != null)
@@ -92,18 +87,54 @@ namespace LegendaryCardEditor
                 pictureBoxTemplate.Image = null;
                 pictureBoxTemplate.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBoxTemplate.Image = cardImage.GetAsBitmap();
-              
+
             }
-            this.Cursor = Cursors.Default;
+
             propertyGridTemplate.SelectedObject = templateModel;
             propertyGridCard.SelectedObject = cardModel.ActiveCard;
+            propertyGridImageFrame.SelectedObject = templateImageTools.imageFrameModel;
 
-            rtbTemplateJson.Text =  JsonConvert.SerializeObject(templateModel, Formatting.Indented);
+            rtbTemplateJson.Text = JsonConvert.SerializeObject(templateModel, Formatting.Indented);
+
+            this.Cursor = Cursors.Default;
+        }
+
+        private void listBoxTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            KryptonListItem item = (KryptonListItem)listBoxTemplates.Items[listBoxTemplates.SelectedIndex];
+
+            Image teamImage = imageListTeams.Images[8];
+
+
+            Image powerImage = imageListPowers.Images[1];
+
+            //Image powerImage2 = imageListPowers.Images[2];
+            //templateImageTools.powerImage2 = new KalikoImage(powerImage2);
+
+
+            ImageFrameModel imageFrame = new ImageFrameModel
+            {
+                teamImage = new KalikoImage(teamImage),
+                powerImage = new KalikoImage(powerImage),
+                frameFontFamily = new FontFamily("Percolator"),
+                attributesFont = new Font(
+               new FontFamily("Percolator"),
+               82,
+               FontStyle.Bold,
+               GraphicsUnit.Pixel)
+            };
+
+          
+
+            imageFrame.cardCostFont = imageFrame.attributesFont;
+
+            selectedTemplateModel = (LegendaryTemplateModel)item.Tag;
+            LoadTemplateDetails(imageFrame,selectedTemplateModel);
         }
 
         private Card GetNewCard(int templateId)
         {
-            var cardsList = new List<Card>();
+            //var cardsList = new List<Card>();
             
 
             var tempCard = new Card
@@ -135,6 +166,39 @@ namespace LegendaryCardEditor
         }
 
         private void btnUpdateTemplate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Card card = (Card)propertyGridCard.SelectedObject;
+                selectedTemplateModel = (LegendaryTemplateModel)propertyGridTemplate.SelectedObject;
+                ImageFrameModel imageFrame = (ImageFrameModel)propertyGridImageFrame.SelectedObject;
+
+                Image teamImage = imageListTeams.Images[card.TeamIconId];
+                imageFrame.teamImage = new KalikoImage(teamImage);
+
+                var cardModel = new CardModel
+                {
+                    Id = "0",
+                    ActiveCard = card,
+                    ActiveTemplate = selectedTemplateModel
+                };
+
+                
+                LoadTemplateDetails(imageFrame,selectedTemplateModel, cardModel);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
+        }
+
+        private void btnSaveJson_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnValidateJson_Click(object sender, EventArgs e)
         {
 
         }
