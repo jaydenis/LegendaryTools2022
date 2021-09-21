@@ -644,7 +644,10 @@ namespace LegendaryCardEditor.Controls
 
                 if (cardModel.ActiveCard.TemplateId == 1 || cardModel.ActiveCard.TemplateId == 2 || cardModel.ActiveCard.TemplateId == 3 && cardModel.ActiveTemplate.FormShowPowerPrimary)
                 {
-                    cardModel.ActiveTemplate.FrameImage = $"{cardModel.ActiveTemplate.TemplateName}_none.png";
+                    if(cardModel.ActiveCard.TemplateId == 3)
+                        cardModel.ActiveTemplate.FrameImage = $"{cardModel.ActiveTemplate.TemplateName}.png";
+                    else
+                        cardModel.ActiveTemplate.FrameImage = $"{cardModel.ActiveTemplate.TemplateName}_none.png";
 
                     if (cardModel.ActiveCard.PowerPrimaryIconId != -1)
                     {

@@ -31,9 +31,16 @@ namespace LegendaryCardEditor.Controls
             dataFilePath = path;
             deckList = coreManager.GetDecks(dataFilePath);
 
-            foreach(var item in deckList.Decks.OrderBy(o=>o.DeckId))
+            if (deckList != null)
             {
-                deckIdList.Add(item.DeckId);
+                foreach (var item in deckList.Decks.OrderBy(o => o.DeckId))
+                {
+                    deckIdList.Add(item.DeckId);
+                }
+            }
+            else
+            {               
+                deckIdList.Add(0);
             }
 
             settings = SystemSettings.Load();
@@ -161,10 +168,16 @@ namespace LegendaryCardEditor.Controls
                 newDeck.Cards = cardsList;
             }
 
+            if(deckList == null)
+            {
+                deckList = new DeckList
+                {
+                    Decks = new List<Deck>()
+                };
+            }
+
             deckList.Decks.Add(newDeck);
-            // currentActiveSet.AllDecksInSet.Decks.Add(newDeck);
-            //var x = JsonConvert.SerializeObject(deckList, Formatting.Indented);
-           // x = x.Trim();
+           
             coreManager.SaveDeck(deckList, dataFilePath);
 
             this.Close();

@@ -131,11 +131,17 @@ namespace LegendaryCardEditor.Managers
 
         public DeckList GetDecks(string path)
         {
+            try
+            {
+                string jsonText = File.ReadAllText(path);
+                var dataModel = JsonConvert.DeserializeObject<DeckList>(jsonText);
 
-            string jsonText = File.ReadAllText(path);
-            var dataModel = JsonConvert.DeserializeObject<DeckList>(jsonText);
-
-            return dataModel;
+                return dataModel;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public bool SaveCustomSet(CustomSet model, string path)

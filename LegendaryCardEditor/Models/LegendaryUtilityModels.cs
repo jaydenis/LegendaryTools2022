@@ -29,4 +29,16 @@ namespace LegendaryCardEditor.Models
         [JsonProperty("CardTypeDisplayName", Required = Required.Always)]
         public string CardTypeDisplayName { get; set; }
     }
+
+    public partial class LegendaryKeyword
+    {
+        [JsonProperty("Id", Required = Required.Always)]
+        public long Id { get; set; }
+
+        [JsonProperty("KeywordName", Required = Required.Always)]
+        public string KeywordName { get; set; }
+
+        [JsonProperty("KeywordDescription", Required = Required.Always)]
+        public string KeywordDescription { get; set; }
+    }
 }

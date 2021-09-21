@@ -62,16 +62,15 @@ namespace LegendaryCardEditor
 
         private void LoadCustomSet(string path)
         {
-            dataFile = path;
-
-            deckList = coreManager.GetDecks(dataFile);
+            dataFile = path;           
 
             legendaryIconList = coreManager.LoadIconsFromDirectory();
             templateModelList = coreManager.GetTemplates();
             deckTypeList = coreManager.GetDeckTypes();
 
-           // activeDataModels = new List<CurrentActiveDataModel>();
-            PopulateDeckTree();
+            deckList = coreManager.GetDecks(dataFile);
+          
+                PopulateDeckTree();
         }
 
 
@@ -86,27 +85,28 @@ namespace LegendaryCardEditor
                 TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
                 deckTypeNode.ImageIndex = 27;
                 deckTypeNode.SelectedImageIndex = 27;
-                foreach (var deck in deckList.Decks.Where(x => x.DeckTypeId == deckType.DeckTypeId))
+                if (deckList != null)
                 {
-                    var fi1 = new FileInfo(dataFile);
-
-                    TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
-                    deckNode.ImageIndex = deck.TeamIconId;
-                    deckNode.SelectedImageIndex = deck.TeamIconId;
-
-                    var data = new CurrentActiveDataModel
+                    foreach (var deck in deckList.Decks.Where(x => x.DeckTypeId == deckType.DeckTypeId))
                     {
-                        Id = deck.DeckId,
-                        ActiveDeck = deck,
-                        ActiveSetDataFile = dataFile,
-                        ActiveSetPath = fi1.DirectoryName,
-                        AllDecksInSet = deckList
-                    };
-                    //activeDataModels.Add(data);
-                    deckNode.Tag = data;
-                    deckTypeNode.Nodes.Add(deckNode);
+                        var fi1 = new FileInfo(dataFile);
+
+                        TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
+                        deckNode.ImageIndex = deck.TeamIconId;
+                        deckNode.SelectedImageIndex = deck.TeamIconId;
+
+                        var data = new CurrentActiveDataModel
+                        {
+                            Id = deck.DeckId,
+                            ActiveDeck = deck,
+                            ActiveSetDataFile = dataFile,
+                            ActiveSetPath = fi1.DirectoryName,
+                            AllDecksInSet = deckList
+                        };
+                        deckNode.Tag = data;
+                        deckTypeNode.Nodes.Add(deckNode);
+                    }
                 }
-                //root.Nodes.Add(deckTypeNode);
                 treeView1.Nodes.Add(deckTypeNode);
             }
 
@@ -200,6 +200,11 @@ namespace LegendaryCardEditor
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void newToolStripButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
