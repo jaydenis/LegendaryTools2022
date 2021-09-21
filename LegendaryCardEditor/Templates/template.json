@@ -172,7 +172,7 @@
 		"FormShowVictoryPoints": 1,
 		"FormShowAttackCost": 1,
 		"NumberInDeck": 10,
-		"TemplateType": "villain"
+		"TemplateType": "henchmen"
 	},
 	{
 		"TemplateId": 8,

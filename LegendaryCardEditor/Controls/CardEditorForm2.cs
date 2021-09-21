@@ -69,6 +69,10 @@ namespace LegendaryCardEditor.Controls
             this.legendaryIconList = legendaryIconList;
             this.deckTypeList = deckTypeList;
             this.templateModelList = templateModelList;
+
+            
+
+
             keywordsList = coreManager.GetKeywords();
 
             cmbKeywords.Items.Add("");
@@ -115,20 +119,34 @@ namespace LegendaryCardEditor.Controls
             var templatePath = $"{settings.templatesFolder}\\cards\\{currentDeckType.DeckTypeName}";
 
 
+
             settings.Save();
 
             txtDeckName.Text = currentActiveSet.ActiveDeck.DeckDisplayName;
             cmbDeckTeam.SelectedIndex = currentActiveSet.ActiveDeck.TeamIconId;
 
+
+            string currentTemplateType = "";
+
             currentActiveSet.AllCardsInDeck = new List<CardModel>();
             foreach (var card in currentActiveSet.ActiveDeck.Cards)
             {
+                var temp = templateModelList.Where(x => x.TemplateId == card.TemplateId).FirstOrDefault();
                 currentActiveSet.AllCardsInDeck.Add(new CardModel
                 {
                     Id = card.CardId,
                     ActiveCard = card,
-                    ActiveTemplate = templateModelList.Where(x => x.TemplateId == card.TemplateId).FirstOrDefault()
+                    ActiveTemplate = temp
                 });
+
+                currentTemplateType = temp.TemplateType;
+            }
+
+
+            cmbCardTemplateTypes.Items.Clear();
+            foreach (LegendaryTemplateModel template in templateModelList.Where(x => x.TemplateType == currentTemplateType))
+            {
+                cmbCardTemplateTypes.Items.Add(template.TemplateDisplayName);
             }
 
 
@@ -898,8 +916,8 @@ namespace LegendaryCardEditor.Controls
 
         private void btnAddCard_Click(object sender, EventArgs e)
         {
-
-            Card newCard = GetNewCard(currentDeckType, currentActiveSet.ActiveDeck, currentActiveSet.SelectedCard.ActiveTemplate.TemplateId, $"New {currentDeckType.DeckTypeName}", currentActiveSet.AllCardsInDeck.Count() + 1, 1);
+           var selectedTemplate = templateModelList.FirstOrDefault(x => x.TemplateDisplayName == cmbCardTemplateTypes.SelectedItem);
+            Card newCard = GetNewCard(currentDeckType, currentActiveSet.ActiveDeck, selectedTemplate.TemplateId, $"New {currentDeckType.DeckTypeName}", currentActiveSet.AllCardsInDeck.Count() + 1, 1);
 
             currentActiveSet.ActiveDeck.Cards.Add(newCard);
 
@@ -907,7 +925,7 @@ namespace LegendaryCardEditor.Controls
             {
                 Id = newCard.CardId,
                 ActiveCard = newCard,
-                ActiveTemplate = currentActiveSet.SelectedCard.ActiveTemplate
+                ActiveTemplate = selectedTemplate
             });
             PopulateDeckTree();
 

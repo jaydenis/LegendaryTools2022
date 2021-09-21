@@ -33,6 +33,7 @@ namespace LegendaryCardEditor.Controls
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbCardTemplateTypes = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.numCardSubTitleSize = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.btnAddCard = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnDeckUpdate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -93,6 +94,7 @@ namespace LegendaryCardEditor.Controls
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCardTemplateTypes)).BeginInit();
             this.panelImagePreview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbKeywords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTemplate)).BeginInit();
@@ -134,6 +136,7 @@ namespace LegendaryCardEditor.Controls
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Controls.Add(this.cmbCardTemplateTypes);
             this.panel1.Controls.Add(this.numCardSubTitleSize);
             this.panel1.Controls.Add(this.btnAddCard);
             this.panel1.Controls.Add(this.btnDeckUpdate);
@@ -147,6 +150,14 @@ namespace LegendaryCardEditor.Controls
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 245);
             this.panel1.TabIndex = 0;
+            // 
+            // cmbCardTemplateTypes
+            // 
+            this.cmbCardTemplateTypes.DropDownWidth = 121;
+            this.cmbCardTemplateTypes.Location = new System.Drawing.Point(11, 202);
+            this.cmbCardTemplateTypes.Name = "cmbCardTemplateTypes";
+            this.cmbCardTemplateTypes.Size = new System.Drawing.Size(187, 21);
+            this.cmbCardTemplateTypes.TabIndex = 99;
             // 
             // numCardSubTitleSize
             // 
@@ -786,6 +797,7 @@ namespace LegendaryCardEditor.Controls
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCardTemplateTypes)).EndInit();
             this.panelImagePreview.ResumeLayout(false);
             this.panelImagePreview.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbKeywords)).EndInit();
@@ -860,5 +872,6 @@ namespace LegendaryCardEditor.Controls
         private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numCardTextSize;
         private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numCardTitleSize;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbKeywords;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbCardTemplateTypes;
     }
 }
