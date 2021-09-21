@@ -283,7 +283,7 @@ namespace LegendaryCardEditor.Utilities
                             TextField txtFieldAttackPlus = new TextField("+")
                             {
                                 Font = font,
-                                TargetArea = new Rectangle(txtFieldAttack.TargetArea.X + 40, txtFieldAttack.TargetArea.Y + 20, textSizeAttack.Width + 2, textSizeAttack.Height),
+                                TargetArea = new Rectangle(txtFieldAttack.TargetArea.X + 42, txtFieldAttack.TargetArea.Y + 20, textSizeAttack.Width + 2, textSizeAttack.Height),
                                 TextColor = Color.White,
                                 Outline = 4,
                                 OutlineColor = Color.Black,

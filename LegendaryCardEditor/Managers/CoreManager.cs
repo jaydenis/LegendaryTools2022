@@ -28,15 +28,6 @@ namespace LegendaryCardEditor.Managers
             return dataModel;
         }
 
-        public LegendaryTemplateModel ReadTemplateSettings()
-        {
-            string path = settings.templatesFolder + "\\" + settings.json_templates;
-            string jsonText = File.ReadAllText(path);
-
-            var dataModel = JsonConvert.DeserializeObject<LegendaryTemplateModel>(jsonText);
-
-            return dataModel;
-        }
 
         public List<LegendaryTemplateModel> GetTemplates()
         {
@@ -58,19 +49,6 @@ namespace LegendaryCardEditor.Managers
             return dataModel;
         }
 
-        public bool SaveTemplateSettings(string path, LegendaryTemplateModel template)
-        {
-            try
-            {
-                path = path + "\\template.json";
-                File.WriteAllText(path, JsonConvert.SerializeObject(template, Formatting.Indented));
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
 
    
         public List<LegendaryIconViewModel> LoadIconsFromDirectory()
@@ -92,13 +70,6 @@ namespace LegendaryCardEditor.Managers
 
         }
 
-        public LegendaryCustomSet OpenCustomSets(string path)
-        {
-            string jsonText = File.ReadAllText(path);
-            var dataModel = JsonConvert.DeserializeObject<LegendaryCustomSet>(jsonText);
-
-            return dataModel;
-        }
 
         public DeckList GetDecks(string path)
         {
@@ -115,19 +86,7 @@ namespace LegendaryCardEditor.Managers
             }
         }
 
-        public bool SaveCustomSet(CustomSet model, string path)
-        {
-            try
-            {
 
-                File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
 
         public bool SaveDeck(DeckList model, string path)
         {
