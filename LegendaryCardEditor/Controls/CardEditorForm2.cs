@@ -625,6 +625,7 @@ namespace LegendaryCardEditor.Controls
                 cardModel.ActiveCard.CardDisplayNameSubFont = Convert.ToInt32(numCardSubTitleSize.Text);
                 cardModel.ActiveCard.CardText = txtCardTextBox.Text;
                 cardModel.ActiveCard.CardTextFont = Convert.ToInt32(numCardTextSize.Text);
+                cardModel.ActiveCard.NumberInDeck = Convert.ToInt32(numNumberInDeck.Text) != cardModel.ActiveTemplate.NumberInDeck ? Convert.ToInt32(numNumberInDeck.Text) : cardModel.ActiveTemplate.NumberInDeck;
 
                 if (cardModel.ActiveTemplate.FormShowTeam && cmbTeam.SelectedIndex != -1)
                 {
@@ -974,6 +975,12 @@ namespace LegendaryCardEditor.Controls
                 txtErrorConsole.Text = ex.ToString();
                 txtErrorConsole.Visible = true;
             }
+        }
+
+        private void numCardTextSize_ValueChanged(object sender, EventArgs e)
+        {
+            isDirty = true;
+            btnUpdateCard.Enabled = isDirty;
         }
     }
 

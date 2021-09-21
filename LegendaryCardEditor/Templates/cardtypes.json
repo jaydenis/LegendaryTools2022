@@ -1,47 +1,62 @@
 [
   {
-    "CardTypeId": 5,
+    "CardTypeId": 1,
     "CardTypeName": "mastermind_tactic",
-    "CardTypeDisplayName": "Mastermind - Tactic"
+    "CardTypeDisplayName": "Mastermind - Tactic",
+    "CardGroup": "mastermind"
   },
   {
-    "CardTypeId": 4,
+    "CardTypeId": 2,
     "CardTypeName": "mastermind",
-    "CardTypeDisplayName": "Mastermind"
+    "CardTypeDisplayName": "Mastermind",
+    "CardGroup": "mastermind"
   },
   {
     "CardTypeId": 3,
     "CardTypeName": "hero_rare",
-    "CardTypeDisplayName": "Hero - Rare"
+    "CardTypeDisplayName": "Hero - Rare",
+    "CardGroup": "hero"
   },
   {
-    "CardTypeId": 2,
+    "CardTypeId": 4,
     "CardTypeName": "hero_uncommon",
-    "CardTypeDisplayName": "Hero - Unommon"
+    "CardTypeDisplayName": "Hero - Unommon",
+    "CardGroup": "hero"
   },
   {
-    "CardTypeId": 1,
+    "CardTypeId": 5,
     "CardTypeName": "hero_common",
-    "CardTypeDisplayName": "Hero - Common"
+    "CardTypeDisplayName": "Hero - Common",
+    "CardGroup": "hero"
   },
   {
     "CardTypeId": 6,
     "CardTypeName": "villain",
-    "CardTypeDisplayName": "Villain"
+    "CardTypeDisplayName": "Villain",
+    "CardGroup": "villain"
   },
   {
     "CardTypeId": 7,
     "CardTypeName": "villain_location",
-    "CardTypeDisplayName": "Villain Location"
+    "CardTypeDisplayName": "Villain Location",
+    "CardGroup": "villain"
   },
   {
-    "CardTypeId":8,
+    "CardTypeId": 8,
     "CardTypeName": "henchmen",
-    "CardTypeDisplayName": "Henchmen"
+    "CardTypeDisplayName": "Henchmen",
+    "CardGroup": "henchmen"
   },
   {
     "CardTypeId": 9,
     "CardTypeName": "special_sidekick",
-    "CardTypeDisplayName": "Special Sidekick"
+    "CardTypeDisplayName": "Special Sidekick",
+    "CardGroup": "sidekick"
+  },
+  {
+    "CardTypeId": 10,
+    "CardTypeName": "recruitable_villain",
+    "CardTypeDisplayName": "Recruitable Villain",
+    "CardGroup": "villain"
   }
 ]

@@ -323,5 +323,30 @@
 		"FormShowAttackCost": 1,
 		"NumberInDeck": 1,
 		"TemplateType": "ambition"
+	},
+	{
+		"TemplateId": 14,
+		"TemplateName": "recruitable_villain",
+		"TemplateDisplayName": "Recruitable Villain",
+		"RectXArray": "92,440,350,92",
+		"RectYArray": "522,522,670,670",
+		"CardWidth": 750,
+		"CardHeight": 1050,
+		"FrameImage": "recruitable_back_none.png",
+		"CostImage": "recruitable_back_cost.png",
+		"TextImage": "recruitable_back_text.png",
+		"UnderlayImage": "",
+		"FormShowTeam": 1,
+		"FormShowPowerPrimary": 1,
+		"FormShowPowerSecondary": 1,
+		"FormShowAttributes": 1,
+		"FormShowAttributesCost": 0,
+		"FormShowAttributesRecruit": 1,
+		"FormShowAttributesAttack": 1,
+		"FormShowAttributesPiercing": 1,
+		"FormShowVictoryPoints": 1,
+		"FormShowAttackCost": 1,
+		"NumberInDeck": 1,
+		"TemplateType": "villain"
 	}
 ]

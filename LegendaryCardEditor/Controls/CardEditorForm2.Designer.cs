@@ -173,7 +173,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnAddCard
             // 
-            this.btnAddCard.Location = new System.Drawing.Point(11, 199);
+            this.btnAddCard.Location = new System.Drawing.Point(217, 202);
             this.btnAddCard.Name = "btnAddCard";
             this.btnAddCard.Size = new System.Drawing.Size(90, 25);
             this.btnAddCard.TabIndex = 84;
@@ -309,7 +309,7 @@ namespace LegendaryCardEditor.Controls
             0,
             0,
             0});
-            this.numCardTextSize.ValueChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
+            this.numCardTextSize.ValueChanged += new System.EventHandler(this.numCardTextSize_ValueChanged);
             // 
             // numCardTitleSize
             // 
@@ -332,7 +332,7 @@ namespace LegendaryCardEditor.Controls
             0,
             0,
             0});
-            this.numCardTitleSize.ValueChanged += new System.EventHandler(this.txtCardName_TextChanged);
+            this.numCardTitleSize.ValueChanged += new System.EventHandler(this.numCardTextSize_ValueChanged);
             // 
             // txtCardTextBox
             // 
@@ -625,7 +625,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardVictoryPointsValue.Name = "txtCardVictoryPointsValue";
             this.txtCardVictoryPointsValue.Size = new System.Drawing.Size(66, 23);
             this.txtCardVictoryPointsValue.TabIndex = 10;
-            this.txtCardVictoryPointsValue.TextChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
+            this.txtCardVictoryPointsValue.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // txtCardCostValue
             // 
@@ -633,7 +633,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardCostValue.Name = "txtCardCostValue";
             this.txtCardCostValue.Size = new System.Drawing.Size(66, 23);
             this.txtCardCostValue.TabIndex = 10;
-            this.txtCardCostValue.TextChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
+            this.txtCardCostValue.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // txtCardPiercingValue
             // 
@@ -641,7 +641,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardPiercingValue.Name = "txtCardPiercingValue";
             this.txtCardPiercingValue.Size = new System.Drawing.Size(66, 23);
             this.txtCardPiercingValue.TabIndex = 10;
-            this.txtCardPiercingValue.TextChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
+            this.txtCardPiercingValue.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // txtCardAttackValue
             // 
@@ -649,7 +649,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardAttackValue.Name = "txtCardAttackValue";
             this.txtCardAttackValue.Size = new System.Drawing.Size(66, 23);
             this.txtCardAttackValue.TabIndex = 10;
-            this.txtCardAttackValue.TextChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
+            this.txtCardAttackValue.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // txtCardRecruitValue
             // 
@@ -657,7 +657,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardRecruitValue.Name = "txtCardRecruitValue";
             this.txtCardRecruitValue.Size = new System.Drawing.Size(66, 23);
             this.txtCardRecruitValue.TabIndex = 10;
-            this.txtCardRecruitValue.TextChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
+            this.txtCardRecruitValue.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // lblCardRecruitValue
             // 
