@@ -303,7 +303,7 @@
 		"TemplateId": 13,
 		"TemplateName": "ambition",
 		"TemplateDisplayName": "Ambition",
-		"RectXArray": "62,440,350,622",
+		"RectXArray": "62,440,350,62",
 		"RectYArray": "552,552,670,670",
 		"CardWidth": 750,
 		"CardHeight": 1050,
