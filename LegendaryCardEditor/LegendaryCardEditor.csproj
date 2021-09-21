@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.0.256.256</AssemblyVersion>
-    <FileVersion>1.0.256.256</FileVersion>
+    <AssemblyVersion>1.0.260.260</AssemblyVersion>
+    <FileVersion>1.0.260.260</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -172,6 +172,20 @@ namespace LegendaryCardEditor.Managers
             }
         }
 
+        public bool CreateBackup(string path)
+        {
+            try
+            {
+
+                File.Create(path);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
 
 
     }

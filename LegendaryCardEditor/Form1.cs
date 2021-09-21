@@ -46,6 +46,10 @@ namespace LegendaryCardEditor
         {
             try
             {
+                legendaryIconList = coreManager.LoadIconsFromDirectory();
+                templateModelList = coreManager.GetTemplates();
+                deckTypeList = coreManager.GetDeckTypes();
+
                 if (settings.lastProject != string.Empty)
                     if (File.Exists(settings.lastProject))
                         LoadCustomSet(settings.lastProject);
@@ -60,17 +64,20 @@ namespace LegendaryCardEditor
             }
         }
 
+
         private void LoadCustomSet(string path)
         {
             dataFile = path;           
 
-            legendaryIconList = coreManager.LoadIconsFromDirectory();
-            templateModelList = coreManager.GetTemplates();
-            deckTypeList = coreManager.GetDeckTypes();
+           
 
             deckList = coreManager.GetDecks(dataFile);
-          
-                PopulateDeckTree();
+           PopulateDeckTree();
+
+            //create a backup each time a file is loaded
+                coreManager.CreateBackup($"{dataFile}.bak");
+                
+
         }
 
 
@@ -123,6 +130,9 @@ namespace LegendaryCardEditor
 
                     splitContainer1.Panel2.Controls.Clear();
                     var activeSet = (CurrentActiveDataModel)e.Node.Tag;
+
+
+
                     CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet, legendaryIconList, deckTypeList, templateModelList)
                     {
                         Dock = DockStyle.Fill
@@ -230,6 +240,11 @@ namespace LegendaryCardEditor
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void printToolStripButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Coming Soon!");
         }
     }
 }

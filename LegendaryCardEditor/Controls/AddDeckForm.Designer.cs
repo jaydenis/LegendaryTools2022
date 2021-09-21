@@ -169,6 +169,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // cmbDeckTeam
             // 
+            this.cmbDeckTeam.Enabled = false;
             this.cmbDeckTeam.ImageList = this.imageListTeamsFull;
             this.cmbDeckTeam.Location = new System.Drawing.Point(256, 79);
             this.cmbDeckTeam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);

@@ -72,6 +72,11 @@ namespace LegendaryCardEditor.Controls
                 //selectedrb = rb;
                 lblSelectedDeckType.Text = rb.Text;
                 selectedDeckTypeId = Convert.ToInt32(rb.Tag);
+
+                if (selectedDeckTypeId == 1 || selectedDeckTypeId == 2 || selectedDeckTypeId == 3)
+                    cmbDeckTeam.Enabled = true;
+                else
+                    cmbDeckTeam.Enabled = false;
             }
         }
 
@@ -80,7 +85,6 @@ namespace LegendaryCardEditor.Controls
             if (cmbDeckTeam.SelectedIndex != -1)
             {
                 selectedTeamId = cmbDeckTeam.SelectedIndex;
-
             }
         }
 
@@ -97,7 +101,7 @@ namespace LegendaryCardEditor.Controls
                 DeckTypeId = selectedDeckTypeId,
                 Cards = new List<Card>(),
                 FolderName = Helper.GenerateID(txtNewDeckName.Text.ToLower()).ToLower(),
-                TeamIconId = selectedTeamId
+                TeamIconId = cmbDeckTeam.Enabled ? selectedTeamId : -1
             };
 
             var deckType = deckTypeList.Where(x => x.DeckTypeId == selectedDeckTypeId).FirstOrDefault();            
@@ -118,17 +122,9 @@ namespace LegendaryCardEditor.Controls
                 if (deckType.DeckTypeId == 7)
                     templateId = 10;
 
-                if (deckType.DeckTypeId == 8)
+                if (deckType.DeckTypeId == 8 || deckType.DeckTypeId == 9 || deckType.DeckTypeId == 10 || deckType.DeckTypeId == 11)
                     templateId = 9;
-
-                if (deckType.DeckTypeId == 9)
-                    templateId = 9;
-
-                if (deckType.DeckTypeId == 10)
-                    templateId = 9;
-
-                if (deckType.DeckTypeId == 11)
-                    templateId = 9;
+               
 
 
 
