@@ -84,6 +84,7 @@ namespace LegendaryCardEditor
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.treeViewMenuDeleteDeck = new System.Windows.Forms.ToolStripMenuItem();
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -590,6 +591,12 @@ namespace LegendaryCardEditor
             // 
             this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2007Blue;
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileName = "LegandaryCustomExpansion.json";
+            this.saveFileDialog1.Filter = "Json files|*.json";
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -676,6 +683,7 @@ namespace LegendaryCardEditor
         private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
         private ComponentFactory.Krypton.Toolkit.KryptonTreeView treeView1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddDeck;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

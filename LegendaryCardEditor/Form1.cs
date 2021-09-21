@@ -204,7 +204,32 @@ namespace LegendaryCardEditor
 
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.ShowDialog();
+        }
 
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                deckList = new DeckList
+                {
+                    Decks = new List<Deck>()
+                };
+
+                dataFile = saveFileDialog1.FileName;
+                coreManager.SaveDeck(deckList, dataFile);
+
+                AddDeckForm addDeckForm = new AddDeckForm(dataFile);
+                addDeckForm.ShowDialog();
+
+                LoadCustomSet(dataFile);
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

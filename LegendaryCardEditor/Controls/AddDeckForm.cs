@@ -33,13 +33,14 @@ namespace LegendaryCardEditor.Controls
 
             if (deckList != null)
             {
-                foreach (var item in deckList.Decks.OrderBy(o => o.DeckId))
-                {
-                    deckIdList.Add(item.DeckId);
-                }
+                if (deckList.Decks.Count() > 0)
+                    foreach (var item in deckList.Decks.OrderBy(o => o.DeckId))
+                        deckIdList.Add(item.DeckId);
+                else
+                    deckIdList.Add(0);
             }
             else
-            {               
+            {
                 deckIdList.Add(0);
             }
 
