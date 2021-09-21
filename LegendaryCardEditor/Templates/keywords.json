@@ -344,5 +344,25 @@
     "Id": 32,
     "KeywordName": "Poison Villains",
     "KeywordDescription": "This ability only triggers when fought.  The conditions are then fulfilled and the player must potentially fight the combined might of the adjusted character as per normal Symbiote Bonds.  Choose which fight trigger you want to trigger."
+  },
+  {
+    "Id": 70,
+    "KeywordName": "Fight",
+    "KeywordDescription": ""
+  },
+  {
+    "Id": 71,
+    "KeywordName": "Ambush",
+    "KeywordDescription": ""
+  },
+  {
+    "Id": 72,
+    "KeywordName": "Escape",
+    "KeywordDescription": ""
+  },
+  {
+    "Id": 73,
+    "KeywordName": "KO",
+    "KeywordDescription": ""
   }
 ]

@@ -48,14 +48,15 @@ namespace LegendaryCardEditor.Managers
             return dataModel;
         }
 
-        //public CardTemplates ReadTemplateSettings(string templateFolder)
-        //{
-        //    string path = settings.baseFolder + "\\cards\\" + templateFolder + "\\" + settings.json_templates;
-        //    string jsonText = File.ReadAllText(path);
-        //    var dataModel = JsonConvert.DeserializeObject<CardTemplates>(jsonText);
+        public List<LegendaryKeyword> GetKeywords()
+        {
+            string path = settings.templatesFolder + "\\" + settings.json_keywords;
+            string jsonText = File.ReadAllText(path);
 
-        //    return dataModel;
-        //}
+            var dataModel = JsonConvert.DeserializeObject<IList<LegendaryKeyword>>(jsonText).ToList();
+
+            return dataModel;
+        }
 
         public bool SaveTemplateSettings(string path, LegendaryTemplateModel template)
         {
@@ -71,37 +72,7 @@ namespace LegendaryCardEditor.Managers
             }
         }
 
-        //public Dictionary<string, List<CardTypeModel>> GetCardTypeViewModel()
-        //{
-        //    string path = settings.baseFolder + "\\" + settings.json_cardtypes;
-        //    string jsonText = File.ReadAllText(path);
-        //    var dataModel = JsonConvert.DeserializeObject<IList<CardTypeModel>>(jsonText).ToList();
-
-        //    var result = new Dictionary<string, List<CardTypeModel>>();
-
-        //    foreach (CardTypeModel item in dataModel)
-        //    {
-        //        if (!result.ContainsKey(item.Category))
-        //        {
-        //            var cardTypeList = dataModel.Where(x => x.Category == item.Category).ToList();
-
-        //            result.Add(item.Category, cardTypeList);
-        //        }
-        //    }
-
-        //    return result;
-        //}
-
-        //public List<CardTypeModel> GetCardTypes()
-        //{
-
-        //    var path = settings.templatesFolder + "\\" + settings.json_cardtypes;
-        //    string jsonText = File.ReadAllText(path);
-        //    var dataModel = JsonConvert.DeserializeObject<IList<CardTypeModel>>(jsonText).ToList();
-
-        //    return dataModel;           
-        //}
-
+   
         public List<LegendaryIconViewModel> LoadIconsFromDirectory()
         {
 
@@ -186,6 +157,19 @@ namespace LegendaryCardEditor.Managers
             }
         }
 
+        public bool SaveKeywords(List<LegendaryKeyword> model)
+        {
+            try
+            {
+                string path = settings.templatesFolder + "\\" + settings.json_keywords;
+                File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
 
     }

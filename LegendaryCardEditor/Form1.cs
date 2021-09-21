@@ -27,6 +27,8 @@ namespace LegendaryCardEditor
         List<LegendaryIconViewModel> legendaryIconList;
         List<LegendaryTemplateModel> templateModelList;
         List<DeckTypeModel> deckTypeList;
+        List<LegendaryKeyword> keywordsList;
+        LegendaryKeyword selectedKeyword;
 
         string applicationDirectory = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
         public Form1()
@@ -49,6 +51,10 @@ namespace LegendaryCardEditor
                 legendaryIconList = coreManager.LoadIconsFromDirectory();
                 templateModelList = coreManager.GetTemplates();
                 deckTypeList = coreManager.GetDeckTypes();
+               
+                PopulateKeywordListBox();
+
+
 
                 if (settings.lastProject != string.Empty)
                     if (File.Exists(settings.lastProject))
@@ -64,6 +70,22 @@ namespace LegendaryCardEditor
             }
         }
 
+        private void PopulateKeywordListBox()
+        {
+            listBoxKeywords.Items.Clear();
+            selectedKeyword = null;
+            keywordsList = coreManager.GetKeywords();
+            foreach (LegendaryKeyword keyword in keywordsList.OrderBy(o => o.KeywordName))
+            {
+                KryptonListItem item = new KryptonListItem
+                {
+                    ShortText = keyword.KeywordName,
+                    Tag = keyword
+                };
+                listBoxKeywords.Items.Add(item);
+            }
+
+        }
 
         private void LoadCustomSet(string path)
         {
@@ -245,6 +267,25 @@ namespace LegendaryCardEditor
         private void printToolStripButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Coming Soon!");
+        }
+
+        private void listBoxKeywords_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            KryptonListItem item = (KryptonListItem)listBoxKeywords.Items[listBoxKeywords.SelectedIndex];
+            selectedKeyword = (LegendaryKeyword)item.Tag;
+            
+            txtkeywordName.Text = selectedKeyword.KeywordName;
+            txtKeywordDescription.Text = selectedKeyword.KeywordDescription;
+        }
+
+        private void btnSaveKeyword_Click(object sender, EventArgs e)
+        {
+            keywordsList.Where(x => x.Id == selectedKeyword.Id).FirstOrDefault().KeywordName = txtkeywordName.Text; 
+            keywordsList.Where(x => x.Id == selectedKeyword.Id).FirstOrDefault().KeywordDescription = txtKeywordDescription.Text;
+
+            coreManager.SaveKeywords(keywordsList);
+
+            PopulateKeywordListBox();
         }
     }
 }

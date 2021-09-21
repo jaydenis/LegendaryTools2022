@@ -17,7 +17,7 @@ namespace LegendaryCardEditor.Utilities
         public string templatesFolder = @"C:\Repos\LegendaryTools2022\LegendaryCardEditor\Templates";
 
         public string json_decktypes = "decktypes.json";
-        //public string json_cardgroups = "cardgroups.json";
+        public string json_keywords = "keywords.json";
         public string json_icons = "icons.json";
         //public string json_cardtypes = "cardtypes.json";
         public string json_templates = "template.json";

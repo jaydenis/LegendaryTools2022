@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Windows.Forms;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace LegendaryCardEditor.Controls
 {
@@ -25,6 +26,7 @@ namespace LegendaryCardEditor.Controls
         CurrentActiveDataModel currentActiveSet;
         CoreManager coreManager = new CoreManager();
 
+        List<LegendaryKeyword> keywordsList;
         List<LegendaryTemplateModel> templateModelList;
         List<DeckTypeModel> deckTypeList;
         DeckTypeModel currentDeckType;
@@ -67,7 +69,13 @@ namespace LegendaryCardEditor.Controls
             this.legendaryIconList = legendaryIconList;
             this.deckTypeList = deckTypeList;
             this.templateModelList = templateModelList;
+            keywordsList = coreManager.GetKeywords();
 
+            cmbKeywords.Items.Add("");
+            foreach (LegendaryKeyword keyword in keywordsList.OrderBy(o=>o.KeywordName))
+            {
+                cmbKeywords.Items.Add(keyword.KeywordName);
+            }
 
             int i = 0;
             foreach (var icon in legendaryIconList.Where(x => x.Category == "TEAMS").OrderBy(o => o.Name))
@@ -795,7 +803,11 @@ namespace LegendaryCardEditor.Controls
 
             if (currentActiveSet.SelectedCard != null)
             {
-                Clipboard.SetText("<k>");
+                if(cmbKeywords.SelectedIndex != -1)                
+                    Clipboard.SetText($"<k>{cmbKeywords.SelectedItem}");
+                else
+                    Clipboard.SetText($"<k>");
+
                 txtCardTextBox.Paste();
                 txtCardTextBox.Focus();
 
