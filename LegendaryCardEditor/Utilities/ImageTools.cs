@@ -102,35 +102,50 @@ namespace LegendaryCardEditor.Utilities
                 string curFile = $"{activeSetPath}\\artwork\\{model.ActiveCard.ArtWorkFile}";
 
                 if (File.Exists(curFile))
-                {
-                    //lblArtworkPath.Text = curFile;
                     artworkImage = new KalikoImage(curFile);
-                }
                 else
                     artworkImage = new KalikoImage(Resources.default_blank_card);
 
-                artworkImage.Resize(picWidth, picHeight);
 
+                artworkImage.Resize(picWidth, picHeight);
                 infoImage.BlitImage(artworkImage);
 
-                backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.TextImage}");
+                
 
-                if (backTextImage != null)
+
+
+                if (model.ActiveTemplate.UnderlayImage != string.Empty)
                 {
-                    infoImage.BlitImage(backTextImage);
-                    backTextImage.Resize(picWidth, picHeight);
-
-                    var backUnderLay = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.UnderlayImage}");
-                    backUnderLay.Resize(picWidth, picHeight);
-                    infoImage.BlitImage(backUnderLay);
+                    if (File.Exists(($"{currentTemplateDirectory}\\{model.ActiveTemplate.UnderlayImage}")))
+                    {
+                        backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.UnderlayImage}");
+                        backTextImage.Resize(picWidth, picHeight);
+                        infoImage.BlitImage(backTextImage);
+                    }
                 }
-
-                if (model.ActiveTemplate.FormShowAttributes)
+                else
                 {
-                    frameImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.FrameImage}");
-                    frameImage.Resize(picWidth, picHeight);
-                    infoImage.BlitImage(frameImage);
+                    if (File.Exists(($"{currentTemplateDirectory}\\{model.ActiveTemplate.TextImage}")))
+                    {
+                        backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.TextImage}");
+                        backTextImage.Resize(picWidth, picHeight); 
+                        infoImage.BlitImage(backTextImage);
+                    }
+                   
                 }
+                
+
+
+
+                //if (model.ActiveTemplate.FormShowAttributes)
+               // {
+                    if (File.Exists(($"{currentTemplateDirectory}\\{model.ActiveTemplate.FrameImage}")))
+                    {
+                        frameImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.FrameImage}");
+                        frameImage.Resize(picWidth, picHeight);
+                        infoImage.BlitImage(frameImage);
+                    }
+               // }
 
                 attackImage = new KalikoImage(Resources.attack);
                 recruitImage = new KalikoImage(Resources.recruit);

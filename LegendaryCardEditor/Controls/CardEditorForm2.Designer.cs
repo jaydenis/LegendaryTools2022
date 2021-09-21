@@ -332,7 +332,7 @@ namespace LegendaryCardEditor.Controls
             0,
             0,
             0});
-            this.numCardTitleSize.ValueChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
+            this.numCardTitleSize.ValueChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // txtCardTextBox
             // 
@@ -446,7 +446,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardName.Name = "txtCardName";
             this.txtCardName.Size = new System.Drawing.Size(468, 23);
             this.txtCardName.TabIndex = 81;
-            this.txtCardName.TextChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
+            this.txtCardName.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // btnResetCard
             // 

@@ -158,6 +158,11 @@ namespace LegendaryCardEditor.Controls
                 currentActiveSet.SelectedCard = model;
                 ToggleFormControls(model.ActiveTemplate);
 
+                cmbKeywords.SelectedIndex = -1;
+                cmbAttributesTeams.SelectedIndex = -1;
+                cmbAttributesOther.SelectedIndex = -1;
+                cmbAttributesPower.SelectedIndex = -1;
+
 
                 txtCardName.Text = model.ActiveCard.CardDisplayName;
                 numCardTitleSize.Text = model.ActiveCard.CardDisplayNameFont.ToString();
@@ -175,7 +180,7 @@ namespace LegendaryCardEditor.Controls
                 cmbTeam.SelectedIndex = model.ActiveCard.TeamIconId;
                 numNumberInDeck.Text = model.ActiveCard.NumberInDeck.ToString();
 
-                if (model.ActiveTemplate.TemplateId == 1 || model.ActiveCard.TemplateId == 2 && model.ActiveTemplate.FormShowPowerPrimary)
+                if (model.ActiveTemplate.FormShowPowerPrimary)
                 {
                     model.ActiveTemplate.FrameImage = $"{model.ActiveTemplate.TemplateName}_none.png";
 
@@ -193,8 +198,13 @@ namespace LegendaryCardEditor.Controls
                         }
 
                         model.ActiveCard.PowerPrimary = icon.Name.ToUpper();
-                        model.ActiveTemplate.FrameImage = $"{model.ActiveTemplate.TemplateName}_{model.ActiveCard.PowerPrimary.ToLower()}.png";
+
+                        if (model.ActiveTemplate.TemplateId == 1 || model.ActiveCard.TemplateId == 2)
+                            model.ActiveTemplate.FrameImage = $"{model.ActiveTemplate.TemplateName}_{model.ActiveCard.PowerPrimary.ToLower()}.png";
                     }
+
+                    if (model.ActiveTemplate.TemplateId == 3)
+                        model.ActiveTemplate.FrameImage = $"{model.ActiveTemplate.TemplateName}.png";
                 }
 
                 if (cmbTeam.SelectedIndex != -1)

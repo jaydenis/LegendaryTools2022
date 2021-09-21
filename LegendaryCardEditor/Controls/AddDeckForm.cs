@@ -122,9 +122,11 @@ namespace LegendaryCardEditor.Controls
                 if (deckType.DeckTypeId == 7)
                     templateId = 10;
 
-                if (deckType.DeckTypeId == 8 || deckType.DeckTypeId == 9 || deckType.DeckTypeId == 10 || deckType.DeckTypeId == 11)
+                if (deckType.DeckTypeId == 8 || deckType.DeckTypeId == 10 || deckType.DeckTypeId == 11)
                     templateId = 9;
-               
+
+                if (deckType.DeckTypeId == 9)
+                    templateId = 13;
 
 
 

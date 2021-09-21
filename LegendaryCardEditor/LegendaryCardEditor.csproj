@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.0.274.274</AssemblyVersion>
-    <FileVersion>1.0.274.274</FileVersion>
+    <AssemblyVersion>1.0.293.293</AssemblyVersion>
+    <FileVersion>1.0.293.293</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,11 +51,15 @@
     <None Remove="Images\icons\teams\us_army.png" />
     <None Remove="Images\icons\teams\x_force.png" />
     <None Remove="Images\icons\teams\x_men.png" />
+    <None Remove="Templates\cards\ambition\ambition.png" />
+    <None Remove="Templates\cards\ambition\text_overlay.png" />
     <None Remove="Templates\cards\bystander\bystander.png" />
     <None Remove="Templates\cards\bystander\bystander_villain.png" />
     <None Remove="Templates\cards\bystander\bystander_wound.png" />
     <None Remove="Templates\cards\hero\back_cost.png" />
-    <None Remove="Templates\cards\hero\back_text.png" />
+    <None Remove="Templates\cards\hero\back_text_common.png" />
+    <None Remove="Templates\cards\hero\back_text_rare.png" />
+    <None Remove="Templates\cards\hero\back_text_uncommon.png" />
     <None Remove="Templates\cards\hero\back_underlay.png" />
     <None Remove="Templates\cards\hero\hero_common_covert.png" />
     <None Remove="Templates\cards\hero\hero_common_instinct.png" />
@@ -247,6 +251,12 @@
     <Content Include="Images\icons\teams\x_men.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\cards\ambition\ambition.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\ambition\text_overlay.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\cards\bystander\bystander.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -259,8 +269,14 @@
     <Content Include="Templates\cards\hero\back_cost.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\cards\hero\back_text.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Templates\cards\hero\back_text_common.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\back_text_rare.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\back_text_uncommon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\hero\back_underlay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
