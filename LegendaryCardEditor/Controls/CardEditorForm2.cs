@@ -164,6 +164,7 @@ namespace LegendaryCardEditor.Controls
                 imageTools.orignalArtwork = null;
                 imageTools.backTextImage = null;
                 imageTools.attackImageHero = null;
+                imageTools.attackImageVillain = null;
                 imageTools.recruitImage = null;
                 imageTools.piercingImage = null;
                 imageTools.costImage = null;
@@ -280,7 +281,7 @@ namespace LegendaryCardEditor.Controls
                 //groupBoxTeam.Visible = model.FormControls.ShowTeam;
                 cmbTeam.Enabled = model.FormShowTeam;
 
-                bool isRecruitableVillain = false;
+               
                 if (model.TemplateName == "recruitable_villain")
                 {
                     model.FormShowAttributesCost = true;
@@ -929,7 +930,7 @@ namespace LegendaryCardEditor.Controls
 
         private void btnAddCard_Click(object sender, EventArgs e)
         {
-           var selectedTemplate = templateModelList.FirstOrDefault(x => x.TemplateDisplayName == cmbCardTemplateTypes.SelectedItem);
+           var selectedTemplate = templateModelList.FirstOrDefault(x => x.TemplateDisplayName == (string)cmbCardTemplateTypes.SelectedItem);
             Card newCard = GetNewCard(currentDeckType, currentActiveSet.ActiveDeck, selectedTemplate.TemplateId, $"New {currentDeckType.DeckTypeName}", currentActiveSet.AllCardsInDeck.Count() + 1, 1);
 
             currentActiveSet.ActiveDeck.Cards.Add(newCard);
@@ -974,9 +975,11 @@ namespace LegendaryCardEditor.Controls
             try
             {
                 if (currentActiveSet.ActiveDeck.DeckDisplayName != txtDeckName.Text)
-                    btnDeckUpdate.Enabled = true;
+                    isDirty = true;
                 else
-                    btnDeckUpdate.Enabled = false;
+                    isDirty = false;
+
+                btnUpdateCard.Enabled = isDirty;
             }
             catch (Exception ex)
             {
@@ -992,12 +995,11 @@ namespace LegendaryCardEditor.Controls
                 this.Cursor = Cursors.WaitCursor;
                 if (currentActiveSet.SelectedCard != null)
                 {
-                    if (currentActiveSet.SelectedCard.ActiveCard.CardText != txtCardTextBox.Text)
-                    {
+                    
                         isDirty = true;
                         btnUpdateCard.Enabled = isDirty;
 
-                    }
+                    
                 }
                 this.Cursor = Cursors.Default;
             }
