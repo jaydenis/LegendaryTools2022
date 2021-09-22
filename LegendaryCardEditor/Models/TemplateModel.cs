@@ -10,31 +10,31 @@
         public Template Template { get; set; }
 
         [JsonProperty("cardsize", Required = Required.Always)]
-        public Cardsize Cardsize { get; set; }
+        public CardSizeModel Cardsize { get; set; }
 
         [JsonProperty("bgimage", Required = Required.Always)]
-        public Image Bgimage { get; set; }
+        public ImageModel Bgimage { get; set; }
 
         [JsonProperty("iconbg", Required = Required.Always)]
-        public List<Iconbg> Iconbg { get; set; }
+        public List<IconBgModel> Iconbg { get; set; }
 
         [JsonProperty("image", Required = Required.Always)]
-        public Image Image { get; set; }
+        public ImageModel ArtWork { get; set; }
 
         [JsonProperty("styles", Required = Required.Always)]
-        public List<Style> Styles { get; set; }
+        public List<StyleModel> Styles { get; set; }
 
         [JsonProperty("elementgroup", Required = Required.Always)]
-        public List<Elementgroup> Elementgroup { get; set; }
+        public List<ElementGroupModel> Elementgroup { get; set; }
 
         [JsonProperty("textarea", Required = Required.Always)]
-        public Textarea Textarea { get; set; }
+        public TextareaModel Textarea { get; set; }
 
         [JsonProperty("property", Required = Required.Always)]
-        public Property Property { get; set; }
+        public PropertyModel TemplateProperty { get; set; }
     }
 
-    public partial class Image
+    public partial class ImageModel
     {
         [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
@@ -71,7 +71,7 @@
         public string Path { get; set; }
     }
 
-    public partial class Cardsize
+    public partial class CardSizeModel
     {
         [JsonProperty("cardwidth", Required = Required.Always)]
         public int Cardwidth { get; set; }
@@ -83,23 +83,23 @@
         public int Dpi { get; set; }
     }
 
-    public partial class Elementgroup
+    public partial class ElementGroupModel
     {
         [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
 
         [JsonProperty("icon", Required = Required.Always)]
-        public Icon Icon { get; set; }
+        public IconModel Icon { get; set; }
 
         [JsonProperty("text", Required = Required.Always)]
-        public Text Text { get; set; }
+        public TextModel Text { get; set; }
 
         [JsonProperty("visible", Required = Required.DisallowNull, NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(BooleanConverter))]
         public bool? Visible { get; set; }
     }
 
-    public partial class Icon
+    public partial class IconModel
     {
         [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
@@ -134,9 +134,9 @@
         [JsonProperty("blurradius", Required = Required.Always)]
         public int Blurradius { get; set; }
 
-        [JsonProperty("bluedouble", Required = Required.Always)]
+        [JsonProperty("blurdouble", Required = Required.Always)]
         [JsonConverter(typeof(BooleanConverter))]
-        public bool Bluedouble { get; set; }
+        public bool Blurdouble { get; set; }
 
         [JsonProperty("blurexpand", Required = Required.Always)]
         public int Blurexpand { get; set; }
@@ -155,7 +155,7 @@
         public string Valuefrom { get; set; }
     }
 
-    public partial class Text
+    public partial class TextModel
     {
         [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
@@ -168,7 +168,7 @@
         public bool Allowchange { get; set; }
 
         [JsonProperty("defaultvalue", Required = Required.Always)]
-        public int Defaultvalue { get; set; }
+        public string Defaultvalue { get; set; }
 
         [JsonProperty("x", Required = Required.Always)]
         public int X { get; set; }
@@ -177,7 +177,7 @@
         public int Y { get; set; }
 
         [JsonProperty("colour", Required = Required.Always)]
-        public string Colour { get; set; }
+        public string TextColor { get; set; }
 
         [JsonProperty("textsize", Required = Required.Always)]
         public int Textsize { get; set; }
@@ -193,9 +193,9 @@
         [JsonProperty("blurradius", Required = Required.Always)]
         public int Blurradius { get; set; }
 
-        [JsonProperty("bluedouble", Required = Required.Always)]
+        [JsonProperty("blurdouble", Required = Required.Always)]
         [JsonConverter(typeof(BooleanConverter))]
-        public bool Bluedouble { get; set; }
+        public bool Blurdouble { get; set; }
 
         [JsonProperty("blurexpand", Required = Required.Always)]
         public int Blurexpand { get; set; }
@@ -211,7 +211,7 @@
         public bool? Visible { get; set; }
     }
 
-    public partial class Iconbg
+    public partial class IconBgModel
     {
         [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
@@ -245,9 +245,9 @@
         [JsonProperty("blurradius", Required = Required.Always)]
         public int Blurradius { get; set; }
 
-        [JsonProperty("bluedouble", Required = Required.Always)]
+        [JsonProperty("blurdouble", Required = Required.Always)]
         [JsonConverter(typeof(BooleanConverter))]
-        public bool Bluedouble { get; set; }
+        public bool Blurdouble { get; set; }
 
         [JsonProperty("blurexpand", Required = Required.Always)]
         public int Blurexpand { get; set; }
@@ -277,7 +277,7 @@
         public string Imagefilter { get; set; }
     }
 
-    public partial class Property
+    public partial class PropertyModel
     {
         [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
@@ -289,19 +289,19 @@
         public int Defaultvalue { get; set; }
     }
 
-    public partial class Style
+    public partial class StyleModel
     {
         [JsonProperty("name", Required = Required.Always)]
-        public string Name { get; set; }
+        public string StyleName { get; set; }
 
         [JsonProperty("cardname", Required = Required.Always)]
-        public Cardname Cardname { get; set; }
+        public CardNameModel Cardname { get; set; }
 
         [JsonProperty("icon", Required = Required.Always)]
-        public List<Icon> Icon { get; set; }
+        public List<IconModel> Icon { get; set; }
     }
 
-    public partial class Cardname
+    public partial class CardNameModel
     {
         [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
@@ -337,7 +337,7 @@
         public int Y { get; set; }
 
         [JsonProperty("colour", Required = Required.Always)]
-        public string Colour { get; set; }
+        public string TextColor { get; set; }
 
         [JsonProperty("textsize", Required = Required.Always)]
         public int Textsize { get; set; }
@@ -354,9 +354,9 @@
         [JsonProperty("blurradius", Required = Required.Always)]
         public int Blurradius { get; set; }
 
-        [JsonProperty("bluedouble", Required = Required.Always)]
+        [JsonProperty("blurdouble", Required = Required.Always)]
         [JsonConverter(typeof(BooleanConverter))]
-        public bool Bluedouble { get; set; }
+        public bool Blurdouble { get; set; }
 
         [JsonProperty("blurexpand", Required = Required.Always)]
         public int Blurexpand { get; set; }
@@ -385,7 +385,7 @@
         public int Defaultcopies { get; set; }
     }
 
-    public partial class Textarea
+    public partial class TextareaModel
     {
         [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
@@ -403,8 +403,8 @@
         [JsonProperty("defaultvalue", Required = Required.Always)]
         public string Defaultvalue { get; set; }
 
-        [JsonProperty("colour", Required = Required.Always)]
-        public string Colour { get; set; }
+        [JsonProperty("color", Required = Required.Always)]
+        public string TextColor { get; set; }
 
         [JsonProperty("textsize", Required = Required.Always)]
         public int Textsize { get; set; }

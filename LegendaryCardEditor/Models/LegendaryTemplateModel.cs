@@ -76,7 +76,7 @@ namespace LegendaryCardEditor.Models
         [JsonProperty("NumberInDeck", Required = Required.Always)]
         public int NumberInDeck { get; set; }
 
- [JsonProperty("TemplateType", Required = Required.Always)]
+        [JsonProperty("TemplateType", Required = Required.Always)]
         public string TemplateType { get; set; }
     }
 

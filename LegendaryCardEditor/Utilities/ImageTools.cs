@@ -19,7 +19,8 @@ namespace LegendaryCardEditor.Utilities
         public KalikoImage artworkImage { get; set; }
         public KalikoImage orignalArtwork { get; set; }
         public KalikoImage backTextImage { get; set; }
-        public KalikoImage attackImage { get; set; }
+        public KalikoImage attackImageHero { get; set; }
+        public KalikoImage attackImageVillain { get; set; }
         public KalikoImage recruitImage { get; set; }
         public KalikoImage piercingImage { get; set; }
         public KalikoImage costImage { get; set; }
@@ -84,7 +85,9 @@ namespace LegendaryCardEditor.Utilities
             {
                 templateModel = model.ActiveTemplate;
 
-                bool containsPlus = false;
+                bool isRecruitableVillain = model.ActiveTemplate.TemplateName == "recruitable_villain";
+
+                    bool containsPlus = false;
 
                 FontFamily fontFamily = new FontFamily("Percolator");
 
@@ -147,7 +150,8 @@ namespace LegendaryCardEditor.Utilities
                     }
                // }
 
-                attackImage = new KalikoImage(Resources.attack);
+                attackImageHero = new KalikoImage(Resources.attack);
+                attackImageVillain = new KalikoImage(Resources.attack);
                 recruitImage = new KalikoImage(Resources.recruit);
                 piercingImage = new KalikoImage(Resources.piercing);
                 victoryPointsImage = new KalikoImage(Resources.victory);
@@ -207,12 +211,12 @@ namespace LegendaryCardEditor.Utilities
                     }
                 }
 
-                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttributesAttack && attackImage != null)
+                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttributesAttack && attackImageHero != null)
                 {
                     if (model.ActiveCard.AttributeAttack.Length > 0)
                     {
-                        attackImage.Resize(90, 90);
-                        infoImage.BlitImage(attackImage, 13, 580);
+                        attackImageHero.Resize(90, 90);
+                        infoImage.BlitImage(attackImageHero, 13, 580);
                     }
                 }
 
@@ -225,10 +229,10 @@ namespace LegendaryCardEditor.Utilities
                     }
                 }
 
-                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttackCost && attackImage != null)
+                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttackCost && attackImageVillain != null)
                 {
-                    attackImage.Resize(95, 95);
-                    infoImage.BlitImage(attackImage, 380, 610);
+                    attackImageVillain.Resize(95, 95);
+                    infoImage.BlitImage(attackImageVillain, 380, 610);
                 }
 
                 if (model.ActiveTemplate.FormShowAttributesCost && costImage != null)
@@ -237,12 +241,64 @@ namespace LegendaryCardEditor.Utilities
                     infoImage.BlitImage(costImage, 373, 585);
                 }
 
-                bool isRecruitableVillain = false;
-                if (model.ActiveTemplate.TemplateName == "recruitable_villain")
-                {
-                    isRecruitableVillain = true;
 
-                    if (model.ActiveCard.AttributeCost.Length > 0)
+                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttackCost)
+                {
+                    string tempVal = model.ActiveCard.AttributeAttack;
+
+                    if(isRecruitableVillain)
+                        tempVal = model.ActiveCard.AttributeCost;
+
+                    if (tempVal.Length > 0)
+                    {
+                        cardCostFont = new Font(
+                          fontFamily,
+                          82,
+                          FontStyle.Bold,
+                          GraphicsUnit.Pixel);
+
+                        if (tempVal.Contains("+"))
+                        {
+                            containsPlus = true;
+                            tempVal = tempVal.Replace("+", "");
+                        }
+                        Size textSizeAttack = TextRenderer.MeasureText(tempVal, cardCostFont);
+                        //textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, cardCostFont);
+                        TextField txtFieldAttack = new TextField(tempVal)
+                        {
+                            Font = cardCostFont,
+                            TargetArea = new Rectangle(380, 610, textSizeAttack.Width + 2, textSizeAttack.Height),
+                            TextColor = Color.White,
+                            Outline = 4,
+                            OutlineColor = Color.Black,
+                            Alignment = StringAlignment.Near
+                        };
+                        infoImage.DrawText(txtFieldAttack);
+
+                        if (containsPlus)
+                        {
+                            font = new Font(
+                              attributesFont.FontFamily,
+                              (attributesFont.Size / 2),
+                              FontStyle.Bold,
+                              GraphicsUnit.Pixel);
+
+                            TextField txtFieldAttackPlus = new TextField("+")
+                            {
+                                Font = font,
+                                TargetArea = new Rectangle(txtFieldAttack.TargetArea.X + 42, txtFieldAttack.TargetArea.Y + 20, textSizeAttack.Width + 2, textSizeAttack.Height),
+                                TextColor = Color.White,
+                                Outline = 4,
+                                OutlineColor = Color.Black,
+                                Alignment = StringAlignment.Near
+                            };
+                            infoImage.DrawText(txtFieldAttackPlus);
+                            model.ActiveCard.AttributeAttack = tempVal + "+";
+                        }
+                    }
+                }
+
+                if (model.ActiveCard.AttributeCost != null && model.ActiveTemplate.FormShowAttackCost && isRecruitableVillain)
                     {
                         cardCostFont = new Font(
                           fontFamily,
@@ -288,7 +344,7 @@ namespace LegendaryCardEditor.Utilities
                             model.ActiveCard.AttributeCost = model.ActiveCard.AttributeCost + "+";
                         }
                     }
-                }
+                
 
 
                 if (isRecruitableVillain == false && model.ActiveCard.AttributeCost != null && model.ActiveTemplate.FormShowAttributesCost)
@@ -314,58 +370,7 @@ namespace LegendaryCardEditor.Utilities
                     infoImage.DrawText(txtFieldCost);
                 }
 
-                if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttackCost)
-                {
-                   
-
-                    if (model.ActiveCard.AttributeAttack.Length > 0)
-                    {
-                        cardCostFont = new Font(
-                          fontFamily,
-                          82,
-                          FontStyle.Bold,
-                          GraphicsUnit.Pixel);
-
-                        if (model.ActiveCard.AttributeAttack.Contains("+"))
-                        {
-                            containsPlus = true;
-                            model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack.Replace("+", "");
-                        }
-                        Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeRecruit, cardCostFont);
-                        //textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, cardCostFont);
-                        TextField txtFieldAttack = new TextField(model.ActiveCard.AttributeAttack)
-                        {
-                            Font = cardCostFont,
-                            TargetArea = new Rectangle(380, 610, textSizeAttack.Width + 2, textSizeAttack.Height),
-                            TextColor = Color.White,
-                            Outline = 4,
-                            OutlineColor = Color.Black,
-                            Alignment = StringAlignment.Near
-                        };
-                        infoImage.DrawText(txtFieldAttack);
-
-                        if (containsPlus)
-                        {
-                            font = new Font(
-                              attributesFont.FontFamily,
-                              (attributesFont.Size / 2),
-                              FontStyle.Bold,
-                              GraphicsUnit.Pixel);
-
-                            TextField txtFieldAttackPlus = new TextField("+")
-                            {
-                                Font = font,
-                                TargetArea = new Rectangle(txtFieldAttack.TargetArea.X + 42, txtFieldAttack.TargetArea.Y + 20, textSizeAttack.Width + 2, textSizeAttack.Height),
-                                TextColor = Color.White,
-                                Outline = 4,
-                                OutlineColor = Color.Black,
-                                Alignment = StringAlignment.Near
-                            };
-                            infoImage.DrawText(txtFieldAttackPlus);
-                            model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack + "+";
-                        }
-                    }
-                }
+               
 
                 Font fontTitle = new Font(
                    fontFamily,

@@ -328,7 +328,7 @@
 		"TemplateId": 14,
 		"TemplateName": "recruitable_villain",
 		"TemplateDisplayName": "Villain",
-		"RectXArray": "92,440,350,92",
+		"RectXArray": "92,460,370,92",
 		"RectYArray": "522,522,670,670",
 		"CardWidth": 750,
 		"CardHeight": 1050,

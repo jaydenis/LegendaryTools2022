@@ -163,7 +163,7 @@ namespace LegendaryCardEditor.Controls
                 imageTools.artworkImage = null;
                 imageTools.orignalArtwork = null;
                 imageTools.backTextImage = null;
-                imageTools.attackImage = null;
+                imageTools.attackImageHero = null;
                 imageTools.recruitImage = null;
                 imageTools.piercingImage = null;
                 imageTools.costImage = null;
@@ -280,11 +280,24 @@ namespace LegendaryCardEditor.Controls
                 //groupBoxTeam.Visible = model.FormControls.ShowTeam;
                 cmbTeam.Enabled = model.FormShowTeam;
 
+                bool isRecruitableVillain = false;
+                if (model.TemplateName == "recruitable_villain")
+                {
+                    model.FormShowAttributesCost = true;
+                    lblCardCostValue.Enabled = model.FormShowAttributesCost;
+                    lblCardCostValue.Text = "Attack";
+                    txtCardCostValue.Enabled = model.FormShowAttributesCost;
+                }
+                else
+                {
+                    lblCardCostValue.Text = "Attack";
+                }
 
 
 
 
-            }
+
+                }
         }
 
         #region CardTree
