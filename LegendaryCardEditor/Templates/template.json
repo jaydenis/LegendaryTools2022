@@ -177,7 +177,7 @@
 	{
 		"TemplateId": 8,
 		"TemplateName": "villain_location",
-		"TemplateDisplayName": "Villain Location",
+		"TemplateDisplayName": "Location",
 		"RectXArray": "55,440,440,55",
 		"RectYArray": "522,522,670,670",
 		"CardWidth": 750,
@@ -327,7 +327,7 @@
 	{
 		"TemplateId": 14,
 		"TemplateName": "recruitable_villain",
-		"TemplateDisplayName": "Recruitable Villain",
+		"TemplateDisplayName": "Villain",
 		"RectXArray": "92,440,350,92",
 		"RectYArray": "522,522,670,670",
 		"CardWidth": 750,

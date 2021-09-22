@@ -237,8 +237,63 @@ namespace LegendaryCardEditor.Utilities
                     infoImage.BlitImage(costImage, 373, 585);
                 }
 
-                if (model.ActiveCard.AttributeCost != null && model.ActiveTemplate.FormShowAttributesCost)
+                bool isRecruitableVillain = false;
+                if (model.ActiveTemplate.TemplateName == "recruitable_villain")
                 {
+                    isRecruitableVillain = true;
+
+                    if (model.ActiveCard.AttributeCost.Length > 0)
+                    {
+                        cardCostFont = new Font(
+                          fontFamily,
+                          82,
+                          FontStyle.Bold,
+                          GraphicsUnit.Pixel);
+
+                        if (model.ActiveCard.AttributeCost.Contains("+"))
+                        {
+                            containsPlus = true;
+                            model.ActiveCard.AttributeCost = model.ActiveCard.AttributeCost.Replace("+", "");
+                        }
+                        Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeCost, cardCostFont);
+                        TextField txtFieldAttack = new TextField(model.ActiveCard.AttributeCost)
+                        {
+                            Font = cardCostFont,
+                            TargetArea = new Rectangle(380, 610, textSizeAttack.Width + 2, textSizeAttack.Height),
+                            TextColor = Color.White,
+                            Outline = 4,
+                            OutlineColor = Color.Black,
+                            Alignment = StringAlignment.Near
+                        };
+                        infoImage.DrawText(txtFieldAttack);
+
+                        if (containsPlus)
+                        {
+                            font = new Font(
+                              attributesFont.FontFamily,
+                              (attributesFont.Size / 2),
+                              FontStyle.Bold,
+                              GraphicsUnit.Pixel);
+
+                            TextField txtFieldAttackPlus = new TextField("+")
+                            {
+                                Font = font,
+                                TargetArea = new Rectangle(txtFieldAttack.TargetArea.X + 42, txtFieldAttack.TargetArea.Y + 20, textSizeAttack.Width + 2, textSizeAttack.Height),
+                                TextColor = Color.White,
+                                Outline = 4,
+                                OutlineColor = Color.Black,
+                                Alignment = StringAlignment.Near
+                            };
+                            infoImage.DrawText(txtFieldAttackPlus);
+                            model.ActiveCard.AttributeCost = model.ActiveCard.AttributeCost + "+";
+                        }
+                    }
+                }
+
+
+                if (isRecruitableVillain == false && model.ActiveCard.AttributeCost != null && model.ActiveTemplate.FormShowAttributesCost)
+                {
+
                     cardCostFont = new Font(
                       fontFamily,
                       82,
@@ -261,6 +316,8 @@ namespace LegendaryCardEditor.Utilities
 
                 if (model.ActiveCard.AttributeAttack != null && model.ActiveTemplate.FormShowAttackCost)
                 {
+                   
+
                     if (model.ActiveCard.AttributeAttack.Length > 0)
                     {
                         cardCostFont = new Font(
@@ -275,7 +332,7 @@ namespace LegendaryCardEditor.Utilities
                             model.ActiveCard.AttributeAttack = model.ActiveCard.AttributeAttack.Replace("+", "");
                         }
                         Size textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeRecruit, cardCostFont);
-                        textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, cardCostFont);
+                        //textSizeAttack = TextRenderer.MeasureText(model.ActiveCard.AttributeAttack, cardCostFont);
                         TextField txtFieldAttack = new TextField(model.ActiveCard.AttributeAttack)
                         {
                             Font = cardCostFont,
@@ -350,7 +407,9 @@ namespace LegendaryCardEditor.Utilities
                 }
 
                 if (model.ActiveTemplate.TemplateType == "villain")
-                    tempSubName = model.ActiveTemplate.TemplateDisplayName.ToUpper() + " - " + model.ActiveCard.CardDisplayNameSub.ToUpper();
+                {
+                    tempSubName = model.ActiveTemplate.TemplateDisplayName.Replace("Recruitable","").ToUpper() + " - " + model.ActiveCard.CardDisplayNameSub.ToUpper();
+                }
 
                 TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
                 {
