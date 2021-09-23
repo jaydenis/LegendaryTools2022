@@ -38,8 +38,9 @@ namespace LegendaryCardEditor
 
         private void LegendaryTemplateEditor_Load(object sender, EventArgs e)
         {
+            rtbTemplateJson.Text = JsonConvert.SerializeObject(templateModelList, Formatting.Indented);
 
-           
+
             PopulateTemplateListBox();
 
             settings = SystemSettings.Load();
@@ -49,7 +50,7 @@ namespace LegendaryCardEditor
         private void PopulateTemplateListBox()
         {
             listBoxTemplates.Items.Clear();
-            foreach (LegendaryTemplateModel template in templateModelList)
+            foreach (LegendaryTemplateModel template in templateModelList.OrderBy(o=>o.TemplateType).ThenBy(o => o.TemplateDisplayName))
             {
                 KryptonListItem item = new KryptonListItem();
                 item.ShortText = template.TemplateDisplayName;
@@ -195,16 +196,17 @@ namespace LegendaryCardEditor
         {
             try
             {
-                var dataModel = JsonConvert.DeserializeObject<LegendaryTemplateModel>(rtbTemplateJson.Text);
+                MessageBox.Show("Coming Soon!");
+                //var dataModel = JsonConvert.DeserializeObject<LegendaryTemplateModel>(rtbTemplateJson.Text);
 
-                var temp = templateModelList.Where(x => x.TemplateId == selectedTemplateModel.TemplateId).FirstOrDefault();
-                templateModelList.Remove(temp);
-                templateModelList.Add(dataModel);
+                //var temp = templateModelList.Where(x => x.TemplateId == selectedTemplateModel.TemplateId).FirstOrDefault();
+                //templateModelList.Remove(temp);
+                //templateModelList.Add(dataModel);
 
-                coreManager.SaveTemplate(templateModelList, settings.json_templates);
+                //coreManager.SaveTemplate(templateModelList, settings.json_templates);
 
 
-                PopulateTemplateListBox();
+                //PopulateTemplateListBox();
 
             }
             catch (Exception ex)

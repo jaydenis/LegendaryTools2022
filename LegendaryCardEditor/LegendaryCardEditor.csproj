@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>0.1.10.323</AssemblyVersion>
-    <FileVersion>0.1.10.323</FileVersion>
+    <AssemblyVersion>0.1.17.330</AssemblyVersion>
+    <FileVersion>0.1.17.330</FileVersion>
     <ApplicationIcon></ApplicationIcon>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>1.0</Version>
@@ -477,6 +477,7 @@
 
   <ItemGroup>
     <PackageReference Include="ComponentFactory.Krypton.Toolkit" Version="1.0.0" />
+    <PackageReference Include="FCTB" Version="2.16.24" />
     <PackageReference Include="ImageLibrary" Version="3.0.2" />
     <PackageReference Include="Krypton.Components.Suite" Version="4.5.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />

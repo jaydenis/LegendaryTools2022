@@ -351,7 +351,7 @@
 	},
 	{
 		"TemplateId": 15,
-		"TemplateName": "henchmen",
+		"TemplateName": "henchmen_location",
 		"TemplateDisplayName": "Henchmen",
 		"RectXArray": "55,440,440,55",
 		"RectYArray": "522,522,670,670",

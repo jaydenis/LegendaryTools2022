@@ -35,17 +35,18 @@ namespace LegendaryCardEditor
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listBoxTemplates = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageJson = new System.Windows.Forms.TabPage();
+            this.rtbTemplateJson = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.documentMap1 = new FastColoredTextBoxNS.DocumentMap();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnValidateJson = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnSaveJson = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tabPageDesigner = new System.Windows.Forms.TabPage();
             this.btnUpdateTemplate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.propertyGridCard = new System.Windows.Forms.PropertyGrid();
             this.pictureBoxTemplate = new System.Windows.Forms.PictureBox();
             this.propertyGridImageFrame = new System.Windows.Forms.PropertyGrid();
             this.propertyGridTemplate = new System.Windows.Forms.PropertyGrid();
-            this.tabPageJson = new System.Windows.Forms.TabPage();
-            this.rtbTemplateJson = new System.Windows.Forms.RichTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnValidateJson = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnSaveJson = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.imageListPowers = new System.Windows.Forms.ImageList(this.components);
             this.imageListTeams = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -56,10 +57,11 @@ namespace LegendaryCardEditor
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPageJson.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rtbTemplateJson)).BeginInit();
+            this.panel1.SuspendLayout();
             this.tabPageDesigner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTemplate)).BeginInit();
-            this.tabPageJson.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -98,22 +100,118 @@ namespace LegendaryCardEditor
             // listBoxTemplates
             // 
             this.listBoxTemplates.Cursor = System.Windows.Forms.Cursors.Default;
-            this.listBoxTemplates.Location = new System.Drawing.Point(3, 3);
+            this.listBoxTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxTemplates.Location = new System.Drawing.Point(0, 0);
             this.listBoxTemplates.Name = "listBoxTemplates";
-            this.listBoxTemplates.Size = new System.Drawing.Size(181, 323);
+            this.listBoxTemplates.Size = new System.Drawing.Size(215, 685);
             this.listBoxTemplates.TabIndex = 0;
             this.listBoxTemplates.SelectedIndexChanged += new System.EventHandler(this.listBoxTemplates_SelectedIndexChanged);
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPageDesigner);
             this.tabControl1.Controls.Add(this.tabPageJson);
+            this.tabControl1.Controls.Add(this.tabPageDesigner);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1122, 795);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tabPageJson
+            // 
+            this.tabPageJson.Controls.Add(this.rtbTemplateJson);
+            this.tabPageJson.Controls.Add(this.documentMap1);
+            this.tabPageJson.Controls.Add(this.panel1);
+            this.tabPageJson.Location = new System.Drawing.Point(4, 24);
+            this.tabPageJson.Name = "tabPageJson";
+            this.tabPageJson.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageJson.Size = new System.Drawing.Size(1114, 767);
+            this.tabPageJson.TabIndex = 1;
+            this.tabPageJson.Text = "Json Data";
+            this.tabPageJson.UseVisualStyleBackColor = true;
+            // 
+            // rtbTemplateJson
+            // 
+            this.rtbTemplateJson.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.rtbTemplateJson.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\r\n^\\s*(case|default)\\s*[^:]" +
+    "*(?<range>:)\\s*(?<range>[^;]+);\r\n";
+            this.rtbTemplateJson.AutoScrollMinSize = new System.Drawing.Size(791, 450);
+            this.rtbTemplateJson.BackBrush = null;
+            this.rtbTemplateJson.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtbTemplateJson.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
+            this.rtbTemplateJson.CharHeight = 18;
+            this.rtbTemplateJson.CharWidth = 10;
+            this.rtbTemplateJson.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.rtbTemplateJson.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.rtbTemplateJson.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbTemplateJson.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rtbTemplateJson.IsReplaceMode = false;
+            this.rtbTemplateJson.Language = FastColoredTextBoxNS.Language.CSharp;
+            this.rtbTemplateJson.LeftBracket = '(';
+            this.rtbTemplateJson.LeftBracket2 = '{';
+            this.rtbTemplateJson.Location = new System.Drawing.Point(3, 58);
+            this.rtbTemplateJson.Name = "rtbTemplateJson";
+            this.rtbTemplateJson.Paddings = new System.Windows.Forms.Padding(0);
+            this.rtbTemplateJson.RightBracket = ')';
+            this.rtbTemplateJson.RightBracket2 = '}';
+            this.rtbTemplateJson.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.rtbTemplateJson.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("rtbTemplateJson.ServiceColors")));
+            this.rtbTemplateJson.Size = new System.Drawing.Size(1033, 706);
+            this.rtbTemplateJson.TabIndex = 2;
+            this.rtbTemplateJson.Text = resources.GetString("rtbTemplateJson.Text");
+            this.rtbTemplateJson.Zoom = 100;
+            // 
+            // documentMap1
+            // 
+            this.documentMap1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.documentMap1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.documentMap1.ForeColor = System.Drawing.Color.Maroon;
+            this.documentMap1.Location = new System.Drawing.Point(1036, 58);
+            this.documentMap1.Name = "documentMap1";
+            this.documentMap1.Size = new System.Drawing.Size(75, 706);
+            this.documentMap1.TabIndex = 3;
+            this.documentMap1.Target = this.rtbTemplateJson;
+            this.documentMap1.Text = "documentMap1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnValidateJson);
+            this.panel1.Controls.Add(this.btnSaveJson);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1108, 55);
+            this.panel1.TabIndex = 1;
+            // 
+            // btnValidateJson
+            // 
+            this.btnValidateJson.Location = new System.Drawing.Point(849, 12);
+            this.btnValidateJson.Name = "btnValidateJson";
+            this.btnValidateJson.Size = new System.Drawing.Size(90, 25);
+            this.btnValidateJson.TabIndex = 0;
+            this.btnValidateJson.Values.Text = "Validate";
+            this.btnValidateJson.Click += new System.EventHandler(this.btnValidateJson_Click);
+            // 
+            // btnSaveJson
+            // 
+            this.btnSaveJson.Location = new System.Drawing.Point(13, 12);
+            this.btnSaveJson.Name = "btnSaveJson";
+            this.btnSaveJson.Size = new System.Drawing.Size(90, 25);
+            this.btnSaveJson.TabIndex = 0;
+            this.btnSaveJson.Values.Text = "Save";
+            this.btnSaveJson.Click += new System.EventHandler(this.btnSaveJson_Click);
             // 
             // tabPageDesigner
             // 
@@ -170,56 +268,6 @@ namespace LegendaryCardEditor
             this.propertyGridTemplate.Name = "propertyGridTemplate";
             this.propertyGridTemplate.Size = new System.Drawing.Size(309, 362);
             this.propertyGridTemplate.TabIndex = 0;
-            // 
-            // tabPageJson
-            // 
-            this.tabPageJson.Controls.Add(this.rtbTemplateJson);
-            this.tabPageJson.Controls.Add(this.panel1);
-            this.tabPageJson.Location = new System.Drawing.Point(4, 24);
-            this.tabPageJson.Name = "tabPageJson";
-            this.tabPageJson.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageJson.Size = new System.Drawing.Size(1114, 767);
-            this.tabPageJson.TabIndex = 1;
-            this.tabPageJson.Text = "Json Data";
-            this.tabPageJson.UseVisualStyleBackColor = true;
-            // 
-            // rtbTemplateJson
-            // 
-            this.rtbTemplateJson.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbTemplateJson.Location = new System.Drawing.Point(3, 58);
-            this.rtbTemplateJson.Name = "rtbTemplateJson";
-            this.rtbTemplateJson.Size = new System.Drawing.Size(1108, 706);
-            this.rtbTemplateJson.TabIndex = 0;
-            this.rtbTemplateJson.Text = "";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnValidateJson);
-            this.panel1.Controls.Add(this.btnSaveJson);
-            this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1108, 55);
-            this.panel1.TabIndex = 1;
-            // 
-            // btnValidateJson
-            // 
-            this.btnValidateJson.Location = new System.Drawing.Point(849, 12);
-            this.btnValidateJson.Name = "btnValidateJson";
-            this.btnValidateJson.Size = new System.Drawing.Size(90, 25);
-            this.btnValidateJson.TabIndex = 0;
-            this.btnValidateJson.Values.Text = "Validate";
-            this.btnValidateJson.Click += new System.EventHandler(this.btnValidateJson_Click);
-            // 
-            // btnSaveJson
-            // 
-            this.btnSaveJson.Location = new System.Drawing.Point(13, 12);
-            this.btnSaveJson.Name = "btnSaveJson";
-            this.btnSaveJson.Size = new System.Drawing.Size(90, 25);
-            this.btnSaveJson.TabIndex = 0;
-            this.btnSaveJson.Values.Text = "Save";
-            this.btnSaveJson.Click += new System.EventHandler(this.btnSaveJson_Click);
             // 
             // imageListPowers
             // 
@@ -282,10 +330,11 @@ namespace LegendaryCardEditor
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tabPageJson.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rtbTemplateJson)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.tabPageDesigner.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTemplate)).EndInit();
-            this.tabPageJson.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -298,7 +347,6 @@ namespace LegendaryCardEditor
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageDesigner;
         private System.Windows.Forms.TabPage tabPageJson;
-        private System.Windows.Forms.RichTextBox rtbTemplateJson;
         private System.Windows.Forms.Panel panel1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnValidateJson;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSaveJson;
@@ -309,5 +357,7 @@ namespace LegendaryCardEditor
         private System.Windows.Forms.PropertyGrid propertyGridCard;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnUpdateTemplate;
         private System.Windows.Forms.PropertyGrid propertyGridImageFrame;
+        private FastColoredTextBoxNS.FastColoredTextBox rtbTemplateJson;
+        private FastColoredTextBoxNS.DocumentMap documentMap1;
     }
 }
