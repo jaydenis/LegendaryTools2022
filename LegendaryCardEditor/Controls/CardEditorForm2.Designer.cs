@@ -295,7 +295,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnReloadTemplate
             // 
-            this.btnReloadTemplate.Location = new System.Drawing.Point(833, 776);
+            this.btnReloadTemplate.Location = new System.Drawing.Point(13, 763);
             this.btnReloadTemplate.Name = "btnReloadTemplate";
             this.btnReloadTemplate.Size = new System.Drawing.Size(126, 25);
             this.btnReloadTemplate.TabIndex = 100;
@@ -453,13 +453,14 @@ namespace LegendaryCardEditor.Controls
             // 
             this.txtErrorConsole.BackColor = System.Drawing.Color.Black;
             this.txtErrorConsole.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtErrorConsole.ForeColor = System.Drawing.Color.Red;
-            this.txtErrorConsole.Location = new System.Drawing.Point(4, 611);
+            this.txtErrorConsole.Font = new System.Drawing.Font("Eurostile", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtErrorConsole.ForeColor = System.Drawing.Color.LimeGreen;
+            this.txtErrorConsole.Location = new System.Drawing.Point(422, 623);
             this.txtErrorConsole.Multiline = true;
             this.txtErrorConsole.Name = "txtErrorConsole";
             this.txtErrorConsole.ReadOnly = true;
             this.txtErrorConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtErrorConsole.Size = new System.Drawing.Size(404, 190);
+            this.txtErrorConsole.Size = new System.Drawing.Size(537, 178);
             this.txtErrorConsole.TabIndex = 91;
             // 
             // txtCardName

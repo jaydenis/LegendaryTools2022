@@ -74,7 +74,7 @@ namespace LegendaryCardEditor
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new ComponentFactory.Krypton.Toolkit.KryptonTreeView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddDeck = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -86,10 +86,22 @@ namespace LegendaryCardEditor
             this.txtKeywordDescription = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtkeywordName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.listBoxKeywords = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
+            this.tabPageIcons = new System.Windows.Forms.TabPage();
+            this.kryptonListBox1 = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.treeViewMenuDeleteDeck = new System.Windows.Forms.ToolStripMenuItem();
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.txtIconCategory = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txtIconName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txtIconFilePath = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.btnBrowseIcon = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnIconSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnIconCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -101,6 +113,7 @@ namespace LegendaryCardEditor
             this.tabPage2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPageKeywords.SuspendLayout();
+            this.tabPageIcons.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -478,8 +491,8 @@ namespace LegendaryCardEditor
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.FullRowSelect = true;
             this.treeView1.HotTracking = true;
-            this.treeView1.ImageIndex = 27;
-            this.treeView1.ImageList = this.imageList1;
+            this.treeView1.ImageKey = "BurnFolder.ico";
+            this.treeView1.ImageList = this.imageList2;
             this.treeView1.Location = new System.Drawing.Point(0, 58);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageKey = "SHIELD.ico";
@@ -488,42 +501,40 @@ namespace LegendaryCardEditor
             this.treeView1.TabIndex = 2;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
-            // imageList1
+            // imageList2
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "a_force.png");
-            this.imageList1.Images.SetKeyName(1, "avengers.png");
-            this.imageList1.Images.SetKeyName(2, "brotherhood.png");
-            this.imageList1.Images.SetKeyName(3, "cabal.png");
-            this.imageList1.Images.SetKeyName(4, "champions.png");
-            this.imageList1.Images.SetKeyName(5, "Crime_Syndicate.png");
-            this.imageList1.Images.SetKeyName(6, "defenders.png");
-            this.imageList1.Images.SetKeyName(7, "fantastic_four.png");
-            this.imageList1.Images.SetKeyName(8, "Foes_of_Asgard.png");
-            this.imageList1.Images.SetKeyName(9, "foot_clan.png");
-            this.imageList1.Images.SetKeyName(10, "guardians.png");
-            this.imageList1.Images.SetKeyName(11, "heroes_for_hire.png");
-            this.imageList1.Images.SetKeyName(12, "hydra.png");
-            this.imageList1.Images.SetKeyName(13, "illuminati.png");
-            this.imageList1.Images.SetKeyName(14, "legion_of_monsters.png");
-            this.imageList1.Images.SetKeyName(15, "marvel_knights.png");
-            this.imageList1.Images.SetKeyName(16, "mercs_4_money.png");
-            this.imageList1.Images.SetKeyName(17, "Monsters_Unleashed_logo_sm.png");
-            this.imageList1.Images.SetKeyName(18, "mutants.png");
-            this.imageList1.Images.SetKeyName(19, "runaways.png");
-            this.imageList1.Images.SetKeyName(20, "shield.png");
-            this.imageList1.Images.SetKeyName(21, "sinister6.png");
-            this.imageList1.Images.SetKeyName(22, "spider_friends.png");
-            this.imageList1.Images.SetKeyName(23, "thunderbolts.png");
-            this.imageList1.Images.SetKeyName(24, "us_army.png");
-            this.imageList1.Images.SetKeyName(25, "x_force.png");
-            this.imageList1.Images.SetKeyName(26, "x_men.png");
-            this.imageList1.Images.SetKeyName(27, "Dominicanjoker-Comic-Publisher-Folder-Marvel.ico");
-            this.imageList1.Images.SetKeyName(28, "SHIELD.ico");
-            this.imageList1.Images.SetKeyName(29, "SystemFolder.ico");
-            this.imageList1.Images.SetKeyName(30, "Home.ico");
+            this.imageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "a_force.png");
+            this.imageList2.Images.SetKeyName(1, "avengers.png");
+            this.imageList2.Images.SetKeyName(2, "brotherhood.png");
+            this.imageList2.Images.SetKeyName(3, "cabal.png");
+            this.imageList2.Images.SetKeyName(4, "champions.png");
+            this.imageList2.Images.SetKeyName(5, "Crime_Syndicate.png");
+            this.imageList2.Images.SetKeyName(6, "defenders.png");
+            this.imageList2.Images.SetKeyName(7, "fantastic_four.png");
+            this.imageList2.Images.SetKeyName(8, "Foes_of_Asgard.png");
+            this.imageList2.Images.SetKeyName(9, "footclan.png");
+            this.imageList2.Images.SetKeyName(10, "guardians.png");
+            this.imageList2.Images.SetKeyName(11, "heroes_for_hire.png");
+            this.imageList2.Images.SetKeyName(12, "hydra.png");
+            this.imageList2.Images.SetKeyName(13, "illuminati.png");
+            this.imageList2.Images.SetKeyName(14, "legion_of_monsters.png");
+            this.imageList2.Images.SetKeyName(15, "marvel_knights.png");
+            this.imageList2.Images.SetKeyName(16, "mercs_4_money.png");
+            this.imageList2.Images.SetKeyName(17, "Monsters_Unleashed.png");
+            this.imageList2.Images.SetKeyName(18, "mutants.png");
+            this.imageList2.Images.SetKeyName(19, "runaways.png");
+            this.imageList2.Images.SetKeyName(20, "shield.png");
+            this.imageList2.Images.SetKeyName(21, "sinister6.png");
+            this.imageList2.Images.SetKeyName(22, "spider_friends.png");
+            this.imageList2.Images.SetKeyName(23, "thunderbolts.png");
+            this.imageList2.Images.SetKeyName(24, "us_army.png");
+            this.imageList2.Images.SetKeyName(25, "x_force.png");
+            this.imageList2.Images.SetKeyName(26, "x_men.png");
+            this.imageList2.Images.SetKeyName(27, "SHIELD.ico");
+            this.imageList2.Images.SetKeyName(28, "BurnFolder.ico");
             // 
             // groupBox1
             // 
@@ -561,6 +572,7 @@ namespace LegendaryCardEditor
             // 
             this.tabControl2.Alignment = System.Windows.Forms.TabAlignment.Left;
             this.tabControl2.Controls.Add(this.tabPageKeywords);
+            this.tabControl2.Controls.Add(this.tabPageIcons);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(3, 3);
             this.tabControl2.Multiline = true;
@@ -638,6 +650,41 @@ namespace LegendaryCardEditor
             this.listBoxKeywords.TabIndex = 0;
             this.listBoxKeywords.SelectedIndexChanged += new System.EventHandler(this.listBoxKeywords_SelectedIndexChanged);
             // 
+            // tabPageIcons
+            // 
+            this.tabPageIcons.Controls.Add(this.btnIconCancel);
+            this.tabPageIcons.Controls.Add(this.btnIconSave);
+            this.tabPageIcons.Controls.Add(this.btnBrowseIcon);
+            this.tabPageIcons.Controls.Add(this.txtIconFilePath);
+            this.tabPageIcons.Controls.Add(this.txtIconName);
+            this.tabPageIcons.Controls.Add(this.txtIconCategory);
+            this.tabPageIcons.Controls.Add(this.kryptonLabel5);
+            this.tabPageIcons.Controls.Add(this.kryptonLabel4);
+            this.tabPageIcons.Controls.Add(this.kryptonLabel3);
+            this.tabPageIcons.Controls.Add(this.kryptonListBox1);
+            this.tabPageIcons.Location = new System.Drawing.Point(27, 4);
+            this.tabPageIcons.Name = "tabPageIcons";
+            this.tabPageIcons.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageIcons.Size = new System.Drawing.Size(1319, 663);
+            this.tabPageIcons.TabIndex = 1;
+            this.tabPageIcons.Text = "Icons";
+            this.tabPageIcons.UseVisualStyleBackColor = true;
+            // 
+            // kryptonListBox1
+            // 
+            this.kryptonListBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.kryptonListBox1.Location = new System.Drawing.Point(3, 3);
+            this.kryptonListBox1.Name = "kryptonListBox1";
+            this.kryptonListBox1.Size = new System.Drawing.Size(236, 657);
+            this.kryptonListBox1.TabIndex = 2;
+            this.kryptonListBox1.SelectedIndexChanged += new System.EventHandler(this.kryptonListBox1_SelectedIndexChanged);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(64, 64);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -663,6 +710,78 @@ namespace LegendaryCardEditor
             this.saveFileDialog1.FileName = "LegandaryCustomExpansion.json";
             this.saveFileDialog1.Filter = "Json files|*.json";
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
+            // kryptonLabel3
+            // 
+            this.kryptonLabel3.Location = new System.Drawing.Point(261, 28);
+            this.kryptonLabel3.Name = "kryptonLabel3";
+            this.kryptonLabel3.Size = new System.Drawing.Size(60, 20);
+            this.kryptonLabel3.TabIndex = 3;
+            this.kryptonLabel3.Values.Text = "Category";
+            // 
+            // kryptonLabel4
+            // 
+            this.kryptonLabel4.Location = new System.Drawing.Point(261, 54);
+            this.kryptonLabel4.Name = "kryptonLabel4";
+            this.kryptonLabel4.Size = new System.Drawing.Size(43, 20);
+            this.kryptonLabel4.TabIndex = 3;
+            this.kryptonLabel4.Values.Text = "Name";
+            // 
+            // kryptonLabel5
+            // 
+            this.kryptonLabel5.Location = new System.Drawing.Point(261, 80);
+            this.kryptonLabel5.Name = "kryptonLabel5";
+            this.kryptonLabel5.Size = new System.Drawing.Size(29, 20);
+            this.kryptonLabel5.TabIndex = 3;
+            this.kryptonLabel5.Values.Text = "File";
+            // 
+            // txtIconCategory
+            // 
+            this.txtIconCategory.Location = new System.Drawing.Point(346, 28);
+            this.txtIconCategory.Name = "txtIconCategory";
+            this.txtIconCategory.Size = new System.Drawing.Size(205, 23);
+            this.txtIconCategory.TabIndex = 4;
+            // 
+            // txtIconName
+            // 
+            this.txtIconName.Location = new System.Drawing.Point(346, 54);
+            this.txtIconName.Name = "txtIconName";
+            this.txtIconName.Size = new System.Drawing.Size(205, 23);
+            this.txtIconName.TabIndex = 4;
+            // 
+            // txtIconFilePath
+            // 
+            this.txtIconFilePath.Location = new System.Drawing.Point(346, 80);
+            this.txtIconFilePath.Name = "txtIconFilePath";
+            this.txtIconFilePath.Size = new System.Drawing.Size(429, 23);
+            this.txtIconFilePath.TabIndex = 4;
+            // 
+            // btnBrowseIcon
+            // 
+            this.btnBrowseIcon.Location = new System.Drawing.Point(781, 80);
+            this.btnBrowseIcon.Name = "btnBrowseIcon";
+            this.btnBrowseIcon.Size = new System.Drawing.Size(90, 25);
+            this.btnBrowseIcon.TabIndex = 5;
+            this.btnBrowseIcon.Values.Text = "Browse";
+            this.btnBrowseIcon.Click += new System.EventHandler(this.btnBrowseIcon_Click);
+            // 
+            // btnIconSave
+            // 
+            this.btnIconSave.Location = new System.Drawing.Point(781, 203);
+            this.btnIconSave.Name = "btnIconSave";
+            this.btnIconSave.Size = new System.Drawing.Size(90, 25);
+            this.btnIconSave.TabIndex = 6;
+            this.btnIconSave.Values.Text = "Save";
+            this.btnIconSave.Click += new System.EventHandler(this.btnIconSave_Click);
+            // 
+            // btnIconCancel
+            // 
+            this.btnIconCancel.Location = new System.Drawing.Point(261, 203);
+            this.btnIconCancel.Name = "btnIconCancel";
+            this.btnIconCancel.Size = new System.Drawing.Size(90, 25);
+            this.btnIconCancel.TabIndex = 6;
+            this.btnIconCancel.Values.Text = "Cancel";
+            this.btnIconCancel.Click += new System.EventHandler(this.btnIconCancel_Click);
             // 
             // Form1
             // 
@@ -693,6 +812,8 @@ namespace LegendaryCardEditor
             this.tabControl2.ResumeLayout(false);
             this.tabPageKeywords.ResumeLayout(false);
             this.tabPageKeywords.PerformLayout();
+            this.tabPageIcons.ResumeLayout(false);
+            this.tabPageIcons.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -760,6 +881,18 @@ namespace LegendaryCardEditor
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSaveKeyword;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
+        private System.Windows.Forms.TabPage tabPageIcons;
+        private System.Windows.Forms.ImageList imageList2;
+        private ComponentFactory.Krypton.Toolkit.KryptonListBox kryptonListBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnIconCancel;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnIconSave;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnBrowseIcon;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtIconFilePath;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtIconName;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtIconCategory;
     }
 }
 

@@ -281,7 +281,13 @@
     "name": "X_MEN",
     "fileName": "x_men.png",
     "minimizedUnderlay": "false"
+  },
+  {
+    "iconid": 27,
+    "category": "TEAMS",
+    "name": "Cinema_Spiderman",
+    "fileName": "Cinema_Spiderman.png",
+    "minimizedUnderlay": "false"
   }
-
 
 ]

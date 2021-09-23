@@ -1,4 +1,5 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
+using Kaliko.ImageLibrary;
 using LegendaryCardEditor.Controls;
 using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;
@@ -63,10 +64,13 @@ namespace LegendaryCardEditor
                         OpenFile();
                 else
                     AddNewDeck();
+
+                PopulateIconsEditor();
+
             }
             catch
             {
-                AddNewDeck();
+               // AddNewDeck();
             }
         }
 
@@ -298,6 +302,106 @@ namespace LegendaryCardEditor
             {
                 MessageBox.Show("Keyword Name is too short!");
             }
+        }
+
+        private void PopulateIconsEditor()
+        {
+            try
+            {
+                legendaryIconList = coreManager.LoadIconsFromDirectory();
+                kryptonListBox1.Items.Clear();
+
+                foreach (var icon in legendaryIconList.Where(x => x.Category == "TEAMS").OrderBy(o => o.Name))
+                {
+                    //Image image = Image.FromFile(icon.FileName);
+                    // kryptonGalleryIcons.ImageList.Images.Add(i.ToString(), image);
+                    var kImage = new KalikoImage($"{settings.iconsFolder}\\{icon.Category.ToLower()}\\{icon.FileName}");
+
+                    kImage.Resize(64, 64);
+
+                    KryptonListItem item = new KryptonListItem();
+                    item.ShortText = icon.Name;
+                    //item.LongText = icon.TemplateName;
+                    item.Tag = icon;
+                    item.Image = kImage.GetAsBitmap();
+                    kryptonListBox1.Items.Add(item);
+                }
+            }
+            catch(Exception ex) {
+
+                MessageBox.Show(ex.ToString()); ;
+            }
+        }
+
+        LegendaryIconViewModel selectedIcon;
+
+        private void kryptonListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtIconCategory.Text = string.Empty;
+            txtIconName.Text = string.Empty;
+            txtIconFilePath.Text = string.Empty;
+
+            KryptonListItem item = (KryptonListItem)kryptonListBox1.Items[kryptonListBox1.SelectedIndex];
+            selectedIcon = (LegendaryIconViewModel)item.Tag;
+
+            txtIconCategory.Text = selectedIcon.Category;
+            txtIconName.Text = selectedIcon.Name;
+            txtIconFilePath.Text = selectedIcon.FileName;
+
+        }
+
+        private void btnBrowseIcon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var orignalIcon = selectedIcon;
+
+                OpenFileDialog Dlg = new OpenFileDialog
+                {
+                    Filter = "",
+                    Title = "Select image"
+                };
+                if (Dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+
+                    selectedIcon.FileName = Dlg.FileName;
+                    txtIconFilePath.Text = selectedIcon.FileName;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+            }
+        }
+
+        private void btnIconSave_Click(object sender, EventArgs e)
+        {
+            if (txtIconFilePath.Text.Length > 3)
+            {
+
+                var newPath = $"{settings.iconsFolder}\\teams\\{Helper.CleanString(txtIconName.Text).ToLower()}.png";
+
+                legendaryIconList.Where(x => x.IconId == selectedIcon.IconId).FirstOrDefault().Name = Helper.CleanString(txtIconName.Text).ToUpper();
+                legendaryIconList.Where(x => x.IconId == selectedIcon.IconId).FirstOrDefault().FileName = $"{Helper.CleanString(txtIconName.Text).ToLower()}.png";
+
+                coreManager.SaveIcons(legendaryIconList);
+
+                var kImage = new KalikoImage(txtIconFilePath.Text);
+               
+                kImage.SaveImage(newPath, System.Drawing.Imaging.ImageFormat.Png);
+
+                PopulateIconsEditor();
+            }
+            else
+            {
+              //  MessageBox.Show("Keyword Name is too short!");
+            }
+        }
+
+        private void btnIconCancel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

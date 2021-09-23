@@ -61,7 +61,7 @@ namespace LegendaryCardEditor.Managers
 
             foreach (LegendaryIconViewModel item in dataModel.ToList())
             {
-                item.FileName = ($@"{settings.iconsFolder}\{item.Category}\{item.FileName}").ToLower();
+                item.FileName = item.FileName.ToLower();
                 result.Add(item);
             }
 
@@ -129,11 +129,11 @@ namespace LegendaryCardEditor.Managers
             }
         }
 
-        public bool SaveTemplate(List<LegendaryTemplateModel> model, string path)
+        public bool SaveIcons(List<LegendaryIconViewModel> model)
         {
             try
             {
-
+                string path = settings.templatesFolder + "\\" + settings.json_icons;
                 File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
                 return true;
             }
@@ -143,8 +143,18 @@ namespace LegendaryCardEditor.Managers
             }
         }
 
-
-
+        public bool SaveTemplate(List<LegendaryTemplateModel> model, string path)
+        {
+            try
+            {
+                File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 
 
