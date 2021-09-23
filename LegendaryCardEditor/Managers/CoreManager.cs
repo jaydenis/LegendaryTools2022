@@ -102,12 +102,11 @@ namespace LegendaryCardEditor.Managers
             }
         }
 
-        public bool CreateBackup(string path)
+        public bool CreateBackup(DeckList model, string path)
         {
             try
             {
-
-                File.Create(path);
+                File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
                 return true;
             }
             catch (Exception ex)
@@ -129,6 +128,21 @@ namespace LegendaryCardEditor.Managers
                 return false;
             }
         }
+
+        public bool SaveTemplate(List<LegendaryTemplateModel> model, string path)
+        {
+            try
+            {
+
+                File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
 
 
     }

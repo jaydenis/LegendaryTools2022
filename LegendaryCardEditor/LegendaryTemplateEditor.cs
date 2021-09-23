@@ -64,9 +64,6 @@ namespace LegendaryCardEditor
         {
 
             this.Cursor = Cursors.WaitCursor;
-
-
-           
             
             if (cardModel == null)
             {
@@ -124,7 +121,7 @@ namespace LegendaryCardEditor
                GraphicsUnit.Pixel)
             };
 
-          
+            imageFrame.attributesFontSize = 82;
 
             imageFrame.cardCostFont = imageFrame.attributesFont;
 
@@ -169,22 +166,23 @@ namespace LegendaryCardEditor
         {
             try
             {
-                Card card = (Card)propertyGridCard.SelectedObject;
-                selectedTemplateModel = (LegendaryTemplateModel)propertyGridTemplate.SelectedObject;
-                ImageFrameModel imageFrame = (ImageFrameModel)propertyGridImageFrame.SelectedObject;
+                MessageBox.Show("Coming Soon!");
+                //Card card = (Card)propertyGridCard.SelectedObject;
+                //selectedTemplateModel = (LegendaryTemplateModel)propertyGridTemplate.SelectedObject;
+                //ImageFrameModel imageFrame = (ImageFrameModel)propertyGridImageFrame.SelectedObject;
 
-                Image teamImage = imageListTeams.Images[card.TeamIconId];
-                imageFrame.teamImage = new KalikoImage(teamImage);
+                //Image teamImage = imageListTeams.Images[card.TeamIconId];
+                //imageFrame.teamImage = new KalikoImage(teamImage);
 
-                var cardModel = new CardModel
-                {
-                    Id = "0",
-                    ActiveCard = card,
-                    ActiveTemplate = selectedTemplateModel
-                };
+                //var cardModel = new CardModel
+                //{
+                //    Id = "0",
+                //    ActiveCard = card,
+                //    ActiveTemplate = selectedTemplateModel
+                //};
 
-                
-                LoadTemplateDetails(imageFrame,selectedTemplateModel, cardModel);
+
+                //LoadTemplateDetails(imageFrame,selectedTemplateModel, cardModel);
             }
             catch (Exception ex)
             {
@@ -195,7 +193,24 @@ namespace LegendaryCardEditor
 
         private void btnSaveJson_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var dataModel = JsonConvert.DeserializeObject<LegendaryTemplateModel>(rtbTemplateJson.Text);
 
+                var temp = templateModelList.Where(x => x.TemplateId == selectedTemplateModel.TemplateId).FirstOrDefault();
+                templateModelList.Remove(temp);
+                templateModelList.Add(dataModel);
+
+                coreManager.SaveTemplate(templateModelList, settings.json_templates);
+
+
+                PopulateTemplateListBox();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnValidateJson_Click(object sender, EventArgs e)
