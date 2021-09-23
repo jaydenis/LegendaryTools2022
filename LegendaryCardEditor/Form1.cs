@@ -62,11 +62,11 @@ namespace LegendaryCardEditor
                     else
                         OpenFile();
                 else
-                    OpenFile();
+                    AddNewDeck();
             }
             catch
             {
-                OpenFile();
+                AddNewDeck();
             }
         }
 
@@ -97,7 +97,7 @@ namespace LegendaryCardEditor
            PopulateDeckTree();
 
             //create a backup each time a file is loaded
-                coreManager.CreateBackup($"{dataFile}.bak");
+           coreManager.CreateBackup(deckList,$"{dataFile}.bak");
                 
 
         }
@@ -187,10 +187,35 @@ namespace LegendaryCardEditor
             }
         }
 
+        private void AddNewDeck()
+        {
+            try
+            {
+                deckList = new DeckList
+                {
+                    Decks = new List<Deck>()
+                };
+
+                dataFile = saveFileDialog1.FileName;
+                coreManager.SaveDeck(deckList, dataFile);
+
+                AddDeckForm addDeckForm = new AddDeckForm(dataFile);
+                addDeckForm.ShowDialog();
+
+                LoadCustomSet(dataFile);
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private void helpToolStripButton_Click(object sender, EventArgs e)
         {
             LegendaryTemplateEditor templateEditor = new LegendaryTemplateEditor(deckTypeList, templateModelList, legendaryIconList);
-            templateEditor.ShowDialog();
+            templateEditor.Show();
         }
 
         private void btnAddDeck_Click(object sender, EventArgs e)
@@ -241,27 +266,7 @@ namespace LegendaryCardEditor
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            try
-            {
-                deckList = new DeckList
-                {
-                    Decks = new List<Deck>()
-                };
-
-                dataFile = saveFileDialog1.FileName;
-                coreManager.SaveDeck(deckList, dataFile);
-
-                AddDeckForm addDeckForm = new AddDeckForm(dataFile);
-                addDeckForm.ShowDialog();
-
-                LoadCustomSet(dataFile);
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            AddNewDeck();
         }
 
         private void printToolStripButton_Click(object sender, EventArgs e)
@@ -280,12 +285,19 @@ namespace LegendaryCardEditor
 
         private void btnSaveKeyword_Click(object sender, EventArgs e)
         {
-            keywordsList.Where(x => x.Id == selectedKeyword.Id).FirstOrDefault().KeywordName = txtkeywordName.Text; 
-            keywordsList.Where(x => x.Id == selectedKeyword.Id).FirstOrDefault().KeywordDescription = txtKeywordDescription.Text;
+            if (txtkeywordName.Text.Length > 3)
+            {
+                keywordsList.Where(x => x.Id == selectedKeyword.Id).FirstOrDefault().KeywordName = txtkeywordName.Text;
+                keywordsList.Where(x => x.Id == selectedKeyword.Id).FirstOrDefault().KeywordDescription = txtKeywordDescription.Text;
 
-            coreManager.SaveKeywords(keywordsList);
+                coreManager.SaveKeywords(keywordsList);
 
-            PopulateKeywordListBox();
+                PopulateKeywordListBox();
+            }
+            else
+            {
+                MessageBox.Show("Keyword Name is too short!");
+            }
         }
     }
 }

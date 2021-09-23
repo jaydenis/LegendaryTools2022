@@ -136,19 +136,19 @@ namespace LegendaryCardEditor.Utilities
                     }
                    
                 }
-                
 
 
 
-                //if (model.ActiveTemplate.FormShowAttributes)
-               // {
+
+                if (model.ActiveTemplate.FormShowAttributes)
+                {
                     if (File.Exists(($"{currentTemplateDirectory}\\{model.ActiveTemplate.FrameImage}")))
                     {
                         frameImage = new KalikoImage($"{currentTemplateDirectory}\\{model.ActiveTemplate.FrameImage}");
                         frameImage.Resize(picWidth, picHeight);
                         infoImage.BlitImage(frameImage);
                     }
-               // }
+                }
 
                 attackImageHero = new KalikoImage(Resources.attack);
                 attackImageVillain = new KalikoImage(Resources.attack);
@@ -612,6 +612,7 @@ namespace LegendaryCardEditor.Utilities
             }
         }
 
+
         public void GetCardText(CardModel model)
         {
             try
@@ -738,11 +739,11 @@ namespace LegendaryCardEditor.Utilities
                                 if (x + iconImage.Width > GetPercentage(endX, scale))
                                 {
                                     y += iconImage.Height + GetPercentage(iconImage.Height, gapSizeBetweenLines);
-                                    y -= 6;
+                                    y -= 5;
                                     x = getXStart(y);
                                 }
 
-                                int modifiedY = ((int)(((y - (currentFont.Height - 6)) + ascentPixel)));
+                                int modifiedY = ((int)(((y - (currentFont.Height - 5)) + ascentPixel)));
 
                                 if (lastCharIsNumeric)
                                     x -= 10;

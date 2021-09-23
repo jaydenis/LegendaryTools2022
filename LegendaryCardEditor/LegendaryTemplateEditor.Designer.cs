@@ -161,7 +161,7 @@ namespace LegendaryCardEditor
             // 
             this.propertyGridImageFrame.Location = new System.Drawing.Point(416, 17);
             this.propertyGridImageFrame.Name = "propertyGridImageFrame";
-            this.propertyGridImageFrame.Size = new System.Drawing.Size(309, 594);
+            this.propertyGridImageFrame.Size = new System.Drawing.Size(309, 687);
             this.propertyGridImageFrame.TabIndex = 0;
             // 
             // propertyGridTemplate

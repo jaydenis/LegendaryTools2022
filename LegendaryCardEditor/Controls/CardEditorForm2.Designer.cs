@@ -43,6 +43,7 @@ namespace LegendaryCardEditor.Controls
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panelImagePreview = new System.Windows.Forms.Panel();
+            this.btnReloadTemplate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cmbKeywords = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.numCardTextSize = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.numCardTitleSize = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
@@ -258,6 +259,7 @@ namespace LegendaryCardEditor.Controls
             // panelImagePreview
             // 
             this.panelImagePreview.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panelImagePreview.Controls.Add(this.btnReloadTemplate);
             this.panelImagePreview.Controls.Add(this.cmbKeywords);
             this.panelImagePreview.Controls.Add(this.numCardTextSize);
             this.panelImagePreview.Controls.Add(this.numCardTitleSize);
@@ -290,6 +292,15 @@ namespace LegendaryCardEditor.Controls
             this.panelImagePreview.Name = "panelImagePreview";
             this.panelImagePreview.Size = new System.Drawing.Size(1066, 813);
             this.panelImagePreview.TabIndex = 0;
+            // 
+            // btnReloadTemplate
+            // 
+            this.btnReloadTemplate.Location = new System.Drawing.Point(833, 776);
+            this.btnReloadTemplate.Name = "btnReloadTemplate";
+            this.btnReloadTemplate.Size = new System.Drawing.Size(126, 25);
+            this.btnReloadTemplate.TabIndex = 100;
+            this.btnReloadTemplate.Values.Text = "Reload Template";
+            this.btnReloadTemplate.Click += new System.EventHandler(this.btnReloadTemplate_Click);
             // 
             // cmbKeywords
             // 
@@ -354,6 +365,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardTextBox.Size = new System.Drawing.Size(543, 147);
             this.txtCardTextBox.TabIndex = 97;
             this.txtCardTextBox.Text = "<CARDS><FANTASTIC_FOUR>: Gain a Sidekick<ATTACK>";
+            this.txtCardTextBox.TextChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
             // 
             // numNumberInDeck
             // 
@@ -447,16 +459,17 @@ namespace LegendaryCardEditor.Controls
             this.txtErrorConsole.Name = "txtErrorConsole";
             this.txtErrorConsole.ReadOnly = true;
             this.txtErrorConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtErrorConsole.Size = new System.Drawing.Size(543, 190);
+            this.txtErrorConsole.Size = new System.Drawing.Size(404, 190);
             this.txtErrorConsole.TabIndex = 91;
             // 
             // txtCardName
             // 
             this.txtCardName.Location = new System.Drawing.Point(416, 12);
-            this.txtCardName.MaxLength = 200;
+            this.txtCardName.MaxLength = 100;
             this.txtCardName.Name = "txtCardName";
             this.txtCardName.Size = new System.Drawing.Size(468, 23);
             this.txtCardName.TabIndex = 81;
+            this.txtCardName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCardName.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // btnResetCard
@@ -636,6 +649,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardVictoryPointsValue.Name = "txtCardVictoryPointsValue";
             this.txtCardVictoryPointsValue.Size = new System.Drawing.Size(66, 23);
             this.txtCardVictoryPointsValue.TabIndex = 10;
+            this.txtCardVictoryPointsValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCardVictoryPointsValue.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // txtCardCostValue
@@ -644,6 +658,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardCostValue.Name = "txtCardCostValue";
             this.txtCardCostValue.Size = new System.Drawing.Size(66, 23);
             this.txtCardCostValue.TabIndex = 10;
+            this.txtCardCostValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCardCostValue.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // txtCardPiercingValue
@@ -652,6 +667,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardPiercingValue.Name = "txtCardPiercingValue";
             this.txtCardPiercingValue.Size = new System.Drawing.Size(66, 23);
             this.txtCardPiercingValue.TabIndex = 10;
+            this.txtCardPiercingValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCardPiercingValue.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // txtCardAttackValue
@@ -660,6 +676,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardAttackValue.Name = "txtCardAttackValue";
             this.txtCardAttackValue.Size = new System.Drawing.Size(66, 23);
             this.txtCardAttackValue.TabIndex = 10;
+            this.txtCardAttackValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCardAttackValue.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // txtCardRecruitValue
@@ -668,6 +685,7 @@ namespace LegendaryCardEditor.Controls
             this.txtCardRecruitValue.Name = "txtCardRecruitValue";
             this.txtCardRecruitValue.Size = new System.Drawing.Size(66, 23);
             this.txtCardRecruitValue.TabIndex = 10;
+            this.txtCardRecruitValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCardRecruitValue.TextChanged += new System.EventHandler(this.txtCardName_TextChanged);
             // 
             // lblCardRecruitValue
@@ -873,5 +891,6 @@ namespace LegendaryCardEditor.Controls
         private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numCardTitleSize;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbKeywords;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbCardTemplateTypes;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnReloadTemplate;
     }
 }
