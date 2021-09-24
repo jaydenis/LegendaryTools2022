@@ -38,10 +38,10 @@ namespace LegendaryTemplateEditor
         public string PowerSecondary { get; set; }
 
         [JsonProperty("AttributeCost", Required = Required.Always)]
-        public int AttributeCost { get; set; }
+        public string AttributeCost { get; set; }
 
         [JsonProperty("AttributeAttack", Required = Required.Always)]
-        public int AttributeAttack { get; set; }
+        public string AttributeAttack { get; set; }
 
         [JsonProperty("AttributeRecruit", Required = Required.Always)]
         public string AttributeRecruit { get; set; }
@@ -50,7 +50,7 @@ namespace LegendaryTemplateEditor
         public string AttributePiercing { get; set; }
 
         [JsonProperty("AttributeVictoryPoints", Required = Required.AllowNull)]
-        public object AttributeVictoryPoints { get; set; }
+        public int AttributeVictoryPoints { get; set; }
 
         [JsonProperty("CardText", Required = Required.Always)]
         public string CardText { get; set; }

@@ -612,9 +612,9 @@ namespace LegendaryTemplateEditor
             this.chkLiveChanges.AutoSize = true;
             this.chkLiveChanges.Location = new System.Drawing.Point(11, 5);
             this.chkLiveChanges.Name = "chkLiveChanges";
-            this.chkLiveChanges.Size = new System.Drawing.Size(83, 19);
+            this.chkLiveChanges.Size = new System.Drawing.Size(96, 19);
             this.chkLiveChanges.TabIndex = 1;
-            this.chkLiveChanges.Text = "checkBox1";
+            this.chkLiveChanges.Text = "Live Changes";
             this.chkLiveChanges.UseVisualStyleBackColor = true;
             this.chkLiveChanges.CheckedChanged += new System.EventHandler(this.chkLiveChanges_CheckedChanged);
             // 
