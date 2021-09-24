@@ -475,7 +475,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnResetCard
             // 
-            this.btnResetCard.Location = new System.Drawing.Point(13, 573);
+            this.btnResetCard.Location = new System.Drawing.Point(13, 684);
             this.btnResetCard.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnResetCard.Name = "btnResetCard";
             this.btnResetCard.Size = new System.Drawing.Size(105, 29);
@@ -492,7 +492,7 @@ namespace LegendaryCardEditor.Controls
             this.pictureBoxTemplate.MaximumSize = new System.Drawing.Size(588, 808);
             this.pictureBoxTemplate.MinimumSize = new System.Drawing.Size(355, 462);
             this.pictureBoxTemplate.Name = "pictureBoxTemplate";
-            this.pictureBoxTemplate.Size = new System.Drawing.Size(404, 551);
+            this.pictureBoxTemplate.Size = new System.Drawing.Size(404, 609);
             this.pictureBoxTemplate.TabIndex = 65;
             this.pictureBoxTemplate.TabStop = false;
             this.pictureBoxTemplate.DoubleClick += new System.EventHandler(this.pictureBoxTemplate_DoubleClick);

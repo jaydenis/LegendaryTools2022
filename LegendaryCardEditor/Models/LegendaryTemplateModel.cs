@@ -26,10 +26,10 @@ namespace LegendaryCardEditor.Models
         public string RectYArray { get; set; }
 
         [JsonProperty("CardWidth", Required = Required.Always)]
-        public long CardWidth { get; set; }
+        public int CardWidth { get; set; }
 
         [JsonProperty("CardHeight", Required = Required.Always)]
-        public long CardHeight { get; set; }
+        public int CardHeight { get; set; }
 
         [JsonProperty("FrameImage", Required = Required.Always)]
         public string FrameImage { get; set; }
@@ -78,6 +78,15 @@ namespace LegendaryCardEditor.Models
 
         [JsonProperty("TemplateType", Required = Required.Always)]
         public string TemplateType { get; set; }
+
+        [JsonProperty("CardNameXY", Required = Required.Always)]
+        public string CardNameXY { get; set; }
+
+        [JsonProperty("CardSubNameXY", Required = Required.Always)]
+        public string CardSubNameXY { get; set; }
+
+        [JsonProperty("TeamIconXY", Required = Required.Always)]
+        public string TeamIconXY { get; set; }
     }
 
 }

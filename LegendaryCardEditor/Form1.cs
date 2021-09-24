@@ -67,6 +67,8 @@ namespace LegendaryCardEditor
 
                 PopulateIconsEditor();
 
+             
+
             }
             catch
             {
