@@ -1,0 +1,368 @@
+[
+  {
+    "Id": 1,
+    "KeywordName": "Abomination",
+    "KeywordDescription": "[ATTACK] equal to the [ATTACK] of the hero in the section of HQ beneath it.  Note: If hero has [RECRUIT], then additional [ATTACK] is +0"
+  },
+  {
+    "Id": 2,
+    "KeywordName": "(Ultimate) Abomination",
+    "KeywordDescription": "[ATTACK] equal to total [ATTACK] of all heroes in the HQ."
+  },
+  {
+    "Id": 3,
+    "KeywordName": "Adapt",
+    "KeywordDescription": "Normal masterminds have a mastermind card and four tactics.  Adapting masterminds just have four tactics.  Keep the tactics stack face up.  When a master strike hits, follow the tactic that is at the top of the pile then reshuffle. When fighting a mastermind with the Adapt ability, use the top of the tactics stack as the tactic you are up against.  After combat is resolved, reshuffle the tactic stack, and reveal the top card."
+  },
+  {
+    "Id": 4,
+    "KeywordName": "Artifact",
+    "KeywordDescription": "When drawn and played, this card stays on the field until thrown.  Note- Card effects can be used each turn, however, you only played it on your first turn."
+  },
+  {
+    "Id": 5,
+    "KeywordName": "(Throw Artifact)",
+    "KeywordDescription": "Use effect and return artifact card to the bottom of your deck, not your discard pile."
+  },
+  {
+    "Id": 6,
+    "KeywordName": "Berserk",
+    "KeywordDescription": "Discard the top card of your deck.  Gain +[ATTACK] equal to the discarded cards printed [ATTACK].  Gain no benefit from this ability if the discarded card had [RECRUIT] or Piercing Energy."
+  },
+  {
+    "Id": 7,
+    "KeywordName": "Bribe",
+    "KeywordDescription": "Use any combination of [RECRUIT] and [ATTACK] to defeat the villain."
+  },
+  {
+    "Id": 8,
+    "KeywordName": "Burrow",
+    "KeywordDescription": "Fight: If the [Streets] city space is empty put this villain back in the Streets space.  A villain who burrows does not do ambush effects.  Any effects that relate to a villain being defeated count the initial burrow and the subsequent defeat.  A Burrow villain fought in the Streets city space is defeated completely."
+  },
+  {
+    "Id": 9,
+    "KeywordName": "Charge",
+    "KeywordDescription": "When the charge keywords conditions are met move the villain forward additional spaces equal to charge rating.  All villains are pushed forward as needed."
+  },
+  {
+    "Id": 10,
+    "KeywordName": "Cheering Crowds",
+    "KeywordDescription": "You may play this card twice in a row if you return a Bystander from your victory pile to the bottom of the bystander deck.  Cards played twice in this manner count for all effects as though two separate cards were played."
+  },
+  {
+    "Id": 11,
+    "KeywordName": "Chivalrous Duel",
+    "KeywordDescription": "You can only use cards from one heros card set to fight a villain with this ability.  You cannot use any supplemental damage items (such as shard tokens) against a villain with this ability."
+  },
+  {
+    "Id": 12,
+    "KeywordName": "[X] Circle of Kung-Fu (and Quack-Fu)",
+    "KeywordDescription": "During your turn this villain has +X [ATTACK] unless you reveal a hero that costs X or more.  Note: If multiple instances on one villain/mastermind only highest circle counts."
+  },
+  {
+    "Id": 13,
+    "KeywordName": "[city space] Conquer",
+    "KeywordDescription": "Villains / Masterminds gain the listed conquer bonus to their [ATTACK] when there is a villain (even the villain with conquer itself) in the relevant city space."
+  },
+  {
+    "Id": 14,
+    "KeywordName": "Coordinate",
+    "KeywordDescription": "Discard the card with Coordinate and replace it with another card.  The player whose turn it is gains this cards effect. A single player can only coordinate one card per turn.  However multiple players can each coordinate one card on each players turn.\nCosmic Threat [X]"
+  },
+  {
+    "Id": 15,
+    "KeywordName": "Cross-Dimensional Rampage X",
+    "KeywordDescription": "Each player must reveal X card in their hand or victory pile or gain a wound.  Note: Heroes who have multiple versions of that hero count all versions of that hero (e.g. Wolverine, Old Man Logan, Weapon-X, etc.)"
+  },
+  {
+    "Id": 16,
+    "KeywordName": "Danger Sense [X]",
+    "KeywordDescription": "When played, reveal the top [X] cards from the villain deck. You gain +1 [ATTACK] for each villain revealed this way.  Put the revealed cards back in any order."
+  },
+  {
+    "Id": 17,
+    "KeywordName": "Dark Memories",
+    "KeywordDescription": "You get +1 [ATTACK] for every unique hero class among cards in your discard.  If a villain has this ability, their [ATTACK] goes up the same way.  Note: You can only gain +1 [ATTACK] for each character class, no matter how many of each class you have."
+  },
+  {
+    "Id": 18,
+    "KeywordName": "Demolish",
+    "KeywordDescription": "Reveal the top card of the Ally/Hero Deck, note its cost and put it on the bottom of the Ally/Hero Deck.  Each player reveals their hand and discards a card with that cost."
+  },
+  {
+    "Id": 19,
+    "KeywordName": "Digest [X]",
+    "KeywordDescription": "ou can only use Digest cards Digest ability if you have [X] cards in your victory pile.  Each cards Digest ability only trigger once in a turn regardless of how many cards you have in your victory pile."
+  },
+  {
+    "Id": 20,
+    "KeywordName": "Divided Cards",
+    "KeywordDescription": "When playing a divided card, only one side is chosen to be active.  The inactive side doesn't exist.  However, if another card interacts with cards in a players hand, both sides are considered active, for determining effects."
+  },
+  {
+    "Id": 21,
+    "KeywordName": "Dodge",
+    "KeywordDescription": "Discard this card and draw another one.  A [Dodged] card is not considered as being played."
+  },
+  {
+    "Id": 22,
+    "KeywordName": "Dominate",
+    "KeywordDescription": "Put heroes dominated from their respective places under this villain.  Add +1 [ATTACK] to the villain for each hero dominated.  When you fight a villain with dominated heroes, put one of those heroes in each players discard pile, KO any excess heroes.  If a villain escapes while dominating heroes, then those heroes go to the escaped pile as well."
+  },
+  {
+    "Id": 23,
+    "KeywordName": "Elusive",
+    "KeywordDescription": "You can only fight this Villain if you have made at least 6 [RECRUIT] this turn.  This [RECRUIT] can still be used to recruit."
+  },
+  {
+    "Id": 24,
+    "KeywordName": "Empowered",
+    "KeywordDescription": "empowered counts heroes in the HQ with the relevant type.  Double and Triple empowerment adds +2 [ATTACK] or +3 [ATTACK] for each card of the relevant type."
+  },
+  {
+    "Id": 25,
+    "KeywordName": "Excessive Violence",
+    "KeywordDescription": "spend +1 [ATTACK] more than you actually need to trigger Excessive Violence.\nFateful Resurrection"
+  },
+  {
+    "Id": 26,
+    "KeywordName": "Feast",
+    "KeywordDescription": "Fight: KO the top card of your deck, then do the effect as listed on the [Feast] card."
+  },
+  {
+    "Id": 27,
+    "KeywordName": "Focus",
+    "KeywordDescription": "Pay the [RECRUIT] cost on the left side of the arrow to get the effect on the right side of the arrow.  A focus ability may be used as many times as a player has sufficient [RECRUIT] available."
+  },
+  {
+    "Id": 28,
+    "KeywordName": "Fortify",
+    "KeywordDescription": "This ability comes into effect when a villain escapes the city unless otherwise noted. A villain who has fortified an area prevents that area from being interacted with, (e.g. a villain fortifying the Sidekick deck prevents Sidekicks from being recruited until they are removed.)  A fortifying villain may be fought per usual, all standard [Fight] effects apply."
+  },
+  {
+    "Id": 29,
+    "KeywordName": "Hidden Witnesses",
+    "KeywordDescription": "Villain captures two face-down bystanders from the bystander deck.  While a villain has Hidden Witnesses, they cannot be fought.  The player may spend 2 [RECRUIT] any number of times to rescue the Hidden Witnesses.  If a villain has both regular captured bystanders and Hidden Witnesses, only the Hidden Witnesses need to be resolved to fight the villain.  The regular captured bystanders function as normal."
+  },
+  {
+    "Id": 30,
+    "KeywordName": "Human Shields",
+    "KeywordDescription": "Same as Hidden Witnesses except a player must spend [ATTACK] equal to the capturing villains [ATTACK] for each Human Shield to rescue them."
+  },
+  {
+    "Id": 31,
+    "KeywordName": "HYDRA Level",
+    "KeywordDescription": "The HYDRA Level counts the number of S.H.I.E.L.D. and/or HYDRA cards in the escape pile.This value checks not only the team icons, but also the names of the various cards.  If they say S.H.I.E.L.D or HYDRA in the name of the card they are counted."
+  },
+  {
+    "Id": 33,
+    "KeywordName": "Hyperspeed [X]",
+    "KeywordDescription": "Reveal the top [X] cards of your deck.  You get +1 [ATTACK] for every [ATTACK] icon that is revealed this way.  Discard all cards revealed this way.  If will specifically say Hyperspeed [X] for [RECRUIT], in which case you do the same thing counting [RECRUIT] icons."
+  },
+  {
+    "Id": 34,
+    "KeywordName": "Indigestion",
+    "KeywordDescription": "This ability triggers if you DO NOT have enough cards in your victory pile to trigger the Digest trigger."
+  },
+  {
+    "Id": 35,
+    "KeywordName": "Investigate [X]",
+    "KeywordDescription": "Look at the top two cards of your deck.  Reveal an [X] card from among them and draw it.  Put any remaining cards on the top or bottom of the deck in any order."
+  },
+  {
+    "Id": 36,
+    "KeywordName": "Last Stand",
+    "KeywordDescription": "A villain or hero with [Last Stand] gets +1 [ATTACK] for each empty space in the city.  [Double Last Stand] doubles this bonus."
+  },
+  {
+    "Id": 37,
+    "KeywordName": "Lightshow",
+    "KeywordDescription": "Once per turn if you played at least two [Lightshow] cards this turn; you can use a single [Lightshow] ability from any of those cards."
+  },
+  {
+    "Id": 38,
+    "KeywordName": "Locations",
+    "KeywordDescription": "When these cards are played from the villain deck, they go above the nearest city space without a location already above it.  They do not occupy the city space, instead buffing villains who enter the city space under the location."
+  },
+  {
+    "Id": 39,
+    "KeywordName": "Man (and Woman) Out of Time",
+    "KeywordDescription": "After playing this card set it aside.  After revealing the villain of your next turn play the set aside card again."
+  },
+  {
+    "Id": 40,
+    "KeywordName": "Microscopic Size Changing",
+    "KeywordDescription": "Functions the same as regular size changing but each card of the relevant type reduces the cost by 2 [RECRUIT].  If negative cost, gain that much [RECRUIT]."
+  },
+  {
+    "Id": 41,
+    "KeywordName": "Moonlight / Sunlight",
+    "KeywordDescription": "Moonlight abilities only work when most of the Heroes in the HQ have odd-numbered costs.  Sunlight abilities only work when most of the heroes in the HQ have even-numbered costs. Abilities that change cost of cards in the HQ do not change Moonlight or Sunlight.  Divided Cards only count one side of the card. Cards with these abilities only count / check at the time they are played."
+  },
+  {
+    "Id": 42,
+    "KeywordName": "Outwit",
+    "KeywordDescription": "You can only outwit if you reveal 3 heroes with different costs.  The outwit cards counts itself.  You can choose not to outwit."
+  },
+  {
+    "Id": 43,
+    "KeywordName": "Patrol",
+    "KeywordDescription": "If the designated section of the city is empty, then activate the ability."
+  },
+  {
+    "Id": 44,
+    "KeywordName": "Phasing",
+    "KeywordDescription": "A card with Phasing can be exchanged for the top card of your deck.  The top card goes to your hand, the card with phasing goes to the top of your deck."
+  },
+  {
+    "Id": 45,
+    "KeywordName": "Piercing Energy",
+    "KeywordDescription": "Piercing Energy goes against a targets listed [VICTORY_POINTS] as opposed to [ATTACK].  Cannot be paired with [ATTACK] for this effect.  Ignore any special modifiers or special conditions for fighting that villain.  Will automatically rescue Human Shields.  Cannot be used against cards that don't have [VICTORY_POINTS] printed on them."
+  },
+  {
+    "Id": 46,
+    "KeywordName": "Savior",
+    "KeywordDescription": "This ability can only be activated when you have 3 or more bystanders in your Victory Pile."
+  },
+  {
+    "Id": 47,
+    "KeywordName": "Shard",
+    "KeywordDescription": "A shard can be expended to get +1 [ATTACK], you can use as many shards as you have available each turn.  Once a shard is used, it goes away.  Any villain with shards is considered to have +1 [ATTACK] for each shard in their possession.  When a villain with shards is defeated the active player gains one of that villains shards, the others are lost."
+  },
+  {
+    "Id": 48,
+    "KeywordName": "S.H.I.E.L.D. Clearance",
+    "KeywordDescription": "A S.H.I.E.L.D. hero must be discarded to fight this villain.  If a villain has [Double S.H.I.E.L.D Clearance], then two S.H.I.E.L.D. heroes must be discarded.  Note: If playing with the [Villains] expansion, then this applies to HYDRA heroes instead."
+  },
+  {
+    "Id": 49,
+    "KeywordName": "S.H.I.E.L.D. Level [X]",
+    "KeywordDescription": "The S.H.I.E.L.D. Level counts the number of S.H.I.E.L.D. and/or HYDRA cards in your victory pile.  This value checks not only the team icons, but also the names of the various cards.  If they say S.H.I.E.L.D or HYDRA in the name of the card they are counted."
+  },
+  {
+    "Id": 50,
+    "KeywordName": "Size-Changing [X]",
+    "KeywordDescription": "A card with Size Changing [X] costs 2 less to recruit if an [X] card is played that turn.  A villain with Size-Changing [X] has 2 less [ATTACK] if an [X] card is played"
+  },
+  {
+    "Id": 51,
+    "KeywordName": "Smash [X]",
+    "KeywordDescription": "You must discard another card from your hand to get the Smash effect."
+  },
+  {
+    "Id": 52,
+    "KeywordName": "Soaring Flight",
+    "KeywordDescription": "When you recruit this Hero, set it aside.  Add it to your new hand as an extra card at the end of this turn."
+  },
+  {
+    "Id": 53,
+    "KeywordName": "Spectrum",
+    "KeywordDescription": "You can only use these abilities if you have at least 3 classes of hero."
+  },
+  {
+    "Id": 54,
+    "KeywordName": "Striker",
+    "KeywordDescription": "This ability adds +1 [ATTACK] for every Master Strike stacked next to the Mastermind.  Doublestriker and Triplestriker apply +2 and +3 [ATTACK] respectively for each Master Strike next to the mastermind."
+  },
+  {
+    "Id": 55,
+    "KeywordName": "Switcheroo [X]",
+    "KeywordDescription": "Reveal this card and put it on the bottom of the hero deck and replace it with a card that costs X.  The new card goes to your hand.  Note: You can just play the card gaining the relevant [ATTACK] and [RECRUIT]."
+  },
+  {
+    "Id": 56,
+    "KeywordName": "Symbiote Bonds",
+    "KeywordDescription": "Take the top card of the villain deck and place it under the card with Symbiote Bonds.  The two cards fight powers and text are combined and function normally.  A player must spend enough fight power to defeat their combined might.  When a villain is defeated this way, place only one card from the stack into your victory pile.  The other card remains in the city space it was at.  Only the [Fight] effect of the card going to your victory pile is triggered.  For all intents and purposes the host and symbiote count as one villain for the purposes of escapes."
+  },
+  {
+    "Id": 57,
+    "KeywordName": "Teleport",
+    "KeywordDescription": "Instead of playing this card you may set it aside.  At the end of this turn, add it to your hand as an extra card."
+  },
+  {
+    "Id": 58,
+    "KeywordName": "Transformed Heroes",
+    "KeywordDescription": "Transformed cards don't go into the hero deck.  Complete all effects on the card to be transformed (including getting [ATTACK] and [RECRUIT]) all cards that transformed are still counted as being played for the purposes of effects."
+  },
+  {
+    "Id": 59,
+    "KeywordName": "Transformed Schemes",
+    "KeywordDescription": "Use the setup side of the scheme and transform it when the scheme says to do so."
+  },
+  {
+    "Id": 60,
+    "KeywordName": "Undercover",
+    "KeywordDescription": "Put a hero with the S.H.I.E.L.D. team logo in your victory pile, they count as +1 [VICTORY_POINTS].  Playing a card that sends itself undercover means you will still get that cards [ATTACK] and [RECRUIT] for that turn. Undercover directly impacts the S.H.I.E.L.D. level.  (See S.H.I.E.L.D. Level)."
+  },
+  {
+    "Id": 61,
+    "KeywordName": "Uru-Enchanted Weapons [X]",
+    "KeywordDescription": "When you fight a villain with Uru-Enchanted Weapons, reveal X cards from the top of the Villain Deck.  That villain gains [ATTACK] equal to the total [VICTORY_POINTS] on all cards revealed this way.  If you can't defeat the villain, you cannot attack again and must do any Fight or Fail effects."
+  },
+  {
+    "Id": 62,
+    "KeywordName": "Versatile",
+    "KeywordDescription": "When this card is played chose [ATTACK] or [RECRUIT].  Versatile adds that much of the chosen type."
+  },
+  {
+    "Id": 63,
+    "KeywordName": "Villainous Weapons",
+    "KeywordDescription": "When it enters the city, it is captured by the rightmost villain.  If no villains are in the city then KO the Villainous Weapon.  Add the Villainous Weapons [ATTACK] to the villain that is holding it. Defeating an enemy wielding villainous weapons adds all the villains weapons to your discard pile as artifacts. When a villain wielding a villainous weapon escapes the city"
+  },
+  {
+    "Id": 64,
+    "KeywordName": "Wall-Crawl",
+    "KeywordDescription": "When you recruit this hero put it on top of your deck."
+  },
+  {
+    "Id": 65,
+    "KeywordName": "Waking Nightmare",
+    "KeywordDescription": "Cards will say have a Waking Nightmare, when they do, discard a non-grey hero from your hand and draw a card to replace it."
+  },
+  {
+    "Id": 66,
+    "KeywordName": "Wounded Fury",
+    "KeywordDescription": "This keyword counts how many wound cards you have in your discard pile.  A villain with this keyword gets +1 [ATTACK] for each Wound in your discard pile."
+  },
+  {
+    "Id": 67,
+    "KeywordName": "Worthy",
+    "KeywordDescription": "You are worthy if you have a hero or artifact that costs 5 or more.  Heroes or artifacts in your discard pile and/or deck do not count.  But heroes that you have in your hand or have played this turn do."
+  },
+
+  {
+    "Id": 68,
+    "KeywordName": "X-Gene [X]",
+    "KeywordDescription": "If you have an [X] card in your discard pile you get +2 [ATTACK].  A cards [X-Gene] ability can only be used once regardless of how many of the [X] cards you have in your discard pile."
+  },
+  {
+    "Id": 69,
+    "KeywordName": "X-Treme Attack",
+    "KeywordDescription": "This villain gets +1 [ATTACK] for each other villain in the city with [X-Treme Attack]."
+  },
+  {
+    "Id": 32,
+    "KeywordName": "Poison Villains",
+    "KeywordDescription": "This ability only triggers when fought.  The conditions are then fulfilled and the player must potentially fight the combined might of the adjusted character as per normal Symbiote Bonds.  Choose which fight trigger you want to trigger."
+  },
+  {
+    "Id": 70,
+    "KeywordName": "Fight",
+    "KeywordDescription": ""
+  },
+  {
+    "Id": 71,
+    "KeywordName": "Ambush",
+    "KeywordDescription": ""
+  },
+  {
+    "Id": 72,
+    "KeywordName": "Escape",
+    "KeywordDescription": ""
+  },
+  {
+    "Id": 73,
+    "KeywordName": "KO",
+    "KeywordDescription": ""
+  }
+]

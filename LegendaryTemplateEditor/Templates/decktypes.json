@@ -1,0 +1,57 @@
+[
+  {
+    "DeckTypeId": 1,
+    "DeckTypeName": "Hero",
+    "NumberOfCards": 4
+  },
+  {
+    "DeckTypeId": 9,
+    "DeckTypeName": "Ambition",
+    "NumberOfCards": 1
+  },
+  {
+    "DeckTypeId": 7,
+    "DeckTypeName": "Wound",
+    "NumberOfCards": 1
+  },
+  {
+    "DeckTypeId": 8,
+    "DeckTypeName": "S.H.I.E.L.D. Officer",
+    "NumberOfCards": 1
+  },
+  {
+    "DeckTypeId": 5,
+    "DeckTypeName": "Special Sidekick",
+    "NumberOfCards": 1
+  },
+  {
+    "DeckTypeId": 3,
+    "DeckTypeName": "Villain",
+    "NumberOfCards": 4
+  },
+  {
+    "DeckTypeId": 4,
+    "DeckTypeName": "Henchmen",
+    "NumberOfCards": 1
+  },
+  {
+    "DeckTypeId": 6,
+    "DeckTypeName": "Bystander",
+    "NumberOfCards": 1
+  },
+  {
+    "DeckTypeId": 2,
+    "DeckTypeName": "Mastermind",
+    "NumberOfCards": 5
+  },
+  {
+    "DeckTypeId": 11,
+    "DeckTypeName": "Horror",
+    "NumberOfCards": 1
+  },
+  {
+    "DeckTypeId": 10,
+    "DeckTypeName": "Scheme",
+    "NumberOfCards": 1
+  }
+]

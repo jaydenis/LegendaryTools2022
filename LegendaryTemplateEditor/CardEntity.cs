@@ -51,6 +51,9 @@ namespace LegendaryTemplateEditor
 
         [JsonProperty("AttributeVictoryPoints", Required = Required.AllowNull)]
         public int AttributeVictoryPoints { get; set; }
+        [JsonProperty("AttributeAttackDefense", Required = Required.Always)]
+        public string AttributeAttackDefense { get; set; }
+
 
         [JsonProperty("CardText", Required = Required.Always)]
         public string CardText { get; set; }

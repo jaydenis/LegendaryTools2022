@@ -8,59 +8,6 @@ using System.Threading.Tasks;
 
 namespace LegendaryTemplateEditor
 {
-    public class TemplateModel
-    {
-        public Point TeamIconXY { get; set; }
-        public bool TeamIconVisible { get; set; }
-
-        public Point PowerPrimaryIconXY { get; set; }
-        public bool PowerPrimaryIconVisible { get; set; }
-
-        public Point PowerSecondaryIconXY { get; set; }
-        public bool PowerSecondaryVisible { get; set; }
-
-        public Point CardNameXY { get; set; }
-        public int CardNameTextSize { get; set; }
-        public bool CardNameVisible { get; set; }
-
-        public Point CardNameSubXY { get; set; }
-        public int CardNameSubTextSize { get; set; }
-        public bool CardNameSubVisible { get; set; }
-
-
-        public int AttributesPrimaryTextSize { get; set; }
-        public Point RecruitIconXY { get; set; }
-        public Point RecruitValueXY { get; set; }
-        public bool RecruitVisible { get; set; }
-
-        public Point AttackIconXY { get; set; }
-        public Point AttackValueXY { get; set; }
-        public bool AttackVisible { get; set; }
-
-        public Point PiercingIconXY { get; set; }
-        public Point PiercingValueXY { get; set; }
-        public bool PiercingVisible { get; set; }
-
-        public int AttributesSecondryTextSize { get; set; }
-        public Point CostIconXY { get; set; }
-        public Point CostValueXY { get; set; }
-        public bool CostVisible { get; set; }
-
-        public Point AttackDefenseIconXY { get; set; }
-        public Point AttackDefenseValueXY { get; set; }
-        public bool AttackDefenseVisible { get; set; }
-
-        public Point VictroyIconXY { get; set; }
-        public Point VictroyValueXY { get; set; }
-        public bool VictroyVisible { get; set; }
-        public int VictoryTextSize { get; set; }
-
-        public Point[] CardTextRectAreaXY { get; set; }
-        public Point[] CardTextRectAreaY { get; set; }
-
-        public int CardTextSise { get; set; }
-
-    }
 
     public class TemplateEntity
     {
@@ -72,6 +19,8 @@ namespace LegendaryTemplateEditor
 
         [JsonProperty("templateDisplayName", Required = Required.Always)]
         public string TemplateDisplayName { get; set; }
+        [JsonProperty("templateType", Required = Required.Always)]
+        public string TemplateType { get; set; }
 
         [JsonProperty("frameImage", Required = Required.Always)]
         public string FrameImage { get; set; }

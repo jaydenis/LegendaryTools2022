@@ -2,47 +2,48 @@
 	"templateId": 1,
 	"templateName": "hero_uncommon",
 	"templateDisplayName": "Hero - Unommon",
-	"frameImage": "hero_uncommon_none.png",
-	"costImage": "back_cost.png",
-	"textImage": "back_text_uncommon.png",
+	"templateType": "Hero",
+	"frameImage": "hero/hero_uncommon_none.png",
+	"costImage": "hero/back_cost.png",
+	"textImage": "hero/back_text_uncommon.png",
 	"underlayImage": "",
 	"imageHeight": 1050,
 	"imageWidth": 750,
 	"teamIconXY": [
-		36,
-		24
+		33,
+		20
 	],
 	"teamIconVisible": true,
 	"powerPrimaryIconXY": [
-		36,
-		76
+		29,
+		89
 	],
 	"powerPrimaryIconVisible": true,
 	"powerSecondaryIconXY": [
-		36,
+		29,
 		150
 	],
 	"powerSecondaryIconVisible": true,
 	"cardNameXY": [
-		23,
-		76
+		76,
+		23
 	],
 	"cardNameTextSize":32,
 	"cardNameVisible": true,
 	"cardNameSubXY": [
-		23,
-		76
+		76,
+		46
 	],
-	"cardNameSubTextSize": 82,
+	"cardNameSubTextSize": 28,
 	"cardNameSubVisible": true,
-	"attributesPrimaryTextSize": 82,
+	"attributesPrimaryTextSize": 68,
 	"recruitIconXY": [
-		36,
-		465
+		17,
+		730
 	],
 	"recruitValueXY": [
-		36,
-		465
+		25,
+		740
 	],
 	"recruitVisible": true,
 	"attackIconXY": [
@@ -50,36 +51,36 @@
 		900
 	],
 	"attackValueXY": [
-		18,
-		900
+		25,
+		909
 	],
 	"attackVisible": true,
 	"piercingIconXY": [
-		36,
-		580
+		17,
+		900
 	],
 	"piercingValueXY": [
-		36,
-		580
+		25,
+		911
 	],
 	"piercingVisible": true,
 	"attributesSecondryTextSize": 82,
 	"costIconXY": [
-		556,
+		555,
 		879
 	],
 	"costValueXY": [
-		556,
-		879
+		573,
+		890
 	],
 	"costVisible": true,
 	"attackDefenseIconXY": [
-		700,
+		575,
 		900
 	],
 	"attackDefenseValueXY": [
-		700,
-		900
+		628,
+		893
 	],
 	"attackDefenseVisible": true,
 	"victroyIconXY": [
@@ -91,7 +92,7 @@
 		700
 	],
 	"victroyVisible": true,
-	"victoryTextSize": 64,
+	"victoryTextSize": 40,
 	"cardTextRectAreaX": [
 		36,
 		700,

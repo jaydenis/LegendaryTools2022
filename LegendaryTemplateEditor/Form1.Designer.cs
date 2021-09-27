@@ -74,10 +74,30 @@ namespace LegendaryTemplateEditor
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUpdateImage = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.chkLiveChanges = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.chkLiveChanges = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtTemplateDisplayName = new System.Windows.Forms.TextBox();
+            this.txtTemplateName = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.cmbTemplateType = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cmbUnderlayImage = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.cmbTextImage = new System.Windows.Forms.ComboBox();
+            this.chkUnderlayImageVisible = new System.Windows.Forms.CheckBox();
+            this.chkTextImageVisible = new System.Windows.Forms.CheckBox();
+            this.chkCostImageVisible = new System.Windows.Forms.CheckBox();
+            this.chkFrameImageVisible = new System.Windows.Forms.CheckBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.cmbCostImage = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.cmbFrameImage = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.numCardTextY4 = new System.Windows.Forms.NumericUpDown();
             this.numCardTextX4 = new System.Windows.Forms.NumericUpDown();
@@ -178,12 +198,15 @@ namespace LegendaryTemplateEditor
             this.fastColoredTextBox2 = new FastColoredTextBoxNS.FastColoredTextBox();
             this.toolStripCardDataJson = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSaveCardData = new System.Windows.Forms.ToolStripButton();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextY4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextX4)).BeginInit();
@@ -529,6 +552,7 @@ namespace LegendaryTemplateEditor
             this.saveToolStripButton.Name = "saveToolStripButton";
             this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.saveToolStripButton.Text = "&Save";
+            this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
             // 
             // printToolStripButton
             // 
@@ -598,32 +622,20 @@ namespace LegendaryTemplateEditor
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.chkLiveChanges);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 49);
             this.panel1.MinimumSize = new System.Drawing.Size(420, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(420, 662);
+            this.panel1.Size = new System.Drawing.Size(420, 727);
             this.panel1.TabIndex = 2;
-            // 
-            // chkLiveChanges
-            // 
-            this.chkLiveChanges.AutoSize = true;
-            this.chkLiveChanges.Location = new System.Drawing.Point(11, 5);
-            this.chkLiveChanges.Name = "chkLiveChanges";
-            this.chkLiveChanges.Size = new System.Drawing.Size(96, 19);
-            this.chkLiveChanges.TabIndex = 1;
-            this.chkLiveChanges.Text = "Live Changes";
-            this.chkLiveChanges.UseVisualStyleBackColor = true;
-            this.chkLiveChanges.CheckedChanged += new System.EventHandler(this.chkLiveChanges_CheckedChanged);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(9, 30);
+            this.pictureBox1.Location = new System.Drawing.Point(9, 46);
             this.pictureBox1.MaximumSize = new System.Drawing.Size(404, 609);
             this.pictureBox1.MinimumSize = new System.Drawing.Size(404, 609);
             this.pictureBox1.Name = "pictureBox1";
@@ -631,6 +643,17 @@ namespace LegendaryTemplateEditor
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // chkLiveChanges
+            // 
+            this.chkLiveChanges.AutoSize = true;
+            this.chkLiveChanges.Location = new System.Drawing.Point(990, 27);
+            this.chkLiveChanges.Name = "chkLiveChanges";
+            this.chkLiveChanges.Size = new System.Drawing.Size(96, 19);
+            this.chkLiveChanges.TabIndex = 1;
+            this.chkLiveChanges.Text = "Live Changes";
+            this.chkLiveChanges.UseVisualStyleBackColor = true;
+            this.chkLiveChanges.CheckedChanged += new System.EventHandler(this.chkLiveChanges_CheckedChanged);
             // 
             // tabControl1
             // 
@@ -641,11 +664,13 @@ namespace LegendaryTemplateEditor
             this.tabControl1.Location = new System.Drawing.Point(420, 49);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(752, 662);
+            this.tabControl1.Size = new System.Drawing.Size(752, 727);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox5);
+            this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -654,10 +679,274 @@ namespace LegendaryTemplateEditor
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(744, 634);
+            this.tabPage1.Size = new System.Drawing.Size(744, 699);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.txtTemplateDisplayName);
+            this.groupBox5.Controls.Add(this.txtTemplateName);
+            this.groupBox5.Controls.Add(this.label27);
+            this.groupBox5.Controls.Add(this.label26);
+            this.groupBox5.Controls.Add(this.cmbTemplateType);
+            this.groupBox5.Controls.Add(this.label32);
+            this.groupBox5.Location = new System.Drawing.Point(7, 7);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(703, 100);
+            this.groupBox5.TabIndex = 7;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Template Details";
+            // 
+            // txtTemplateDisplayName
+            // 
+            this.txtTemplateDisplayName.Location = new System.Drawing.Point(98, 42);
+            this.txtTemplateDisplayName.Name = "txtTemplateDisplayName";
+            this.txtTemplateDisplayName.Size = new System.Drawing.Size(248, 23);
+            this.txtTemplateDisplayName.TabIndex = 1;
+            // 
+            // txtTemplateName
+            // 
+            this.txtTemplateName.Location = new System.Drawing.Point(98, 16);
+            this.txtTemplateName.Name = "txtTemplateName";
+            this.txtTemplateName.Size = new System.Drawing.Size(248, 23);
+            this.txtTemplateName.TabIndex = 1;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(6, 45);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(80, 15);
+            this.label27.TabIndex = 0;
+            this.label27.Text = "Display Name";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(7, 19);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(80, 15);
+            this.label26.TabIndex = 0;
+            this.label26.Text = "Unique Name";
+            // 
+            // cmbTemplateType
+            // 
+            this.cmbTemplateType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTemplateType.FormattingEnabled = true;
+            this.cmbTemplateType.Items.AddRange(new object[] {
+            "Ambition",
+            "Bystander",
+            "Henchmen",
+            "Hero",
+            "Mastermind",
+            "Officer",
+            "Scheme",
+            "Sidekick",
+            "Villain",
+            "Wound"});
+            this.cmbTemplateType.Location = new System.Drawing.Point(98, 68);
+            this.cmbTemplateType.Name = "cmbTemplateType";
+            this.cmbTemplateType.Size = new System.Drawing.Size(248, 23);
+            this.cmbTemplateType.TabIndex = 1;
+            this.cmbTemplateType.SelectedIndexChanged += new System.EventHandler(this.cmbTemplateType_SelectedIndexChanged);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(7, 68);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(31, 15);
+            this.label32.TabIndex = 0;
+            this.label32.Text = "Type";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.cmbUnderlayImage);
+            this.groupBox4.Controls.Add(this.label31);
+            this.groupBox4.Controls.Add(this.cmbTextImage);
+            this.groupBox4.Controls.Add(this.chkUnderlayImageVisible);
+            this.groupBox4.Controls.Add(this.chkTextImageVisible);
+            this.groupBox4.Controls.Add(this.chkCostImageVisible);
+            this.groupBox4.Controls.Add(this.chkFrameImageVisible);
+            this.groupBox4.Controls.Add(this.label30);
+            this.groupBox4.Controls.Add(this.cmbCostImage);
+            this.groupBox4.Controls.Add(this.label29);
+            this.groupBox4.Controls.Add(this.cmbFrameImage);
+            this.groupBox4.Controls.Add(this.label28);
+            this.groupBox4.Location = new System.Drawing.Point(319, 384);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(391, 155);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Backgrounds";
+            // 
+            // cmbUnderlayImage
+            // 
+            this.cmbUnderlayImage.FormattingEnabled = true;
+            this.cmbUnderlayImage.Items.AddRange(new object[] {
+            "--NONE--",
+            "hero/back_underlay.png",
+            "mastermind/mastermind_back_underlay.png",
+            "officer/back_underlay.png",
+            "scheme/backing.png",
+            "sidekick/back_underlay.png"});
+            this.cmbUnderlayImage.Location = new System.Drawing.Point(91, 114);
+            this.cmbUnderlayImage.Name = "cmbUnderlayImage";
+            this.cmbUnderlayImage.Size = new System.Drawing.Size(207, 23);
+            this.cmbUnderlayImage.TabIndex = 1;
+            this.cmbUnderlayImage.SelectedIndexChanged += new System.EventHandler(this.cmbFrameImage_SelectedIndexChanged);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(9, 120);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(54, 15);
+            this.label31.TabIndex = 0;
+            this.label31.Text = "Underlay";
+            // 
+            // cmbTextImage
+            // 
+            this.cmbTextImage.FormattingEnabled = true;
+            this.cmbTextImage.Items.AddRange(new object[] {
+            "--NONE--",
+            "ambition/text_overlay.png",
+            "hero/back_text_common.png",
+            "hero/back_text_uncommon.png",
+            "hero/back_text_rare.png",
+            "mastermind/mastermind_back_text.png",
+            "mastermind/mastermind_tactic_back_text.png",
+            "officer/back_text.png",
+            "sidekick/back_text.png",
+            "villain/recruitable_back_text.png"});
+            this.cmbTextImage.Location = new System.Drawing.Point(91, 85);
+            this.cmbTextImage.Name = "cmbTextImage";
+            this.cmbTextImage.Size = new System.Drawing.Size(207, 23);
+            this.cmbTextImage.TabIndex = 1;
+            this.cmbTextImage.SelectedIndexChanged += new System.EventHandler(this.cmbFrameImage_SelectedIndexChanged);
+            // 
+            // chkUnderlayImageVisible
+            // 
+            this.chkUnderlayImageVisible.AutoSize = true;
+            this.chkUnderlayImageVisible.Checked = true;
+            this.chkUnderlayImageVisible.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkUnderlayImageVisible.Location = new System.Drawing.Point(304, 116);
+            this.chkUnderlayImageVisible.Name = "chkUnderlayImageVisible";
+            this.chkUnderlayImageVisible.Size = new System.Drawing.Size(60, 19);
+            this.chkUnderlayImageVisible.TabIndex = 10;
+            this.chkUnderlayImageVisible.Text = "Visible";
+            this.chkUnderlayImageVisible.UseVisualStyleBackColor = true;
+            this.chkUnderlayImageVisible.CheckedChanged += new System.EventHandler(this.chkAttributesPrimaryVisible_CheckedChanged);
+            // 
+            // chkTextImageVisible
+            // 
+            this.chkTextImageVisible.AutoSize = true;
+            this.chkTextImageVisible.Checked = true;
+            this.chkTextImageVisible.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkTextImageVisible.Location = new System.Drawing.Point(304, 87);
+            this.chkTextImageVisible.Name = "chkTextImageVisible";
+            this.chkTextImageVisible.Size = new System.Drawing.Size(60, 19);
+            this.chkTextImageVisible.TabIndex = 10;
+            this.chkTextImageVisible.Text = "Visible";
+            this.chkTextImageVisible.UseVisualStyleBackColor = true;
+            this.chkTextImageVisible.CheckedChanged += new System.EventHandler(this.chkAttributesPrimaryVisible_CheckedChanged);
+            // 
+            // chkCostImageVisible
+            // 
+            this.chkCostImageVisible.AutoSize = true;
+            this.chkCostImageVisible.Checked = true;
+            this.chkCostImageVisible.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkCostImageVisible.Location = new System.Drawing.Point(304, 58);
+            this.chkCostImageVisible.Name = "chkCostImageVisible";
+            this.chkCostImageVisible.Size = new System.Drawing.Size(60, 19);
+            this.chkCostImageVisible.TabIndex = 10;
+            this.chkCostImageVisible.Text = "Visible";
+            this.chkCostImageVisible.UseVisualStyleBackColor = true;
+            this.chkCostImageVisible.CheckedChanged += new System.EventHandler(this.chkAttributesPrimaryVisible_CheckedChanged);
+            // 
+            // chkFrameImageVisible
+            // 
+            this.chkFrameImageVisible.AutoSize = true;
+            this.chkFrameImageVisible.Checked = true;
+            this.chkFrameImageVisible.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFrameImageVisible.Location = new System.Drawing.Point(304, 29);
+            this.chkFrameImageVisible.Name = "chkFrameImageVisible";
+            this.chkFrameImageVisible.Size = new System.Drawing.Size(60, 19);
+            this.chkFrameImageVisible.TabIndex = 10;
+            this.chkFrameImageVisible.Text = "Visible";
+            this.chkFrameImageVisible.UseVisualStyleBackColor = true;
+            this.chkFrameImageVisible.CheckedChanged += new System.EventHandler(this.chkAttributesPrimaryVisible_CheckedChanged);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(9, 91);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(64, 15);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "Text Image";
+            // 
+            // cmbCostImage
+            // 
+            this.cmbCostImage.FormattingEnabled = true;
+            this.cmbCostImage.Items.AddRange(new object[] {
+            "--NONE--",
+            "hero/back_cost.png",
+            "villain/back_attack.png"});
+            this.cmbCostImage.Location = new System.Drawing.Point(91, 56);
+            this.cmbCostImage.Name = "cmbCostImage";
+            this.cmbCostImage.Size = new System.Drawing.Size(207, 23);
+            this.cmbCostImage.TabIndex = 1;
+            this.cmbCostImage.SelectedIndexChanged += new System.EventHandler(this.cmbFrameImage_SelectedIndexChanged);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(9, 62);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(67, 15);
+            this.label29.TabIndex = 0;
+            this.label29.Text = "Cost Image";
+            // 
+            // cmbFrameImage
+            // 
+            this.cmbFrameImage.FormattingEnabled = true;
+            this.cmbFrameImage.Items.AddRange(new object[] {
+            "--NONE--",
+            "ambition/ambition.png",
+            "bystander/bystander.png",
+            "bystander/bystander_villain.png",
+            "bystander/bystander_wound.png",
+            "henchmen/henchmen_bg.png",
+            "henchmen/henchmen_location_bg.png",
+            "hero/hero_common_none.png",
+            "hero/hero_uncommon_none.png",
+            "hero/hero_rare.png",
+            "mastermind/mastermind_frame.png",
+            "mastermind/mastermind_tactic_frame.png",
+            "officer/officer_none.png",
+            "sidekick/sidekick_none.png",
+            "villain/villain.png",
+            "villain/villain_location.png",
+            "villain/villain_token.png",
+            "villain/recruitable_back_none.png",
+            "wound/wound.png"});
+            this.cmbFrameImage.Location = new System.Drawing.Point(91, 27);
+            this.cmbFrameImage.Name = "cmbFrameImage";
+            this.cmbFrameImage.Size = new System.Drawing.Size(207, 23);
+            this.cmbFrameImage.TabIndex = 1;
+            this.cmbFrameImage.SelectedIndexChanged += new System.EventHandler(this.cmbFrameImage_SelectedIndexChanged);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(9, 33);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(76, 15);
+            this.label28.TabIndex = 0;
+            this.label28.Text = "Frame Image";
             // 
             // groupBox2
             // 
@@ -677,9 +966,9 @@ namespace LegendaryTemplateEditor
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.label24);
             this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Location = new System.Drawing.Point(7, 288);
+            this.groupBox2.Location = new System.Drawing.Point(7, 384);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(703, 168);
+            this.groupBox2.Size = new System.Drawing.Size(306, 155);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Card Text Area";
@@ -732,7 +1021,7 @@ namespace LegendaryTemplateEditor
             // 
             // numCardTextSize
             // 
-            this.numCardTextSize.Location = new System.Drawing.Point(289, 33);
+            this.numCardTextSize.Location = new System.Drawing.Point(233, 33);
             this.numCardTextSize.Name = "numCardTextSize";
             this.numCardTextSize.Size = new System.Drawing.Size(59, 23);
             this.numCardTextSize.TabIndex = 7;
@@ -837,7 +1126,7 @@ namespace LegendaryTemplateEditor
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(290, 15);
+            this.label24.Location = new System.Drawing.Point(234, 15);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(51, 15);
             this.label24.TabIndex = 4;
@@ -878,9 +1167,9 @@ namespace LegendaryTemplateEditor
             this.groupBox3.Controls.Add(this.label21);
             this.groupBox3.Controls.Add(this.label22);
             this.groupBox3.Controls.Add(this.label23);
-            this.groupBox3.Location = new System.Drawing.Point(7, 467);
+            this.groupBox3.Location = new System.Drawing.Point(7, 545);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(703, 161);
+            this.groupBox3.Size = new System.Drawing.Size(703, 146);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Attributes";
@@ -1123,9 +1412,9 @@ namespace LegendaryTemplateEditor
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Location = new System.Drawing.Point(7, 121);
+            this.groupBox1.Location = new System.Drawing.Point(7, 228);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(703, 161);
+            this.groupBox1.Size = new System.Drawing.Size(703, 150);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Attributes";
@@ -1354,7 +1643,7 @@ namespace LegendaryTemplateEditor
             this.groupCardNameSubSitle.Controls.Add(this.numCardNameX);
             this.groupCardNameSubSitle.Controls.Add(this.label1);
             this.groupCardNameSubSitle.Controls.Add(this.label25);
-            this.groupCardNameSubSitle.Location = new System.Drawing.Point(361, 7);
+            this.groupCardNameSubSitle.Location = new System.Drawing.Point(361, 114);
             this.groupCardNameSubSitle.Name = "groupCardNameSubSitle";
             this.groupCardNameSubSitle.Size = new System.Drawing.Size(349, 108);
             this.groupCardNameSubSitle.TabIndex = 0;
@@ -1476,7 +1765,7 @@ namespace LegendaryTemplateEditor
             this.groupTeamPowerIcons.Controls.Add(this.label3);
             this.groupTeamPowerIcons.Controls.Add(this.numTeamX);
             this.groupTeamPowerIcons.Controls.Add(this.label4);
-            this.groupTeamPowerIcons.Location = new System.Drawing.Point(7, 7);
+            this.groupTeamPowerIcons.Location = new System.Drawing.Point(6, 114);
             this.groupTeamPowerIcons.Name = "groupTeamPowerIcons";
             this.groupTeamPowerIcons.Size = new System.Drawing.Size(348, 108);
             this.groupTeamPowerIcons.TabIndex = 0;
@@ -1605,7 +1894,7 @@ namespace LegendaryTemplateEditor
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(744, 634);
+            this.tabPage2.Size = new System.Drawing.Size(744, 699);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1644,7 +1933,7 @@ namespace LegendaryTemplateEditor
             this.fastColoredTextBox1.RightBracket2 = '}';
             this.fastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.fastColoredTextBox1.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fastColoredTextBox1.ServiceColors")));
-            this.fastColoredTextBox1.Size = new System.Drawing.Size(663, 603);
+            this.fastColoredTextBox1.Size = new System.Drawing.Size(663, 668);
             this.fastColoredTextBox1.TabIndex = 1;
             this.fastColoredTextBox1.Text = resources.GetString("fastColoredTextBox1.Text");
             this.fastColoredTextBox1.Zoom = 100;
@@ -1655,7 +1944,7 @@ namespace LegendaryTemplateEditor
             this.documentMap1.ForeColor = System.Drawing.Color.Maroon;
             this.documentMap1.Location = new System.Drawing.Point(3, 28);
             this.documentMap1.Name = "documentMap1";
-            this.documentMap1.Size = new System.Drawing.Size(75, 603);
+            this.documentMap1.Size = new System.Drawing.Size(75, 668);
             this.documentMap1.TabIndex = 2;
             this.documentMap1.Target = this.fastColoredTextBox1;
             this.documentMap1.Text = "documentMap1";
@@ -1687,7 +1976,7 @@ namespace LegendaryTemplateEditor
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(744, 634);
+            this.tabPage3.Size = new System.Drawing.Size(744, 699);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1726,7 +2015,7 @@ namespace LegendaryTemplateEditor
             this.fastColoredTextBox2.RightBracket2 = '}';
             this.fastColoredTextBox2.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.fastColoredTextBox2.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fastColoredTextBox2.ServiceColors")));
-            this.fastColoredTextBox2.Size = new System.Drawing.Size(738, 603);
+            this.fastColoredTextBox2.Size = new System.Drawing.Size(738, 668);
             this.fastColoredTextBox2.TabIndex = 3;
             this.fastColoredTextBox2.Text = resources.GetString("fastColoredTextBox2.Text");
             this.fastColoredTextBox2.Zoom = 100;
@@ -1751,11 +2040,18 @@ namespace LegendaryTemplateEditor
             this.toolStripButtonSaveCardData.Text = "Save";
             this.toolStripButtonSaveCardData.Click += new System.EventHandler(this.toolStripButtonSaveCardData_Click);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "json";
+            this.saveFileDialog1.Filter = "Json files|*.json";
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1172, 711);
+            this.ClientSize = new System.Drawing.Size(1172, 776);
+            this.Controls.Add(this.chkLiveChanges);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
@@ -1769,10 +2065,13 @@ namespace LegendaryTemplateEditor
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextY4)).EndInit();
@@ -1996,5 +2295,26 @@ namespace LegendaryTemplateEditor
         private System.Windows.Forms.CheckBox chkAttributesPrimaryVisible;
         private FastColoredTextBoxNS.DocumentMap documentMap1;
         private System.Windows.Forms.ToolStripButton toolStripButtonUpdateImage;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox txtTemplateDisplayName;
+        private System.Windows.Forms.TextBox txtTemplateName;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.ComboBox cmbFrameImage;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox cmbTemplateType;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.ComboBox cmbUnderlayImage;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.ComboBox cmbTextImage;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.ComboBox cmbCostImage;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.CheckBox chkUnderlayImageVisible;
+        private System.Windows.Forms.CheckBox chkTextImageVisible;
+        private System.Windows.Forms.CheckBox chkCostImageVisible;
+        private System.Windows.Forms.CheckBox chkFrameImageVisible;
     }
 }
