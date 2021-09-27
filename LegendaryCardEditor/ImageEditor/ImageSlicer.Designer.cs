@@ -56,7 +56,7 @@ namespace LegendaryCardEditor.ImageEditor
             0,
             0,
             0});
-            this.zoomImageUpDown1.Location = new System.Drawing.Point(109, 586);
+            this.zoomImageUpDown1.Location = new System.Drawing.Point(108, 586);
             this.zoomImageUpDown1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.zoomImageUpDown1.Maximum = new decimal(new int[] {
             175,
@@ -83,7 +83,7 @@ namespace LegendaryCardEditor.ImageEditor
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(176, 589);
+            this.label6.Location = new System.Drawing.Point(175, 589);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(24, 20);
@@ -95,7 +95,7 @@ namespace LegendaryCardEditor.ImageEditor
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(31, 589);
+            this.label5.Location = new System.Drawing.Point(30, 589);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 20);
@@ -106,7 +106,7 @@ namespace LegendaryCardEditor.ImageEditor
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(341, 638);
+            this.btnCancel.Location = new System.Drawing.Point(340, 638);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 27);
@@ -120,10 +120,10 @@ namespace LegendaryCardEditor.ImageEditor
             this.pictureBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxResult.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pictureBoxResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxResult.Location = new System.Drawing.Point(25, 12);
+            this.pictureBoxResult.Location = new System.Drawing.Point(24, 12);
             this.pictureBoxResult.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxResult.Name = "pictureBoxResult";
-            this.pictureBoxResult.Size = new System.Drawing.Size(404, 551);
+            this.pictureBoxResult.Size = new System.Drawing.Size(404, 567);
             this.pictureBoxResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxResult.TabIndex = 1;
             this.pictureBoxResult.TabStop = false;
@@ -131,7 +131,7 @@ namespace LegendaryCardEditor.ImageEditor
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(341, 586);
+            this.btnOk.Location = new System.Drawing.Point(340, 586);
             this.btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(88, 27);

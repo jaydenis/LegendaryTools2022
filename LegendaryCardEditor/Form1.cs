@@ -26,7 +26,7 @@ namespace LegendaryCardEditor
 
         List<CurrentActiveDataModel> activeDataModels;
         List<LegendaryIconViewModel> legendaryIconList;
-        List<LegendaryTemplateModel> templateModelList;
+        List<Templates> templateModelList;
         List<DeckTypeModel> deckTypeList;
         List<LegendaryKeyword> keywordsList;
         LegendaryKeyword selectedKeyword;
@@ -70,8 +70,9 @@ namespace LegendaryCardEditor
              
 
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                // AddNewDeck();
             }
         }
@@ -220,8 +221,8 @@ namespace LegendaryCardEditor
 
         private void helpToolStripButton_Click(object sender, EventArgs e)
         {
-            LegendaryTemplateEditor templateEditor = new LegendaryTemplateEditor(deckTypeList, templateModelList, legendaryIconList);
-            templateEditor.Show();
+          //  LegendaryTemplateEditor templateEditor = new LegendaryTemplateEditor(deckTypeList, templateModelList, legendaryIconList);
+       //     templateEditor.Show();
         }
 
         private void btnAddDeck_Click(object sender, EventArgs e)

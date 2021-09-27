@@ -14,6 +14,7 @@ using System.IO;
 using System.Drawing.Drawing2D;
 using LegendaryTemplateEditor.Managers;
 using LegendaryTemplateEditor.Utilities;
+using LegendaryTemplateEditor.Models;
 
 namespace LegendaryTemplateEditor
 {
@@ -28,7 +29,20 @@ namespace LegendaryTemplateEditor
         string applicationDirectory = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
         string currentTemplateDirectory = @"C:\Repos\LegendaryTools2022\LegendaryTemplateEditor\Templates\cards";
 
+        private List<LegendaryIconViewModel> legendaryIconList { get; set; }
+        List<Templates> templateModelList { get; set; }
+
+        List<TemplateTypeModel> templateTypes{ get; set; }
+
+        bool formIsReady = false;
+        bool propertiesConfigured = false;
+
+
+
+
         #region ImageFrame
+        private List<TextField> cardTextFields = new List<TextField>();
+        private List<CardTextIconViewModel> cardTextIcons = new List<CardTextIconViewModel>();
         public double scale { get; set; } = 1.0d;
         public KalikoImage artworkImage { get; set; }
         public KalikoImage orignalArtwork { get; set; }
@@ -54,8 +68,8 @@ namespace LegendaryTemplateEditor
         public Font frameFont { get; set; }
 
 
-        public string rectXArray { get; set; }
-        public string rectYArray { get; set; }
+        public List<int> rectXArray { get; set; }
+        public List<int> rectYArray { get; set; }
         public double gapSizeBetweenLines { get; set; } = 0.2d;
         public double gapSizeBetweenParagraphs { get; set; } = 0.6d;
         public int startX { get; set; } = 0;
@@ -74,29 +88,99 @@ namespace LegendaryTemplateEditor
         private void Form1_Load(object sender, EventArgs e)
         {
             settings = SystemSettings.Load();
+
+
+            settings.imagesFolder = $"{applicationDirectory}\\images";
+            settings.iconsFolder = $"{applicationDirectory}\\images\\icons";
+
             settings.Save();
-            string path = applicationDirectory + "\\template.json";
+            legendaryIconList = coreManager.LoadIconsFromDirectory();
+            templateModelList = coreManager.GetTemplates();
+            templateTypes = coreManager.GetTemplateTypes();
+           
+
+            PopulateTemplateListBox();
+            //OpenFile();
+        }
+
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
+        private void OpenFile()
+        {
+            OpenFileDialog Dlg = new OpenFileDialog
+            {
+                Filter = "Json files (*.json)|*.json",
+                Title = "Select Custom Set"
+            };
+            if (Dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Cursor = Cursors.WaitCursor;
+                //string path = applicationDirectory + "\\template.json";
+                string jsonText = File.ReadAllText(Dlg.FileName);
+                fastColoredTextBox1.Text = jsonText;
+                template = JsonConvert.DeserializeObject<TemplateEntity>(jsonText);
+
+
+                string path = applicationDirectory + "\\cardData.json";
+                jsonText = File.ReadAllText(path);
+                fastColoredTextBox2.Text = jsonText;
+                card = JsonConvert.DeserializeObject<CardEntity>(jsonText);
+
+
+                ConfigureControlProperties();
+                chkLiveChanges.Checked = false;
+                LoadFormControls();
+
+                chkLiveChanges.Checked = true;
+
+                formIsReady = true;
+
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private void PopulateTemplateListBox()
+        {
+            toolStripTemplateList.Items.Clear();
+            foreach (Templates template in templateModelList.OrderBy(o => o.TemplateType).ThenBy(o => o.TemplateName))
+            {               
+                toolStripTemplateList.Items.Add(template.TemplateName);
+            }
+
+            cmbTemplateType.Items.Clear();
+            foreach (TemplateTypeModel template in templateTypes.OrderBy(o => o.TemplateType))
+            {
+                cmbTemplateType.Items.Add(template.TemplateType);
+            }
+            chkLiveChanges.Checked = true;
+        }
+
+        private void toolStripButtonTemplateSave_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+
+            template = JsonConvert.DeserializeObject<TemplateEntity>(fastColoredTextBox1.Text);
+
+
+            string path = applicationDirectory + "\\cardData.json";
             string jsonText = File.ReadAllText(path);
-            fastColoredTextBox1.Text = jsonText;
-            template = JsonConvert.DeserializeObject<TemplateEntity>(jsonText);
-
-
-            path = applicationDirectory + "\\cardData.json";
-            jsonText = File.ReadAllText(path);
             fastColoredTextBox2.Text = jsonText;
             card = JsonConvert.DeserializeObject<CardEntity>(jsonText);
 
 
-            ConfigureControlProperties();
+            Reload();
 
-            LoadFormControls();
-
-            chkLiveChanges.Checked = true;
+            this.Cursor = Cursors.Default;
         }
+
 
         private void toolStripButtonUpdateImage_Click(object sender, EventArgs e)
         {
             Reload();
+            fastColoredTextBox1.Text = JsonConvert.SerializeObject(template, Formatting.Indented);
         }
 
         private void numTeamX_ValueChanged(object sender, EventArgs e)
@@ -163,116 +247,212 @@ namespace LegendaryTemplateEditor
             }
         }
 
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            if (template != null && formIsReady)
+            {
+                Pen blackPen = new Pen(Color.Red, 1);
+
+                var pointsXY = GetPolygon();
+                // Create points that define polygon.
+                PointF point1 = new PointF(pointsXY[0].X, pointsXY[0].Y);
+                PointF point2 = new PointF(pointsXY[1].X, pointsXY[1].Y);
+                PointF point3 = new PointF(pointsXY[2].X, pointsXY[2].Y);
+                PointF point4 = new PointF(pointsXY[3].X, pointsXY[3].Y);
+                PointF point5 = new PointF(pointsXY[4].X, pointsXY[4].Y);
+                PointF point6 = new PointF(pointsXY[5].X, pointsXY[5].Y);
+                PointF[] curvePoints =
+                         {
+                 point1,
+                 point2,
+                 point3,
+                 point4,
+                 point5,
+                 point6
+             };
+
+                // Draw polygon curve to screen.
+                e.Graphics.DrawPolygon(blackPen, curvePoints);
+            }
+        }
+
+        private void numCardTextX1_ValueChanged(object sender, EventArgs e)
+        {
+            if (chkLiveChanges.Checked)
+            {
+                GetPolygon();
+                Reload();
+            }
+        }
+
+        private void toolStripTemplateList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (chkLiveChanges.Checked)
+            {
+                string path = string.Empty;
+                try
+                {
+                    var tempFile = templateModelList.Where(x => x.TemplateName == toolStripTemplateList.SelectedItem.ToString()).FirstOrDefault();
+                    //template = coreManager.GetTemplate($"{tempFile.TemplateType}\\{tempFile.TemplateName}.json");
+                    path = $"{settings.templatesFolder}\\cards\\{tempFile.TemplateType}\\{tempFile.TemplateName}.json";
+                    string jsonText = File.ReadAllText(path);
+                    fastColoredTextBox1.Text = jsonText;
+                    template = JsonConvert.DeserializeObject<TemplateEntity>(jsonText);
+
+
+                    path = applicationDirectory + "\\cardData.json";
+                    jsonText = File.ReadAllText(path);
+                    fastColoredTextBox2.Text = jsonText;
+                    card = JsonConvert.DeserializeObject<CardEntity>(jsonText);
+
+                    formIsReady = false;
+                    chkLiveChanges.Checked = false;
+
+                    ConfigureControlProperties();
+
+
+
+                    LoadFormControls();
+
+                    Reload();
+
+                    chkLiveChanges.Checked = true;
+
+                    formIsReady = true;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show($"Template Not Found!!{System.Environment.NewLine}{path}");
+                }
+
+            }
+        }
 
         private void Reload()
         {
-            LoadObjectModel();
-            fastColoredTextBox1.Text = JsonConvert.SerializeObject(template,Formatting.Indented);
-            var cardImage = RenderCardImage();
-            if (cardImage != null)
+            try
             {
-                pictureBox1.Image = null;
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox1.Image = cardImage.GetAsBitmap();
 
+                LoadObjectModel();
+                
+                var cardImage = RenderCardImage();
+                if (cardImage != null)
+                {
+                    pictureBox1.Image = null;
+                    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox1.Image = cardImage.GetAsBitmap();
+
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
         private void ConfigureControlProperties()
         {
-            numAttackDefenseIconX.Maximum = template.ImageWidth;
-            numAttackDefenseIconY.Maximum = template.ImageHeight;
-            numAttackDefenseTextX.Maximum = template.ImageWidth;
-            numAttackDefenseTextY.Maximum = template.ImageHeight;
+            if (!propertiesConfigured)
+            {
+                int maxVal = 1050;
+                numAttackDefenseIconX.Maximum = maxVal;
+                numAttackDefenseIconY.Maximum = maxVal;
+                numAttackDefenseTextX.Maximum = maxVal;
+                numAttackDefenseTextY.Maximum = maxVal;
 
-            numAttackIconX.Maximum = template.ImageWidth;
-            numAttackIconY.Maximum = template.ImageHeight;
-            numAttackTextX.Maximum = template.ImageWidth;
-            numAttackTextY.Maximum = template.ImageHeight;
+                numAttackIconX.Maximum = maxVal;
+                numAttackIconY.Maximum = maxVal;
+                numAttackTextX.Maximum = maxVal;
+                numAttackTextY.Maximum = maxVal;
 
-            numCardNameSubX.Maximum = template.ImageWidth;
-            numCardNameSubY.Maximum = template.ImageHeight;
-            numCardNameSubTextSize.Maximum = 120;
-            numCardNameSubTextSize.Minimum = 9;
-            numCardNameX.Maximum = template.ImageWidth;
-            numCardNameY.Maximum = template.ImageHeight;
-            numCardNameTextSize.Maximum = 120;
-            numCardNameTextSize.Minimum = 9;
-
-
-            numCardTextX1.Maximum = template.ImageWidth;
-            numCardTextX2.Maximum = template.ImageWidth;
-            numCardTextX3.Maximum = template.ImageWidth;
-            numCardTextX4.Maximum = template.ImageWidth;
-
-            numCardTextY1.Maximum = template.ImageHeight;
-            numCardTextY2.Maximum = template.ImageHeight;
-            numCardTextY3.Maximum = template.ImageHeight;
-            numCardTextY4.Maximum = template.ImageHeight;
+                numCardNameSubX.Maximum = maxVal;
+                numCardNameSubY.Maximum = maxVal;
+                numCardNameSubTextSize.Maximum = 120;
+                numCardNameSubTextSize.Minimum = 9;
+                numCardNameX.Maximum =maxVal;
+                numCardNameY.Maximum = maxVal;
+                numCardNameTextSize.Maximum = 120;
+                numCardNameTextSize.Minimum = 9;
 
 
-            numCostIconX.Maximum = template.ImageWidth;
-            numCostIconY.Maximum = template.ImageHeight;
-            numCostTextSize.Maximum = 120;
-            numCostTextSize.Minimum = 9;
-            numCostTextX.Maximum = template.ImageWidth;
-            numCostTextY.Maximum = template.ImageHeight;
+                numCardTextX1.Maximum = maxVal;
+                numCardTextX2.Maximum = maxVal;
+                numCardTextX3.Maximum = maxVal;
+                numCardTextX4.Maximum = maxVal;
+                numCardTextX5.Maximum = maxVal;
+                numCardTextX6.Maximum = maxVal;
+                numCardTextY1.Maximum = maxVal;
+                numCardTextY2.Maximum = maxVal;
+                numCardTextY3.Maximum = maxVal;
+                numCardTextY4.Maximum = maxVal;
+                numCardTextY5.Maximum = maxVal;
+                numCardTextY6.Maximum = maxVal;
+                numCostIconX.Maximum = maxVal;
+                numCostIconY.Maximum = maxVal;
+                numCostTextSize.Maximum = 120;
+                numCostTextSize.Minimum = 9;
+                numCostTextX.Maximum = maxVal;
+                numCostTextY.Maximum = maxVal;
+                numPiercingIconX.Maximum = maxVal;
+                numPiercingIconY.Maximum = maxVal;
+                numPiercingTextX.Maximum = maxVal;
+                numPiercingTextY.Maximum = maxVal;
+                numPowerPrimaryX.Maximum = maxVal;
+                numPowerPrimaryY.Maximum = maxVal;
+                numPowerSecondaryX.Maximum = maxVal;
+                numPowerSecondaryY.Maximum = maxVal;
+                numRecruitIconX.Maximum = maxVal;
+                numRecruitIconY.Maximum = maxVal;
+                numRecruitTextX.Maximum = maxVal;
+                numRecruitTextY.Maximum = maxVal;
 
-            numPiercingIconX.Maximum = template.ImageWidth;
-            numPiercingIconY.Maximum = template.ImageHeight;
-            numPiercingTextX.Maximum = template.ImageWidth;
-            numPiercingTextY.Maximum = template.ImageHeight;
+                numTeamX.Maximum = maxVal;
+                numTeamY.Maximum = maxVal;
 
-            numPowerPrimaryX.Maximum = template.ImageWidth;
-            numPowerPrimaryY.Maximum = template.ImageHeight;
-
-            numPowerSecondaryX.Maximum = template.ImageWidth;
-            numPowerSecondaryY.Maximum = template.ImageHeight;
-
-            numRecruitIconX.Maximum = template.ImageWidth;
-            numRecruitIconY.Maximum = template.ImageHeight;
-            numRecruitTextX.Maximum = template.ImageWidth;
-            numRecruitTextY.Maximum = template.ImageHeight;
-
-            numTeamX.Maximum = template.ImageWidth;
-            numTeamY.Maximum = template.ImageHeight;
-
-            numVictoryTextSize.Maximum = 120;
-            numCostTextSize.Minimum = 9;
-            numVictoryIconX.Maximum = template.ImageWidth;
-            numVictoryIconY.Maximum = template.ImageHeight;
-            numVictoryTextX.Maximum = template.ImageWidth;
-            numVictoryTextY.Maximum = template.ImageHeight;
+                numVictoryTextSize.Maximum = 120;
+                numCostTextSize.Minimum = 9;
+                numVictoryIconX.Maximum = maxVal;
+                numVictoryIconY.Maximum = maxVal;
+                numVictoryTextX.Maximum = maxVal;
+                numVictoryTextY.Maximum = maxVal;
+            }
+            propertiesConfigured = true;
         }
 
         private void LoadFormControls()
         {
 
+
             txtTemplateName.Text = template.TemplateName;
             txtTemplateDisplayName.Text = template.TemplateDisplayName;
-            cmbTemplateType.SelectedItem = template.TemplateType;
-            numAttackDefenseIconX.Value = template.AttackDefenseIconXY[0];
-            numAttackDefenseIconY.Value = template.AttackDefenseIconXY[1];
-            numAttackDefenseTextSize.Value = template.AttributesSecondryTextSize;
-            numAttackDefenseTextX.Value = template.AttackDefenseIconXY[0];
-            numAttackDefenseTextY.Value = template.AttackDefenseIconXY[1];
+
+            if (template.AttackDefenseVisible)
+            {
+                numAttackDefenseIconX.Value = template.AttackDefenseIconXY[0];
+                numAttackDefenseIconY.Value = template.AttackDefenseIconXY[1];
+                numAttackDefenseTextSize.Value = template.AttributesSecondryTextSize;
+                numAttackDefenseTextX.Value = template.AttackDefenseIconXY[0];
+                numAttackDefenseTextY.Value = template.AttackDefenseIconXY[1];
+            }
             chkAttackDefenseVisible.Checked = template.AttackDefenseVisible;
 
-            numAttackIconX.Value = template.AttackIconXY[0];
-            numAttackIconY.Value = template.AttackIconXY[1];
-            numAttributesTextSize.Value = template.AttributesPrimaryTextSize;
-            numAttackTextX.Value = template.AttackIconXY[0];
-            numAttackTextY.Value = template.AttackIconXY[1];
-            chkAttackVisible.Checked = template.AttackVisible;
+           
 
-            numCardNameSubX.Value = template.CardNameSubXY[0];
-            numCardNameSubY.Value = template.CardNameSubXY[1];
-            numCardNameSubTextSize.Value = template.CardNameSubTextSize;
+
+            if (template.CardNameSubVisible)
+            {
+                numCardNameSubX.Value = template.CardNameSubXY[0];
+                numCardNameSubY.Value = template.CardNameSubXY[1];
+                numCardNameSubTextSize.Value = template.CardNameSubTextSize;
+            }
             chkCardNameVisible.Checked = template.CardNameVisible;
 
-            numCardNameX.Value = template.CardNameXY[0];
-            numCardNameY.Value = template.CardNameXY[1];
-            numCardNameTextSize.Value = template.CardNameTextSize;
+            if (template.CardNameVisible)
+            {
+                numCardNameX.Value = template.CardNameXY[0];
+                numCardNameY.Value = template.CardNameXY[1];
+                numCardNameTextSize.Value = template.CardNameTextSize;
+            }
             chkCardNameSubVisible.Checked = template.CardNameSubVisible;
 
 
@@ -280,150 +460,204 @@ namespace LegendaryTemplateEditor
             numCardTextX2.Value = template.CardTextRectAreaX[1];
             numCardTextX3.Value = template.CardTextRectAreaX[2];
             numCardTextX4.Value = template.CardTextRectAreaX[3];
+            numCardTextX5.Value = template.CardTextRectAreaX[4];
+            numCardTextX6.Value = template.CardTextRectAreaX[5];
 
             numCardTextY1.Value = template.CardTextRectAreaY[0];
             numCardTextY2.Value = template.CardTextRectAreaY[1];
             numCardTextY3.Value = template.CardTextRectAreaY[2];
             numCardTextY4.Value = template.CardTextRectAreaY[3];
+            numCardTextY5.Value = template.CardTextRectAreaY[4];
+            numCardTextY6.Value = template.CardTextRectAreaY[5];
 
+            numCardTextSize.Value = template.CardTextSize;
 
-            numCostIconX.Value = template.CostIconXY[0];
-            numCostIconY.Value = template.CostIconXY[1];
-            numCostTextSize.Value = template.AttributesSecondryTextSize;
-            numCostTextX.Value = template.CostValueXY[0];
-            numCostTextY.Value = template.CostValueXY[1];
+            if (template.CostVisible)
+            {
+                numCostIconX.Value = template.CostIconXY[0];
+                numCostIconY.Value = template.CostIconXY[1];
+                numCostTextSize.Value = template.AttributesSecondryTextSize;
+                numCostTextX.Value = template.CostValueXY[0];
+                numCostTextY.Value = template.CostValueXY[1];
+            }
             chkCostVisible.Checked = template.CostVisible;
 
-            numPiercingIconX.Value = template.PiercingIconXY[0];
-            numPiercingIconY.Value = template.PiercingIconXY[1];
-            numPiercingTextX.Value = template.PiercingValueXY[0];
-            numPiercingTextY.Value = template.PiercingValueXY[1];
-            chkPiercingVisible.Checked = template.PiercingVisible;
+            if (template.AttributesPrimaryVisible)
+            {
+                if (template.AttackVisible)
+                {
+                    numAttackIconX.Value = template.AttackIconXY[0];
+                    numAttackIconY.Value = template.AttackIconXY[1];
+                    numAttributesTextSize.Value = template.AttributesPrimaryTextSize;
+                    numAttackTextX.Value = template.AttackIconXY[0];
+                    numAttackTextY.Value = template.AttackIconXY[1];
+                }
+                chkAttackVisible.Checked = template.AttackVisible;
 
-            numPowerPrimaryX.Value = template.PowerPrimaryIconXY[0];
-            numPowerPrimaryY.Value = template.PowerPrimaryIconXY[1];
-            chkPowerPrimaryVisible.Checked = template.PowerPrimaryIconVisible;
+                if (template.PiercingVisible)
+                {
+                    numPiercingIconX.Value = template.PiercingIconXY[0];
+                    numPiercingIconY.Value = template.PiercingIconXY[1];
+                    numPiercingTextX.Value = template.PiercingValueXY[0];
+                    numPiercingTextY.Value = template.PiercingValueXY[1];
+                }
+                chkPiercingVisible.Checked = template.PiercingVisible;
 
-            numPowerSecondaryX.Value = template.PowerSecondaryIconXY[0];
-            numPowerSecondaryY.Value = template.PowerSecondaryIconXY[1];
-            chkPowerSecondaryVisible.Checked = template.PowerSecondaryIconVisible;
+                if (template.PowerPrimaryIconVisible)
+                {
+                    numPowerPrimaryX.Value = template.PowerPrimaryIconXY[0];
+                    numPowerPrimaryY.Value = template.PowerPrimaryIconXY[1];
+                }
+                chkPowerPrimaryVisible.Checked = template.PowerPrimaryIconVisible;
 
-            numRecruitIconX.Value = template.RecruitIconXY[0];
-            numRecruitIconY.Value = template.RecruitIconXY[1];
-            numRecruitTextX.Value = template.RecruitValueXY[0];
-            numRecruitTextY.Value = template.RecruitValueXY[1];
-            chkRecruitVisible.Checked = template.RecruitVisible;
+                if (template.PowerSecondaryIconVisible)
+                {
+                    numPowerSecondaryX.Value = template.PowerSecondaryIconXY[0];
+                    numPowerSecondaryY.Value = template.PowerSecondaryIconXY[1];
+                }
+                chkPowerSecondaryVisible.Checked = template.PowerSecondaryIconVisible;
 
-            numTeamX.Value = template.TeamIconXY[0];
-            numTeamY.Value = template.TeamIconXY[1];
-            chkTeamVisible.Checked = template.TeamIconVisible;
-
+                if (template.RecruitVisible)
+                {
+                    numRecruitIconX.Value = template.RecruitIconXY[0];
+                    numRecruitIconY.Value = template.RecruitIconXY[1];
+                    numRecruitTextX.Value = template.RecruitValueXY[0];
+                    numRecruitTextY.Value = template.RecruitValueXY[1];
+                }
+                chkRecruitVisible.Checked = template.RecruitVisible;
+            }
+            else
+            {
+                chkAttackVisible.Checked = template.AttackVisible;
+                chkPiercingVisible.Checked = template.PiercingVisible;
+                chkRecruitVisible.Checked = template.RecruitVisible;
+                chkPowerSecondaryVisible.Checked = template.PowerSecondaryIconVisible;
+                chkPowerPrimaryVisible.Checked = template.PowerPrimaryIconVisible;
+            }
 
             chkAttributesPrimaryVisible.Checked = template.AttributesPrimaryVisible;
 
-            numVictoryTextSize.Value = template.VictoryTextSize;
-            numVictoryIconX.Value = template.VictroyIconXY[0];
-            numVictoryIconY.Value = template.VictroyIconXY[1];
-            numVictoryTextX.Value = template.VictroyValueXY[0];
-            numVictoryTextY.Value = template.VictroyValueXY[1];
+            if (template.TeamIconVisible)
+            {
+                numTeamX.Value = template.TeamIconXY[0];
+                numTeamY.Value = template.TeamIconXY[1];
+            }
+            chkTeamVisible.Checked = template.TeamIconVisible;
+
+
+            if (template.VictroyVisible)
+            {
+                numVictoryTextSize.Value = template.VictoryTextSize;
+                numVictoryIconX.Value = template.VictroyIconXY[0];
+                numVictoryIconY.Value = template.VictroyIconXY[1];
+                numVictoryTextX.Value = template.VictroyValueXY[0];
+                numVictoryTextY.Value = template.VictroyValueXY[1];
+            }
+            chkVictoryVisible.Checked = template.VictroyVisible;
 
             cmbFrameImage.SelectedItem = template.FrameImage;
             cmbTextImage.SelectedItem = template.TextImage;
             cmbUnderlayImage.SelectedItem = template.UnderlayImage;
 
+            
+            cmbTemplateType.SelectedItem = templateTypes.Where(x => x.TemplateType.ToLower() == template.TemplateType.ToLower()).FirstOrDefault().TemplateType;
+
         }
 
         private void LoadObjectModel()
         {
-            template.TemplateName = txtTemplateName.Text;
-            template.TemplateDisplayName = txtTemplateName.Text;
-            template.TemplateType = cmbTemplateType.SelectedItem.ToString();
+            if (formIsReady)
+            {
+                template.TemplateName = txtTemplateName.Text;
+                template.TemplateDisplayName = txtTemplateDisplayName.Text;
+                template.TemplateType = cmbTemplateType.SelectedItem.ToString();
 
-            template.AttackDefenseIconXY = new List<int>
+                template.AttackDefenseIconXY = new List<int>
             {
                 Convert.ToInt32(numAttackDefenseIconX.Value),
                 Convert.ToInt32(numAttackDefenseIconY.Value)
             };
 
 
-            template.AttackDefenseValueXY = new List<int>{
+                template.AttackDefenseValueXY = new List<int>{
                 Convert.ToInt32(numAttackDefenseTextX.Value),
                 Convert.ToInt32(numAttackDefenseTextY.Value)
             };
 
-            template.AttackDefenseVisible = chkAttackDefenseVisible.Checked;
-            template.AttackIconXY = new List<int> { Convert.ToInt32(numAttackIconX.Value), Convert.ToInt32(numAttackIconY.Value) };
-            template.AttackValueXY = new List<int> { Convert.ToInt32(numAttackTextX.Value), Convert.ToInt32(numAttackTextY.Value) };
-            template.AttackVisible = chkAttackVisible.Checked;
-            template.AttributesPrimaryTextSize = Convert.ToInt32(numAttributesTextSize.Value);
-            template.AttributesSecondryTextSize = Convert.ToInt32(numCostTextSize.Value);
-            template.CardNameXY = new List<int> { Convert.ToInt32(numCardNameX.Value), Convert.ToInt32(numCardNameY.Value) };
-            template.CardNameVisible = chkCardNameVisible.Checked;
-            template.CardNameTextSize = Convert.ToInt32(numCardNameTextSize.Value);
-            template.CardNameSubXY = new List<int> { Convert.ToInt32(numCardNameSubX.Value), Convert.ToInt32(numCardNameSubY.Value) };
-            template.CardNameSubVisible = chkCardNameSubVisible.Checked;
-            template.CardNameSubTextSize = Convert.ToInt32(numCardNameSubTextSize.Value);
-            template.CardTextRectAreaX = SetPolygon(true,false);
-            template.CardTextRectAreaY = SetPolygon(false,true);
-            template.CardTextSize = Convert.ToInt32(numCardTextSize.Value);
-            template.CostIconXY = new List<int> { Convert.ToInt32(numCostIconX.Value), Convert.ToInt32(numCostIconY.Value) };
-            template.CostValueXY = new List<int> { Convert.ToInt32(numCostTextX.Value), Convert.ToInt32(numCostTextY.Value) };
-            template.CostVisible = chkCostVisible.Checked;
-            template.PiercingIconXY = new List<int> { Convert.ToInt32(numPiercingIconX.Value), Convert.ToInt32(numPiercingIconY.Value) };
-            template.PiercingValueXY = new List<int> { Convert.ToInt32(numPiercingTextX.Value), Convert.ToInt32(numPiercingTextY.Value) };
-            template.PiercingVisible = chkPiercingVisible.Checked;
-            template.PowerPrimaryIconXY = new List<int> { Convert.ToInt32(numPowerPrimaryX.Value), Convert.ToInt32(numPowerPrimaryY.Value) };
-            template.PowerSecondaryIconXY = new List<int> { Convert.ToInt32(numPowerSecondaryX.Value), Convert.ToInt32(numPowerSecondaryY.Value) };
-            template.PowerPrimaryIconVisible = chkPowerPrimaryVisible.Checked;
-            template.PowerSecondaryIconVisible = chkPowerSecondaryVisible.Checked;
-            template.RecruitIconXY = new List<int> { Convert.ToInt32(numRecruitIconX.Value), Convert.ToInt32(numRecruitIconY.Value) };
-            template.RecruitValueXY = new List<int> { Convert.ToInt32(numRecruitTextX.Value), Convert.ToInt32(numRecruitTextY.Value) };
-            template.RecruitVisible = chkRecruitVisible.Checked;
-            template.TeamIconXY = new List<int> { Convert.ToInt32(numTeamX.Value), Convert.ToInt32(numTeamY.Value) };
-            template.TeamIconVisible = chkTeamVisible.Checked;
-            template.VictroyIconXY = new List<int> { Convert.ToInt32(numVictoryIconX.Value), Convert.ToInt32(numVictoryIconY.Value) };
-            template.VictroyValueXY = new List<int> { Convert.ToInt32(numVictoryTextX.Value), Convert.ToInt32(numVictoryTextY.Value) };
-            template.VictoryTextSize = Convert.ToInt32(numVictoryTextSize.Value);
-            template.VictroyVisible = chkVictoryVisible.Checked;
+                template.AttackDefenseVisible = chkAttackDefenseVisible.Checked;
+                template.AttackIconXY = new List<int> { Convert.ToInt32(numAttackIconX.Value), Convert.ToInt32(numAttackIconY.Value) };
+                template.AttackValueXY = new List<int> { Convert.ToInt32(numAttackTextX.Value), Convert.ToInt32(numAttackTextY.Value) };
+                template.AttackVisible = chkAttackVisible.Checked;
+                template.AttributesPrimaryTextSize = Convert.ToInt32(numAttributesTextSize.Value);
+                template.AttributesSecondryTextSize = Convert.ToInt32(numCostTextSize.Value);
+                template.CardNameXY = new List<int> { Convert.ToInt32(numCardNameX.Value), Convert.ToInt32(numCardNameY.Value) };
+                template.CardNameVisible = chkCardNameVisible.Checked;
+                template.CardNameTextSize = Convert.ToInt32(numCardNameTextSize.Value);
+                template.CardNameSubXY = new List<int> { Convert.ToInt32(numCardNameSubX.Value), Convert.ToInt32(numCardNameSubY.Value) };
+                template.CardNameSubVisible = chkCardNameSubVisible.Checked;
+                template.CardNameSubTextSize = Convert.ToInt32(numCardNameSubTextSize.Value);
+                template.CardTextRectAreaX = SetPolygon(true, false);
+                template.CardTextRectAreaY = SetPolygon(false, true);
+                template.CardTextSize = Convert.ToInt32(numCardTextSize.Value);
+                template.CostIconXY = new List<int> { Convert.ToInt32(numCostIconX.Value), Convert.ToInt32(numCostIconY.Value) };
+                template.CostValueXY = new List<int> { Convert.ToInt32(numCostTextX.Value), Convert.ToInt32(numCostTextY.Value) };
+                template.CostVisible = chkCostVisible.Checked;
+                template.PiercingIconXY = new List<int> { Convert.ToInt32(numPiercingIconX.Value), Convert.ToInt32(numPiercingIconY.Value) };
+                template.PiercingValueXY = new List<int> { Convert.ToInt32(numPiercingTextX.Value), Convert.ToInt32(numPiercingTextY.Value) };
+                template.PiercingVisible = chkPiercingVisible.Checked;
+                template.PowerPrimaryIconXY = new List<int> { Convert.ToInt32(numPowerPrimaryX.Value), Convert.ToInt32(numPowerPrimaryY.Value) };
+                template.PowerSecondaryIconXY = new List<int> { Convert.ToInt32(numPowerSecondaryX.Value), Convert.ToInt32(numPowerSecondaryY.Value) };
+                template.PowerPrimaryIconVisible = chkPowerPrimaryVisible.Checked;
+                template.PowerSecondaryIconVisible = chkPowerSecondaryVisible.Checked;
+                template.RecruitIconXY = new List<int> { Convert.ToInt32(numRecruitIconX.Value), Convert.ToInt32(numRecruitIconY.Value) };
+                template.RecruitValueXY = new List<int> { Convert.ToInt32(numRecruitTextX.Value), Convert.ToInt32(numRecruitTextY.Value) };
+                template.RecruitVisible = chkRecruitVisible.Checked;
+                template.TeamIconXY = new List<int> { Convert.ToInt32(numTeamX.Value), Convert.ToInt32(numTeamY.Value) };
+                template.TeamIconVisible = chkTeamVisible.Checked;
+                template.VictroyIconXY = new List<int> { Convert.ToInt32(numVictoryIconX.Value), Convert.ToInt32(numVictoryIconY.Value) };
+                template.VictroyValueXY = new List<int> { Convert.ToInt32(numVictoryTextX.Value), Convert.ToInt32(numVictoryTextY.Value) };
+                template.VictoryTextSize = Convert.ToInt32(numVictoryTextSize.Value);
+                template.VictroyVisible = chkVictoryVisible.Checked;
 
-            if (template.PowerPrimaryIconVisible)
-                powerImage = new KalikoImage(Resources.covert);
+                if (template.PowerPrimaryIconVisible)
+                    powerImage = new KalikoImage(Resources.covert);
 
-            if (template.PowerSecondaryIconVisible)
-                powerImage2 = new KalikoImage(Resources.strength);
+                if (template.PowerSecondaryIconVisible)
+                    powerImage2 = new KalikoImage(Resources.strength);
 
-            if (template.TeamIconVisible)
-                teamImage = new KalikoImage(Resources.avengers);
+                if (template.TeamIconVisible)
+                    teamImage = new KalikoImage(Resources.avengers);
 
-            if (template.RecruitVisible)
-                recruitImage = new KalikoImage(Resources.recruit);
+                if (template.RecruitVisible)
+                    recruitImage = new KalikoImage(Resources.recruit);
 
-            if (template.AttackVisible)
-                attackImageHero = new KalikoImage(Resources.attack);
+                if (template.AttackVisible)
+                    attackImageHero = new KalikoImage(Resources.attack);
 
-            if (template.PiercingVisible)
-                piercingImage = new KalikoImage(Resources.piercing);
+                if (template.PiercingVisible)
+                    piercingImage = new KalikoImage(Resources.piercing);
 
 
-            if (cmbFrameImage.SelectedItem != null && chkFrameImageVisible.Visible)
-                template.FrameImage = cmbFrameImage.SelectedItem.ToString();
-            else
-                template.FrameImage = string.Empty;
+                if (cmbFrameImage.SelectedItem != null && chkFrameImageVisible.Visible)
+                    template.FrameImage = cmbFrameImage.SelectedItem.ToString();
+                else
+                    template.FrameImage = string.Empty;
 
-            if (cmbTextImage.SelectedItem != null && chkTextImageVisible.Visible)
-                template.TextImage = cmbTextImage.SelectedItem.ToString();
-            else
-                template.TextImage = string.Empty;
+                if (cmbTextImage.SelectedItem != null && chkTextImageVisible.Visible)
+                    template.TextImage = cmbTextImage.SelectedItem.ToString();
+                else
+                    template.TextImage = string.Empty;
 
-            if (cmbUnderlayImage.SelectedItem != null && chkUnderlayImageVisible.Visible)
-                template.UnderlayImage = cmbUnderlayImage.SelectedItem.ToString();
-            else
-                template.UnderlayImage = string.Empty;
+                if (cmbUnderlayImage.SelectedItem != null && chkUnderlayImageVisible.Visible)
+                    template.UnderlayImage = cmbUnderlayImage.SelectedItem.ToString();
+                else
+                    template.UnderlayImage = string.Empty;
 
-            if (cmbCostImage.SelectedItem != null && chkCostImageVisible.Visible)
-                template.CostImage = cmbCostImage.SelectedItem.ToString();
-            else
-                template.CostImage = string.Empty;
+                if (cmbCostImage.SelectedItem != null && chkCostImageVisible.Visible)
+                    template.CostImage = cmbCostImage.SelectedItem.ToString();
+                else
+                    template.CostImage = string.Empty;
+            }
 
         }
 
@@ -436,6 +670,8 @@ namespace LegendaryTemplateEditor
                 polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX2.Value), scale));
                 polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX3.Value), scale));
                 polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX4.Value), scale));
+                polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX5.Value), scale));
+                polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX6.Value), scale));
             }
 
             if (getX == false && getY == true)
@@ -444,16 +680,14 @@ namespace LegendaryTemplateEditor
                 polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY2.Value), scale));
                 polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY3.Value), scale));
                 polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY4.Value), scale));
+                polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY5.Value), scale));
+                polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY6.Value), scale));
             }
 
             return polygon;
-        }  
+        }         
 
-        private int GetPercentage(int size, double scale)
-        {
-            return (int)(((double)size * (double)scale));
-        }
-
+    
         public KalikoImage GetIconMaxHeight(string icon, int maxHeight)
         {
             string path = icon;// @icon.FileName;
@@ -561,19 +795,19 @@ namespace LegendaryTemplateEditor
             if (powerImage != null && template.PowerPrimaryIconVisible)
             {
                
-                powerImage.Resize(60, 60);
+                powerImage.Resize(30, 30);
                 infoImage.BlitImage(powerImage, template.PowerPrimaryIconXY[0], template.PowerPrimaryIconXY[1]);
 
                 if (powerImage2 != null && template.PowerPrimaryIconVisible && template.PowerSecondaryIconVisible)
                 {
-                    powerImage2.Resize(60, 60);
+                    powerImage2.Resize(30, 30);
                     infoImage.BlitImage(powerImage2, template.PowerSecondaryIconXY[0], template.PowerSecondaryIconXY[1]);
                 }
             }
 
             if (teamImage != null && template.TeamIconVisible)
             {
-                teamImage.Resize(60, 60);
+                teamImage.Resize(30, 30);
                 infoImage.BlitImage(teamImage, template.TeamIconXY[0], template.TeamIconXY[1]);
             }
 
@@ -583,12 +817,12 @@ namespace LegendaryTemplateEditor
                     card.AttributeVictoryPoints = 0;
 
                 victoryPointsImage = new KalikoImage(Resources.victory);
-                victoryPointsImage.Resize(60, 60);
+                victoryPointsImage.Resize(30, 30);
                 infoImage.BlitImage(victoryPointsImage, template.VictroyIconXY[0], template.VictroyIconXY[1]);
 
                 font = new Font(
                fontFamily,
-               GetPercentage(template.VictoryTextSize,scale*1.5),
+               template.VictoryTextSize,
                FontStyle.Bold,
                GraphicsUnit.Pixel);
 
@@ -606,7 +840,7 @@ namespace LegendaryTemplateEditor
             {
                 if (card.AttributeRecruit.Length > 0)
                 {
-                    recruitImage.Resize(120, 120);
+                    recruitImage.Resize(50, 50);
                     infoImage.BlitImage(recruitImage, template.RecruitIconXY[0], template.RecruitIconXY[1]);
                 }
             }
@@ -615,7 +849,7 @@ namespace LegendaryTemplateEditor
             {
                 if (card.AttributeAttack.Length > 0)
                 {
-                    attackImageHero.Resize(120, 120);
+                    attackImageHero.Resize(50, 50);
                     infoImage.BlitImage(attackImageHero, template.AttackIconXY[0], template.AttackIconXY[1]);
                 }
             }
@@ -624,7 +858,7 @@ namespace LegendaryTemplateEditor
             {
                 if (card.AttributePiercing.Length > 0)
                 {
-                    piercingImage.Resize(120, 120);
+                    piercingImage.Resize(50, 50);
                     infoImage.BlitImage(piercingImage, template.PiercingIconXY[0], template.PiercingIconXY[1]);
                 }
             }
@@ -637,11 +871,9 @@ namespace LegendaryTemplateEditor
 
             if (template.CostVisible && costImage != null)
             {
-                costImage.Resize(150, 150);
+                costImage.Resize(80,80);
                 infoImage.BlitImage(costImage, template.CostIconXY[0], template.CostIconXY[1]);
             }
-
-
 
             if (card.AttributeCost != null && template.CostVisible)
             {
@@ -654,7 +886,7 @@ namespace LegendaryTemplateEditor
                 {
                     cardCostFont = new Font(
                       fontFamily,
-                      GetPercentage(template.AttributesSecondryTextSize, scale * 1.5),
+                      template.AttributesSecondryTextSize,
                       FontStyle.Bold,
                       GraphicsUnit.Pixel);
 
@@ -669,7 +901,7 @@ namespace LegendaryTemplateEditor
                         Font = cardCostFont,
                         TargetArea = new Rectangle(template.CostValueXY[0],template.CostValueXY[1], textSize.Width + 2, textSize.Height),
                         TextColor = Color.White,
-                        Outline = 4,
+                        Outline = 2,
                         OutlineColor = Color.Black,
                         Alignment = StringAlignment.Near
                     };
@@ -688,7 +920,7 @@ namespace LegendaryTemplateEditor
                             Font = font,
                             TargetArea = new Rectangle(txtField.TargetArea.X + 42, txtField.TargetArea.Y + 20, textSize.Width + 2, textSize.Height),
                             TextColor = Color.White,
-                            Outline = 4,
+                            Outline = 2,
                             OutlineColor = Color.Black,
                             Alignment = StringAlignment.Near
                         };
@@ -696,18 +928,14 @@ namespace LegendaryTemplateEditor
                         card.AttributeCost = tempVal + "+";
                     }
                 }
-            }
-
-           
-
-
+            }         
 
             if (card.AttributeAttackDefense != null && template.AttackDefenseVisible)
             {
 
                 cardCostFont = new Font(
                   attributesFont.FontFamily,
-                  GetPercentage(template.AttributesSecondryTextSize, scale*1.5),
+                  template.AttributesSecondryTextSize,
                   FontStyle.Bold,
                   GraphicsUnit.Pixel);
 
@@ -720,7 +948,7 @@ namespace LegendaryTemplateEditor
 
                 txtField.Point = new Point(template.AttackDefenseValueXY[0], template.AttackDefenseValueXY[1]);
 
-                txtField.Outline = 4;
+                txtField.Outline = 2;
                 txtField.OutlineColor = Color.Black;
                 infoImage.DrawText(txtField);
             }
@@ -729,23 +957,23 @@ namespace LegendaryTemplateEditor
 
             Font fontTitle = new Font(
                attributesFont.FontFamily,
-               GetPercentage(template.CardNameTextSize, scale * 1.5),
+               template.CardNameTextSize,
                FontStyle.Bold,
                GraphicsUnit.Pixel);
 
             TextField txtFieldTitle = new TextField(card.CardDisplayName.ToUpper())
             {
                 Font = fontTitle,
-                TargetArea = new Rectangle(template.CardNameXY[0], template.CardNameXY[1], template.ImageWidth - 100, fontTitle.Height + 20),
+                TargetArea = new Rectangle(template.CardNameXY[0], template.CardNameXY[1], template.ImageWidth - 40, fontTitle.Height + 20),
                 Alignment = StringAlignment.Center,
                 TextColor = Color.Gold,
-                Outline = 3,
+                Outline = 2,
                 OutlineColor = Color.Black
             };
 
             Font fontSubTitle = new Font(
                attributesFont.FontFamily,
-               GetPercentage(template.CardNameSubTextSize, scale * 1.5),
+               template.CardNameSubTextSize,
                FontStyle.Bold,
                GraphicsUnit.Pixel);
 
@@ -774,7 +1002,7 @@ namespace LegendaryTemplateEditor
             TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
             {
                 Font = fontSubTitle,
-                TargetArea = new Rectangle(template.CardNameSubXY[0], fontTitle.Height + 15, template.ImageWidth-100, 60),
+                TargetArea = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1], template.ImageWidth-40, 60),
                 Alignment = StringAlignment.Center,
                 TextColor = Color.Gold,
                 Outline = 2,
@@ -784,7 +1012,7 @@ namespace LegendaryTemplateEditor
             if (template.TemplateName == "wound" || template.TemplateName == "bystander")
             {
                 txtFieldSubTitle.Text = template.TemplateDisplayName.ToUpper();
-                txtFieldSubTitle.TargetArea = new Rectangle(38, 512, 430, 50);
+                txtFieldSubTitle.TargetArea = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1], template.ImageWidth, 50);
                 txtFieldSubTitle.TextColor = Color.White;
                 txtFieldSubTitle.Alignment = StringAlignment.Near;
             }
@@ -816,16 +1044,20 @@ namespace LegendaryTemplateEditor
                 gR.FillRectangle(linearGradientBrushR, 0, 0, template.ImageWidth / 2, combinedImageR.Height);
                 infoImage.BlitImage(combinedImageR, template.ImageWidth / 2, 16);
             }
+
+            if(template.CardNameVisible)
             infoImage.DrawText(txtFieldTitle);
-            infoImage.DrawText(txtFieldSubTitle);
 
-
+            if(template.CardNameSubVisible)
+                infoImage.DrawText(txtFieldSubTitle);
 
             containsPlus = false;
+            if (template.AttributesPrimaryTextSize < 9)
+                template.AttributesPrimaryTextSize = 22;
 
             attributesFont = new Font(
                   fontFamily,
-                  GetPercentage(template.AttributesPrimaryTextSize, scale * 1.5),
+                  template.AttributesPrimaryTextSize,
                   FontStyle.Bold,
                   GraphicsUnit.Pixel);
 
@@ -843,7 +1075,7 @@ namespace LegendaryTemplateEditor
                     Font = attributesFont,
                     TargetArea = new Rectangle(template.RecruitValueXY[0], template.RecruitValueXY[1], textSizeRecruit.Width + 2, textSizeRecruit.Height),
                     TextColor = Color.White,
-                    Outline = 4,
+                    Outline = 2,
                     OutlineColor = Color.Black,
                     Alignment = StringAlignment.Near
                 };
@@ -860,9 +1092,9 @@ namespace LegendaryTemplateEditor
                     TextField txtFieldRecruitPlus = new TextField("+")
                     {
                         Font = font,
-                        TargetArea = new Rectangle(txtFieldRecruit.TargetArea.Width - 20, txtFieldRecruit.TargetArea.Y + 20, textSizeRecruit.Width + 2, textSizeRecruit.Height),
+                        TargetArea = new Rectangle(txtFieldRecruit.TargetArea.Width - 5, txtFieldRecruit.TargetArea.Y + 5, textSizeRecruit.Width + 2, textSizeRecruit.Height),
                         TextColor = Color.White,
-                        Outline = 4,
+                        Outline = 2,
                         OutlineColor = Color.Black,
                         Alignment = StringAlignment.Near
                     };
@@ -886,7 +1118,7 @@ namespace LegendaryTemplateEditor
                     Font = attributesFont,
                     TargetArea = new Rectangle(template.AttackValueXY[0], template.AttackValueXY[1], textSizeAttack.Width + 2, textSizeAttack.Height),
                     TextColor = Color.White,
-                    Outline = 4,
+                    Outline = 2,
                     OutlineColor = Color.Black,
                     Alignment = StringAlignment.Near
                 };
@@ -903,9 +1135,9 @@ namespace LegendaryTemplateEditor
                     TextField txtFieldAttackPlus = new TextField("+")
                     {
                         Font = font,
-                        TargetArea = new Rectangle(txtFieldAttack.TargetArea.Width - 20, txtFieldAttack.TargetArea.Y + 20, textSizeAttack.Width + 2, textSizeAttack.Height),
+                        TargetArea = new Rectangle(txtFieldAttack.TargetArea.Width - 5, txtFieldAttack.TargetArea.Y + 5, textSizeAttack.Width + 2, textSizeAttack.Height),
                         TextColor = Color.White,
-                        Outline = 4,
+                        Outline = 2,
                         OutlineColor = Color.Black,
                         Alignment = StringAlignment.Near
                     };
@@ -929,7 +1161,7 @@ namespace LegendaryTemplateEditor
                     Font = attributesFont,
                     TargetArea = new Rectangle(template.PiercingValueXY[0], template.PiercingValueXY[1], textSizePiercing.Width + 2, textSizePiercing.Height),
                     TextColor = Color.White,
-                    Outline = 4,
+                    Outline = 2,
                     OutlineColor = Color.Black,
                     Alignment = StringAlignment.Near
                 };
@@ -946,9 +1178,9 @@ namespace LegendaryTemplateEditor
                     TextField txtFieldPiercingPlus = new TextField("+")
                     {
                         Font = font,
-                        TargetArea = new Rectangle(txtFieldPiercing.TargetArea.Width - 20, txtFieldPiercing.TargetArea.Y + 20, textSizePiercing.Width + 2, textSizePiercing.Height),
+                        TargetArea = new Rectangle(txtFieldPiercing.TargetArea.Width - 5, txtFieldPiercing.TargetArea.Y + 5, textSizePiercing.Width + 2, textSizePiercing.Height),
                         TextColor = Color.White,
-                        Outline = 4,
+                        Outline = 2,
                         OutlineColor = Color.Black,
                         Alignment = StringAlignment.Near
                     };
@@ -957,10 +1189,331 @@ namespace LegendaryTemplateEditor
                 }
             }
 
+
+            if (card.CardText != null)
+            {
+                GetCardText(card);
+
+                foreach (var icon in cardTextIcons)
+                    infoImage.BlitImage(icon.IconImage, icon.Position.X, icon.Position.Y);
+
+                foreach (var item in cardTextFields)
+                    infoImage.DrawText(item);
+            }
+
             return infoImage;
 
         }
 
-       
-    }
+        public void GetCardText(CardEntity model)
+        {
+            try
+            {
+                if (template == null)
+                    return;
+
+                if (template.CardTextSize < 9)
+                    template.CardTextSize = 22;
+
+                cardTextFields = new List<TextField>();
+                cardTextIcons = new List<CardTextIconViewModel>();
+
+                FontFamily fontFamily = new FontFamily("Eurostile");
+
+                if (cardInfoFont == null)
+                {
+                    cardInfoFont = new Font(
+                      fontFamily,
+                      Convert.ToInt32(template.CardTextSize),
+                      FontStyle.Regular,
+                      GraphicsUnit.Pixel);
+                }
+
+                Font fontRegular = new Font(
+                      fontFamily,
+                      Convert.ToInt32(template.CardTextSize),
+                      FontStyle.Regular,
+                      GraphicsUnit.Pixel);
+
+                Font fontBold = new Font(
+                      fontFamily,
+                      Convert.ToInt32(template.CardTextSize),
+                      FontStyle.Bold,
+                      GraphicsUnit.Pixel);
+
+                int x = 1;
+                int y = 1;
+
+                var ascent = fontFamily.GetCellAscent(FontStyle.Regular);
+                var descent = fontFamily.GetCellDescent(FontStyle.Regular);
+
+                // 14.484375 = 16.0 * 1854 / 2048
+                var ascentPixel = fontRegular.Size * ascent / fontFamily.GetEmHeight(FontStyle.Regular);
+
+                Point[] startPoint = GetPolygon(); //new Point(70,390);
+                x = startPoint[0].X;
+                y = startPoint[0].Y;
+                var sections = model.CardText.Split(' ').ToList();
+
+               bool lastCharIsNumeric = false;
+
+                foreach (String sectionString in sections)
+                { 
+                    
+                    if (sectionString.Length > 0)
+                    {
+                        Font currentFont = fontRegular;
+                        List<WordDefinition> words = WordDefinition.GetWordDefinitionList(sectionString);
+                        foreach (WordDefinition wd in words)
+                        {
+                            
+                            String s = wd.word;
+                            String spaceChar = " ";
+                            if (wd.space)
+                            {
+                                spaceChar = " ";
+                            }
+
+                            if (s.StartsWith("<k>"))
+                            {
+                                currentFont = fontBold;
+                                s = s.Replace("<k>", "");
+                            }
+
+                            if (s.StartsWith("<r>"))
+                            {
+                                currentFont = fontRegular;
+                                s = s.Replace("<r>", "");
+                            }
+
+                            bool gap = false;
+                            if (s.Equals("<g>"))
+                            {
+                                gap = true;
+                                s = s.Replace("<g>", "");
+                            }
+
+                            Size textSize = TextRenderer.MeasureText(s, currentFont);
+
+                            LegendaryIconViewModel icon = IsIcon(s);
+                            if (gap == true)
+                            {
+                                y += currentFont.Height;
+                                x = startPoint[0].X;
+                            }
+                            else if ((icon == null))
+                            {
+                                int stringLength = textSize.Width;
+                                if (stringLength > 0)
+                                {
+                                    if (!IsInPolygon(startPoint, new Point(x - 2 + stringLength, y)))
+                                    {
+                                        y += currentFont.Height;
+                                        x = getXStart(y);
+                                    }
+
+                                    TextField txtFieldDetails = new TextField(s)
+                                    {
+                                       // Point = new Point(x, y),
+                                        TargetArea = new Rectangle(x, y, textSize.Width, textSize.Height+3),
+                                        Font = currentFont,
+                                        TextBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black),
+                                        TextColor = Color.Black
+                                    };
+
+                                    //infoImage.DrawText(txtFieldDetails);
+                                    cardTextFields.Add(txtFieldDetails);
+
+                                    int i = 0;
+                                    string stringToCheck = s.Substring(s.Length - 1, 1);
+                                    lastCharIsNumeric = int.TryParse(stringToCheck, out i);
+                                    if (lastCharIsNumeric)
+                                        x += stringLength;
+                                    else
+                                        x += stringLength + 1;
+                                }
+                            }
+                            else if ((icon != null))
+                            {
+                                var iconImage = GetIconMaxHeight(icon, GetPercentage(currentFont.Height - 1, 1.1d));
+
+                                if (x + iconImage.Width > GetPercentage(endX, scale))
+                                {
+                                    y += iconImage.Height + GetPercentage(iconImage.Height, gapSizeBetweenLines);
+                                    y -= 5;
+                                    x = getXStart(y);
+                                }
+
+                                int modifiedY = ((int)(((y - (currentFont.Height - 5)) + ascentPixel)));
+
+                                if (lastCharIsNumeric && x != startPoint[0].X)
+                                    x -= 10;
+
+                                var imgX = new CardTextIconViewModel
+                                {
+                                    IconImage = iconImage,
+                                    Position = new Point(x, modifiedY)
+                                };
+                                cardTextIcons.Add(imgX);
+
+                                x += (iconImage.Width);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public KalikoImage GetIconMaxHeight(LegendaryIconViewModel icon, int maxHeight)
+        {
+            string path = $"{settings.iconsFolder}\\{icon.Category}\\{icon.FileName}";
+            KalikoImage imageIcon = new KalikoImage(path);
+            double r = (double)((double)maxHeight / (double)imageIcon.Height);
+
+            int w = (int)(imageIcon.Width * r);
+            int h = (int)(imageIcon.Height * r);
+
+            if (w <= 0 || h <= 0)
+            {
+                return null;
+            }
+
+            imageIcon.Resize(w + 2, h + 2);
+
+            return imageIcon;
+        }
+
+        public bool IsInPolygon(Point[] poly, Point p)
+        {
+            Point p1, p2;
+            bool inside = false;
+
+            if (poly.Length < 3)
+            {
+                return inside;
+            }
+
+            var oldPoint = new Point(
+                poly[poly.Length - 1].X, poly[poly.Length - 1].Y);
+
+            for (int i = 0; i < poly.Length; i++)
+            {
+                var newPoint = new Point(poly[i].X, poly[i].Y);
+
+                if (newPoint.X > oldPoint.X)
+                {
+                    p1 = oldPoint;
+                    p2 = newPoint;
+                }
+                else
+                {
+                    p1 = newPoint;
+                    p2 = oldPoint;
+                }
+
+                if ((newPoint.X < p.X) == (p.X <= oldPoint.X)
+                    && (p.Y - (long)p1.Y) * (p2.X - p1.X)
+                    < (p2.Y - (long)p1.Y) * (p.X - p1.X))
+                {
+                    inside = !inside;
+                }
+
+                oldPoint = newPoint;
+            }
+
+            return inside;
+        }
+
+        private Point[] GetPolygon()
+        {
+            // if (overridePolygon)
+            //     return SetPolygon();
+
+            if (template != null)
+            {
+                // overridePolygon = false;
+                rectXArray = template.CardTextRectAreaX;
+                rectYArray = template.CardTextRectAreaY;
+              
+                Point[] xpoints = new Point[rectXArray.Count];
+                Point[] ypoints = new Point[rectYArray.Count];
+
+                Point[] polygon = new Point[rectXArray.Count];
+                int xy = 0;
+                for (int i = 0; i < rectXArray.Count; i++)
+                {
+
+                    //xpoints[i].X = GetPercentage(rectXArray[i], scale);
+                    //xpoints[i].Y = GetPercentage(rectYArray[i], scale);
+                    xpoints[i].X = rectXArray[i];
+                    xpoints[i].Y = rectYArray[i];
+                    polygon[xy] = xpoints[i];
+                    xy++;
+                }
+                return polygon;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        public int getXStart(int y)
+        {
+            for (int i = 0; i < GetPercentage(template.ImageWidth, scale); i++)
+                if (IsInPolygon(GetPolygon(), new Point(i, y)))
+                    return i;
+
+            return -1;
+        }
+
+        private Point getStartPosition()
+        {
+            for (int i = 0; i < GetPercentage(template.ImageHeight, scale); i++)
+            {
+                int ypos = getYStart(i);
+                if (ypos > -1)
+                    return new Point(i, ypos);
+            }
+
+            return new Point();
+        }
+
+        private int getYStart(int x)
+        {
+            for (int i = 0; i < GetPercentage(template.ImageWidth, scale); i++)
+                if (IsInPolygon(GetPolygon(), new Point(x, i)))
+                    return i;
+
+            return -1;
+        }
+
+        private int GetPercentage(int size, double scale)
+        {
+            return (int)(((double)size * (double)scale));
+        }
+
+        public LegendaryIconViewModel IsIcon(String str)
+        {
+            try
+            {
+                if ((str != null) && !str.StartsWith("<") && !str.EndsWith(">"))
+                    return null;
+
+                str = str.Replace("<", "").Replace(">", "");
+                LegendaryIconViewModel i = legendaryIconList.Where(x => x.Name == str).FirstOrDefault();
+                return i;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+           }
 }

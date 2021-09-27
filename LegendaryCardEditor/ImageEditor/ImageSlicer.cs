@@ -148,8 +148,8 @@ namespace LegendaryCardEditor.ImageEditor
 
 
                     pictureBoxOrig.Refresh();
-                    cropWidth = 343;// e.X - cropX;
-                    cropHeight = 515;// e.Y - cropY;
+                    cropWidth = 404;// e.X - cropX;
+                    cropHeight = 567;// e.Y - cropY;
                     pictureBoxOrig.CreateGraphics().DrawRectangle(cropPen, cropX, cropY, cropWidth, cropHeight);
 
                 }

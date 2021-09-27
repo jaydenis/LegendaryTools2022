@@ -489,10 +489,10 @@ namespace LegendaryCardEditor.Controls
             this.pictureBoxTemplate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBoxTemplate.Location = new System.Drawing.Point(4, 3);
             this.pictureBoxTemplate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pictureBoxTemplate.MaximumSize = new System.Drawing.Size(588, 808);
-            this.pictureBoxTemplate.MinimumSize = new System.Drawing.Size(355, 462);
+            this.pictureBoxTemplate.MaximumSize = new System.Drawing.Size(404, 567);
+            this.pictureBoxTemplate.MinimumSize = new System.Drawing.Size(404, 567);
             this.pictureBoxTemplate.Name = "pictureBoxTemplate";
-            this.pictureBoxTemplate.Size = new System.Drawing.Size(404, 609);
+            this.pictureBoxTemplate.Size = new System.Drawing.Size(404, 567);
             this.pictureBoxTemplate.TabIndex = 65;
             this.pictureBoxTemplate.TabStop = false;
             this.pictureBoxTemplate.DoubleClick += new System.EventHandler(this.pictureBoxTemplate_DoubleClick);

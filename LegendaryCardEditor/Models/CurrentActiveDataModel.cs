@@ -20,7 +20,7 @@ namespace LegendaryCardEditor.Models
     public class CardModel
     {
         public string Id { get; set; }
-        public Card ActiveCard { get; set; }
-        public LegendaryTemplateModel ActiveTemplate { get; set; }
+        public CardEntity ActiveCard { get; set; }
+        public TemplateEntity ActiveTemplate { get; set; }
     }
 }

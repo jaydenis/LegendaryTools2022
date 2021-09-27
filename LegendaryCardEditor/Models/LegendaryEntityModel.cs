@@ -59,7 +59,7 @@ namespace LegendaryCardEditor.Models
         public int DeckTypeId { get; set; }
 
         [JsonProperty("Cards", Required = Required.Always)]
-        public List<Card> Cards { get; set; }
+        public List<CardEntity> Cards { get; set; }
     }
 
     public partial class Card

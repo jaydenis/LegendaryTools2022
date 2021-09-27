@@ -90,7 +90,7 @@ namespace LegendaryCardEditor.Controls
 
         private void btnCreateDeck_Click(object sender, EventArgs e)
         {
-            var cardsList = new List<Card>();
+            var cardsList = new List<CardEntity>();
 
             int newid = deckIdList.Last()+1;
             var newDeck = new Deck
@@ -99,7 +99,7 @@ namespace LegendaryCardEditor.Controls
                 DeckName = Helper.CleanString(txtNewDeckName.Text).ToLower(),
                 DeckDisplayName = txtNewDeckName.Text,
                 DeckTypeId = selectedDeckTypeId,
-                Cards = new List<Card>(),
+                Cards = new List<CardEntity>(),
                 FolderName = Helper.GenerateID(txtNewDeckName.Text.ToLower()).ToLower(),
                 TeamIconId = cmbDeckTeam.Enabled ? selectedTeamId : -1
             };
@@ -182,11 +182,11 @@ namespace LegendaryCardEditor.Controls
             this.Close();
         }
 
-        private Card GetNewCard(DeckTypeModel deckType, Deck deck, int templateId,string cardName,int id = 1 ,int numberInDeck = 1)
+        private CardEntity GetNewCard(DeckTypeModel deckType, Deck deck, int templateId,string cardName,int id = 1 ,int numberInDeck = 1)
         {
-            var tempCard = new Card
+            var tempCard = new CardEntity
             {
-                CardId = ($"{deckType.DeckTypeId}{templateId}{id}").ToLower(),
+                CardId = Convert.ToInt32($"{deckType.DeckTypeId}{templateId}{id}"),
                 CardName = Helper.CleanString(cardName).ToLower(),
                 CardDisplayName = cardName,
                 CardDisplayNameFont = 32,

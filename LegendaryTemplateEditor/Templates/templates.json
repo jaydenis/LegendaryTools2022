@@ -1,0 +1,122 @@
+[
+{
+	"templateId":1,
+	"templateName":"hero_common_template",
+	"templateType":"Hero"
+},
+{
+	"templateId":2,
+	"templateName":"hero_uncommon_template",
+	"templateType":"Hero"
+},
+{
+	"templateId":3,
+	"templateName":"hero_rare_template",
+	"templateType":"Hero"
+},
+{
+	"templateId":4,
+	"templateName":"mastermind_template",
+	"templateType":"Mastermind"
+},
+{
+	"templateId":5,
+	"templateName":"mastermind_tactic_template",
+	"templateType":"Mastermind"
+},
+{
+	"templateId":6,
+	"templateName":"mastermind_token",
+	"templateType":"Mastermind"
+},
+{
+	"templateId":7,
+	"templateName":"mastermind_epic_template",
+	"templateType":"Mastermind"
+},
+{
+	"templateId":8,
+	"templateName":"mastermind_transformed_template",
+	"templateType":"Mastermind"
+},
+{
+	"templateId":9,
+	"templateName":"villain_template",
+	"templateType":"Villain"
+},
+{
+	"templateId":10,
+	"templateName":"villain_location_template",
+	"templateType":"Villain"
+},
+{
+	"templateId":11,
+	"templateName":"villain_recruitable_template",
+	"templateType":"Villain"
+},
+{
+	"templateId":12,
+	"templateName":"villain_token_template",
+	"templateType":"Villain"
+},
+{
+	"templateId":13,
+	"templateName":"henchmen_template",
+	"templateType":"Henchmen"
+},
+{
+	"templateId":14,
+	"templateName":"bystander_template",
+	"templateType":"Bystander"
+},
+{
+	"templateId":15,
+	"templateName":"bystander_villain_template",
+	"templateType":"Bystander"
+},
+{
+	"templateId":16,
+	"templateName":"bystander_wound_template",
+	"templateType":"Bystander"
+},
+{
+	"templateId":17,
+	"templateName":"wound_template",
+	"templateType":"Wound"
+},
+{
+	"templateId":18,
+	"templateName":"sidekick_template",
+	"templateType":"Sidekick"
+},
+{
+	"templateId":19,
+	"templateName":"officer_template",
+	"templateType":"Officer"
+},
+{
+	"templateId":20,
+	"templateName":"ambition_template",
+	"templateType":"Ambition"
+},
+{
+	"templateId":21,
+	"templateName":"horror_template",
+	"templateType":"Horror"
+},
+{
+	"templateId":22,
+	"templateName":"scheme_template",
+	"templateType":"Scheme"
+},
+{
+	"templateId":23,
+	"templateName":"scheme_twist_template",
+	"templateType":"Other"
+},
+{
+	"templateId":24,
+	"templateName":"masterstrike_template",
+	"templateType":"Other"
+},
+]

@@ -18,6 +18,16 @@ namespace LegendaryCardEditor.Models
         public int NumberOfCards { get; set; }
     }
 
+    public partial class TemplateTypeModel
+    {
+        [JsonProperty("templateId", Required = Required.Always)]
+        public int TemplateId { get; set; }
+
+        [JsonProperty("templateType", Required = Required.Always)]
+        public string TemplateType { get; set; }
+    }
+
+
     public partial class CardTypeModel
     {
         [JsonProperty("CardTypeId", Required = Required.Always)]
@@ -43,5 +53,17 @@ namespace LegendaryCardEditor.Models
 
         [JsonProperty("KeywordDescription", Required = Required.Always)]
         public string KeywordDescription { get; set; }
+    }
+
+    public partial class Templates
+    {
+        [JsonProperty("templateId", Required = Required.Always)]
+        public int TemplateId { get; set; }
+
+        [JsonProperty("templateName", Required = Required.Always)]
+        public string TemplateName { get; set; }
+
+        [JsonProperty("templateType", Required = Required.Always)]
+        public string TemplateType { get; set; }
     }
 }

@@ -1,0 +1,50 @@
+[
+  {
+    "templateId": 1,
+    "templateType": "Hero"
+  },
+  {
+    "templateId": 2,
+    "templateType": "Mastermind"
+  },
+    {
+    "templateId": 3,
+    "templateType": "Villain"
+  },
+  {
+    "templateId": 4,
+    "templateType": "Henchmen"
+  },
+  {
+    "templateId": 5,
+    "templateType": "Bystander"
+  },
+  {
+    "templateId": 6,
+    "templateType": "Other"
+  },
+  {
+    "templateId": 7,
+    "templateType": "Wound"
+  },
+  {
+    "templateId": 8,
+    "templateType": "Sidekick"
+  },
+  {
+    "templateId": 9,
+    "templateType": "Officer"
+  },
+  {
+    "templateId": 10,
+    "templateType": "Ambition"
+  },
+  {
+    "templateId": 11,
+    "templateType": "Horror"
+  },
+  {
+    "templateId": 12,
+    "templateType": "Scheme"
+  }
+]

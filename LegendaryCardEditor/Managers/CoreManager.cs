@@ -27,14 +27,33 @@ namespace LegendaryCardEditor.Managers
 
             return dataModel;
         }
-
-
-        public List<LegendaryTemplateModel> GetTemplates()
+        public List<Templates> GetTemplates()
         {
             string path = settings.templatesFolder + "\\" + settings.json_templates;
             string jsonText = File.ReadAllText(path);
 
-            var dataModel = JsonConvert.DeserializeObject<IList<LegendaryTemplateModel>>(jsonText).ToList();
+            var dataModel = JsonConvert.DeserializeObject<IList<Templates>>(jsonText).ToList();
+
+            return dataModel;
+        }
+
+
+        public List<TemplateTypeModel> GetTemplateTypes()
+        {
+            string path = settings.templatesFolder + "\\" + settings.json_templatetypes;
+            string jsonText = File.ReadAllText(path);
+
+            var dataModel = JsonConvert.DeserializeObject<IList<TemplateTypeModel>>(jsonText).ToList();
+
+            return dataModel;
+        }
+
+        public TemplateEntity GetTemplate(string templateName)
+        {
+            string path = settings.templatesFolder + "\\cards\\" + templateName+".json";
+            string jsonText = File.ReadAllText(path);
+
+            var dataModel = JsonConvert.DeserializeObject<TemplateEntity>(jsonText);
 
             return dataModel;
         }
@@ -50,7 +69,7 @@ namespace LegendaryCardEditor.Managers
         }
 
 
-   
+
         public List<LegendaryIconViewModel> LoadIconsFromDirectory()
         {
 
@@ -80,7 +99,7 @@ namespace LegendaryCardEditor.Managers
 
                 return dataModel;
             }
-            catch
+            catch (Exception ex)
             {
                 return null;
             }
@@ -143,7 +162,7 @@ namespace LegendaryCardEditor.Managers
             }
         }
 
-        public bool SaveTemplate(List<LegendaryTemplateModel> model, string path)
+        public bool SaveTemplate(TemplateEntity model, string path)
         {
             try
             {

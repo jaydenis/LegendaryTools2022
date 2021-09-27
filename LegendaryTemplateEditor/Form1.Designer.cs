@@ -73,8 +73,32 @@ namespace LegendaryTemplateEditor
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUpdateImage = new System.Windows.Forms.ToolStripButton();
+            this.toolStripTemplateList = new System.Windows.Forms.ToolStripComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numCardTextY6 = new System.Windows.Forms.NumericUpDown();
+            this.numCardTextY4 = new System.Windows.Forms.NumericUpDown();
+            this.numCardTextX6 = new System.Windows.Forms.NumericUpDown();
+            this.label34 = new System.Windows.Forms.Label();
+            this.numCardTextX4 = new System.Windows.Forms.NumericUpDown();
+            this.numCardTextY5 = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.numCardTextY3 = new System.Windows.Forms.NumericUpDown();
+            this.numCardTextX5 = new System.Windows.Forms.NumericUpDown();
+            this.numCardTextSize = new System.Windows.Forms.NumericUpDown();
+            this.label33 = new System.Windows.Forms.Label();
+            this.numCardTextX3 = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
+            this.numCardTextY2 = new System.Windows.Forms.NumericUpDown();
+            this.numCardTextX2 = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.numCardTextY1 = new System.Windows.Forms.NumericUpDown();
+            this.numCardTextX1 = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.chkLiveChanges = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -98,23 +122,6 @@ namespace LegendaryTemplateEditor
             this.label29 = new System.Windows.Forms.Label();
             this.cmbFrameImage = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numCardTextY4 = new System.Windows.Forms.NumericUpDown();
-            this.numCardTextX4 = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.numCardTextY3 = new System.Windows.Forms.NumericUpDown();
-            this.numCardTextSize = new System.Windows.Forms.NumericUpDown();
-            this.numCardTextX3 = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.numCardTextY2 = new System.Windows.Forms.NumericUpDown();
-            this.numCardTextX2 = new System.Windows.Forms.NumericUpDown();
-            this.label14 = new System.Windows.Forms.Label();
-            this.numCardTextY1 = new System.Windows.Forms.NumericUpDown();
-            this.numCardTextX1 = new System.Windows.Forms.NumericUpDown();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkVictoryVisible = new System.Windows.Forms.CheckBox();
             this.chkAttackDefenseVisible = new System.Windows.Forms.CheckBox();
@@ -203,20 +210,24 @@ namespace LegendaryTemplateEditor
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardTextY6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextY4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardTextX6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextX4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardTextY5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextY3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardTextX5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextX3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextY2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextX2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextY1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextX1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVictoryTextSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAttackDefenseTextSize)).BeginInit();
@@ -272,6 +283,7 @@ namespace LegendaryTemplateEditor
             // menuStrip1
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
@@ -279,7 +291,7 @@ namespace LegendaryTemplateEditor
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1172, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1157, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -306,7 +318,7 @@ namespace LegendaryTemplateEditor
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(162, 38);
             this.newToolStripMenuItem.Text = "&New";
             // 
             // openToolStripMenuItem
@@ -315,13 +327,13 @@ namespace LegendaryTemplateEditor
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(162, 38);
             this.openToolStripMenuItem.Text = "&Open";
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(159, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -329,19 +341,19 @@ namespace LegendaryTemplateEditor
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(162, 38);
             this.saveToolStripMenuItem.Text = "&Save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(162, 38);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(159, 6);
             // 
             // printToolStripMenuItem
             // 
@@ -349,7 +361,7 @@ namespace LegendaryTemplateEditor
             this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(162, 38);
             this.printToolStripMenuItem.Text = "&Print";
             // 
             // printPreviewToolStripMenuItem
@@ -357,18 +369,18 @@ namespace LegendaryTemplateEditor
             this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
             this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(162, 38);
             this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(159, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(162, 38);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
             // editToolStripMenuItem
@@ -390,20 +402,20 @@ namespace LegendaryTemplateEditor
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(160, 38);
             this.undoToolStripMenuItem.Text = "&Undo";
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(160, 38);
             this.redoToolStripMenuItem.Text = "&Redo";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
             // 
             // cutToolStripMenuItem
             // 
@@ -411,7 +423,7 @@ namespace LegendaryTemplateEditor
             this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(160, 38);
             this.cutToolStripMenuItem.Text = "Cu&t";
             // 
             // copyToolStripMenuItem
@@ -420,7 +432,7 @@ namespace LegendaryTemplateEditor
             this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(160, 38);
             this.copyToolStripMenuItem.Text = "&Copy";
             // 
             // pasteToolStripMenuItem
@@ -429,18 +441,18 @@ namespace LegendaryTemplateEditor
             this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(160, 38);
             this.pasteToolStripMenuItem.Text = "&Paste";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(157, 6);
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(160, 38);
             this.selectAllToolStripMenuItem.Text = "Select &All";
             // 
             // toolsToolStripMenuItem
@@ -508,6 +520,7 @@ namespace LegendaryTemplateEditor
             // toolStrip1
             // 
             this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripButton,
             this.openToolStripButton,
@@ -519,10 +532,12 @@ namespace LegendaryTemplateEditor
             this.pasteToolStripButton,
             this.toolStripSeparator7,
             this.helpToolStripButton,
-            this.toolStripButtonUpdateImage});
+            this.toolStripButtonUpdateImage,
+            this.toolStripTemplateList});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1172, 25);
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.toolStrip1.Size = new System.Drawing.Size(1157, 31);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -530,27 +545,31 @@ namespace LegendaryTemplateEditor
             // 
             this.newToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
+            this.newToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.newToolStripButton.Size = new System.Drawing.Size(23, 28);
             this.newToolStripButton.Text = "&New";
             // 
             // openToolStripButton
             // 
             this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
+            this.openToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.openToolStripButton.Size = new System.Drawing.Size(23, 28);
             this.openToolStripButton.Text = "&Open";
+            this.openToolStripButton.Click += new System.EventHandler(this.openToolStripButton_Click);
             // 
             // saveToolStripButton
             // 
             this.saveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
+            this.saveToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.saveToolStripButton.Size = new System.Drawing.Size(23, 28);
             this.saveToolStripButton.Text = "&Save";
             this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
             // 
@@ -558,55 +577,60 @@ namespace LegendaryTemplateEditor
             // 
             this.printToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.printToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripButton.Image")));
+            this.printToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.printToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printToolStripButton.Name = "printToolStripButton";
-            this.printToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.printToolStripButton.Size = new System.Drawing.Size(23, 28);
             this.printToolStripButton.Text = "&Print";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
             // 
             // cutToolStripButton
             // 
             this.cutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.cutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton.Image")));
+            this.cutToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripButton.Name = "cutToolStripButton";
-            this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.cutToolStripButton.Size = new System.Drawing.Size(23, 28);
             this.cutToolStripButton.Text = "C&ut";
             // 
             // copyToolStripButton
             // 
             this.copyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.copyToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripButton.Image")));
+            this.copyToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripButton.Name = "copyToolStripButton";
-            this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.copyToolStripButton.Size = new System.Drawing.Size(23, 28);
             this.copyToolStripButton.Text = "&Copy";
             // 
             // pasteToolStripButton
             // 
             this.pasteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.pasteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripButton.Image")));
+            this.pasteToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.pasteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripButton.Name = "pasteToolStripButton";
-            this.pasteToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.pasteToolStripButton.Size = new System.Drawing.Size(23, 28);
             this.pasteToolStripButton.Text = "&Paste";
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 31);
             // 
             // helpToolStripButton
             // 
             this.helpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.helpToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripButton.Image")));
+            this.helpToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.helpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.helpToolStripButton.Name = "helpToolStripButton";
-            this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.helpToolStripButton.Size = new System.Drawing.Size(23, 28);
             this.helpToolStripButton.Text = "He&lp";
             // 
             // toolStripButtonUpdateImage
@@ -615,19 +639,26 @@ namespace LegendaryTemplateEditor
             this.toolStripButtonUpdateImage.Image = global::LegendaryTemplateEditor.Properties.Resources.Software_Update;
             this.toolStripButtonUpdateImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonUpdateImage.Name = "toolStripButtonUpdateImage";
-            this.toolStripButtonUpdateImage.Size = new System.Drawing.Size(65, 22);
+            this.toolStripButtonUpdateImage.Size = new System.Drawing.Size(73, 28);
             this.toolStripButtonUpdateImage.Text = "Update";
             this.toolStripButtonUpdateImage.Click += new System.EventHandler(this.toolStripButtonUpdateImage_Click);
+            // 
+            // toolStripTemplateList
+            // 
+            this.toolStripTemplateList.Name = "toolStripTemplateList";
+            this.toolStripTemplateList.Size = new System.Drawing.Size(121, 31);
+            this.toolStripTemplateList.SelectedIndexChanged += new System.EventHandler(this.toolStripTemplateList_SelectedIndexChanged);
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 49);
+            this.panel1.Location = new System.Drawing.Point(0, 55);
             this.panel1.MinimumSize = new System.Drawing.Size(420, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(420, 727);
+            this.panel1.Size = new System.Drawing.Size(420, 893);
             this.panel1.TabIndex = 2;
             // 
             // pictureBox1
@@ -635,19 +666,296 @@ namespace LegendaryTemplateEditor
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(9, 46);
-            this.pictureBox1.MaximumSize = new System.Drawing.Size(404, 609);
-            this.pictureBox1.MinimumSize = new System.Drawing.Size(404, 609);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.MaximumSize = new System.Drawing.Size(404, 567);
+            this.pictureBox1.MinimumSize = new System.Drawing.Size(404, 567);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(404, 609);
+            this.pictureBox1.Size = new System.Drawing.Size(404, 567);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.numCardTextY6);
+            this.groupBox2.Controls.Add(this.numCardTextY4);
+            this.groupBox2.Controls.Add(this.numCardTextX6);
+            this.groupBox2.Controls.Add(this.label34);
+            this.groupBox2.Controls.Add(this.numCardTextX4);
+            this.groupBox2.Controls.Add(this.numCardTextY5);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.numCardTextY3);
+            this.groupBox2.Controls.Add(this.numCardTextX5);
+            this.groupBox2.Controls.Add(this.numCardTextSize);
+            this.groupBox2.Controls.Add(this.label33);
+            this.groupBox2.Controls.Add(this.numCardTextX3);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.numCardTextY2);
+            this.groupBox2.Controls.Add(this.numCardTextX2);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.numCardTextY1);
+            this.groupBox2.Controls.Add(this.numCardTextX1);
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Controls.Add(this.label24);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Location = new System.Drawing.Point(3, 577);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(404, 311);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Card Text Area";
+            // 
+            // numCardTextY6
+            // 
+            this.numCardTextY6.Location = new System.Drawing.Point(171, 179);
+            this.numCardTextY6.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextY6.Name = "numCardTextY6";
+            this.numCardTextY6.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextY6.TabIndex = 1;
+            this.numCardTextY6.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // numCardTextY4
+            // 
+            this.numCardTextY4.Location = new System.Drawing.Point(171, 120);
+            this.numCardTextY4.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextY4.Name = "numCardTextY4";
+            this.numCardTextY4.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextY4.TabIndex = 1;
+            this.numCardTextY4.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // numCardTextX6
+            // 
+            this.numCardTextX6.Location = new System.Drawing.Point(98, 179);
+            this.numCardTextX6.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextX6.Name = "numCardTextX6";
+            this.numCardTextX6.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextX6.TabIndex = 1;
+            this.numCardTextX6.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(6, 181);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(72, 15);
+            this.label34.TabIndex = 0;
+            this.label34.Text = "Bottom/Left";
+            // 
+            // numCardTextX4
+            // 
+            this.numCardTextX4.Location = new System.Drawing.Point(98, 120);
+            this.numCardTextX4.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextX4.Name = "numCardTextX4";
+            this.numCardTextX4.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextX4.TabIndex = 1;
+            this.numCardTextX4.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // numCardTextY5
+            // 
+            this.numCardTextY5.Location = new System.Drawing.Point(171, 150);
+            this.numCardTextY5.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextY5.Name = "numCardTextY5";
+            this.numCardTextY5.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextY5.TabIndex = 1;
+            this.numCardTextY5.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 122);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(69, 15);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Middle/Left";
+            // 
+            // numCardTextY3
+            // 
+            this.numCardTextY3.Location = new System.Drawing.Point(171, 91);
+            this.numCardTextY3.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextY3.Name = "numCardTextY3";
+            this.numCardTextY3.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextY3.TabIndex = 1;
+            this.numCardTextY3.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // numCardTextX5
+            // 
+            this.numCardTextX5.Location = new System.Drawing.Point(98, 150);
+            this.numCardTextX5.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextX5.Name = "numCardTextX5";
+            this.numCardTextX5.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextX5.TabIndex = 1;
+            this.numCardTextX5.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // numCardTextSize
+            // 
+            this.numCardTextSize.Location = new System.Drawing.Point(233, 33);
+            this.numCardTextSize.Name = "numCardTextSize";
+            this.numCardTextSize.Size = new System.Drawing.Size(59, 23);
+            this.numCardTextSize.TabIndex = 7;
+            this.numCardTextSize.ValueChanged += new System.EventHandler(this.numTeamX_ValueChanged);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(6, 152);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(80, 15);
+            this.label33.TabIndex = 0;
+            this.label33.Text = "Bottom/Right";
+            // 
+            // numCardTextX3
+            // 
+            this.numCardTextX3.Location = new System.Drawing.Point(98, 91);
+            this.numCardTextX3.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextX3.Name = "numCardTextX3";
+            this.numCardTextX3.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextX3.TabIndex = 1;
+            this.numCardTextX3.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 93);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(77, 15);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Middle/Right";
+            // 
+            // numCardTextY2
+            // 
+            this.numCardTextY2.Location = new System.Drawing.Point(171, 62);
+            this.numCardTextY2.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextY2.Name = "numCardTextY2";
+            this.numCardTextY2.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextY2.TabIndex = 1;
+            this.numCardTextY2.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // numCardTextX2
+            // 
+            this.numCardTextX2.Location = new System.Drawing.Point(98, 62);
+            this.numCardTextX2.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextX2.Name = "numCardTextX2";
+            this.numCardTextX2.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextX2.TabIndex = 1;
+            this.numCardTextX2.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 64);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(59, 15);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Top/Right";
+            // 
+            // numCardTextY1
+            // 
+            this.numCardTextY1.Location = new System.Drawing.Point(171, 33);
+            this.numCardTextY1.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextY1.Name = "numCardTextY1";
+            this.numCardTextY1.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextY1.TabIndex = 1;
+            this.numCardTextY1.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // numCardTextX1
+            // 
+            this.numCardTextX1.Location = new System.Drawing.Point(98, 33);
+            this.numCardTextX1.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numCardTextX1.Name = "numCardTextX1";
+            this.numCardTextX1.Size = new System.Drawing.Size(56, 23);
+            this.numCardTextX1.TabIndex = 1;
+            this.numCardTextX1.ValueChanged += new System.EventHandler(this.numCardTextX1_ValueChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(171, 15);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(14, 15);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Y";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(98, 15);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(14, 15);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "X";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(234, 15);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(51, 15);
+            this.label24.TabIndex = 4;
+            this.label24.Text = "Text Size";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 35);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(51, 15);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Top/Left";
             // 
             // chkLiveChanges
             // 
             this.chkLiveChanges.AutoSize = true;
-            this.chkLiveChanges.Location = new System.Drawing.Point(990, 27);
+            this.chkLiveChanges.Location = new System.Drawing.Point(494, 18);
             this.chkLiveChanges.Name = "chkLiveChanges";
             this.chkLiveChanges.Size = new System.Drawing.Size(96, 19);
             this.chkLiveChanges.TabIndex = 1;
@@ -661,17 +969,16 @@ namespace LegendaryTemplateEditor
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(420, 49);
+            this.tabControl1.Location = new System.Drawing.Point(420, 55);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(752, 727);
+            this.tabControl1.Size = new System.Drawing.Size(737, 893);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.groupCardNameSubSitle);
@@ -679,13 +986,14 @@ namespace LegendaryTemplateEditor
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(744, 699);
+            this.tabPage1.Size = new System.Drawing.Size(729, 865);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.chkLiveChanges);
             this.groupBox5.Controls.Add(this.txtTemplateDisplayName);
             this.groupBox5.Controls.Add(this.txtTemplateName);
             this.groupBox5.Controls.Add(this.label27);
@@ -705,6 +1013,7 @@ namespace LegendaryTemplateEditor
             this.txtTemplateDisplayName.Name = "txtTemplateDisplayName";
             this.txtTemplateDisplayName.Size = new System.Drawing.Size(248, 23);
             this.txtTemplateDisplayName.TabIndex = 1;
+            this.txtTemplateDisplayName.TextChanged += new System.EventHandler(this.numTeamX_ValueChanged);
             // 
             // txtTemplateName
             // 
@@ -712,6 +1021,7 @@ namespace LegendaryTemplateEditor
             this.txtTemplateName.Name = "txtTemplateName";
             this.txtTemplateName.Size = new System.Drawing.Size(248, 23);
             this.txtTemplateName.TabIndex = 1;
+            this.txtTemplateName.TextChanged += new System.EventHandler(this.numTeamX_ValueChanged);
             // 
             // label27
             // 
@@ -775,7 +1085,7 @@ namespace LegendaryTemplateEditor
             this.groupBox4.Controls.Add(this.label29);
             this.groupBox4.Controls.Add(this.cmbFrameImage);
             this.groupBox4.Controls.Add(this.label28);
-            this.groupBox4.Location = new System.Drawing.Point(319, 384);
+            this.groupBox4.Location = new System.Drawing.Point(6, 384);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(391, 155);
             this.groupBox4.TabIndex = 6;
@@ -787,6 +1097,7 @@ namespace LegendaryTemplateEditor
             this.cmbUnderlayImage.FormattingEnabled = true;
             this.cmbUnderlayImage.Items.AddRange(new object[] {
             "--NONE--",
+            "common/back_underlay.png",
             "hero/back_underlay.png",
             "mastermind/mastermind_back_underlay.png",
             "officer/back_underlay.png",
@@ -812,7 +1123,7 @@ namespace LegendaryTemplateEditor
             this.cmbTextImage.FormattingEnabled = true;
             this.cmbTextImage.Items.AddRange(new object[] {
             "--NONE--",
-            "ambition/text_overlay.png",
+            "common/text_overlay.png",
             "hero/back_text_common.png",
             "hero/back_text_uncommon.png",
             "hero/back_text_rare.png",
@@ -893,8 +1204,8 @@ namespace LegendaryTemplateEditor
             this.cmbCostImage.FormattingEnabled = true;
             this.cmbCostImage.Items.AddRange(new object[] {
             "--NONE--",
-            "hero/back_cost.png",
-            "villain/back_attack.png"});
+            "common/back_attack.png",
+            "common/back_cost.png"});
             this.cmbCostImage.Location = new System.Drawing.Point(91, 56);
             this.cmbCostImage.Name = "cmbCostImage";
             this.cmbCostImage.Size = new System.Drawing.Size(207, 23);
@@ -947,199 +1258,6 @@ namespace LegendaryTemplateEditor
             this.label28.Size = new System.Drawing.Size(76, 15);
             this.label28.TabIndex = 0;
             this.label28.Text = "Frame Image";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.numCardTextY4);
-            this.groupBox2.Controls.Add(this.numCardTextX4);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.numCardTextY3);
-            this.groupBox2.Controls.Add(this.numCardTextSize);
-            this.groupBox2.Controls.Add(this.numCardTextX3);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.numCardTextY2);
-            this.groupBox2.Controls.Add(this.numCardTextX2);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.numCardTextY1);
-            this.groupBox2.Controls.Add(this.numCardTextX1);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Controls.Add(this.label24);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Location = new System.Drawing.Point(7, 384);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(306, 155);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Card Text Area";
-            // 
-            // numCardTextY4
-            // 
-            this.numCardTextY4.Location = new System.Drawing.Point(171, 120);
-            this.numCardTextY4.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numCardTextY4.Name = "numCardTextY4";
-            this.numCardTextY4.Size = new System.Drawing.Size(56, 23);
-            this.numCardTextY4.TabIndex = 1;
-            this.numCardTextY4.ValueChanged += new System.EventHandler(this.numTeamX_ValueChanged);
-            // 
-            // numCardTextX4
-            // 
-            this.numCardTextX4.Location = new System.Drawing.Point(98, 120);
-            this.numCardTextX4.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numCardTextX4.Name = "numCardTextX4";
-            this.numCardTextX4.Size = new System.Drawing.Size(56, 23);
-            this.numCardTextX4.TabIndex = 1;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 122);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 15);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Bottom/Left";
-            // 
-            // numCardTextY3
-            // 
-            this.numCardTextY3.Location = new System.Drawing.Point(171, 91);
-            this.numCardTextY3.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numCardTextY3.Name = "numCardTextY3";
-            this.numCardTextY3.Size = new System.Drawing.Size(56, 23);
-            this.numCardTextY3.TabIndex = 1;
-            // 
-            // numCardTextSize
-            // 
-            this.numCardTextSize.Location = new System.Drawing.Point(233, 33);
-            this.numCardTextSize.Name = "numCardTextSize";
-            this.numCardTextSize.Size = new System.Drawing.Size(59, 23);
-            this.numCardTextSize.TabIndex = 7;
-            this.numCardTextSize.ValueChanged += new System.EventHandler(this.numTeamX_ValueChanged);
-            // 
-            // numCardTextX3
-            // 
-            this.numCardTextX3.Location = new System.Drawing.Point(98, 91);
-            this.numCardTextX3.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numCardTextX3.Name = "numCardTextX3";
-            this.numCardTextX3.Size = new System.Drawing.Size(56, 23);
-            this.numCardTextX3.TabIndex = 1;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 93);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 15);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Bottom/Right";
-            // 
-            // numCardTextY2
-            // 
-            this.numCardTextY2.Location = new System.Drawing.Point(171, 62);
-            this.numCardTextY2.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numCardTextY2.Name = "numCardTextY2";
-            this.numCardTextY2.Size = new System.Drawing.Size(56, 23);
-            this.numCardTextY2.TabIndex = 1;
-            // 
-            // numCardTextX2
-            // 
-            this.numCardTextX2.Location = new System.Drawing.Point(98, 62);
-            this.numCardTextX2.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numCardTextX2.Name = "numCardTextX2";
-            this.numCardTextX2.Size = new System.Drawing.Size(56, 23);
-            this.numCardTextX2.TabIndex = 1;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 64);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(59, 15);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Top/Right";
-            // 
-            // numCardTextY1
-            // 
-            this.numCardTextY1.Location = new System.Drawing.Point(171, 33);
-            this.numCardTextY1.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numCardTextY1.Name = "numCardTextY1";
-            this.numCardTextY1.Size = new System.Drawing.Size(56, 23);
-            this.numCardTextY1.TabIndex = 1;
-            // 
-            // numCardTextX1
-            // 
-            this.numCardTextX1.Location = new System.Drawing.Point(98, 33);
-            this.numCardTextX1.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numCardTextX1.Name = "numCardTextX1";
-            this.numCardTextX1.Size = new System.Drawing.Size(56, 23);
-            this.numCardTextX1.TabIndex = 1;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(171, 15);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(14, 15);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Y";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(98, 15);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(14, 15);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "X";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(234, 15);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(51, 15);
-            this.label24.TabIndex = 4;
-            this.label24.Text = "Text Size";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 35);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(51, 15);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "Top/Left";
             // 
             // groupBox3
             // 
@@ -1894,7 +2012,7 @@ namespace LegendaryTemplateEditor
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(744, 699);
+            this.tabPage2.Size = new System.Drawing.Size(729, 865);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1926,14 +2044,14 @@ namespace LegendaryTemplateEditor
             this.fastColoredTextBox1.Language = FastColoredTextBoxNS.Language.JS;
             this.fastColoredTextBox1.LeftBracket = '(';
             this.fastColoredTextBox1.LeftBracket2 = '{';
-            this.fastColoredTextBox1.Location = new System.Drawing.Point(78, 28);
+            this.fastColoredTextBox1.Location = new System.Drawing.Point(78, 42);
             this.fastColoredTextBox1.Name = "fastColoredTextBox1";
             this.fastColoredTextBox1.Paddings = new System.Windows.Forms.Padding(0);
             this.fastColoredTextBox1.RightBracket = ')';
             this.fastColoredTextBox1.RightBracket2 = '}';
             this.fastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.fastColoredTextBox1.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fastColoredTextBox1.ServiceColors")));
-            this.fastColoredTextBox1.Size = new System.Drawing.Size(663, 668);
+            this.fastColoredTextBox1.Size = new System.Drawing.Size(648, 820);
             this.fastColoredTextBox1.TabIndex = 1;
             this.fastColoredTextBox1.Text = resources.GetString("fastColoredTextBox1.Text");
             this.fastColoredTextBox1.Zoom = 100;
@@ -1942,20 +2060,23 @@ namespace LegendaryTemplateEditor
             // 
             this.documentMap1.Dock = System.Windows.Forms.DockStyle.Left;
             this.documentMap1.ForeColor = System.Drawing.Color.Maroon;
-            this.documentMap1.Location = new System.Drawing.Point(3, 28);
+            this.documentMap1.Location = new System.Drawing.Point(3, 42);
             this.documentMap1.Name = "documentMap1";
-            this.documentMap1.Size = new System.Drawing.Size(75, 668);
+            this.documentMap1.Size = new System.Drawing.Size(75, 820);
             this.documentMap1.TabIndex = 2;
             this.documentMap1.Target = this.fastColoredTextBox1;
             this.documentMap1.Text = "documentMap1";
             // 
             // toolStripTemplateJson
             // 
+            this.toolStripTemplateJson.AutoSize = false;
+            this.toolStripTemplateJson.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStripTemplateJson.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonTemplateSave});
             this.toolStripTemplateJson.Location = new System.Drawing.Point(3, 3);
             this.toolStripTemplateJson.Name = "toolStripTemplateJson";
-            this.toolStripTemplateJson.Size = new System.Drawing.Size(738, 25);
+            this.toolStripTemplateJson.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.toolStripTemplateJson.Size = new System.Drawing.Size(723, 39);
             this.toolStripTemplateJson.TabIndex = 0;
             this.toolStripTemplateJson.Text = "toolStrip2";
             this.toolStripTemplateJson.Click += new System.EventHandler(this.toolStripTemplateJson_Click);
@@ -1966,8 +2087,9 @@ namespace LegendaryTemplateEditor
             this.toolStripButtonTemplateSave.Image = global::LegendaryTemplateEditor.Properties.Resources.disk;
             this.toolStripButtonTemplateSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonTemplateSave.Name = "toolStripButtonTemplateSave";
-            this.toolStripButtonTemplateSave.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonTemplateSave.Size = new System.Drawing.Size(28, 36);
             this.toolStripButtonTemplateSave.Text = "Save";
+            this.toolStripButtonTemplateSave.Click += new System.EventHandler(this.toolStripButtonTemplateSave_Click);
             // 
             // tabPage3
             // 
@@ -1976,7 +2098,7 @@ namespace LegendaryTemplateEditor
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(744, 699);
+            this.tabPage3.Size = new System.Drawing.Size(729, 865);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -2008,25 +2130,27 @@ namespace LegendaryTemplateEditor
             this.fastColoredTextBox2.Language = FastColoredTextBoxNS.Language.JS;
             this.fastColoredTextBox2.LeftBracket = '(';
             this.fastColoredTextBox2.LeftBracket2 = '{';
-            this.fastColoredTextBox2.Location = new System.Drawing.Point(3, 28);
+            this.fastColoredTextBox2.Location = new System.Drawing.Point(3, 42);
             this.fastColoredTextBox2.Name = "fastColoredTextBox2";
             this.fastColoredTextBox2.Paddings = new System.Windows.Forms.Padding(0);
             this.fastColoredTextBox2.RightBracket = ')';
             this.fastColoredTextBox2.RightBracket2 = '}';
             this.fastColoredTextBox2.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.fastColoredTextBox2.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fastColoredTextBox2.ServiceColors")));
-            this.fastColoredTextBox2.Size = new System.Drawing.Size(738, 668);
+            this.fastColoredTextBox2.Size = new System.Drawing.Size(723, 820);
             this.fastColoredTextBox2.TabIndex = 3;
             this.fastColoredTextBox2.Text = resources.GetString("fastColoredTextBox2.Text");
             this.fastColoredTextBox2.Zoom = 100;
             // 
             // toolStripCardDataJson
             // 
+            this.toolStripCardDataJson.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStripCardDataJson.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonSaveCardData});
             this.toolStripCardDataJson.Location = new System.Drawing.Point(3, 3);
             this.toolStripCardDataJson.Name = "toolStripCardDataJson";
-            this.toolStripCardDataJson.Size = new System.Drawing.Size(738, 25);
+            this.toolStripCardDataJson.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.toolStripCardDataJson.Size = new System.Drawing.Size(723, 39);
             this.toolStripCardDataJson.TabIndex = 2;
             this.toolStripCardDataJson.Text = "toolStrip3";
             // 
@@ -2036,7 +2160,7 @@ namespace LegendaryTemplateEditor
             this.toolStripButtonSaveCardData.Image = global::LegendaryTemplateEditor.Properties.Resources.disk;
             this.toolStripButtonSaveCardData.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSaveCardData.Name = "toolStripButtonSaveCardData";
-            this.toolStripButtonSaveCardData.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSaveCardData.Size = new System.Drawing.Size(36, 36);
             this.toolStripButtonSaveCardData.Text = "Save";
             this.toolStripButtonSaveCardData.Click += new System.EventHandler(this.toolStripButtonSaveCardData_Click);
             // 
@@ -2050,8 +2174,7 @@ namespace LegendaryTemplateEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1172, 776);
-            this.Controls.Add(this.chkLiveChanges);
+            this.ClientSize = new System.Drawing.Size(1157, 948);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
@@ -2066,23 +2189,27 @@ namespace LegendaryTemplateEditor
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardTextY6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextY4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardTextX6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextX4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardTextY5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextY3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardTextX5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextX3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextY2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextX2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextY1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCardTextX1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVictoryTextSize)).EndInit();
@@ -2132,7 +2259,6 @@ namespace LegendaryTemplateEditor
             ((System.ComponentModel.ISupportInitialize)(this.numTeamY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTeamX)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).EndInit();
             this.toolStripTemplateJson.ResumeLayout(false);
             this.toolStripTemplateJson.PerformLayout();
@@ -2316,5 +2442,12 @@ namespace LegendaryTemplateEditor
         private System.Windows.Forms.CheckBox chkTextImageVisible;
         private System.Windows.Forms.CheckBox chkCostImageVisible;
         private System.Windows.Forms.CheckBox chkFrameImageVisible;
+        private System.Windows.Forms.NumericUpDown numCardTextY6;
+        private System.Windows.Forms.NumericUpDown numCardTextX6;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.NumericUpDown numCardTextY5;
+        private System.Windows.Forms.NumericUpDown numCardTextX5;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.ToolStripComboBox toolStripTemplateList;
     }
 }

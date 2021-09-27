@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>0.1.73.386</AssemblyVersion>
-    <FileVersion>0.1.73.386</FileVersion>
+    <AssemblyVersion>0.1.96.409</AssemblyVersion>
+    <FileVersion>0.1.96.409</FileVersion>
     <ApplicationIcon></ApplicationIcon>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>1.0</Version>
@@ -21,7 +21,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="LegendaryTemplateEditor.cs" />
+    <Compile Remove="LegendaryTemplateEditor.Designer.cs" />
     <Compile Remove="Utilities\TemplateImageTools.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="LegendaryTemplateEditor.resx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,10 +75,21 @@
     <None Remove="Images\icons\teams\x_force.png" />
     <None Remove="Images\icons\teams\x_men.png" />
     <None Remove="Templates\cards\ambition\ambition.png" />
+    <None Remove="Templates\cards\ambition\ambition_template.json" />
+    <None Remove="Templates\cards\ambition\back_attack.png" />
+    <None Remove="Templates\cards\ambition\back_cost.png" />
     <None Remove="Templates\cards\ambition\text_overlay.png" />
     <None Remove="Templates\cards\bystander\bystander.png" />
+    <None Remove="Templates\cards\bystander\bystander_template.json" />
     <None Remove="Templates\cards\bystander\bystander_villain.png" />
     <None Remove="Templates\cards\bystander\bystander_wound.png" />
+    <None Remove="Templates\cards\common\back_attack.png" />
+    <None Remove="Templates\cards\common\back_cost.png" />
+    <None Remove="Templates\cards\common\back_underlay.png" />
+    <None Remove="Templates\cards\common\text_overlay.png" />
+    <None Remove="Templates\cards\henchmen\back_attack.png" />
+    <None Remove="Templates\cards\henchmen\back_cost.png" />
+    <None Remove="Templates\cards\henchmen\henchmen_template.json" />
     <None Remove="Templates\cards\hero\back_cost.png" />
     <None Remove="Templates\cards\hero\back_text_common.png" />
     <None Remove="Templates\cards\hero\back_text_rare.png" />
@@ -84,17 +101,24 @@
     <None Remove="Templates\cards\hero\hero_common_range.png" />
     <None Remove="Templates\cards\hero\hero_common_strength.png" />
     <None Remove="Templates\cards\hero\hero_common_tech.png" />
+    <None Remove="Templates\cards\hero\hero_common_template.json" />
     <None Remove="Templates\cards\hero\hero_rare.png" />
+    <None Remove="Templates\cards\hero\hero_rare_template.json" />
     <None Remove="Templates\cards\hero\hero_uncommon_covert.png" />
     <None Remove="Templates\cards\hero\hero_uncommon_instinct.png" />
     <None Remove="Templates\cards\hero\hero_uncommon_none.png" />
     <None Remove="Templates\cards\hero\hero_uncommon_range.png" />
     <None Remove="Templates\cards\hero\hero_uncommon_strength.png" />
     <None Remove="Templates\cards\hero\hero_uncommon_tech.png" />
+    <None Remove="Templates\cards\hero\hero_uncommon_template.json" />
+    <None Remove="Templates\cards\mastermind\back_attack.png" />
     <None Remove="Templates\cards\mastermind\mastermind_back_text.png" />
     <None Remove="Templates\cards\mastermind\mastermind_back_underlay.png" />
+    <None Remove="Templates\cards\mastermind\mastermind_frame.png" />
     <None Remove="Templates\cards\mastermind\mastermind_tactic_back_text.png" />
     <None Remove="Templates\cards\mastermind\mastermind_tactic_back_underlay.png" />
+    <None Remove="Templates\cards\mastermind\mastermind_tactic_template.json" />
+    <None Remove="Templates\cards\mastermind\mastermind_template.json" />
     <None Remove="Templates\cards\mastermind\mastermind_token.png" />
     <None Remove="Templates\cards\mastermind\mastermind_transformed.png" />
     <None Remove="Templates\cards\officer\back_cost.png" />
@@ -106,6 +130,7 @@
     <None Remove="Templates\cards\officer\officer_range.png" />
     <None Remove="Templates\cards\officer\officer_strength.png" />
     <None Remove="Templates\cards\officer\officer_tech.png" />
+    <None Remove="Templates\cards\officer\officer_template.json" />
     <None Remove="Templates\cards\scheme\backing.png" />
     <None Remove="Templates\cards\scheme\back_underlay.png" />
     <None Remove="Templates\cards\scheme_twist\plot_twist.png" />
@@ -119,6 +144,7 @@
     <None Remove="Templates\cards\sidekick\sidekick_range.png" />
     <None Remove="Templates\cards\sidekick\sidekick_strength.png" />
     <None Remove="Templates\cards\sidekick\sidekick_tech.png" />
+    <None Remove="Templates\cards\villain\back_attack.png" />
     <None Remove="Templates\cards\villain\henchmen.png" />
     <None Remove="Templates\cards\villain\henchmen_location.png" />
     <None Remove="Templates\cards\villain\recruitable_back_cost.png" />
@@ -131,13 +157,18 @@
     <None Remove="Templates\cards\villain\recruitable_back_text.png" />
     <None Remove="Templates\cards\villain\villain.png" />
     <None Remove="Templates\cards\villain\villain_location.png" />
+    <None Remove="Templates\cards\villain\villain_location_template.json" />
+    <None Remove="Templates\cards\villain\villain_template.json" />
     <None Remove="Templates\cards\villain\villain_token.png" />
     <None Remove="Templates\cards\villain\villain_transformed.png" />
     <None Remove="Templates\cards\wound\wound.png" />
+    <None Remove="Templates\cards\wound\wound_template.json" />
     <None Remove="Templates\decktypes.json" />
     <None Remove="Templates\icons.json" />
     <None Remove="Templates\keywords.json" />
     <None Remove="Templates\template.json" />
+    <None Remove="Templates\templates.json" />
+    <None Remove="Templates\template_types.json" />
     <None Include="..\..\..\Users\jayte\OneDrive\TableTopGaming\Legendery-Marvel\Legedit2_jar\legedit\icons\attributes\cards.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -289,17 +320,50 @@
     <Content Include="Templates\cards\ambition\ambition.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\cards\ambition\ambition_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\ambition\back_attack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\ambition\back_cost.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\cards\ambition\text_overlay.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\bystander\bystander.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\cards\bystander\bystander_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\cards\bystander\bystander_villain.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\bystander\bystander_wound.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\common\back_attack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\common\back_cost.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\common\back_underlay.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\common\text_overlay.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\henchmen\back_attack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\henchmen\back_cost.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\henchmen\henchmen_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\hero\back_cost.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -334,8 +398,14 @@
     <Content Include="Templates\cards\hero\hero_common_tech.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\cards\hero\hero_common_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\cards\hero\hero_rare.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\hero\hero_rare_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\hero\hero_uncommon_covert.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -355,16 +425,31 @@
     <Content Include="Templates\cards\hero\hero_uncommon_tech.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\cards\hero\hero_uncommon_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\mastermind\back_attack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\cards\mastermind\mastermind_back_text.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\mastermind\mastermind_back_underlay.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\cards\mastermind\mastermind_frame.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\cards\mastermind\mastermind_tactic_back_text.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\mastermind\mastermind_tactic_back_underlay.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\mastermind\mastermind_tactic_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\mastermind\mastermind_template.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\mastermind\mastermind_token.png">
@@ -400,6 +485,9 @@
     <Content Include="Templates\cards\officer\officer_tech.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\cards\officer\officer_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\cards\sidekick\back_cost.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -426,6 +514,9 @@
     </Content>
     <Content Include="Templates\cards\sidekick\sidekick_tech.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\villain\back_attack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\villain\recruitable_back_cost.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -457,6 +548,12 @@
     <Content Include="Templates\cards\villain\villain_location.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\cards\villain\villain_location_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\villain\villain_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\cards\villain\villain_token.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -469,6 +566,9 @@
     <Content Include="Images\default_blank_card.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\cards\wound\wound_template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\decktypes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -480,6 +580,12 @@
     </Content>
     <Content Include="Templates\template.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\templates.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\template_types.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
@@ -532,6 +638,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Templates\cards\other\" />
   </ItemGroup>
 
 </Project>

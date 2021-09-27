@@ -17,7 +17,7 @@ namespace LegendaryCardEditor
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LegendaryTemplateEditor());
+            Application.Run(new Form1());
         }
     }
 }

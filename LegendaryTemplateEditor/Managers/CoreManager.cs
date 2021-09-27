@@ -27,14 +27,33 @@ namespace LegendaryTemplateEditor.Managers
 
             return dataModel;
         }
-
-
-        public List<LegendaryTemplateModel> GetTemplates()
+        public List<Templates> GetTemplates()
         {
             string path = settings.templatesFolder + "\\" + settings.json_templates;
             string jsonText = File.ReadAllText(path);
 
-            var dataModel = JsonConvert.DeserializeObject<IList<LegendaryTemplateModel>>(jsonText).ToList();
+            var dataModel = JsonConvert.DeserializeObject<IList<Templates>>(jsonText).ToList();
+
+            return dataModel;
+        }
+
+
+        public List<TemplateTypeModel> GetTemplateTypes()
+        {
+            string path = settings.templatesFolder + "\\" + settings.json_templatetypes;
+            string jsonText = File.ReadAllText(path);
+
+            var dataModel = JsonConvert.DeserializeObject<IList<TemplateTypeModel>>(jsonText).ToList();
+
+            return dataModel;
+        }
+
+        public TemplateEntity GetTemplate(string path)
+        {
+            path = settings.templatesFolder + "\\cards\\" + path;
+            string jsonText = File.ReadAllText(path);
+
+            var dataModel = JsonConvert.DeserializeObject<TemplateEntity>(jsonText);
 
             return dataModel;
         }
