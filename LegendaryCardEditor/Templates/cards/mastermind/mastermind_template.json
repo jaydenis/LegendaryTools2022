@@ -5,22 +5,22 @@
   "templateType": "Mastermind",
   "frameImage": "mastermind_frame.png",
   "costImage": "back_attack.png",
-  "textImage": "mastermind_back_text.png",
-  "underlayImage": "mastermind_back_underlay.png",
+  "textImage": "--NONE--",
+  "underlayImage": "--NONE--",
   "imageHeight": 567,
   "imageWidth": 404,
   "teamIconXY": [
-    17,
-    14
+    15,
+    20
   ],
   "teamIconVisible": false,
   "powerPrimaryIconXY": [
-    17,
-    50
+    20,
+    56
   ],
   "powerPrimaryIconVisible": false,
   "powerSecondaryIconXY": [
-    17,
+    20,
     80
   ],
   "powerSecondaryIconVisible": false,
@@ -65,7 +65,7 @@
     0
   ],
   "piercingVisible": false,
-  "attributesSecondryTextSize": 59,
+  "attributesSecondryTextSize": 46,
   "costIconXY": [
     355,
     509
@@ -84,6 +84,7 @@
     485
   ],
   "attackDefenseVisible": true,
+  "attackDefenseTextSize": 45,
   "victroyIconXY": [
     345,
     365
@@ -95,20 +96,21 @@
   "victroyVisible": true,
   "victoryTextSize": 28,
   "cardTextRectAreaX": [
-    50,
+    60,
     355,
     355,
-    298,
-    298,
-    50
+    305,
+    305,
+    60
   ],
   "cardTextRectAreaY": [
     420,
     420,
-    470,
-    470,
-    550,
-    550
+    475,
+    475,
+    540,
+    540
   ],
-  "cardTextSize": 15
+  "cardTextSize": 15,
+  "NumberInDeck": 1
 }

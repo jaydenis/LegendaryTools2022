@@ -3,7 +3,7 @@
   "templateName": "wound",
   "templateDisplayName": "wound",
   "templateType": "Wound",
-  "frameImage": "wound/wound.png",
+  "frameImage": "wound.png",
   "costImage": "--NONE--",
   "textImage": "--NONE--",
   "underlayImage": "--NONE--",
@@ -84,6 +84,7 @@
     1
   ],
   "attackDefenseVisible": false,
+  "attackDefenseTextSize": 45,
   "victroyIconXY": [
     300,
     400

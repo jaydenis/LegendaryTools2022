@@ -3,25 +3,25 @@
   "templateName": "henchmen",
   "templateDisplayName": "Henchmen",
   "templateType": "Henchmen",
-  "frameImage": "henchmen_bg.png",
+  "frameImage": "henchmen.png",
   "costImage": "back_attack.png",
   "textImage": "--NONE--",
   "underlayImage": "--NONE--",
   "imageHeight": 567,
   "imageWidth": 404,
   "teamIconXY": [
-    17,
-    14
+    0,
+    0
   ],
   "teamIconVisible": false,
   "powerPrimaryIconXY": [
-    17,
-    50
+    0,
+    0
   ],
   "powerPrimaryIconVisible": false,
   "powerSecondaryIconXY": [
-    17,
-    80
+    0,
+    0
   ],
   "powerSecondaryIconVisible": false,
   "cardNameXY": [
@@ -32,28 +32,28 @@
   "cardNameVisible": true,
   "cardNameSubXY": [
     17,
-    41
+    39
   ],
-  "cardNameSubTextSize": 21,
+  "cardNameSubTextSize": 18,
   "cardNameSubVisible": true,
   "attributesPrimaryVisible": false,
-  "attributesPrimaryTextSize": 47,
+  "attributesPrimaryTextSize": 22,
   "recruitIconXY": [
-    17,
-    430
+    0,
+    0
   ],
   "recruitValueXY": [
-    19,
-    434
+    0,
+    0
   ],
   "recruitVisible": false,
   "attackIconXY": [
-    17,
-    500
+    0,
+    0
   ],
   "attackValueXY": [
-    17,
-    500
+    0,
+    0
   ],
   "attackVisible": false,
   "piercingIconXY": [
@@ -65,14 +65,14 @@
     0
   ],
   "piercingVisible": false,
-  "attributesSecondryTextSize": 59,
+  "attributesSecondryTextSize": 10,
   "costIconXY": [
-    355,
-    509
+    0,
+    0
   ],
   "costValueXY": [
-    315,
-    485
+    0,
+    0
   ],
   "costVisible": false,
   "attackDefenseIconXY": [
@@ -80,10 +80,11 @@
     1
   ],
   "attackDefenseValueXY": [
-    340,
-    483
+    352,
+    486
   ],
   "attackDefenseVisible": true,
+  "attackDefenseTextSize": 45,
   "victroyIconXY": [
     360,
     356
@@ -95,20 +96,21 @@
   "victroyVisible": true,
   "victoryTextSize": 29,
   "cardTextRectAreaX": [
-    95,
+    75,
     375,
     375,
-    325,
-    325,
+    315,
+    315,
     139
   ],
   "cardTextRectAreaY": [
     420,
     420,
-    470,
-    470,
-    560,
+    480,
+    480,
+    550,
     510
   ],
-  "cardTextSize": 15
+  "cardTextSize": 16,
+  "NumberInDeck": 1
 }

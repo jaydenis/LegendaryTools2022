@@ -87,21 +87,21 @@ namespace LegendaryCardEditor
             this.txtkeywordName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.listBoxKeywords = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
             this.tabPageIcons = new System.Windows.Forms.TabPage();
+            this.btnIconCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnIconSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnBrowseIcon = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.txtIconFilePath = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txtIconName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txtIconCategory = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonListBox1 = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.treeViewMenuDeleteDeck = new System.Windows.Forms.ToolStripMenuItem();
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.txtIconCategory = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtIconName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtIconFilePath = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.btnBrowseIcon = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnIconSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnIconCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -491,11 +491,11 @@ namespace LegendaryCardEditor
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.FullRowSelect = true;
             this.treeView1.HotTracking = true;
-            this.treeView1.ImageKey = "BurnFolder.ico";
+            this.treeView1.ImageKey = "SHIELD.ico";
             this.treeView1.ImageList = this.imageList2;
             this.treeView1.Location = new System.Drawing.Point(0, 58);
             this.treeView1.Name = "treeView1";
-            this.treeView1.SelectedImageKey = "SHIELD.ico";
+            this.treeView1.SelectedImageKey = "BurnFolder.ico";
             this.treeView1.Size = new System.Drawing.Size(177, 613);
             this.treeView1.Sorted = true;
             this.treeView1.TabIndex = 2;
@@ -506,35 +506,13 @@ namespace LegendaryCardEditor
             this.imageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList2.Images.SetKeyName(0, "a_force.png");
-            this.imageList2.Images.SetKeyName(1, "avengers.png");
-            this.imageList2.Images.SetKeyName(2, "brotherhood.png");
-            this.imageList2.Images.SetKeyName(3, "cabal.png");
-            this.imageList2.Images.SetKeyName(4, "champions.png");
-            this.imageList2.Images.SetKeyName(5, "Crime_Syndicate.png");
-            this.imageList2.Images.SetKeyName(6, "defenders.png");
-            this.imageList2.Images.SetKeyName(7, "fantastic_four.png");
-            this.imageList2.Images.SetKeyName(8, "Foes_of_Asgard.png");
-            this.imageList2.Images.SetKeyName(9, "footclan.png");
-            this.imageList2.Images.SetKeyName(10, "guardians.png");
-            this.imageList2.Images.SetKeyName(11, "heroes_for_hire.png");
-            this.imageList2.Images.SetKeyName(12, "hydra.png");
-            this.imageList2.Images.SetKeyName(13, "illuminati.png");
-            this.imageList2.Images.SetKeyName(14, "legion_of_monsters.png");
-            this.imageList2.Images.SetKeyName(15, "marvel_knights.png");
-            this.imageList2.Images.SetKeyName(16, "mercs_4_money.png");
-            this.imageList2.Images.SetKeyName(17, "Monsters_Unleashed.png");
-            this.imageList2.Images.SetKeyName(18, "mutants.png");
-            this.imageList2.Images.SetKeyName(19, "runaways.png");
-            this.imageList2.Images.SetKeyName(20, "shield.png");
-            this.imageList2.Images.SetKeyName(21, "sinister6.png");
-            this.imageList2.Images.SetKeyName(22, "spider_friends.png");
-            this.imageList2.Images.SetKeyName(23, "thunderbolts.png");
-            this.imageList2.Images.SetKeyName(24, "us_army.png");
-            this.imageList2.Images.SetKeyName(25, "x_force.png");
-            this.imageList2.Images.SetKeyName(26, "x_men.png");
-            this.imageList2.Images.SetKeyName(27, "SHIELD.ico");
-            this.imageList2.Images.SetKeyName(28, "BurnFolder.ico");
+            this.imageList2.Images.SetKeyName(0, "SHIELD.ico");
+            this.imageList2.Images.SetKeyName(1, "Black Widow.ico");
+            this.imageList2.Images.SetKeyName(2, "Captain America.ico");
+            this.imageList2.Images.SetKeyName(3, "Hawkeye.ico");
+            this.imageList2.Images.SetKeyName(4, "Hulk.ico");
+            this.imageList2.Images.SetKeyName(5, "Iron Man.ico");
+            this.imageList2.Images.SetKeyName(6, "Thor.ico");
             // 
             // groupBox1
             // 
@@ -670,6 +648,78 @@ namespace LegendaryCardEditor
             this.tabPageIcons.Text = "Icons";
             this.tabPageIcons.UseVisualStyleBackColor = true;
             // 
+            // btnIconCancel
+            // 
+            this.btnIconCancel.Location = new System.Drawing.Point(261, 203);
+            this.btnIconCancel.Name = "btnIconCancel";
+            this.btnIconCancel.Size = new System.Drawing.Size(90, 25);
+            this.btnIconCancel.TabIndex = 6;
+            this.btnIconCancel.Values.Text = "Cancel";
+            this.btnIconCancel.Click += new System.EventHandler(this.btnIconCancel_Click);
+            // 
+            // btnIconSave
+            // 
+            this.btnIconSave.Location = new System.Drawing.Point(781, 203);
+            this.btnIconSave.Name = "btnIconSave";
+            this.btnIconSave.Size = new System.Drawing.Size(90, 25);
+            this.btnIconSave.TabIndex = 6;
+            this.btnIconSave.Values.Text = "Save";
+            this.btnIconSave.Click += new System.EventHandler(this.btnIconSave_Click);
+            // 
+            // btnBrowseIcon
+            // 
+            this.btnBrowseIcon.Location = new System.Drawing.Point(781, 80);
+            this.btnBrowseIcon.Name = "btnBrowseIcon";
+            this.btnBrowseIcon.Size = new System.Drawing.Size(90, 25);
+            this.btnBrowseIcon.TabIndex = 5;
+            this.btnBrowseIcon.Values.Text = "Browse";
+            this.btnBrowseIcon.Click += new System.EventHandler(this.btnBrowseIcon_Click);
+            // 
+            // txtIconFilePath
+            // 
+            this.txtIconFilePath.Location = new System.Drawing.Point(346, 80);
+            this.txtIconFilePath.Name = "txtIconFilePath";
+            this.txtIconFilePath.Size = new System.Drawing.Size(429, 23);
+            this.txtIconFilePath.TabIndex = 4;
+            // 
+            // txtIconName
+            // 
+            this.txtIconName.Location = new System.Drawing.Point(346, 54);
+            this.txtIconName.Name = "txtIconName";
+            this.txtIconName.Size = new System.Drawing.Size(205, 23);
+            this.txtIconName.TabIndex = 4;
+            // 
+            // txtIconCategory
+            // 
+            this.txtIconCategory.Location = new System.Drawing.Point(346, 28);
+            this.txtIconCategory.Name = "txtIconCategory";
+            this.txtIconCategory.Size = new System.Drawing.Size(205, 23);
+            this.txtIconCategory.TabIndex = 4;
+            // 
+            // kryptonLabel5
+            // 
+            this.kryptonLabel5.Location = new System.Drawing.Point(261, 80);
+            this.kryptonLabel5.Name = "kryptonLabel5";
+            this.kryptonLabel5.Size = new System.Drawing.Size(29, 20);
+            this.kryptonLabel5.TabIndex = 3;
+            this.kryptonLabel5.Values.Text = "File";
+            // 
+            // kryptonLabel4
+            // 
+            this.kryptonLabel4.Location = new System.Drawing.Point(261, 54);
+            this.kryptonLabel4.Name = "kryptonLabel4";
+            this.kryptonLabel4.Size = new System.Drawing.Size(43, 20);
+            this.kryptonLabel4.TabIndex = 3;
+            this.kryptonLabel4.Values.Text = "Name";
+            // 
+            // kryptonLabel3
+            // 
+            this.kryptonLabel3.Location = new System.Drawing.Point(261, 28);
+            this.kryptonLabel3.Name = "kryptonLabel3";
+            this.kryptonLabel3.Size = new System.Drawing.Size(60, 20);
+            this.kryptonLabel3.TabIndex = 3;
+            this.kryptonLabel3.Values.Text = "Category";
+            // 
             // kryptonListBox1
             // 
             this.kryptonListBox1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -710,78 +760,6 @@ namespace LegendaryCardEditor
             this.saveFileDialog1.FileName = "LegandaryCustomExpansion.json";
             this.saveFileDialog1.Filter = "Json files|*.json";
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
-            // 
-            // kryptonLabel3
-            // 
-            this.kryptonLabel3.Location = new System.Drawing.Point(261, 28);
-            this.kryptonLabel3.Name = "kryptonLabel3";
-            this.kryptonLabel3.Size = new System.Drawing.Size(60, 20);
-            this.kryptonLabel3.TabIndex = 3;
-            this.kryptonLabel3.Values.Text = "Category";
-            // 
-            // kryptonLabel4
-            // 
-            this.kryptonLabel4.Location = new System.Drawing.Point(261, 54);
-            this.kryptonLabel4.Name = "kryptonLabel4";
-            this.kryptonLabel4.Size = new System.Drawing.Size(43, 20);
-            this.kryptonLabel4.TabIndex = 3;
-            this.kryptonLabel4.Values.Text = "Name";
-            // 
-            // kryptonLabel5
-            // 
-            this.kryptonLabel5.Location = new System.Drawing.Point(261, 80);
-            this.kryptonLabel5.Name = "kryptonLabel5";
-            this.kryptonLabel5.Size = new System.Drawing.Size(29, 20);
-            this.kryptonLabel5.TabIndex = 3;
-            this.kryptonLabel5.Values.Text = "File";
-            // 
-            // txtIconCategory
-            // 
-            this.txtIconCategory.Location = new System.Drawing.Point(346, 28);
-            this.txtIconCategory.Name = "txtIconCategory";
-            this.txtIconCategory.Size = new System.Drawing.Size(205, 23);
-            this.txtIconCategory.TabIndex = 4;
-            // 
-            // txtIconName
-            // 
-            this.txtIconName.Location = new System.Drawing.Point(346, 54);
-            this.txtIconName.Name = "txtIconName";
-            this.txtIconName.Size = new System.Drawing.Size(205, 23);
-            this.txtIconName.TabIndex = 4;
-            // 
-            // txtIconFilePath
-            // 
-            this.txtIconFilePath.Location = new System.Drawing.Point(346, 80);
-            this.txtIconFilePath.Name = "txtIconFilePath";
-            this.txtIconFilePath.Size = new System.Drawing.Size(429, 23);
-            this.txtIconFilePath.TabIndex = 4;
-            // 
-            // btnBrowseIcon
-            // 
-            this.btnBrowseIcon.Location = new System.Drawing.Point(781, 80);
-            this.btnBrowseIcon.Name = "btnBrowseIcon";
-            this.btnBrowseIcon.Size = new System.Drawing.Size(90, 25);
-            this.btnBrowseIcon.TabIndex = 5;
-            this.btnBrowseIcon.Values.Text = "Browse";
-            this.btnBrowseIcon.Click += new System.EventHandler(this.btnBrowseIcon_Click);
-            // 
-            // btnIconSave
-            // 
-            this.btnIconSave.Location = new System.Drawing.Point(781, 203);
-            this.btnIconSave.Name = "btnIconSave";
-            this.btnIconSave.Size = new System.Drawing.Size(90, 25);
-            this.btnIconSave.TabIndex = 6;
-            this.btnIconSave.Values.Text = "Save";
-            this.btnIconSave.Click += new System.EventHandler(this.btnIconSave_Click);
-            // 
-            // btnIconCancel
-            // 
-            this.btnIconCancel.Location = new System.Drawing.Point(261, 203);
-            this.btnIconCancel.Name = "btnIconCancel";
-            this.btnIconCancel.Size = new System.Drawing.Size(90, 25);
-            this.btnIconCancel.TabIndex = 6;
-            this.btnIconCancel.Values.Text = "Cancel";
-            this.btnIconCancel.Click += new System.EventHandler(this.btnIconCancel_Click);
             // 
             // Form1
             // 

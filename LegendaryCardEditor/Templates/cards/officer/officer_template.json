@@ -3,10 +3,10 @@
   "templateName": "officer",
   "templateDisplayName": "Officer",
   "templateType": "Officer",
-  "frameImage": "officer/officer_none.png",
+  "frameImage": "officer_none.png",
   "costImage": "",
-  "textImage": "officer/back_text.png",
-  "underlayImage": "officer/back_underlay.png",
+  "textImage": "back_text.png",
+  "underlayImage": "back_underlay.png",
   "imageHeight": 567,
   "imageWidth": 404,
   "teamIconXY": [
@@ -84,6 +84,7 @@
     500
   ],
   "attackDefenseVisible": false,
+  "attackDefenseTextSize": 45,
   "victroyIconXY": [
     300,
     400

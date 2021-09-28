@@ -5,15 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LegendaryCardEditor.Managers
 {
     public class CoreManager
     {
         SystemSettings settings;
-
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         public CoreManager()
         {
             settings = SystemSettings.Load();
@@ -21,74 +19,117 @@ namespace LegendaryCardEditor.Managers
         }
         public List<DeckTypeModel> GetDeckTypes()
         {
-            var path = settings.templatesFolder + "\\" + settings.json_decktypes;
-            string jsonText = File.ReadAllText(path);
-            var dataModel = JsonConvert.DeserializeObject<IList<DeckTypeModel>>(jsonText).ToList();
+            try
+            {
+                var path = settings.templatesFolder + "\\" + settings.json_decktypes;
+                string jsonText = File.ReadAllText(path);
+                var dataModel = JsonConvert.DeserializeObject<IList<DeckTypeModel>>(jsonText).ToList();
 
-            return dataModel;
+                return dataModel;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, ex.Message);
+                return null;
+            }
         }
         public List<Templates> GetTemplates()
         {
-            string path = settings.templatesFolder + "\\" + settings.json_templates;
-            string jsonText = File.ReadAllText(path);
+            try
+            {
+                string path = settings.templatesFolder + "\\" + settings.json_templates;
+                string jsonText = File.ReadAllText(path);
 
-            var dataModel = JsonConvert.DeserializeObject<IList<Templates>>(jsonText).ToList();
+                var dataModel = JsonConvert.DeserializeObject<IList<Templates>>(jsonText).ToList();
 
-            return dataModel;
+                return dataModel;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, ex.Message);
+                return null;
+            }
         }
-
 
         public List<TemplateTypeModel> GetTemplateTypes()
         {
-            string path = settings.templatesFolder + "\\" + settings.json_templatetypes;
-            string jsonText = File.ReadAllText(path);
+            try
+            {
+                string path = settings.templatesFolder + "\\" + settings.json_templatetypes;
+                string jsonText = File.ReadAllText(path);
 
-            var dataModel = JsonConvert.DeserializeObject<IList<TemplateTypeModel>>(jsonText).ToList();
+                var dataModel = JsonConvert.DeserializeObject<IList<TemplateTypeModel>>(jsonText).ToList();
 
-            return dataModel;
+                return dataModel;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, ex.Message);
+                return null;
+            }
         }
 
         public TemplateEntity GetTemplate(string templateName)
         {
-            string path = settings.templatesFolder + "\\cards\\" + templateName+".json";
-            string jsonText = File.ReadAllText(path);
+            try
+            {
+                string path = settings.templatesFolder + "\\cards\\" + templateName + ".json";
+                string jsonText = File.ReadAllText(path);
 
-            var dataModel = JsonConvert.DeserializeObject<TemplateEntity>(jsonText);
+                var dataModel = JsonConvert.DeserializeObject<TemplateEntity>(jsonText);
 
-            return dataModel;
+                return dataModel;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, ex.Message);
+                return null;
+            }
         }
 
         public List<LegendaryKeyword> GetKeywords()
         {
-            string path = settings.templatesFolder + "\\" + settings.json_keywords;
-            string jsonText = File.ReadAllText(path);
+            try
+            {
+                string path = settings.templatesFolder + "\\" + settings.json_keywords;
+                string jsonText = File.ReadAllText(path);
 
-            var dataModel = JsonConvert.DeserializeObject<IList<LegendaryKeyword>>(jsonText).ToList();
+                var dataModel = JsonConvert.DeserializeObject<IList<LegendaryKeyword>>(jsonText).ToList();
 
-            return dataModel;
+                return dataModel;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, ex.Message);
+                return null;
+            }
         }
-
-
 
         public List<LegendaryIconViewModel> LoadIconsFromDirectory()
         {
-
-            string jsonText = File.ReadAllText(settings.templatesFolder + "\\" + settings.json_icons);
-            var dataModel = JsonConvert.DeserializeObject<IList<LegendaryIconViewModel>>(jsonText).ToList();
-
-            var result = new List<LegendaryIconViewModel>();
-
-            foreach (LegendaryIconViewModel item in dataModel.ToList())
+            try
             {
-                item.FileName = item.FileName.ToLower();
-                result.Add(item);
+
+                string jsonText = File.ReadAllText(settings.templatesFolder + "\\" + settings.json_icons);
+                var dataModel = JsonConvert.DeserializeObject<IList<LegendaryIconViewModel>>(jsonText).ToList();
+
+                var result = new List<LegendaryIconViewModel>();
+
+                foreach (LegendaryIconViewModel item in dataModel.ToList())
+                {
+                    item.FileName = item.FileName.ToLower();
+                    result.Add(item);
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, ex.Message);
+                return null;
             }
 
-            return result;
-
-
         }
-
 
         public DeckList GetDecks(string path)
         {
@@ -101,11 +142,10 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
+                Logger.Error(ex, ex.Message);
                 return null;
             }
         }
-
-
 
         public bool SaveDeck(DeckList model, string path)
         {
@@ -117,6 +157,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
+                Logger.Error(ex, ex.Message);
                 return false;
             }
         }
@@ -130,6 +171,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
+                Logger.Error(ex, ex.Message);
                 return false;
             }
         }
@@ -144,6 +186,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
+                Logger.Error(ex, ex.Message);
                 return false;
             }
         }
@@ -158,6 +201,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
+                Logger.Error(ex, ex.Message);
                 return false;
             }
         }
@@ -171,10 +215,10 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
+                Logger.Error(ex, ex.Message);
                 return false;
             }
         }
     }
-
 
 }

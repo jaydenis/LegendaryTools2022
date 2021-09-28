@@ -1,29 +1,29 @@
 {
-  "templateId": 10,
-  "templateName": "villain_location",
-  "templateDisplayName": "Villain Location",
-  "templateType": "villain",
-  "frameImage": "villain/villain_location.png",
-  "costImage": "",
-  "textImage": "",
-  "underlayImage": "",
+  "templateId": 9,
+  "templateName": "villain",
+  "templateDisplayName": "Villain",
+  "templateType": "Villain",
+  "frameImage": "villain.png",
+  "costImage": "back_attack.png",
+  "textImage": "--NONE--",
+  "underlayImage": "--NONE--",
   "imageHeight": 567,
   "imageWidth": 404,
   "teamIconXY": [
     17,
     14
   ],
-  "teamIconVisible": true,
+  "teamIconVisible": false,
   "powerPrimaryIconXY": [
     17,
     50
   ],
-  "powerPrimaryIconVisible": true,
+  "powerPrimaryIconVisible": false,
   "powerSecondaryIconXY": [
     17,
     80
   ],
-  "powerSecondaryIconVisible": true,
+  "powerSecondaryIconVisible": false,
   "cardNameXY": [
     17,
     17
@@ -36,7 +36,7 @@
   ],
   "cardNameSubTextSize": 18,
   "cardNameSubVisible": true,
-  "attributesPrimaryVisible": true,
+  "attributesPrimaryVisible": false,
   "attributesPrimaryTextSize": 47,
   "recruitIconXY": [
     17,
@@ -46,7 +46,7 @@
     19,
     434
   ],
-  "recruitVisible": true,
+  "recruitVisible": false,
   "attackIconXY": [
     17,
     500
@@ -55,14 +55,14 @@
     17,
     500
   ],
-  "attackVisible": true,
+  "attackVisible": false,
   "piercingIconXY": [
-    17,
-    500
+    0,
+    0
   ],
   "piercingValueXY": [
-    18,
-    511
+    0,
+    0
   ],
   "piercingVisible": false,
   "attributesSecondryTextSize": 59,
@@ -74,33 +74,34 @@
     315,
     485
   ],
-  "costVisible": true,
+  "costVisible": false,
   "attackDefenseIconXY": [
     1,
     1
   ],
   "attackDefenseValueXY": [
-    1,
-    1
+    337,
+    485
   ],
-  "attackDefenseVisible": false,
+  "attackDefenseVisible": true,
+  "attackDefenseTextSize": 45,
   "victroyIconXY": [
-    300,
-    400
+    345,
+    365
   ],
   "victroyValueXY": [
-    330,
-    400
+    360,
+    367
   ],
-  "victroyVisible": false,
-  "victoryTextSize": 32,
+  "victroyVisible": true,
+  "victoryTextSize": 28,
   "cardTextRectAreaX": [
-    80,
+    50,
     355,
     355,
-    298,
-    290,
-    80
+    300,
+    300,
+    50
   ],
   "cardTextRectAreaY": [
     420,
@@ -110,5 +111,6 @@
     530,
     530
   ],
-  "cardTextSize": 15
+  "cardTextSize": 15,
+  "NumberInDeck": 1
 }

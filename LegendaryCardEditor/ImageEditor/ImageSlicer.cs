@@ -67,7 +67,7 @@ namespace LegendaryCardEditor.ImageEditor
             OriginalImageSize = new Size(imgWidth, imghieght);
 
             // Create thumbnail by cropping
-            imageResult = imageNew.Scale(new CropScaling(343, 515));
+            imageResult = imageNew.Scale(new CropScaling(404, 567));
             pictureBoxResult.Image = imageResult.GetAsBitmap();
 
 

@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LegendaryCardEditor.Models
 {
@@ -130,6 +125,10 @@ namespace LegendaryCardEditor.Models
 
         [JsonProperty("attackDefenseVisible", Required = Required.Always)]
         public bool AttackDefenseVisible { get; set; }
+
+        [JsonProperty("attackDefenseTextSize", Required = Required.Always)]
+        public int AttackDefenseTextSize { get; set; }
+
 
         [JsonProperty("victroyIconXY", Required = Required.Always)]
         public List<int> VictroyIconXY { get; set; }

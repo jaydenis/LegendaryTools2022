@@ -10,25 +10,25 @@
   "imageHeight": 567,
   "imageWidth": 404,
   "teamIconXY": [
-    0,
-    0
+    15,
+    20
   ],
   "teamIconVisible": false,
   "powerPrimaryIconXY": [
-    0,
-    0
+    20,
+    56
   ],
   "powerPrimaryIconVisible": false,
   "powerSecondaryIconXY": [
-    0,
-    0
+    20,
+    80
   ],
   "powerSecondaryIconVisible": false,
   "cardNameXY": [
     17,
     17
   ],
-  "cardNameTextSize": 28,
+  "cardNameTextSize": 23,
   "cardNameVisible": true,
   "cardNameSubXY": [
     17,
@@ -37,23 +37,23 @@
   "cardNameSubTextSize": 20,
   "cardNameSubVisible": true,
   "attributesPrimaryVisible": false,
-  "attributesPrimaryTextSize": 22,
+  "attributesPrimaryTextSize": 47,
   "recruitIconXY": [
-    0,
-    0
+    17,
+    430
   ],
   "recruitValueXY": [
-    0,
-    0
+    19,
+    434
   ],
   "recruitVisible": false,
   "attackIconXY": [
-    0,
-    0
+    17,
+    500
   ],
   "attackValueXY": [
-    0,
-    0
+    17,
+    500
   ],
   "attackVisible": false,
   "piercingIconXY": [
@@ -65,14 +65,14 @@
     0
   ],
   "piercingVisible": false,
-  "attributesSecondryTextSize": 48,
+  "attributesSecondryTextSize": 59,
   "costIconXY": [
-    0,
-    0
+    355,
+    509
   ],
   "costValueXY": [
-    0,
-    0
+    315,
+    485
   ],
   "costVisible": false,
   "attackDefenseIconXY": [
@@ -80,10 +80,11 @@
     118
   ],
   "attackDefenseValueXY": [
-    340,
-    488
+    342,
+    484
   ],
   "attackDefenseVisible": true,
+  "attackDefenseTextSize": 45,
   "victroyIconXY": [
     0,
     0
@@ -110,5 +111,6 @@
     550,
     550
   ],
-  "cardTextSize": 16
+  "cardTextSize": 16,
+  "NumberInDeck": 1
 }

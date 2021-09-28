@@ -4,23 +4,23 @@
   "templateDisplayName": "Hero - Common",
   "templateType": "Hero",
   "frameImage": "hero_common_none.png",
-  "costImage": "--NONE--",
+  "costImage": "",
   "textImage": "back_text_common.png",
   "underlayImage": "--NONE--",
   "imageHeight": 567,
   "imageWidth": 404,
   "teamIconXY": [
-    17,
-    14
+    15,
+    20
   ],
   "teamIconVisible": true,
   "powerPrimaryIconXY": [
-    17,
-    50
+    20,
+    56
   ],
   "powerPrimaryIconVisible": true,
   "powerSecondaryIconXY": [
-    17,
+    20,
     80
   ],
   "powerSecondaryIconVisible": true,
@@ -34,7 +34,7 @@
     17,
     41
   ],
-  "cardNameSubTextSize": 18,
+  "cardNameSubTextSize": 17,
   "cardNameSubVisible": true,
   "attributesPrimaryVisible": true,
   "attributesPrimaryTextSize": 47,
@@ -76,24 +76,25 @@
   ],
   "costVisible": true,
   "attackDefenseIconXY": [
-    1,
-    1
+    0,
+    0
   ],
   "attackDefenseValueXY": [
-    340,
-    483
+    0,
+    0
   ],
   "attackDefenseVisible": false,
+  "attackDefenseTextSize": 45,
   "victroyIconXY": [
-    360,
-    356
+    0,
+    0
   ],
   "victroyValueXY": [
-    375,
-    357
+    0,
+    0
   ],
   "victroyVisible": false,
-  "victoryTextSize": 29,
+  "victoryTextSize": 0,
   "cardTextRectAreaX": [
     80,
     350,
@@ -110,5 +111,6 @@
     530,
     530
   ],
-  "cardTextSize": 15
+  "cardTextSize": 15,
+  "NumberInDeck": 1
 }

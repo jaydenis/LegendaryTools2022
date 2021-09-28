@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LegendaryCardEditor
 {
@@ -31,29 +26,34 @@ namespace LegendaryCardEditor
         [JsonProperty("TemplateId", Required = Required.Always)]
         public int TemplateId { get; set; }
 
-        [JsonProperty("PowerPrimary", Required = Required.Always)]
+        [JsonProperty("PowerPrimary", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string PowerPrimary { get; set; }
 
-        [JsonProperty("PowerSecondary", Required = Required.Always)]
+        [JsonProperty("PowerSecondary", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string PowerSecondary { get; set; }
 
-        [JsonProperty("AttributeCost", Required = Required.Always)]
+        [JsonProperty("PowerPrimaryIconId", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
+        public int PowerPrimaryIconId { get; set; }
+
+        [JsonProperty("PowerSecondaryIconId", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
+        public int PowerSecondaryIconId { get; set; }
+
+        [JsonProperty("AttributeCost", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string AttributeCost { get; set; }
 
-        [JsonProperty("AttributeAttack", Required = Required.Always)]
+        [JsonProperty("AttributeAttack", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string AttributeAttack { get; set; }
 
-        [JsonProperty("AttributeRecruit", Required = Required.Always)]
+        [JsonProperty("AttributeRecruit", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string AttributeRecruit { get; set; }
 
-        [JsonProperty("AttributePiercing", Required = Required.Always)]
+        [JsonProperty("AttributePiercing", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string AttributePiercing { get; set; }
 
-        [JsonProperty("AttributeVictoryPoints", Required = Required.AllowNull)]
+        [JsonProperty("AttributeVictoryPoints", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public int AttributeVictoryPoints { get; set; }
-        [JsonProperty("AttributeAttackDefense", Required = Required.Always)]
+        [JsonProperty("AttributeAttackDefense", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string AttributeAttackDefense { get; set; }
-
 
         [JsonProperty("CardText", Required = Required.Always)]
         public string CardText { get; set; }
@@ -67,19 +67,17 @@ namespace LegendaryCardEditor
         [JsonProperty("ArtWorkFile", Required = Required.Always)]
         public string ArtWorkFile { get; set; }
 
-        [JsonProperty("ExportedCardFile", Required = Required.Always)]
+        [JsonProperty("ExportedCardFile", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public string ExportedCardFile { get; set; }
 
         [JsonProperty("DeckId", Required = Required.Always)]
         public int DeckId { get; set; }
 
-        [JsonProperty("TeamIconId", Required = Required.Always)]
+        [JsonProperty("TeamIconId", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
         public int TeamIconId { get; set; }
 
-        [JsonProperty("PowerPrimaryIconId", Required = Required.Always)]
-        public int PowerPrimaryIconId { get; set; }
+        [JsonProperty("Team", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Include)]
+        public string Team { get; set; }
 
-        [JsonProperty("PowerSecondaryIconId", Required = Required.Always)]
-        public int PowerSecondaryIconId { get; set; }
     }
 }

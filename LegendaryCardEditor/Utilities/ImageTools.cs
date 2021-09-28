@@ -8,13 +8,13 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
-using System.Resources;
 using System.Windows.Forms;
 
 namespace LegendaryCardEditor.Utilities
 {
     public class ImageTools
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         CoreManager coreManager = new CoreManager();
         SystemSettings settings;
 
@@ -28,8 +28,7 @@ namespace LegendaryCardEditor.Utilities
 
         List<TemplateTypeModel> templateTypes { get; set; }
 
-        bool formIsReady = false;
-        bool propertiesConfigured = false;
+        string deckName;
 
         private string activeSetPath;
         private DirectoryInfo currentTemplateDirectory;
@@ -61,7 +60,6 @@ namespace LegendaryCardEditor.Utilities
         public FontFamily frameFontFamily { get; set; }
         public Font frameFont { get; set; }
 
-
         public List<int> rectXArray { get; set; }
         public List<int> rectYArray { get; set; }
         public double gapSizeBetweenLines { get; set; } = 0.2d;
@@ -71,14 +69,13 @@ namespace LegendaryCardEditor.Utilities
         public int startY { get; set; } = 50;
         public int endY { get; set; } = 525;
 
-
         #endregion
 
-        public ImageTools(string ActiveSetPath,  List<LegendaryIconViewModel> LegendaryIconList, SystemSettings settings)
+        public ImageTools(string ActiveSetPath, List<LegendaryIconViewModel> LegendaryIconList, SystemSettings settings, string deckName)
         {
             this.settings = settings;
             activeSetPath = ActiveSetPath;
-           
+            this.deckName = deckName;
 
             legendaryIconList = LegendaryIconList;
 
@@ -92,33 +89,6 @@ namespace LegendaryCardEditor.Utilities
 
             cardCostFont = attributesFont;
         }
-
-        //public List<int> SetPolygon(bool getX, bool getY)
-        //{
-        //    List<int> polygon = new List<int>();
-        //    if (getX == true && getY == false)
-        //    {
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX1.Value), scale));
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX2.Value), scale));
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX3.Value), scale));
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX4.Value), scale));
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX5.Value), scale));
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextX6.Value), scale));
-        //    }
-
-        //    if (getX == false && getY == true)
-        //    {
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY1.Value), scale));
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY2.Value), scale));
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY3.Value), scale));
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY4.Value), scale));
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY5.Value), scale));
-        //        polygon.Add(GetPercentage(Convert.ToInt32(numCardTextY6.Value), scale));
-        //    }
-
-        //    return polygon;
-        //}
-
 
         public KalikoImage GetIconMaxHeight(string icon, int maxHeight)
         {
@@ -141,208 +111,401 @@ namespace LegendaryCardEditor.Utilities
 
         public KalikoImage RenderCardImage(CardEntity card, TemplateEntity template)
         {
-            this.template = template;
-            this.card = card;
-
-            currentTemplateDirectory = new DirectoryInfo($"{settings.templatesFolder}\\cards\\{template.TemplateType}\\");
-
-            KalikoImage infoImage = new KalikoImage(template.ImageWidth, template.ImageHeight);
-
-            bool containsPlus = false;
-            FontFamily fontFamily = new FontFamily("Percolator");
-
-            Font font = new Font(
-               fontFamily,
-               82,
-               FontStyle.Bold,
-               GraphicsUnit.Pixel);
-
-            attributesFont = new Font(
-              fontFamily,
-              82,
-              FontStyle.Bold,
-              GraphicsUnit.Pixel);
-
-            cardCostFont = attributesFont;
-
-            infoImage.VerticalResolution = 600;
-            infoImage.HorizontalResolution = 600;
-            infoImage.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-
-            string curFile = $"{activeSetPath}\\artwork\\{card.ArtWorkFile}";
-
-            if (File.Exists(curFile))
-                artworkImage = new KalikoImage(curFile);
-            else
-                artworkImage = new KalikoImage(Resources.default_blank_card);
-
-
-            //artworkImage.Resize(template.ImageWidth, template.ImageHeight);
-            infoImage.BlitImage(artworkImage);
-
-            if (template.UnderlayImage != "--NONE--")
+            try
             {
-                if (File.Exists(($"{currentTemplateDirectory}\\{template.UnderlayImage}")))
+                this.template = template;
+                this.card = card;
+
+                currentTemplateDirectory = new DirectoryInfo($"{settings.templatesFolder}\\cards\\{template.TemplateType}\\");
+
+                KalikoImage infoImage = new KalikoImage(template.ImageWidth, template.ImageHeight);
+
+                bool containsPlus = false;
+                FontFamily fontFamily = new FontFamily("Percolator");
+
+                Font font = new Font(
+                   fontFamily,
+                   82,
+                   FontStyle.Bold,
+                   GraphicsUnit.Pixel);
+
+                attributesFont = new Font(
+                  fontFamily,
+                  82,
+                  FontStyle.Bold,
+                  GraphicsUnit.Pixel);
+
+                cardCostFont = attributesFont;
+
+                infoImage.VerticalResolution = 600;
+                infoImage.HorizontalResolution = 600;
+                infoImage.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+
+                string curFile = $"{activeSetPath}\\artwork\\{card.ArtWorkFile}";
+
+                if (File.Exists(curFile))
+                    artworkImage = new KalikoImage(curFile);
+                else
+                    artworkImage = new KalikoImage(Resources.default_blank_card);
+
+                //artworkImage.Resize(template.ImageWidth, template.ImageHeight);
+                infoImage.BlitImage(artworkImage);
+
+                if (template.UnderlayImage != "--NONE--")
                 {
-                    backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{template.UnderlayImage}");
-                    backTextImage.Resize(template.ImageWidth, template.ImageHeight);
-                    infoImage.BlitImage(backTextImage);
+                    if (File.Exists(($"{currentTemplateDirectory}\\{template.UnderlayImage}")))
+                    {
+                        backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{template.UnderlayImage}");
+                        backTextImage.Resize(template.ImageWidth, template.ImageHeight);
+                        infoImage.BlitImage(backTextImage);
+                    }
                 }
-            }
 
-            if (template.TextImage != "--NONE--")
-            {
-                if (File.Exists(($"{currentTemplateDirectory}\\{template.TextImage}")))
+                if (template.TextImage != "--NONE--")
                 {
-                    backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{template.TextImage}");
-                    backTextImage.Resize(template.ImageWidth, template.ImageHeight);
-                    infoImage.BlitImage(backTextImage);
+                    if (File.Exists(($"{currentTemplateDirectory}\\{template.TextImage}")))
+                    {
+                        backTextImage = new KalikoImage($"{currentTemplateDirectory}\\{template.TextImage}");
+                        backTextImage.Resize(template.ImageWidth, template.ImageHeight);
+                        infoImage.BlitImage(backTextImage);
+                    }
                 }
-            }
 
-            if (template.FrameImage != "--NONE--")
-            {
-                if (File.Exists(($"{currentTemplateDirectory}\\{template.FrameImage}")))
+                if (template.FrameImage != "--NONE--")
                 {
-                    frameImage = new KalikoImage($"{currentTemplateDirectory}\\{template.FrameImage}");
-                    frameImage.Resize(template.ImageWidth, template.ImageHeight);
-                    infoImage.BlitImage(frameImage);
+                    if (File.Exists(($"{currentTemplateDirectory}\\{template.FrameImage}")))
+                    {
+                        frameImage = new KalikoImage($"{currentTemplateDirectory}\\{template.FrameImage}");
+                        frameImage.Resize(template.ImageWidth, template.ImageHeight);
+                        infoImage.BlitImage(frameImage);
+                    }
                 }
-            }
 
-            if (template.CostImage != "--NONE--")
-            {
-                if (File.Exists(($"{currentTemplateDirectory}\\{template.CostImage}")))
+                if (template.CostImage != "--NONE--")
                 {
-                    costImage = new KalikoImage($"{currentTemplateDirectory}\\{template.CostImage}");
-                    costImage.Resize(template.ImageWidth, template.ImageHeight);
-                    infoImage.BlitImage(costImage);
+                    if (File.Exists(($"{currentTemplateDirectory}\\{template.CostImage}")))
+                    {
+                        costImage = new KalikoImage($"{currentTemplateDirectory}\\{template.CostImage}");
+                        costImage.Resize(template.ImageWidth, template.ImageHeight);
+                        infoImage.BlitImage(costImage);
+                    }
                 }
-            }
 
-            attackImageHero = new KalikoImage(Resources.attack);
-            attackImageVillain = new KalikoImage(Resources.attack);
-            recruitImage = new KalikoImage(Resources.recruit);
-            piercingImage = new KalikoImage(Resources.piercing);
-            victoryPointsImage = new KalikoImage(Resources.victory);
-
-            //if (template.CostVisible && chkCostImageVisible.Checked)
-            //     costImage = new KalikoImage(Resources.cost);
-
-            if (powerImage != null && template.PowerPrimaryIconVisible)
-            {
-
-                powerImage.Resize(30, 30);
-                infoImage.BlitImage(powerImage, template.PowerPrimaryIconXY[0], template.PowerPrimaryIconXY[1]);
-
-                if (powerImage2 != null && template.PowerPrimaryIconVisible && template.PowerSecondaryIconVisible)
-                {
-                    powerImage2.Resize(30, 30);
-                    infoImage.BlitImage(powerImage2, template.PowerSecondaryIconXY[0], template.PowerSecondaryIconXY[1]);
-                }
-            }
-
-            if (teamImage != null && template.TeamIconVisible)
-            {
-                teamImage.Resize(30, 30);
-                infoImage.BlitImage(teamImage, template.TeamIconXY[0], template.TeamIconXY[1]);
-            }
-
-            if (template.VictroyVisible)
-            {
-                if (card.AttributeVictoryPoints == -1)
-                    card.AttributeVictoryPoints = 0;
-
+                attackImageHero = new KalikoImage(Resources.attack);
+                attackImageVillain = new KalikoImage(Resources.attack);
+                recruitImage = new KalikoImage(Resources.recruit);
+                piercingImage = new KalikoImage(Resources.piercing);
                 victoryPointsImage = new KalikoImage(Resources.victory);
-                victoryPointsImage.Resize(30, 30);
-                infoImage.BlitImage(victoryPointsImage, template.VictroyIconXY[0], template.VictroyIconXY[1]);
 
-                font = new Font(
-               fontFamily,
-               template.VictoryTextSize,
-               FontStyle.Bold,
-               GraphicsUnit.Pixel);
-
-                TextField txtFieldVP = new TextField(card.AttributeVictoryPoints.ToString());
-                txtFieldVP.Font = font;
-                txtFieldVP.Point = new Point(template.VictroyValueXY[0], template.VictroyValueXY[1]);
-                txtFieldVP.Alignment = StringAlignment.Center;
-                txtFieldVP.TextColor = Color.LightGoldenrodYellow;
-                txtFieldVP.Outline = 2;
-                txtFieldVP.OutlineColor = Color.Black;
-                infoImage.DrawText(txtFieldVP);
-            }
-
-            if (card.AttributeRecruit != null && template.RecruitVisible && recruitImage != null)
-            {
-                if (card.AttributeRecruit.Length > 0)
+                //if (template.CostVisible && chkCostImageVisible.Checked)
+                //     costImage = new KalikoImage(Resources.cost);
+                string path = $"{settings.iconsFolder}";
+                LegendaryIconViewModel iconModel;
+                if (template.PowerPrimaryIconVisible && card.PowerPrimary.Length > 0)
                 {
-                    recruitImage.Resize(50, 50);
-                    infoImage.BlitImage(recruitImage, template.RecruitIconXY[0], template.RecruitIconXY[1]);
+                    iconModel = IsIcon($"<{card.PowerPrimary}>");
+                    path = $"{settings.iconsFolder}\\{iconModel.Category}\\{iconModel.FileName}";
+
+                    if (File.Exists(path))
+                    {
+                        powerImage = new KalikoImage(path);
+                        powerImage.Resize(25, 25);
+                        infoImage.BlitImage(powerImage, template.PowerPrimaryIconXY[0], template.PowerPrimaryIconXY[1]);
+
+                        if (template.PowerPrimaryIconVisible && template.PowerSecondaryIconVisible && card.PowerSecondary.Length > 0)
+                        {
+                            iconModel = IsIcon($"<{card.PowerSecondary}>");
+                            path = $"{settings.iconsFolder}\\{iconModel.Category}\\{iconModel.FileName}";
+                            if (File.Exists(path))
+                            {
+                                powerImage2 = new KalikoImage(path);
+                                powerImage2.Resize(25, 25);
+                                infoImage.BlitImage(powerImage2, template.PowerSecondaryIconXY[0], template.PowerSecondaryIconXY[1]);
+                            }
+                        }
+                    }
                 }
-            }
 
-            if (card.AttributeAttack != null && template.AttackVisible && attackImageHero != null)
-            {
-                if (card.AttributeAttack.Length > 0)
+                if (template.TeamIconVisible && card.Team.Length > 0)
                 {
-                    attackImageHero.Resize(50, 50);
-                    infoImage.BlitImage(attackImageHero, template.AttackIconXY[0], template.AttackIconXY[1]);
+                    iconModel = IsIcon($"<{card.Team}>");
+                    path = $"{settings.iconsFolder}\\{iconModel.Category}\\{iconModel.FileName}";
+                    if (File.Exists(path))
+                    {
+                        teamImage = new KalikoImage(path);
+                        teamImage.Resize(35, 35);
+                        infoImage.BlitImage(teamImage, template.TeamIconXY[0], template.TeamIconXY[1]);
+                    }
                 }
-            }
 
-            if (card.AttributePiercing != null && template.PiercingVisible && piercingImage != null)
-            {
-                if (card.AttributePiercing.Length > 0)
+                if (template.VictroyVisible)
                 {
-                    piercingImage.Resize(50, 50);
-                    infoImage.BlitImage(piercingImage, template.PiercingIconXY[0], template.PiercingIconXY[1]);
+                    if (card.AttributeVictoryPoints == -1)
+                        card.AttributeVictoryPoints = 0;
+
+                    victoryPointsImage = new KalikoImage(Resources.victory);
+                    victoryPointsImage.Resize(30, 30);
+                    infoImage.BlitImage(victoryPointsImage, template.VictroyIconXY[0], template.VictroyIconXY[1]);
+
+                    font = new Font(
+                   fontFamily,
+                   template.VictoryTextSize,
+                   FontStyle.Bold,
+                   GraphicsUnit.Pixel);
+
+                    TextField txtFieldVP = new TextField(card.AttributeVictoryPoints.ToString());
+                    txtFieldVP.Font = font;
+                    txtFieldVP.Point = new Point(template.VictroyValueXY[0], template.VictroyValueXY[1]);
+                    txtFieldVP.Alignment = StringAlignment.Center;
+                    txtFieldVP.TextColor = Color.LightGoldenrodYellow;
+                    txtFieldVP.Outline = 2;
+                    txtFieldVP.OutlineColor = Color.Black;
+                    infoImage.DrawText(txtFieldVP);
                 }
-            }
 
-            if (card.AttributeAttack != null && template.AttackDefenseVisible && attackImageVillain != null)
-            {
-                //attackImageVillain.Resize(120, 120);
-                // infoImage.BlitImage(attackImageVillain, template.AttackDefenseIconXY[0], template.AttackDefenseIconXY[1]);
-            }
-
-            if (template.CostVisible && costImage != null)
-            {
-                costImage.Resize(80, 80);
-                infoImage.BlitImage(costImage, template.CostIconXY[0], template.CostIconXY[1]);
-            }
-
-            if (card.AttributeCost != null && template.CostVisible)
-            {
-                string tempVal = card.AttributeCost;
-
-                // if (isRecruitableVillain)
-                //   tempVal = card.AttributeCost;
-
-                if (tempVal.Length > 0)
+                if (card.AttributeRecruit != null && template.RecruitVisible && recruitImage != null)
                 {
+                    if (card.AttributeRecruit.Length > 0)
+                    {
+                        recruitImage.Resize(50, 50);
+                        infoImage.BlitImage(recruitImage, template.RecruitIconXY[0], template.RecruitIconXY[1]);
+                    }
+                }
+
+                if (card.AttributeAttack != null && template.AttackVisible && attackImageHero != null)
+                {
+                    if (card.AttributeAttack.Length > 0)
+                    {
+                        attackImageHero.Resize(50, 50);
+                        infoImage.BlitImage(attackImageHero, template.AttackIconXY[0], template.AttackIconXY[1]);
+                    }
+                }
+
+                if (card.AttributePiercing != null && template.PiercingVisible && piercingImage != null)
+                {
+                    if (card.AttributePiercing.Length > 0)
+                    {
+                        piercingImage.Resize(50, 50);
+                        infoImage.BlitImage(piercingImage, template.PiercingIconXY[0], template.PiercingIconXY[1]);
+                    }
+                }
+
+                if (card.AttributeAttack != null && template.AttackDefenseVisible && attackImageVillain != null)
+                {
+                    //attackImageVillain.Resize(120, 120);
+                    // infoImage.BlitImage(attackImageVillain, template.AttackDefenseIconXY[0], template.AttackDefenseIconXY[1]);
+                }
+
+                if (template.CostVisible && costImage != null)
+                {
+                    costImage.Resize(80, 80);
+                    infoImage.BlitImage(costImage, template.CostIconXY[0], template.CostIconXY[1]);
+                }
+
+                if (card.AttributeCost != null && template.CostVisible)
+                {
+                    string tempVal = card.AttributeCost;
+
+                    // if (isRecruitableVillain)
+                    //   tempVal = card.AttributeCost;
+
+                    if (tempVal.Length > 0)
+                    {
+                        cardCostFont = new Font(
+                          fontFamily,
+                          template.AttributesSecondryTextSize,
+                          FontStyle.Bold,
+                          GraphicsUnit.Pixel);
+
+                        if (tempVal.Contains("+"))
+                        {
+                            containsPlus = true;
+                            tempVal = tempVal.Replace("+", "");
+                        }
+                        Size textSize = TextRenderer.MeasureText(tempVal, cardCostFont);
+                        TextField txtField = new TextField(tempVal)
+                        {
+                            Font = cardCostFont,
+                            TargetArea = new Rectangle(template.CostValueXY[0], template.CostValueXY[1], textSize.Width + 2, textSize.Height),
+                            TextColor = Color.White,
+                            Outline = 2,
+                            OutlineColor = Color.Black,
+                            Alignment = StringAlignment.Near
+                        };
+                        infoImage.DrawText(txtField);
+
+                        if (containsPlus)
+                        {
+                            font = new Font(
+                              attributesFont.FontFamily,
+                              (attributesFont.Size / 2),
+                              FontStyle.Bold,
+                              GraphicsUnit.Pixel);
+
+                            TextField txtFieldPlus = new TextField("+")
+                            {
+                                Font = font,
+                                TargetArea = new Rectangle(txtField.TargetArea.X + 42, txtField.TargetArea.Y + 20, textSize.Width + 2, textSize.Height),
+                                TextColor = Color.White,
+                                Outline = 2,
+                                OutlineColor = Color.Black,
+                                Alignment = StringAlignment.Near
+                            };
+                            infoImage.DrawText(txtFieldPlus);
+                            card.AttributeCost = tempVal + "+";
+                        }
+                    }
+                }
+
+                if (card.AttributeAttackDefense != null && template.AttackDefenseVisible)
+                {
+
                     cardCostFont = new Font(
-                      fontFamily,
-                      template.AttributesSecondryTextSize,
+                      attributesFont.FontFamily,
+                      template.AttackDefenseTextSize,
                       FontStyle.Bold,
                       GraphicsUnit.Pixel);
 
-                    if (tempVal.Contains("+"))
-                    {
-                        containsPlus = true;
-                        tempVal = tempVal.Replace("+", "");
-                    }
-                    Size textSize = TextRenderer.MeasureText(tempVal, cardCostFont);
-                    TextField txtField = new TextField(tempVal)
+                    TextField txtField = new TextField(card.AttributeAttackDefense)
                     {
                         Font = cardCostFont,
-                        TargetArea = new Rectangle(template.CostValueXY[0], template.CostValueXY[1], textSize.Width + 2, textSize.Height),
+                        Alignment = StringAlignment.Center,
+                        TextColor = Color.White
+                    };
+
+                    txtField.Point = new Point(template.AttackDefenseValueXY[0], template.AttackDefenseValueXY[1]);
+
+                    txtField.Outline = 2;
+                    txtField.OutlineColor = Color.Black;
+                    infoImage.DrawText(txtField);
+                }
+
+                string tempSubName = template.TemplateDisplayName.ToUpper();
+
+                if (template.TemplateName.ToLower().Contains("hero"))
+                    tempSubName = card.CardDisplayNameSub.ToUpper();
+
+                if (template.TemplateName.ToLower().Contains("sidekick"))
+                    tempSubName = template.TemplateDisplayName.ToUpper();
+
+                if (template.TemplateName.ToLower().Contains("mastermind"))
+                {
+                    if (template.TemplateName.ToLower() == "mastermind")
+                    {
+                        card.CardDisplayName = this.deckName.ToUpper();
+                        tempSubName = "Mastermind";
+                    }
+
+                    if (template.TemplateName.ToLower() == "mastermind_tactic")
+                        tempSubName = "Mastermind Tactic - " + this.deckName.ToUpper();
+                }
+
+                if (template.TemplateName.ToLower() == "villain")
+                    tempSubName = template.TemplateDisplayName.Replace("Recruitable", "").ToUpper() + " - " + card.CardDisplayNameSub.ToUpper();
+
+                Font fontTitle = new Font(
+                   attributesFont.FontFamily,
+                   card.CardDisplayNameFont,
+                   FontStyle.Bold,
+                   GraphicsUnit.Pixel);
+
+                TextField txtFieldTitle = new TextField(card.CardDisplayName.ToUpper())
+                {
+                    Font = fontTitle,
+                    TargetArea = new Rectangle(template.CardNameXY[0], template.CardNameXY[1], template.ImageWidth - 40, fontTitle.Height + 20),
+                    Alignment = StringAlignment.Center,
+                    TextColor = Color.Gold,
+                    Outline = 2,
+                    OutlineColor = Color.Black
+                };
+
+                Font fontSubTitle = new Font(
+                   attributesFont.FontFamily,
+                   card.CardDisplayNameSubFont,
+                   FontStyle.Bold,
+                   GraphicsUnit.Pixel);
+
+                TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
+                {
+                    Font = fontSubTitle,
+                    TargetArea = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1] + 2, template.ImageWidth - 40, 63),
+                    Alignment = StringAlignment.Center,
+                    TextColor = Color.Gold,
+                    Outline = 2,
+                    OutlineColor = Color.Black
+                };
+
+                if (template.TemplateName.ToLower() == "wound" || template.TemplateName.ToLower() == "bystander")
+                {
+                    txtFieldSubTitle.Text = template.TemplateDisplayName.ToUpper();
+                    txtFieldSubTitle.TargetArea = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1], template.ImageWidth, 50);
+                    txtFieldSubTitle.TextColor = Color.White;
+                    txtFieldSubTitle.Alignment = StringAlignment.Near;
+                }
+                else
+                {
+                    // create blank bitmap with same size
+                    Bitmap combinedImageL = new Bitmap(template.ImageWidth / 2, fontTitle.Height + fontSubTitle.Height);
+                    Bitmap combinedImageR = new Bitmap(template.ImageWidth / 2, fontTitle.Height + fontSubTitle.Height);
+
+                    // create graphics object on new blank bitmap
+                    Graphics gL = Graphics.FromImage(combinedImageL);
+                    Graphics gR = Graphics.FromImage(combinedImageR);
+
+                    LinearGradientBrush linearGradientBrushL = new LinearGradientBrush(
+                        new Rectangle(0, 0, template.ImageWidth / 2, combinedImageL.Height),
+                       Color.FromArgb(0, Color.White),
+                       Color.FromArgb(225, Color.DimGray),
+                        0f);
+
+                    gL.FillRectangle(linearGradientBrushL, 0, 0, template.ImageWidth / 2, combinedImageL.Height);
+                    infoImage.BlitImage(combinedImageL, 0, 16);
+
+                    LinearGradientBrush linearGradientBrushR = new LinearGradientBrush(
+                       new Rectangle(0, 0, template.ImageWidth / 2, combinedImageR.Height),
+                        Color.FromArgb(225, Color.DimGray),
+                        Color.FromArgb(0, Color.White),
+                        LinearGradientMode.Horizontal);
+
+                    gR.FillRectangle(linearGradientBrushR, 0, 0, template.ImageWidth / 2, combinedImageR.Height);
+                    infoImage.BlitImage(combinedImageR, template.ImageWidth / 2, 16);
+                }
+
+                if (template.CardNameVisible)
+                    infoImage.DrawText(txtFieldTitle);
+
+                if (template.CardNameSubVisible)
+                    infoImage.DrawText(txtFieldSubTitle);
+
+                containsPlus = false;
+                if (template.AttributesPrimaryTextSize < 9)
+                    template.AttributesPrimaryTextSize = 22;
+
+                attributesFont = new Font(
+                      fontFamily,
+                      template.AttributesPrimaryTextSize,
+                      FontStyle.Bold,
+                      GraphicsUnit.Pixel);
+
+                if (card.AttributeRecruit != null && template.RecruitVisible)
+                {
+                    if (card.AttributeRecruit.Contains("+"))
+                    {
+                        containsPlus = true;
+                        card.AttributeRecruit = card.AttributeRecruit.Replace("+", "");
+                    }
+
+                    Size textSizeRecruit = TextRenderer.MeasureText(card.AttributeRecruit, attributesFont);
+                    TextField txtFieldRecruit = new TextField(card.AttributeRecruit)
+                    {
+                        Font = attributesFont,
+                        TargetArea = new Rectangle(template.RecruitValueXY[0], template.RecruitValueXY[1], textSizeRecruit.Width + 2, textSizeRecruit.Height),
                         TextColor = Color.White,
                         Outline = 2,
                         OutlineColor = Color.Black,
                         Alignment = StringAlignment.Near
                     };
-                    infoImage.DrawText(txtField);
+                    infoImage.DrawText(txtFieldRecruit);
 
                     if (containsPlus)
                     {
@@ -352,305 +515,143 @@ namespace LegendaryCardEditor.Utilities
                           FontStyle.Bold,
                           GraphicsUnit.Pixel);
 
-                        TextField txtFieldPlus = new TextField("+")
+                        TextField txtFieldRecruitPlus = new TextField("+")
                         {
                             Font = font,
-                            TargetArea = new Rectangle(txtField.TargetArea.X + 42, txtField.TargetArea.Y + 20, textSize.Width + 2, textSize.Height),
+                            TargetArea = new Rectangle(txtFieldRecruit.TargetArea.Width - 5, txtFieldRecruit.TargetArea.Y + 10, textSizeRecruit.Width + 2, textSizeRecruit.Height),
                             TextColor = Color.White,
                             Outline = 2,
                             OutlineColor = Color.Black,
                             Alignment = StringAlignment.Near
                         };
-                        infoImage.DrawText(txtFieldPlus);
-                        card.AttributeCost = tempVal + "+";
+                        infoImage.DrawText(txtFieldRecruitPlus);
+                        card.AttributeRecruit = card.AttributeRecruit + "+";
                     }
                 }
-            }
 
-            if (card.AttributeAttackDefense != null && template.AttackDefenseVisible)
-            {
+                containsPlus = false;
 
-                cardCostFont = new Font(
-                  attributesFont.FontFamily,
-                  template.AttributesSecondryTextSize,
-                  FontStyle.Bold,
-                  GraphicsUnit.Pixel);
-
-                TextField txtField = new TextField(card.AttributeAttackDefense)
+                if (card.AttributeAttack != null && template.AttackVisible)
                 {
-                    Font = cardCostFont,
-                    Alignment = StringAlignment.Center,
-                    TextColor = Color.White
-                };
-
-                txtField.Point = new Point(template.AttackDefenseValueXY[0], template.AttackDefenseValueXY[1]);
-
-                txtField.Outline = 2;
-                txtField.OutlineColor = Color.Black;
-                infoImage.DrawText(txtField);
-            }
-
-
-
-            Font fontTitle = new Font(
-               attributesFont.FontFamily,
-               template.CardNameTextSize,
-               FontStyle.Bold,
-               GraphicsUnit.Pixel);
-
-            TextField txtFieldTitle = new TextField(card.CardDisplayName.ToUpper())
-            {
-                Font = fontTitle,
-                TargetArea = new Rectangle(template.CardNameXY[0], template.CardNameXY[1], template.ImageWidth - 40, fontTitle.Height + 20),
-                Alignment = StringAlignment.Center,
-                TextColor = Color.Gold,
-                Outline = 2,
-                OutlineColor = Color.Black
-            };
-
-            Font fontSubTitle = new Font(
-               attributesFont.FontFamily,
-               template.CardNameSubTextSize,
-               FontStyle.Bold,
-               GraphicsUnit.Pixel);
-
-            string tempSubName = template.TemplateDisplayName.ToUpper();
-
-            if (template.TemplateName.Contains("hero"))
-                tempSubName = card.CardDisplayNameSub.ToUpper();
-
-            if (template.TemplateName.Contains("sidekick"))
-                tempSubName = template.TemplateDisplayName.ToUpper();
-
-            if (template.TemplateName.Contains("mastermind"))
-            {
-                if (template.TemplateName == "mastermind")
-                    tempSubName = "Mastermind";
-
-                if (template.TemplateName == "mastermind_tactic")
-                    tempSubName = "Mastermind Tactic - " + card.CardDisplayNameSub.ToUpper();
-            }
-
-            if (template.TemplateName == "villain")
-            {
-                tempSubName = template.TemplateDisplayName.Replace("Recruitable", "").ToUpper() + " - " + card.CardDisplayNameSub.ToUpper();
-            }
-
-            TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
-            {
-                Font = fontSubTitle,
-                TargetArea = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1], template.ImageWidth - 40, 60),
-                Alignment = StringAlignment.Center,
-                TextColor = Color.Gold,
-                Outline = 2,
-                OutlineColor = Color.Black
-            };
-
-            if (template.TemplateName == "wound" || template.TemplateName == "bystander")
-            {
-                txtFieldSubTitle.Text = template.TemplateDisplayName.ToUpper();
-                txtFieldSubTitle.TargetArea = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1], template.ImageWidth, 50);
-                txtFieldSubTitle.TextColor = Color.White;
-                txtFieldSubTitle.Alignment = StringAlignment.Near;
-            }
-            else
-            {
-                // create blank bitmap with same size
-                Bitmap combinedImageL = new Bitmap(template.ImageWidth / 2, fontTitle.Height + fontSubTitle.Height);
-                Bitmap combinedImageR = new Bitmap(template.ImageWidth / 2, fontTitle.Height + fontSubTitle.Height);
-
-                // create graphics object on new blank bitmap
-                Graphics gL = Graphics.FromImage(combinedImageL);
-                Graphics gR = Graphics.FromImage(combinedImageR);
-
-                LinearGradientBrush linearGradientBrushL = new LinearGradientBrush(
-                    new Rectangle(0, 0, template.ImageWidth / 2, combinedImageL.Height),
-                   Color.FromArgb(0, Color.White),
-                   Color.FromArgb(225, Color.DimGray),
-                    0f);
-
-                gL.FillRectangle(linearGradientBrushL, 0, 0, template.ImageWidth / 2, combinedImageL.Height);
-                infoImage.BlitImage(combinedImageL, 30, 16);
-
-                LinearGradientBrush linearGradientBrushR = new LinearGradientBrush(
-                   new Rectangle(0, 0, template.ImageWidth / 2, combinedImageR.Height),
-                    Color.FromArgb(225, Color.DimGray),
-                    Color.FromArgb(0, Color.White),
-                    LinearGradientMode.Horizontal);
-
-                gR.FillRectangle(linearGradientBrushR, 0, 0, template.ImageWidth / 2, combinedImageR.Height);
-                infoImage.BlitImage(combinedImageR, template.ImageWidth / 2, 16);
-            }
-
-            if (template.CardNameVisible)
-                infoImage.DrawText(txtFieldTitle);
-
-            if (template.CardNameSubVisible)
-                infoImage.DrawText(txtFieldSubTitle);
-
-            containsPlus = false;
-            if (template.AttributesPrimaryTextSize < 9)
-                template.AttributesPrimaryTextSize = 22;
-
-            attributesFont = new Font(
-                  fontFamily,
-                  template.AttributesPrimaryTextSize,
-                  FontStyle.Bold,
-                  GraphicsUnit.Pixel);
-
-            if (card.AttributeRecruit != null && template.RecruitVisible)
-            {
-                if (card.AttributeRecruit.Contains("+"))
-                {
-                    containsPlus = true;
-                    card.AttributeRecruit = card.AttributeRecruit.Replace("+", "");
-                }
-
-                Size textSizeRecruit = TextRenderer.MeasureText(card.AttributeRecruit, attributesFont);
-                TextField txtFieldRecruit = new TextField(card.AttributeRecruit)
-                {
-                    Font = attributesFont,
-                    TargetArea = new Rectangle(template.RecruitValueXY[0], template.RecruitValueXY[1], textSizeRecruit.Width + 2, textSizeRecruit.Height),
-                    TextColor = Color.White,
-                    Outline = 2,
-                    OutlineColor = Color.Black,
-                    Alignment = StringAlignment.Near
-                };
-                infoImage.DrawText(txtFieldRecruit);
-
-                if (containsPlus)
-                {
-                    font = new Font(
-                      attributesFont.FontFamily,
-                      (attributesFont.Size / 2),
-                      FontStyle.Bold,
-                      GraphicsUnit.Pixel);
-
-                    TextField txtFieldRecruitPlus = new TextField("+")
+                    if (card.AttributeAttack.Contains("+"))
                     {
-                        Font = font,
-                        TargetArea = new Rectangle(txtFieldRecruit.TargetArea.Width - 5, txtFieldRecruit.TargetArea.Y + 5, textSizeRecruit.Width + 2, textSizeRecruit.Height),
+                        containsPlus = true;
+                        card.AttributeAttack = card.AttributeAttack.Replace("+", "");
+                    }
+                    Size textSizeAttack = TextRenderer.MeasureText(card.AttributeAttack, attributesFont);
+                    TextField txtFieldAttack = new TextField(card.AttributeAttack)
+                    {
+                        Font = attributesFont,
+                        TargetArea = new Rectangle(template.AttackValueXY[0], template.AttackValueXY[1], textSizeAttack.Width + 2, textSizeAttack.Height),
                         TextColor = Color.White,
                         Outline = 2,
                         OutlineColor = Color.Black,
                         Alignment = StringAlignment.Near
                     };
-                    infoImage.DrawText(txtFieldRecruitPlus);
-                    card.AttributeRecruit = card.AttributeRecruit + "+";
-                }
-            }
+                    infoImage.DrawText(txtFieldAttack);
 
-            containsPlus = false;
-
-            if (card.AttributeAttack != null && template.AttackVisible)
-            {
-                if (card.AttributeAttack.Contains("+"))
-                {
-                    containsPlus = true;
-                    card.AttributeAttack = card.AttributeAttack.Replace("+", "");
-                }
-                Size textSizeAttack = TextRenderer.MeasureText(card.AttributeAttack, attributesFont);
-                TextField txtFieldAttack = new TextField(card.AttributeAttack)
-                {
-                    Font = attributesFont,
-                    TargetArea = new Rectangle(template.AttackValueXY[0], template.AttackValueXY[1], textSizeAttack.Width + 2, textSizeAttack.Height),
-                    TextColor = Color.White,
-                    Outline = 2,
-                    OutlineColor = Color.Black,
-                    Alignment = StringAlignment.Near
-                };
-                infoImage.DrawText(txtFieldAttack);
-
-                if (containsPlus)
-                {
-                    font = new Font(
-                      attributesFont.FontFamily,
-                      (attributesFont.Size / 2),
-                      FontStyle.Bold,
-                      GraphicsUnit.Pixel);
-
-                    TextField txtFieldAttackPlus = new TextField("+")
+                    if (containsPlus)
                     {
-                        Font = font,
-                        TargetArea = new Rectangle(txtFieldAttack.TargetArea.Width - 5, txtFieldAttack.TargetArea.Y + 5, textSizeAttack.Width + 2, textSizeAttack.Height),
+                        font = new Font(
+                          attributesFont.FontFamily,
+                          (attributesFont.Size / 2),
+                          FontStyle.Bold,
+                          GraphicsUnit.Pixel);
+
+                        TextField txtFieldAttackPlus = new TextField("+")
+                        {
+                            Font = font,
+                            TargetArea = new Rectangle(txtFieldAttack.TargetArea.Width - 5, txtFieldAttack.TargetArea.Y + 10, textSizeAttack.Width + 2, textSizeAttack.Height),
+                            TextColor = Color.White,
+                            Outline = 2,
+                            OutlineColor = Color.Black,
+                            Alignment = StringAlignment.Near
+                        };
+                        infoImage.DrawText(txtFieldAttackPlus);
+                        card.AttributeAttack = card.AttributeAttack + "+";
+                    }
+                }
+
+                containsPlus = false;
+                if (card.AttributePiercing != null && template.PiercingVisible)
+                {
+                    if (card.AttributePiercing.Contains("+"))
+                    {
+                        containsPlus = true;
+                        card.AttributePiercing = card.AttributePiercing.Replace("+", "");
+                    }
+
+                    Size textSizePiercing = TextRenderer.MeasureText(card.AttributePiercing, attributesFont);
+                    TextField txtFieldPiercing = new TextField(card.AttributePiercing)
+                    {
+                        Font = attributesFont,
+                        TargetArea = new Rectangle(template.PiercingValueXY[0], template.PiercingValueXY[1], textSizePiercing.Width + 2, textSizePiercing.Height),
                         TextColor = Color.White,
                         Outline = 2,
                         OutlineColor = Color.Black,
                         Alignment = StringAlignment.Near
                     };
-                    infoImage.DrawText(txtFieldAttackPlus);
-                    card.AttributeAttack = card.AttributeAttack + "+";
-                }
-            }
+                    infoImage.DrawText(txtFieldPiercing);
 
-            containsPlus = false;
-            if (card.AttributePiercing != null && template.PiercingVisible)
-            {
-                if (card.AttributePiercing.Contains("+"))
-                {
-                    containsPlus = true;
-                    card.AttributePiercing = card.AttributePiercing.Replace("+", "");
-                }
-
-                Size textSizePiercing = TextRenderer.MeasureText(card.AttributePiercing, attributesFont);
-                TextField txtFieldPiercing = new TextField(card.AttributePiercing)
-                {
-                    Font = attributesFont,
-                    TargetArea = new Rectangle(template.PiercingValueXY[0], template.PiercingValueXY[1], textSizePiercing.Width + 2, textSizePiercing.Height),
-                    TextColor = Color.White,
-                    Outline = 2,
-                    OutlineColor = Color.Black,
-                    Alignment = StringAlignment.Near
-                };
-                infoImage.DrawText(txtFieldPiercing);
-
-                if (containsPlus)
-                {
-                    font = new Font(
-                      attributesFont.FontFamily,
-                      (attributesFont.Size / 2),
-                      FontStyle.Bold,
-                      GraphicsUnit.Pixel);
-
-                    TextField txtFieldPiercingPlus = new TextField("+")
+                    if (containsPlus)
                     {
-                        Font = font,
-                        TargetArea = new Rectangle(txtFieldPiercing.TargetArea.Width - 5, txtFieldPiercing.TargetArea.Y + 5, textSizePiercing.Width + 2, textSizePiercing.Height),
-                        TextColor = Color.White,
-                        Outline = 2,
-                        OutlineColor = Color.Black,
-                        Alignment = StringAlignment.Near
-                    };
-                    infoImage.DrawText(txtFieldPiercingPlus);
-                    card.AttributePiercing = card.AttributePiercing + "+";
+                        font = new Font(
+                          attributesFont.FontFamily,
+                          (attributesFont.Size / 2),
+                          FontStyle.Bold,
+                          GraphicsUnit.Pixel);
+
+                        TextField txtFieldPiercingPlus = new TextField("+")
+                        {
+                            Font = font,
+                            TargetArea = new Rectangle(txtFieldPiercing.TargetArea.Width - 5, txtFieldPiercing.TargetArea.Y + 10, textSizePiercing.Width + 2, textSizePiercing.Height),
+                            TextColor = Color.White,
+                            Outline = 2,
+                            OutlineColor = Color.Black,
+                            Alignment = StringAlignment.Near
+                        };
+                        infoImage.DrawText(txtFieldPiercingPlus);
+                        card.AttributePiercing = card.AttributePiercing + "+";
+                    }
                 }
+
+                if (card.CardText != null && template != null)
+                {
+                    bool cardTextResult = GetCardText(card, card.CardTextFont);
+                    if (!cardTextResult)
+                    {
+                        int reduceSize = 1;
+                        while (!cardTextResult)
+                        {
+                            card.CardTextFont = card.CardTextFont - reduceSize;
+                            cardTextResult = GetCardText(card, card.CardTextFont);
+                            reduceSize++;
+                        }
+                    }
+                    foreach (var icon in cardTextIcons)
+                        infoImage.BlitImage(icon.IconImage, icon.Position.X, icon.Position.Y);
+
+                    foreach (var item in cardTextFields)
+                        infoImage.DrawText(item);
+                }
+
+                return infoImage;
+
             }
-
-
-            if (card.CardText != null)
+            catch (Exception ex)
             {
-                GetCardText(card);
-
-                foreach (var icon in cardTextIcons)
-                    infoImage.BlitImage(icon.IconImage, icon.Position.X, icon.Position.Y);
-
-                foreach (var item in cardTextFields)
-                    infoImage.DrawText(item);
+                Logger.Error(ex.ToString());
+                return null;
             }
-
-            return infoImage;
 
         }
 
-        public void GetCardText(CardEntity model)
+        public bool GetCardText(CardEntity model, int fontSize)
         {
             try
             {
-                if (template == null)
-                    return;
-
-                if (template.CardTextSize < 9)
-                    template.CardTextSize = 22;
+                if (fontSize < 9)
+                    fontSize = 22;
 
                 cardTextFields = new List<TextField>();
                 cardTextIcons = new List<CardTextIconViewModel>();
@@ -661,20 +662,20 @@ namespace LegendaryCardEditor.Utilities
                 {
                     cardInfoFont = new Font(
                       fontFamily,
-                      Convert.ToInt32(template.CardTextSize),
+                     fontSize,
                       FontStyle.Regular,
                       GraphicsUnit.Pixel);
                 }
 
                 Font fontRegular = new Font(
                       fontFamily,
-                      Convert.ToInt32(template.CardTextSize),
+                      fontSize,
                       FontStyle.Regular,
                       GraphicsUnit.Pixel);
 
                 Font fontBold = new Font(
                       fontFamily,
-                      Convert.ToInt32(template.CardTextSize),
+                      fontSize,
                       FontStyle.Bold,
                       GraphicsUnit.Pixel);
 
@@ -690,6 +691,13 @@ namespace LegendaryCardEditor.Utilities
                 Point[] startPoint = GetPolygon(); //new Point(70,390);
                 x = startPoint[0].X;
                 y = startPoint[0].Y;
+
+                startX = startPoint[0].X;
+                startY = startPoint[0].Y;
+
+                endX = startPoint[startPoint.Count() - 2].X;
+                endY = startPoint[startPoint.Count() - 1].Y;
+
                 var sections = model.CardText.Split(' ').ToList();
 
                 bool lastCharIsNumeric = false;
@@ -738,7 +746,7 @@ namespace LegendaryCardEditor.Utilities
                                 y += currentFont.Height;
                                 x = startPoint[0].X;
                             }
-                            else if ((icon == null))
+                            else if (icon == null)
                             {
                                 int stringLength = textSize.Width;
                                 if (stringLength > 0)
@@ -746,6 +754,10 @@ namespace LegendaryCardEditor.Utilities
                                     if (!IsInPolygon(startPoint, new Point(x - 2 + stringLength, y)))
                                     {
                                         y += currentFont.Height;
+
+                                        if (y > endY)
+                                            return false;
+
                                         x = getXStart(y);
                                     }
 
@@ -781,10 +793,16 @@ namespace LegendaryCardEditor.Utilities
                                     x = getXStart(y);
                                 }
 
-                                int modifiedY = ((int)(((y - (currentFont.Height - 5)) + ascentPixel)));
+                                int modifiedY = (int)((y - currentFont.Height + 2) + ascentPixel);
 
                                 if (lastCharIsNumeric && x != startPoint[0].X)
                                     x -= 10;
+
+                                if (!IsInPolygon(startPoint, new Point(x - 2 + iconImage.Width, modifiedY)))
+                                {
+                                    // modifiedY += iconImage.Height;
+                                    x = getXStart(modifiedY);
+                                }
 
                                 var imgX = new CardTextIconViewModel
                                 {
@@ -798,17 +816,20 @@ namespace LegendaryCardEditor.Utilities
                         }
                     }
                 }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Logger.Error(ex.ToString());
             }
+
+            return true;
         }
 
         public KalikoImage GetIconMaxHeight(LegendaryIconViewModel icon, int maxHeight)
         {
-            //string path = $"{settings.iconsFolder}\\{icon.Category}\\{icon.FileName}";
-            KalikoImage imageIcon = new KalikoImage(icon.FileName);
+            string path = $"{settings.iconsFolder}\\{icon.Category}\\{icon.FileName}";
+            KalikoImage imageIcon = new KalikoImage(path);
             double r = (double)((double)maxHeight / (double)imageIcon.Height);
 
             int w = (int)(imageIcon.Width * r);
@@ -899,7 +920,6 @@ namespace LegendaryCardEditor.Utilities
             }
         }
 
-
         public int getXStart(int y)
         {
             for (int i = 0; i < GetPercentage(template.ImageWidth, scale); i++)
@@ -946,8 +966,9 @@ namespace LegendaryCardEditor.Utilities
                 LegendaryIconViewModel i = legendaryIconList.Where(x => x.Name == str).FirstOrDefault();
                 return i;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                Logger.Error(ex.ToString());
                 return null;
             }
         }

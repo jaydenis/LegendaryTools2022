@@ -3,22 +3,21 @@ using Kaliko.ImageLibrary;
 using LegendaryCardEditor.Controls;
 using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;
+using LegendaryCardEditor.TemplateEditor;
 using LegendaryCardEditor.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LegendaryCardEditor
 {
     public partial class Form1 : KryptonForm
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         SystemSettings settings;
         CoreManager coreManager = new CoreManager();
         DeckList deckList;
@@ -52,10 +51,8 @@ namespace LegendaryCardEditor
                 legendaryIconList = coreManager.LoadIconsFromDirectory();
                 templateModelList = coreManager.GetTemplates();
                 deckTypeList = coreManager.GetDeckTypes();
-               
+
                 PopulateKeywordListBox();
-
-
 
                 if (settings.lastProject != string.Empty)
                     if (File.Exists(settings.lastProject))
@@ -67,86 +64,108 @@ namespace LegendaryCardEditor
 
                 PopulateIconsEditor();
 
-             
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-               // AddNewDeck();
+                Logger.Error(ex, ex.Message);
             }
         }
 
         private void PopulateKeywordListBox()
         {
-            listBoxKeywords.Items.Clear();
-            selectedKeyword = null;
-            keywordsList = coreManager.GetKeywords();
-            foreach (LegendaryKeyword keyword in keywordsList.OrderBy(o => o.KeywordName))
+            try
             {
-                KryptonListItem item = new KryptonListItem
+                listBoxKeywords.Items.Clear();
+                selectedKeyword = null;
+                keywordsList = coreManager.GetKeywords();
+                foreach (LegendaryKeyword keyword in keywordsList.OrderBy(o => o.KeywordName))
                 {
-                    ShortText = keyword.KeywordName,
-                    Tag = keyword
-                };
-                listBoxKeywords.Items.Add(item);
+                    KryptonListItem item = new KryptonListItem
+                    {
+                        ShortText = keyword.KeywordName,
+                        Tag = keyword
+                    };
+                    listBoxKeywords.Items.Add(item);
+                }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                Logger.Error(ex, ex.Message);
+            }
         }
 
         private void LoadCustomSet(string path)
         {
-            dataFile = path;           
-
-           
+            dataFile = path;
 
             deckList = coreManager.GetDecks(dataFile);
-           PopulateDeckTree();
+            PopulateDeckTree();
 
             //create a backup each time a file is loaded
-           coreManager.CreateBackup(deckList,$"{dataFile}.bak");
-                
+            coreManager.CreateBackup(deckList, $"{dataFile}.bak");
 
         }
 
-
         private void PopulateDeckTree()
         {
-            treeView1.Nodes.Clear();
-            splitContainer1.Panel2.Controls.Clear();
-            TreeNode root = new TreeNode("Decks");
-            root.ImageIndex = 27;
-            foreach (var deckType in deckTypeList)
+            try
             {
-                TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
-                deckTypeNode.ImageIndex = 27;
-                deckTypeNode.SelectedImageIndex = 27;
-                if (deckList != null)
+                treeView1.Nodes.Clear();
+                splitContainer1.Panel2.Controls.Clear();
+                TreeNode root = new TreeNode("Decks");
+                root.ImageIndex = 0;
+                foreach (var deckType in deckTypeList)
                 {
-                    foreach (var deck in deckList.Decks.Where(x => x.DeckTypeId == deckType.DeckTypeId))
+                    TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
+                    deckTypeNode.ImageIndex = 0;
+                    deckTypeNode.SelectedImageIndex = 0;
+                    if (deckList != null)
                     {
-                        var fi1 = new FileInfo(dataFile);
-
-                        TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
-                        deckNode.ImageIndex = deck.TeamIconId;
-                        deckNode.SelectedImageIndex = deck.TeamIconId;
-
-                        var data = new CurrentActiveDataModel
+                        foreach (var deck in deckList.Decks.Where(x => x.DeckTypeId == deckType.DeckTypeId))
                         {
-                            Id = deck.DeckId,
-                            ActiveDeck = deck,
-                            ActiveSetDataFile = dataFile,
-                            ActiveSetPath = fi1.DirectoryName,
-                            AllDecksInSet = deckList
-                        };
-                        deckNode.Tag = data;
-                        deckTypeNode.Nodes.Add(deckNode);
-                    }
-                }
-                treeView1.Nodes.Add(deckTypeNode);
-            }
+                            var fi1 = new FileInfo(dataFile);
 
-            treeView1.ExpandAll();
+                            TreeNode deckNode = new TreeNode(deck.DeckDisplayName);
+                            if (deckType.DeckTypeName.ToLower().Contains("mastermind"))
+                            {
+                                deckNode.ImageIndex = 4;
+                                deckNode.SelectedImageIndex = 4;
+                            }
+                            else if (deckType.DeckTypeName.ToLower().Contains("villain") || deckType.DeckTypeName.ToLower().Contains("henchmen"))
+                            {
+                                deckNode.ImageIndex = 4;
+                                deckNode.SelectedImageIndex = 4;
+                            }
+                            else
+                            {
+                                deckNode.ImageIndex = 4;
+                                deckNode.SelectedImageIndex = 4;
+                            }
+
+                            var data = new CurrentActiveDataModel
+                            {
+                                Id = deck.DeckId,
+                                ActiveDeck = deck,
+                                ActiveSetDataFile = dataFile,
+                                ActiveSetPath = fi1.DirectoryName,
+                                AllDecksInSet = deckList
+                            };
+                            deckNode.Tag = data;
+                            deckTypeNode.Nodes.Add(deckNode);
+                        }
+                    }
+                    treeView1.Nodes.Add(deckTypeNode);
+                }
+
+                treeView1.ExpandAll();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                Logger.Error(ex, ex.Message);
+            }
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -159,8 +178,6 @@ namespace LegendaryCardEditor
 
                     splitContainer1.Panel2.Controls.Clear();
                     var activeSet = (CurrentActiveDataModel)e.Node.Tag;
-
-
 
                     CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet, legendaryIconList, deckTypeList, templateModelList)
                     {
@@ -175,22 +192,30 @@ namespace LegendaryCardEditor
 
         private void OpenFile()
         {
-            OpenFileDialog Dlg = new OpenFileDialog
+            try
             {
-                Filter = "Json files (*.json)|*.json",
-                Title = "Select Custom Set"
-            };
-            if (Dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                OpenFileDialog Dlg = new OpenFileDialog
+                {
+                    Filter = "Json files (*.json)|*.json",
+                    Title = "Select Custom Set"
+                };
+                if (Dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    settings.lastFolder = System.IO.Path.GetDirectoryName(Dlg.FileName);
+
+                    LoadCustomSet(Dlg.FileName);
+
+                    settings.lastProject = Dlg.FileName;
+                    settings.Save();
+
+                    this.Cursor = Cursors.Default;
+                }
+            }
+            catch (Exception ex)
             {
-                this.Cursor = Cursors.WaitCursor;
-                settings.lastFolder = System.IO.Path.GetDirectoryName(Dlg.FileName);
-
-                LoadCustomSet(Dlg.FileName);
-
-                settings.lastProject = Dlg.FileName;
-                settings.Save();
-
-                this.Cursor = Cursors.Default;
+                MessageBox.Show(ex.ToString());
+                Logger.Error(ex, ex.Message);
             }
         }
 
@@ -211,18 +236,18 @@ namespace LegendaryCardEditor
 
                 LoadCustomSet(dataFile);
 
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                Logger.Error(ex, ex.Message);
             }
         }
 
         private void helpToolStripButton_Click(object sender, EventArgs e)
         {
-          //  LegendaryTemplateEditor templateEditor = new LegendaryTemplateEditor(deckTypeList, templateModelList, legendaryIconList);
-       //     templateEditor.Show();
+            TemplateEditorForm templateEditor = new TemplateEditorForm();
+            templateEditor.Show();
         }
 
         private void btnAddDeck_Click(object sender, EventArgs e)
@@ -249,7 +274,7 @@ namespace LegendaryCardEditor
                     {
                         splitContainer1.Panel2.Controls.Clear();
                         var activeSet = (CurrentActiveDataModel)treeView1.SelectedNode.Tag;
-                        
+
                         var currentActiveSet = activeSet.AllDecksInSet.Decks.Where(x => x.DeckId == activeSet.ActiveDeck.DeckId).FirstOrDefault();
 
                         activeSet.AllDecksInSet.Decks.Remove(currentActiveSet);
@@ -260,7 +285,7 @@ namespace LegendaryCardEditor
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -285,13 +310,14 @@ namespace LegendaryCardEditor
         {
             KryptonListItem item = (KryptonListItem)listBoxKeywords.Items[listBoxKeywords.SelectedIndex];
             selectedKeyword = (LegendaryKeyword)item.Tag;
-            
+
             txtkeywordName.Text = selectedKeyword.KeywordName;
             txtKeywordDescription.Text = selectedKeyword.KeywordDescription;
         }
 
         private void btnSaveKeyword_Click(object sender, EventArgs e)
         {
+
             if (txtkeywordName.Text.Length > 3)
             {
                 keywordsList.Where(x => x.Id == selectedKeyword.Id).FirstOrDefault().KeywordName = txtkeywordName.Text;
@@ -330,9 +356,11 @@ namespace LegendaryCardEditor
                     kryptonListBox1.Items.Add(item);
                 }
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
 
-                MessageBox.Show(ex.ToString()); ;
+                MessageBox.Show(ex.ToString());
+                Logger.Error(ex, ex.Message);
             }
         }
 
@@ -374,6 +402,7 @@ namespace LegendaryCardEditor
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                Logger.Error(ex, ex.Message);
 
             }
         }
@@ -391,14 +420,14 @@ namespace LegendaryCardEditor
                 coreManager.SaveIcons(legendaryIconList);
 
                 var kImage = new KalikoImage(txtIconFilePath.Text);
-               
+
                 kImage.SaveImage(newPath, System.Drawing.Imaging.ImageFormat.Png);
 
                 PopulateIconsEditor();
             }
             else
             {
-              //  MessageBox.Show("Keyword Name is too short!");
+                //  MessageBox.Show("Keyword Name is too short!");
             }
         }
 

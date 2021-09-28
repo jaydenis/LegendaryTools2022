@@ -30,11 +30,11 @@ namespace LegendaryCardEditor.Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CardEditorForm2));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmbCardTemplateTypes = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.numCardSubTitleSize = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.btnAddCard = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnDeckUpdate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.txtDeckName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -45,8 +45,6 @@ namespace LegendaryCardEditor.Controls
             this.panelImagePreview = new System.Windows.Forms.Panel();
             this.btnReloadTemplate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cmbKeywords = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.numCardTextSize = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
-            this.numCardTitleSize = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.txtCardTextBox = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.numNumberInDeck = new ComponentFactory.Krypton.Toolkit.KryptonDomainUpDown();
             this.btnExport = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -90,6 +88,12 @@ namespace LegendaryCardEditor.Controls
             this.cmbPower2 = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
             this.ctxMenuTeams = new ComponentFactory.Krypton.Toolkit.KryptonContextMenu();
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
+            this.btnCardSubTitleSizeDecrease = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnCardSubTitleSizeIncrease = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnCardNameSizeIncrease = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnCardNameSizeDecrease = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnCardTextSizeDecrease = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnCardTextSizeIncrease = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -137,8 +141,9 @@ namespace LegendaryCardEditor.Controls
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Controls.Add(this.btnCardSubTitleSizeIncrease);
+            this.panel1.Controls.Add(this.btnCardSubTitleSizeDecrease);
             this.panel1.Controls.Add(this.cmbCardTemplateTypes);
-            this.panel1.Controls.Add(this.numCardSubTitleSize);
             this.panel1.Controls.Add(this.btnAddCard);
             this.panel1.Controls.Add(this.btnDeckUpdate);
             this.panel1.Controls.Add(this.txtDeckName);
@@ -159,29 +164,6 @@ namespace LegendaryCardEditor.Controls
             this.cmbCardTemplateTypes.Name = "cmbCardTemplateTypes";
             this.cmbCardTemplateTypes.Size = new System.Drawing.Size(187, 21);
             this.cmbCardTemplateTypes.TabIndex = 99;
-            // 
-            // numCardSubTitleSize
-            // 
-            this.numCardSubTitleSize.Location = new System.Drawing.Point(239, 63);
-            this.numCardSubTitleSize.Maximum = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            this.numCardSubTitleSize.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numCardSubTitleSize.Name = "numCardSubTitleSize";
-            this.numCardSubTitleSize.Size = new System.Drawing.Size(68, 22);
-            this.numCardSubTitleSize.TabIndex = 98;
-            this.numCardSubTitleSize.Value = new decimal(new int[] {
-            22,
-            0,
-            0,
-            0});
-            this.numCardSubTitleSize.ValueChanged += new System.EventHandler(this.txtCardTextBox_TextChanged);
             // 
             // btnAddCard
             // 
@@ -249,7 +231,7 @@ namespace LegendaryCardEditor.Controls
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(160, 63);
+            this.label4.Location = new System.Drawing.Point(11, 63);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 15);
@@ -259,10 +241,12 @@ namespace LegendaryCardEditor.Controls
             // panelImagePreview
             // 
             this.panelImagePreview.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panelImagePreview.Controls.Add(this.btnCardTextSizeIncrease);
+            this.panelImagePreview.Controls.Add(this.btnCardTextSizeDecrease);
+            this.panelImagePreview.Controls.Add(this.btnCardNameSizeIncrease);
+            this.panelImagePreview.Controls.Add(this.btnCardNameSizeDecrease);
             this.panelImagePreview.Controls.Add(this.btnReloadTemplate);
             this.panelImagePreview.Controls.Add(this.cmbKeywords);
-            this.panelImagePreview.Controls.Add(this.numCardTextSize);
-            this.panelImagePreview.Controls.Add(this.numCardTitleSize);
             this.panelImagePreview.Controls.Add(this.txtCardTextBox);
             this.panelImagePreview.Controls.Add(this.numNumberInDeck);
             this.panelImagePreview.Controls.Add(this.btnExport);
@@ -309,52 +293,6 @@ namespace LegendaryCardEditor.Controls
             this.cmbKeywords.Name = "cmbKeywords";
             this.cmbKeywords.Size = new System.Drawing.Size(141, 21);
             this.cmbKeywords.TabIndex = 99;
-            // 
-            // numCardTextSize
-            // 
-            this.numCardTextSize.Location = new System.Drawing.Point(891, 535);
-            this.numCardTextSize.Maximum = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            this.numCardTextSize.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numCardTextSize.Name = "numCardTextSize";
-            this.numCardTextSize.Size = new System.Drawing.Size(68, 22);
-            this.numCardTextSize.TabIndex = 98;
-            this.numCardTextSize.Value = new decimal(new int[] {
-            22,
-            0,
-            0,
-            0});
-            this.numCardTextSize.ValueChanged += new System.EventHandler(this.numCardTextSize_ValueChanged);
-            // 
-            // numCardTitleSize
-            // 
-            this.numCardTitleSize.Location = new System.Drawing.Point(891, 12);
-            this.numCardTitleSize.Maximum = new decimal(new int[] {
-            48,
-            0,
-            0,
-            0});
-            this.numCardTitleSize.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numCardTitleSize.Name = "numCardTitleSize";
-            this.numCardTitleSize.Size = new System.Drawing.Size(68, 22);
-            this.numCardTitleSize.TabIndex = 98;
-            this.numCardTitleSize.Value = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            this.numCardTitleSize.ValueChanged += new System.EventHandler(this.numCardTextSize_ValueChanged);
             // 
             // txtCardTextBox
             // 
@@ -571,7 +509,7 @@ namespace LegendaryCardEditor.Controls
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(782, 535);
+            this.label3.Location = new System.Drawing.Point(813, 535);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 15);
@@ -802,6 +740,66 @@ namespace LegendaryCardEditor.Controls
             // 
             this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2007Blue;
             // 
+            // btnCardSubTitleSizeDecrease
+            // 
+            this.btnCardSubTitleSizeDecrease.Location = new System.Drawing.Point(80, 60);
+            this.btnCardSubTitleSizeDecrease.Name = "btnCardSubTitleSizeDecrease";
+            this.btnCardSubTitleSizeDecrease.Size = new System.Drawing.Size(28, 25);
+            this.btnCardSubTitleSizeDecrease.TabIndex = 100;
+            this.btnCardSubTitleSizeDecrease.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnCardSubTitleSizeDecrease.Values.Image")));
+            this.btnCardSubTitleSizeDecrease.Values.Text = "";
+            this.btnCardSubTitleSizeDecrease.Click += new System.EventHandler(this.btnCardSubTitleSizeDecrease_Click);
+            // 
+            // btnCardSubTitleSizeIncrease
+            // 
+            this.btnCardSubTitleSizeIncrease.Location = new System.Drawing.Point(114, 60);
+            this.btnCardSubTitleSizeIncrease.Name = "btnCardSubTitleSizeIncrease";
+            this.btnCardSubTitleSizeIncrease.Size = new System.Drawing.Size(28, 25);
+            this.btnCardSubTitleSizeIncrease.TabIndex = 100;
+            this.btnCardSubTitleSizeIncrease.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnCardSubTitleSizeIncrease.Values.Image")));
+            this.btnCardSubTitleSizeIncrease.Values.Text = "";
+            this.btnCardSubTitleSizeIncrease.Click += new System.EventHandler(this.btnCardSubTitleSizeIncrease_Click);
+            // 
+            // btnCardNameSizeIncrease
+            // 
+            this.btnCardNameSizeIncrease.Location = new System.Drawing.Point(931, 12);
+            this.btnCardNameSizeIncrease.Name = "btnCardNameSizeIncrease";
+            this.btnCardNameSizeIncrease.Size = new System.Drawing.Size(28, 25);
+            this.btnCardNameSizeIncrease.TabIndex = 101;
+            this.btnCardNameSizeIncrease.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.Values.Image")));
+            this.btnCardNameSizeIncrease.Values.Text = "";
+            this.btnCardNameSizeIncrease.Click += new System.EventHandler(this.btnCardNameSizeIncrease_Click);
+            // 
+            // btnCardNameSizeDecrease
+            // 
+            this.btnCardNameSizeDecrease.Location = new System.Drawing.Point(897, 12);
+            this.btnCardNameSizeDecrease.Name = "btnCardNameSizeDecrease";
+            this.btnCardNameSizeDecrease.Size = new System.Drawing.Size(28, 25);
+            this.btnCardNameSizeDecrease.TabIndex = 102;
+            this.btnCardNameSizeDecrease.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton2.Values.Image")));
+            this.btnCardNameSizeDecrease.Values.Text = "";
+            this.btnCardNameSizeDecrease.Click += new System.EventHandler(this.btnCardNameSizeDecrease_Click);
+            // 
+            // btnCardTextSizeDecrease
+            // 
+            this.btnCardTextSizeDecrease.Location = new System.Drawing.Point(897, 529);
+            this.btnCardTextSizeDecrease.Name = "btnCardTextSizeDecrease";
+            this.btnCardTextSizeDecrease.Size = new System.Drawing.Size(28, 25);
+            this.btnCardTextSizeDecrease.TabIndex = 102;
+            this.btnCardTextSizeDecrease.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton3.Values.Image")));
+            this.btnCardTextSizeDecrease.Values.Text = "";
+            this.btnCardTextSizeDecrease.Click += new System.EventHandler(this.btnCardTextSizeDecrease_Click);
+            // 
+            // btnCardTextSizeIncrease
+            // 
+            this.btnCardTextSizeIncrease.Location = new System.Drawing.Point(931, 529);
+            this.btnCardTextSizeIncrease.Name = "btnCardTextSizeIncrease";
+            this.btnCardTextSizeIncrease.Size = new System.Drawing.Size(28, 25);
+            this.btnCardTextSizeIncrease.TabIndex = 101;
+            this.btnCardTextSizeIncrease.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton4.Values.Image")));
+            this.btnCardTextSizeIncrease.Values.Text = "";
+            this.btnCardTextSizeIncrease.Click += new System.EventHandler(this.btnCardTextSizeIncrease_Click);
+            // 
             // CardEditorForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -887,11 +885,14 @@ namespace LegendaryCardEditor.Controls
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnExport;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnUpdateCard;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtCardTextBox;
-        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numCardSubTitleSize;
-        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numCardTextSize;
-        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numCardTitleSize;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbKeywords;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbCardTemplateTypes;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnReloadTemplate;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCardSubTitleSizeDecrease;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCardSubTitleSizeIncrease;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCardTextSizeIncrease;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCardTextSizeDecrease;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCardNameSizeIncrease;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCardNameSizeDecrease;
     }
 }

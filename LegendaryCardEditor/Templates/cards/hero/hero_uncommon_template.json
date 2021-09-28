@@ -4,23 +4,23 @@
   "templateDisplayName": "Hero - Uncommon",
   "templateType": "Hero",
   "frameImage": "hero_uncommon_none.png",
-  "costImage": "back_cost.png",
+  "costImage": "",
   "textImage": "back_text_uncommon.png",
-  "underlayImage": "",
+  "underlayImage": "--NONE--",
   "imageHeight": 567,
   "imageWidth": 404,
   "teamIconXY": [
-    17,
-    14
+    15,
+    20
   ],
   "teamIconVisible": true,
   "powerPrimaryIconXY": [
-    17,
-    50
+    20,
+    56
   ],
   "powerPrimaryIconVisible": true,
   "powerSecondaryIconXY": [
-    17,
+    20,
     80
   ],
   "powerSecondaryIconVisible": true,
@@ -34,7 +34,7 @@
     17,
     41
   ],
-  "cardNameSubTextSize": 18,
+  "cardNameSubTextSize": 17,
   "cardNameSubVisible": true,
   "attributesPrimaryVisible": true,
   "attributesPrimaryTextSize": 47,
@@ -57,12 +57,12 @@
   ],
   "attackVisible": true,
   "piercingIconXY": [
-    17,
-    500
+    0,
+    0
   ],
   "piercingValueXY": [
-    18,
-    511
+    0,
+    0
   ],
   "piercingVisible": false,
   "attributesSecondryTextSize": 59,
@@ -76,24 +76,25 @@
   ],
   "costVisible": true,
   "attackDefenseIconXY": [
-    1,
-    1
+    0,
+    0
   ],
   "attackDefenseValueXY": [
-    1,
-    1
+    0,
+    0
   ],
   "attackDefenseVisible": false,
+  "attackDefenseTextSize": 45,
   "victroyIconXY": [
-    300,
-    400
+    0,
+    0
   ],
   "victroyValueXY": [
-    330,
-    400
+    0,
+    0
   ],
   "victroyVisible": false,
-  "victoryTextSize": 32,
+  "victoryTextSize": 0,
   "cardTextRectAreaX": [
     80,
     355,
@@ -110,5 +111,6 @@
     530,
     530
   ],
-  "cardTextSize": 15
+  "cardTextSize": 15,
+  "NumberInDeck": 1
 }
