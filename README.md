@@ -9,8 +9,12 @@ Written in C# .NET Core 5 & WinForms using Visual Studio 2022.
 
 
 Image Library: https://kaliko.com/image-library/
+
 UI Library: https://github.com/ComponentFactory/Krypton
+
 JSON Text Editor: https://github.com/PavelTorgashov/FastColoredTextBox
+
 PDF Library: http://www.pdfsharp.net/
+
 
 This project was inspired by the java based [LegEdit](https://github.com/fostorial/Legedit2)
