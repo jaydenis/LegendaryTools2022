@@ -253,13 +253,15 @@ namespace LegendaryCardEditor.Utilities
                    FontStyle.Bold,
                    GraphicsUnit.Pixel);
 
-                    TextField txtFieldVP = new TextField(card.AttributeVictoryPoints.ToString());
-                    txtFieldVP.Font = font;
-                    txtFieldVP.Point = new Point(template.VictroyValueXY[0], template.VictroyValueXY[1]);
-                    txtFieldVP.Alignment = StringAlignment.Center;
-                    txtFieldVP.TextColor = Color.LightGoldenrodYellow;
-                    txtFieldVP.Outline = 2;
-                    txtFieldVP.OutlineColor = Color.Black;
+                    TextField txtFieldVP = new TextField(card.AttributeVictoryPoints.ToString())
+                    {
+                        Font = font,
+                        Point = new Point(template.VictroyValueXY[0], template.VictroyValueXY[1]),
+                        Alignment = StringAlignment.Center,
+                        TextColor = Color.LightGoldenrodYellow,
+                        Outline = 2,
+                        OutlineColor = Color.Black
+                    };
                     infoImage.DrawText(txtFieldVP);
                 }
 
@@ -713,10 +715,8 @@ namespace LegendaryCardEditor.Utilities
                         {
 
                             String s = wd.word;
-                            String spaceChar = " ";
                             if (wd.space)
                             {
-                                spaceChar = " ";
                             }
 
                             if (s.StartsWith("<k>"))

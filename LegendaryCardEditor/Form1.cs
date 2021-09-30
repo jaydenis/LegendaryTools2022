@@ -114,13 +114,17 @@ namespace LegendaryCardEditor
             {
                 treeView1.Nodes.Clear();
                 splitContainer1.Panel2.Controls.Clear();
-                TreeNode root = new TreeNode("Decks");
-                root.ImageIndex = 0;
+                TreeNode root = new TreeNode("Decks")
+                {
+                    ImageIndex = 0
+                };
                 foreach (var deckType in deckTypeList)
                 {
-                    TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName);
-                    deckTypeNode.ImageIndex = 0;
-                    deckTypeNode.SelectedImageIndex = 0;
+                    TreeNode deckTypeNode = new TreeNode(deckType.DeckTypeName)
+                    {
+                        ImageIndex = 0,
+                        SelectedImageIndex = 0
+                    };
                     if (deckList != null)
                     {
                         foreach (var deck in deckList.Decks.Where(x => x.DeckTypeId == deckType.DeckTypeId))
@@ -348,11 +352,13 @@ namespace LegendaryCardEditor
 
                     kImage.Resize(64, 64);
 
-                    KryptonListItem item = new KryptonListItem();
-                    item.ShortText = icon.Name;
-                    //item.LongText = icon.TemplateName;
-                    item.Tag = icon;
-                    item.Image = kImage.GetAsBitmap();
+                    KryptonListItem item = new KryptonListItem
+                    {
+                        ShortText = icon.Name,
+                        //item.LongText = icon.TemplateName;
+                        Tag = icon,
+                        Image = kImage.GetAsBitmap()
+                    };
                     kryptonListBox1.Items.Add(item);
                 }
             }

@@ -305,7 +305,7 @@ namespace LegendaryCardEditor.TemplateEditor
 
                     formIsReady = true;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show($"Template Not Found!!{System.Environment.NewLine}{path}");
                 }

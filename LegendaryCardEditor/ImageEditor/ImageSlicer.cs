@@ -1,14 +1,8 @@
 ﻿using Kaliko.ImageLibrary;
 using Kaliko.ImageLibrary.Scaling;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LegendaryCardEditor.ImageEditor
@@ -143,8 +137,10 @@ namespace LegendaryCardEditor.ImageEditor
                     cropX = e.X;
                     cropY = e.Y;
 
-                    cropPen = new Pen(Color.Red, 2);
-                    cropPen.DashStyle = DashStyle.Dot;
+                    cropPen = new Pen(Color.Red, 2)
+                    {
+                        DashStyle = DashStyle.Dot
+                    };
 
 
                     pictureBoxOrig.Refresh();
@@ -154,7 +150,7 @@ namespace LegendaryCardEditor.ImageEditor
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -237,7 +233,7 @@ namespace LegendaryCardEditor.ImageEditor
                 pictureBoxResult.SizeMode = PictureBoxSizeMode.StretchImage;
                 PictureBoxLocation();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Invalid Percentage");
                 return;
