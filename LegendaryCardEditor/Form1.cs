@@ -60,7 +60,7 @@ namespace LegendaryCardEditor
                     else
                         OpenFile();
                 else
-                    AddNewDeck();
+                    AddNewDeck(true);
 
                 PopulateIconsEditor();
 
@@ -223,19 +223,13 @@ namespace LegendaryCardEditor
             }
         }
 
-        private void AddNewDeck()
+        private void AddNewDeck(bool showSaveDialog)
         {
             try
             {
-                deckList = new DeckList
-                {
-                    Decks = new List<Deck>()
-                };
+               
 
-                dataFile = saveFileDialog1.FileName;
-                coreManager.SaveDeck(deckList, dataFile);
-
-                AddDeckForm addDeckForm = new AddDeckForm(dataFile);
+                AddDeckForm addDeckForm = new AddDeckForm(legendaryIconList,dataFile, showSaveDialog, settings);
                 addDeckForm.ShowDialog();
 
                 LoadCustomSet(dataFile);
@@ -256,10 +250,7 @@ namespace LegendaryCardEditor
 
         private void btnAddDeck_Click(object sender, EventArgs e)
         {
-            AddDeckForm addDeckForm = new AddDeckForm(dataFile);
-            addDeckForm.ShowDialog();
-
-            LoadCustomSet(dataFile);
+            AddNewDeck(false);
 
         }
 
@@ -297,12 +288,12 @@ namespace LegendaryCardEditor
 
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.ShowDialog();
+            AddNewDeck(true);
         }
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            AddNewDeck();
+            //AddNewDeck();
         }
 
         private void printToolStripButton_Click(object sender, EventArgs e)

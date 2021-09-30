@@ -201,10 +201,14 @@ namespace LegendaryCardEditor.Utilities
                 //     costImage = new KalikoImage(Resources.cost);
                 string path = $"{settings.iconsFolder}";
                 LegendaryIconViewModel iconModel;
-                if (template.PowerPrimaryIconVisible && card.PowerPrimary.Length > 0)
+                if (template.PowerPrimaryIconVisible && card.PowerPrimary != "--NONE--")
                 {
                     iconModel = IsIcon($"<{card.PowerPrimary}>");
-                    path = $"{settings.iconsFolder}\\{iconModel.Category}\\{iconModel.FileName}";
+
+                    if(iconModel != null)
+                        path = $"{settings.iconsFolder}\\{iconModel.Category}\\{iconModel.FileName}";
+                    else
+                        new KalikoImage(Resources.covert);
 
                     if (File.Exists(path))
                     {
@@ -212,24 +216,32 @@ namespace LegendaryCardEditor.Utilities
                         powerImage.Resize(25, 25);
                         infoImage.BlitImage(powerImage, template.PowerPrimaryIconXY[0], template.PowerPrimaryIconXY[1]);
 
-                        if (template.PowerPrimaryIconVisible && template.PowerSecondaryIconVisible && card.PowerSecondary.Length > 0)
+                        if (template.PowerPrimaryIconVisible && template.PowerSecondaryIconVisible && card.PowerSecondary != "--NONE--")
                         {
                             iconModel = IsIcon($"<{card.PowerSecondary}>");
-                            path = $"{settings.iconsFolder}\\{iconModel.Category}\\{iconModel.FileName}";
-                            if (File.Exists(path))
+
+                            if (iconModel != null)
                             {
-                                powerImage2 = new KalikoImage(path);
-                                powerImage2.Resize(25, 25);
-                                infoImage.BlitImage(powerImage2, template.PowerSecondaryIconXY[0], template.PowerSecondaryIconXY[1]);
+                                path = $"{settings.iconsFolder}\\{iconModel.Category}\\{iconModel.FileName}";
+                                if (File.Exists(path))
+                                {
+                                    powerImage2 = new KalikoImage(path);
+                                    powerImage2.Resize(25, 25);
+                                    infoImage.BlitImage(powerImage2, template.PowerSecondaryIconXY[0], template.PowerSecondaryIconXY[1]);
+                                }
                             }
                         }
                     }
                 }
 
-                if (template.TeamIconVisible && card.Team.Length > 0)
+                if (template.TeamIconVisible && (card.Team.Length > 0 || card.Team != "--NONE--"))
                 {
                     iconModel = IsIcon($"<{card.Team}>");
-                    path = $"{settings.iconsFolder}\\{iconModel.Category}\\{iconModel.FileName}";
+                    if (iconModel != null)
+                        path = $"{settings.iconsFolder}\\{iconModel.Category}\\{iconModel.FileName}";
+                    else
+                        new KalikoImage(Resources.cards);
+
                     if (File.Exists(path))
                     {
                         teamImage = new KalikoImage(path);

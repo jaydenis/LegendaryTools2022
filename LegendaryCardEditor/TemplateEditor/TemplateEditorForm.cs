@@ -25,7 +25,6 @@ namespace LegendaryCardEditor.TemplateEditor
         CardEntity card = new CardEntity();
 
         string applicationDirectory = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-        string currentTemplateDirectory = @"C:\Repos\LegendaryTools2022\LegendaryTemplateEditor\Templates\cards";
 
         private List<LegendaryIconViewModel> legendaryIconList { get; set; }
         List<Templates> templateModelList { get; set; }

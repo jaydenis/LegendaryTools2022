@@ -30,7 +30,6 @@ namespace LegendaryCardEditor.Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddDeckForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbDeckTypeAmbition = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
             this.rbDeckTypeWound = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
@@ -42,11 +41,11 @@ namespace LegendaryCardEditor.Controls
             this.rbDeckTypeHenchmen = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
             this.rbDeckTypeHero = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
             this.cmbDeckTeam = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
-            this.imageListTeamsFull = new System.Windows.Forms.ImageList(this.components);
             this.txtNewDeckName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCreateDeck = new System.Windows.Forms.Button();
             this.lblSelectedDeckType = new System.Windows.Forms.Label();
+            this.imageListTeamsFull = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -180,39 +179,6 @@ namespace LegendaryCardEditor.Controls
             this.cmbDeckTeam.TabIndex = 76;
             this.cmbDeckTeam.SelectedIndexChanged += new System.EventHandler(this.cmbDeckTeam_SelectedIndexChanged);
             // 
-            // imageListTeamsFull
-            // 
-            this.imageListTeamsFull.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageListTeamsFull.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTeamsFull.ImageStream")));
-            this.imageListTeamsFull.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListTeamsFull.Images.SetKeyName(0, "a_force.png");
-            this.imageListTeamsFull.Images.SetKeyName(1, "avengers.png");
-            this.imageListTeamsFull.Images.SetKeyName(2, "brotherhood.png");
-            this.imageListTeamsFull.Images.SetKeyName(3, "cabal.png");
-            this.imageListTeamsFull.Images.SetKeyName(4, "champions.png");
-            this.imageListTeamsFull.Images.SetKeyName(5, "Crime_Syndicate.png");
-            this.imageListTeamsFull.Images.SetKeyName(6, "defenders.png");
-            this.imageListTeamsFull.Images.SetKeyName(7, "fantastic_four.png");
-            this.imageListTeamsFull.Images.SetKeyName(8, "Foes_of_Asgard.png");
-            this.imageListTeamsFull.Images.SetKeyName(9, "foot_clan.png");
-            this.imageListTeamsFull.Images.SetKeyName(10, "guardians.png");
-            this.imageListTeamsFull.Images.SetKeyName(11, "heroes_for_hire.png");
-            this.imageListTeamsFull.Images.SetKeyName(12, "hydra.png");
-            this.imageListTeamsFull.Images.SetKeyName(13, "illuminati.png");
-            this.imageListTeamsFull.Images.SetKeyName(14, "legion_of_monsters.png");
-            this.imageListTeamsFull.Images.SetKeyName(15, "marvel_knights.png");
-            this.imageListTeamsFull.Images.SetKeyName(16, "mercs_4_money.png");
-            this.imageListTeamsFull.Images.SetKeyName(17, "Monsters_Unleashed_logo_sm.png");
-            this.imageListTeamsFull.Images.SetKeyName(18, "mutants.png");
-            this.imageListTeamsFull.Images.SetKeyName(19, "runaways.png");
-            this.imageListTeamsFull.Images.SetKeyName(20, "shield.png");
-            this.imageListTeamsFull.Images.SetKeyName(21, "sinister6.png");
-            this.imageListTeamsFull.Images.SetKeyName(22, "spider_friends.png");
-            this.imageListTeamsFull.Images.SetKeyName(23, "thunderbolts.png");
-            this.imageListTeamsFull.Images.SetKeyName(24, "us_army.png");
-            this.imageListTeamsFull.Images.SetKeyName(25, "x_force.png");
-            this.imageListTeamsFull.Images.SetKeyName(26, "x_men.png");
-            // 
             // txtNewDeckName
             // 
             this.txtNewDeckName.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -251,6 +217,12 @@ namespace LegendaryCardEditor.Controls
             this.lblSelectedDeckType.TabIndex = 80;
             this.lblSelectedDeckType.Text = "Deck Type";
             // 
+            // imageListTeamsFull
+            // 
+            this.imageListTeamsFull.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageListTeamsFull.ImageSize = new System.Drawing.Size(42, 42);
+            this.imageListTeamsFull.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // AddDeckForm
             // 
             this.AcceptButton = this.btnCreateDeck;
@@ -286,10 +258,10 @@ namespace LegendaryCardEditor.Controls
         private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rbDeckTypeAmbition;
         private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rbDeckTypeOfficer;
         private ComponentFactory.Krypton.Ribbon.KryptonGallery cmbDeckTeam;
-        private System.Windows.Forms.ImageList imageListTeamsFull;
         private System.Windows.Forms.TextBox txtNewDeckName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCreateDeck;
         private System.Windows.Forms.Label lblSelectedDeckType;
+        private System.Windows.Forms.ImageList imageListTeamsFull;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
+using Kaliko.ImageLibrary;
 using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;
 using LegendaryCardEditor.Utilities;
@@ -14,37 +15,78 @@ namespace LegendaryCardEditor.Controls
     {
         CoreManager coreManager = new CoreManager();
         SystemSettings settings;
+        List<LegendaryIconViewModel> legendaryIconList;
         List<DeckTypeModel> deckTypeList;
         DeckList deckList;
-        string dataFilePath;
-        int selectedTeamId = 0;
+        public string dataFilePath;
+        string selectedTeam = "";
         int selectedDeckTypeId = 0;
         List<int> deckIdList = new List<int>();
-        public AddDeckForm(string path)
+        bool showSaveDialog = false;
+
+        public AddDeckForm(List<LegendaryIconViewModel> legendaryIconList,string path, bool showSaveDialog, SystemSettings settings)
         {
             InitializeComponent();
+
+            this.legendaryIconList = legendaryIconList;
+
+            this.showSaveDialog = showSaveDialog;
             dataFilePath = path;
-            deckList = coreManager.GetDecks(dataFilePath);
 
-            if (deckList != null)
-            {
-                if (deckList.Decks.Count() > 0)
-                    foreach (var item in deckList.Decks.OrderBy(o => o.DeckId))
-                        deckIdList.Add(item.DeckId);
-                else
-                    deckIdList.Add(0);
-            }
-            else
-            {
-                deckIdList.Add(0);
-            }
 
-            settings = SystemSettings.Load();
-            settings.Save();
+
+            this.settings = settings;
+
         }
 
         private void AddDeckForm_Load(object sender, EventArgs e)
         {
+            foreach (var icon in legendaryIconList.OrderBy(o => o.Category).ThenBy(o => o.Name))
+            {
+                KalikoImage image = new KalikoImage($"{settings.iconsFolder}\\{icon.Category.ToLower()}\\{icon.FileName}");
+
+                if (icon.Category == "TEAMS")
+                {
+                    cmbDeckTeam.ImageList.Images.Add(icon.Name.ToString(), image.GetAsBitmap());
+                }
+              
+            }
+
+            if (showSaveDialog)
+            {
+                SaveFileDialog saveDialog = new SaveFileDialog
+                {
+                    AddExtension = true,
+                    DefaultExt = ".json",
+                    Filter = "Json Files|*.json",
+                };
+
+                saveDialog.ShowDialog();
+
+                if (saveDialog.FileName != "")
+                    dataFilePath = saveDialog.FileName;
+
+                deckIdList.Add(0);
+            }
+            else
+            {
+
+                deckList = coreManager.GetDecks(dataFilePath);
+
+                if (deckList != null)
+                {
+                    if (deckList.Decks.Count() > 0)
+                        foreach (var item in deckList.Decks.OrderBy(o => o.DeckId))
+                            deckIdList.Add(item.DeckId);
+                    else
+                        deckIdList.Add(0);
+                }
+                else
+                {
+                    deckIdList.Add(0);
+                }
+            }
+
             deckTypeList = coreManager.GetDeckTypes();
         }
 
@@ -79,7 +121,7 @@ namespace LegendaryCardEditor.Controls
         {
             if (cmbDeckTeam.SelectedIndex != -1)
             {
-                selectedTeamId = cmbDeckTeam.SelectedIndex;
+                selectedTeam = imageListTeamsFull.Images.Keys[cmbDeckTeam.SelectedIndex];
             }
         }
 
@@ -96,7 +138,7 @@ namespace LegendaryCardEditor.Controls
                 DeckTypeId = selectedDeckTypeId,
                 Cards = new List<CardEntity>(),
                 FolderName = Helper.GenerateID(txtNewDeckName.Text.ToLower()).ToLower(),
-                Team = cmbDeckTeam.Enabled ? imageListTeamsFull.Images.Keys[cmbDeckTeam.SelectedIndex] : string.Empty,
+                Team = cmbDeckTeam.Enabled ? selectedTeam : "--NONE--",
             };
 
             var deckType = deckTypeList.Where(x => x.DeckTypeId == selectedDeckTypeId).FirstOrDefault();
@@ -175,6 +217,9 @@ namespace LegendaryCardEditor.Controls
 
             deckList.Decks.Add(newDeck);
 
+            
+
+
             coreManager.SaveDeck(deckList, dataFilePath);
 
             this.Close();
@@ -187,11 +232,11 @@ namespace LegendaryCardEditor.Controls
                 CardId = Convert.ToInt32($"{deckType.DeckTypeId}{templateId}{id}"),
                 CardName = Helper.CleanString(cardName).ToLower(),
                 CardDisplayName = cardName,
-                CardDisplayNameFont = 32,
+                CardDisplayNameFont = 28,
                 CardDisplayNameSub = deckType.DeckTypeName + " - " + deck.DeckDisplayName,
-                CardDisplayNameSubFont = 28,
+                CardDisplayNameSubFont = 22,
                 CardText = "Card Rules",
-                CardTextFont = 22,
+                CardTextFont = 16,
                 TemplateId = templateId,
                 TeamIconId = -1,
                 Team = deck.Team,
