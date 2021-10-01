@@ -183,7 +183,7 @@ namespace LegendaryCardEditor
                     splitContainer1.Panel2.Controls.Clear();
                     var activeSet = (CurrentActiveDataModel)e.Node.Tag;
 
-                    CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet, legendaryIconList, deckTypeList, templateModelList)
+                    CardEditorForm cardEditorForm = new CardEditorForm(activeSet, legendaryIconList, deckTypeList, templateModelList)
                     {
                         Dock = DockStyle.Fill
                     };
