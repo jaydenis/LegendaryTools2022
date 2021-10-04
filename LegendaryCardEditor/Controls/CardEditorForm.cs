@@ -57,6 +57,8 @@ namespace LegendaryCardEditor.Controls
             settings = SystemSettings.Load();
             settings.Save();
 
+            kryptonPanel3.Visible = false;
+
             DirectoryInfo directory = new DirectoryInfo($"{currentActiveSet.ActiveSetPath}\\artwork");
             if (!directory.Exists)
                 directory.Create();
@@ -127,11 +129,11 @@ namespace LegendaryCardEditor.Controls
                     currentTemplateType = temp.TemplateType;
                 }
 
-                //cmbCardTemplateTypes.Items.Clear();
-                //foreach (Templates template in templateModelList.Where(x => x.TemplateType == currentTemplateType))
-                //{
-                //    cmbCardTemplateTypes.Items.Add(template.TemplateName);
-                //}
+                cmbCardTemplateTypes.Items.Clear();
+                foreach (Templates template in templateModelList.Where(x => x.TemplateType == currentTemplateType))
+                {
+                    cmbCardTemplateTypes.Items.Add(template.TemplateName);
+                }
 
                 imageTools = new ImageTools(currentActiveSet.ActiveSetPath, legendaryIconList, settings, currentActiveSet.ActiveDeck.DeckDisplayName);
 
@@ -152,6 +154,7 @@ namespace LegendaryCardEditor.Controls
         {
             try
             {
+                kryptonPanel3.Visible = true;
                 imageTools.artworkImage = null;
                 imageTools.orignalArtwork = null;
                 imageTools.backTextImage = null;
@@ -192,7 +195,7 @@ namespace LegendaryCardEditor.Controls
 
                 txtAttackValue.Text = model.ActiveCard.AttributeAttack != "-1" ? model.ActiveCard.AttributeAttack : string.Empty;
                 txtCardCostValue.Text = model.ActiveCard.AttributeCost != "-1" ? model.ActiveCard.AttributeCost : string.Empty;
-                //txtCardPiercingValue.Text = model.ActiveCard.AttributePiercing != "-1" ? model.ActiveCard.AttributePiercing : string.Empty;
+                txtPiercingValue.Text = model.ActiveCard.AttributePiercing != "-1" ? model.ActiveCard.AttributePiercing : string.Empty;
                 txtRecruitValue.Text = model.ActiveCard.AttributeRecruit != "-1" ? model.ActiveCard.AttributeRecruit : string.Empty;
                 txtCardRules.Text = model.ActiveCard.CardText;
                 cardTextSize = model.ActiveCard.CardTextFont;
@@ -200,40 +203,35 @@ namespace LegendaryCardEditor.Controls
                 cmbPowerPrimary.SelectedIndex = imageListPowers.Images.IndexOfKey(model.ActiveCard.PowerPrimary);
                 cmbPowerSecondary.SelectedIndex = imageListPowers.Images.IndexOfKey(model.ActiveCard.PowerSecondary);
                 cmbTeamCard.SelectedIndex = imageListTeams.Images.IndexOfKey(model.ActiveCard.Team);
-              //  numNumberInDeck.Text = model.ActiveCard.NumberInDeck.ToString();
+                numNumberInDeck.Text = model.ActiveCard.NumberInDeck.ToString();
 
                 if (model.ActiveTemplate.PowerPrimaryIconVisible)
                 {
 
-                    if (model.ActiveTemplate.TemplateName != "here_rare")
-                    {
-                        if (cmbPowerPrimary.SelectedIndex != -1)
-                        {
-                            chkPowerPrimaryVisible.Checked = true;
-                            //var icon = legendaryIconList.Where(x => x.IconId == model.ActiveCard.PowerPrimaryIconId && x.Category == "POWERS").FirstOrDefault();
-                            // imageTools.powerImage = new KalikoImage($"{settings.iconsFolder}\\{icon.Category.ToLower()}\\{icon.FileName}");
-                            model.ActiveCard.PowerPrimary = imageListPowers.Images.Keys[cmbPowerPrimary.SelectedIndex];
-                            if (model.ActiveCard.PowerSecondary != string.Empty)
-                            {
-                                chkPowerSecondaryVisible.Checked = true;
-                                // icon = legendaryIconList.Where(x => x.IconId == model.ActiveCard.PowerSecondaryIconId && x.Category == "POWERS").FirstOrDefault();
-                                //imageTools.powerImage2 = new KalikoImage($"{settings.iconsFolder}\\{icon.Category.ToLower()}\\{icon.FileName}");
-                                model.ActiveCard.PowerSecondary = imageListPowers.Images.Keys[cmbPowerSecondary.SelectedIndex];
-                            }
 
+                    if (cmbPowerPrimary.SelectedIndex != -1)
+                    {
+                        chkPowerPrimaryVisible.Checked = true;
+                        model.ActiveCard.PowerPrimary = imageListPowers.Images.Keys[cmbPowerPrimary.SelectedIndex];
+                        if (model.ActiveCard.PowerSecondary != string.Empty)
+                        {
+                            chkPowerSecondaryVisible.Checked = true;
+                            model.ActiveCard.PowerSecondary = imageListPowers.Images.Keys[cmbPowerSecondary.SelectedIndex];
+                        }
+
+                        if (model.ActiveTemplate.TemplateName != "hero_rare")
+                        {
                             if (model.ActiveTemplate.TemplateId == 1 || model.ActiveCard.TemplateId == 2)
                                 model.ActiveTemplate.FrameImage = $"{model.ActiveTemplate.TemplateName}_{model.ActiveCard.PowerPrimary.ToLower()}.png";
                         }
-
                     }
+
+                    
                 }
 
                 if (cmbTeamCard.SelectedIndex != -1)
                 {
                     model.ActiveCard.Team = imageListTeams.Images.Keys[cmbTeamCard.SelectedIndex];
-                    // var iconTeam = legendaryIconList.Where(x =>  x.Name == iconName && x.Category == "TEAMS").FirstOrDefault();
-                    // imageTools.teamImage = new KalikoImage($"{settings.iconsFolder}\\{iconTeam.Category.ToLower()}\\{iconTeam.FileName}");
-
                 }
 
                 LoadImage(model);
@@ -260,7 +258,7 @@ namespace LegendaryCardEditor.Controls
                 txtRecruitValue.Enabled = model.RecruitVisible;
 
                // lblCardPiercingValue.Enabled = model.PiercingVisible;
-               // txtCardPiercingValue.Enabled = model.PiercingVisible;
+               txtPiercingValue.Enabled = model.PiercingVisible;
 
                // lblCardCostValue.Enabled = model.CostVisible;
                 txtCardCostValue.Enabled = model.CostVisible;
@@ -368,17 +366,16 @@ namespace LegendaryCardEditor.Controls
             {
                 if (cardModel != null)
                 {
-                    //Logger.Info($" - STARTED Updating Card from Form: {txtCardName.Text}.{System.Environment.NewLine}");
-
+                   
                     if (!cardModel.ActiveTemplate.AttackVisible && cardModel.ActiveTemplate.AttackDefenseVisible)
-                        cardModel.ActiveCard.AttributeAttackDefense = txtAttackValue.Text;
+                        cardModel.ActiveCard.AttributeAttackDefense = txtCardCostValue.Text;
                     else if (cardModel.ActiveTemplate.AttackVisible && !cardModel.ActiveTemplate.AttackDefenseVisible)
                         cardModel.ActiveCard.AttributeAttack = txtAttackValue.Text;
                     else
                         cardModel.ActiveCard.AttributeAttack = null;
 
                     cardModel.ActiveCard.AttributeCost = cardModel.ActiveTemplate.CostVisible ? txtCardCostValue.Text : null;
-                    cardModel.ActiveCard.AttributePiercing = cardModel.ActiveTemplate.PiercingVisible ? txtAttackValue.Text : null;
+                    cardModel.ActiveCard.AttributePiercing = cardModel.ActiveTemplate.PiercingVisible ? txtPiercingValue.Text : null;
                     cardModel.ActiveCard.AttributeRecruit = cardModel.ActiveTemplate.RecruitVisible ? txtRecruitValue.Text : null;
                     cardModel.ActiveCard.AttributeVictoryPoints = cardModel.ActiveTemplate.VictroyVisible ? Convert.ToInt32(txtVictoryPointsValue.Text) : 0;
                     cardModel.ActiveCard.CardDisplayName = txtCardName.Text;
@@ -387,33 +384,25 @@ namespace LegendaryCardEditor.Controls
                     cardModel.ActiveCard.CardDisplayNameSubFont = cardSubTitleSize;
                     cardModel.ActiveCard.CardText = txtCardRules.Text;
                     cardModel.ActiveCard.CardTextFont = cardTextSize;
-                   // cardModel.ActiveCard.NumberInDeck = Convert.ToInt32(numNumberInDeck.Text) != cardModel.ActiveTemplate.NumberInDeck ? Convert.ToInt32(numNumberInDeck.Text) : cardModel.ActiveTemplate.NumberInDeck;
+                  cardModel.ActiveCard.NumberInDeck = Convert.ToInt32(numNumberInDeck.Text) != cardModel.ActiveTemplate.NumberInDeck ? Convert.ToInt32(numNumberInDeck.Text) : cardModel.ActiveTemplate.NumberInDeck;
 
                     if (cardModel.ActiveTemplate.TeamIconVisible && cmbTeamCard.SelectedIndex != -1)
                     {
                         var iconName = imageListTeams.Images.Keys[cmbTeamCard.SelectedIndex];
-                        //var iconTeam = legendaryIconList.Where(x => x.Name == iconName && x.Category == "TEAMS").FirstOrDefault();
-                        //cardModel.ActiveCard.TeamIconId = iconTeam.IconId;
                         cardModel.ActiveCard.Team = iconName;
                     }
 
                     if (cardModel.ActiveTemplate.PowerPrimaryIconVisible && cmbPowerPrimary.SelectedIndex != -1)
                     {
                         var iconName = imageListPowers.Images.Keys[cmbPowerPrimary.SelectedIndex];
-                        //var iconPower = legendaryIconList.Where(x => x.Name == iconName && x.Category == "POWERS").FirstOrDefault();
-                        //cardModel.ActiveCard.PowerPrimaryIconId = iconPower.IconId;
                         cardModel.ActiveCard.PowerPrimary = iconName;
 
                         if (cardModel.ActiveTemplate.PowerPrimaryIconVisible && chkPowerPrimaryVisible.Checked && chkPowerSecondaryVisible.Checked)
                         {
                             iconName = imageListPowers.Images.Keys[cmbPowerSecondary.SelectedIndex];
-                            //iconPower = legendaryIconList.Where(x => x.Name == iconName && x.Category == "POWERS").FirstOrDefault();
-                            //cardModel.ActiveCard.PowerSecondaryIconId = iconPower.IconId;
                             cardModel.ActiveCard.PowerSecondary = iconName;
                         }
                     }
-
-                    //Logger.Info($"- FINISHED Updating Card from Form: {txtCardName.Text}.{System.Environment.NewLine}");
 
                     return UpdateCardModel(cardModel);
                 }
@@ -576,7 +565,7 @@ namespace LegendaryCardEditor.Controls
                         Tag = card.Id,
                         Image = cardImage.GetAsBitmap(),
                         ImageLocation = Convert.ToString(curFile),
-                        Size = new Size(165, 225),
+                        Size = new Size(145, 204),
                         SizeMode = PictureBoxSizeMode.StretchImage,
 
                     };
@@ -703,7 +692,7 @@ namespace LegendaryCardEditor.Controls
         {
             this.Cursor = Cursors.WaitCursor;
 
-            if (isReady && currentActiveSet.SelectedCard != null)
+            if (isReady)
             {
                 isReady = false;
                 if (cmbKeywords.SelectedIndex != -1)
@@ -749,6 +738,53 @@ namespace LegendaryCardEditor.Controls
             {
                 Logger.Error(ex.ToString());
             }
+        }
+
+        private void btnUpdateCard_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            if (currentActiveSet.SelectedCard != null)
+            {
+                currentActiveSet.SelectedCard = UpdateSelectedCard(currentActiveSet.SelectedCard);
+                LoadImage(currentActiveSet.SelectedCard);
+
+                SaveData();
+            }
+
+            this.Cursor = Cursors.Default;
+        }
+
+        private void btnExportCards_Click(object sender, EventArgs e)
+        {
+            ExportCards();
+        }
+
+        private void btnGap_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+
+            if (isReady)
+            {
+                isReady = false;
+
+                Clipboard.SetText("<g>");
+
+                txtCardRules.Paste();
+                txtCardRules.Focus();
+
+                LoadImage(currentActiveSet.SelectedCard);
+
+                SaveData();
+                isReady = true;
+
+            }
+
+            this.Cursor = Cursors.Default;
+        }
+
+        private void btnUpdateDeck_Click(object sender, EventArgs e)
+        {
+            UpdateDeck();
         }
     }
 }

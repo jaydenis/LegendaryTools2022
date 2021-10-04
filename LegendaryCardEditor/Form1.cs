@@ -53,14 +53,14 @@ namespace LegendaryCardEditor
                 deckTypeList = coreManager.GetDeckTypes();
 
                 PopulateKeywordListBox();
-
-                if (settings.lastProject != string.Empty)
-                    if (File.Exists(settings.lastProject))
-                        LoadCustomSet(settings.lastProject);
-                    else
-                        OpenFile();
-                else
-                    AddNewDeck(true);
+                OpenFile();
+                //if (settings.lastProject != string.Empty)
+                //    if (File.Exists(settings.lastProject))
+                //        LoadCustomSet(settings.lastProject);
+                //    else
+                //        OpenFile();
+                //else
+                //    AddNewDeck(true);
 
                 PopulateIconsEditor();
 
@@ -183,7 +183,7 @@ namespace LegendaryCardEditor
                     splitContainer1.Panel2.Controls.Clear();
                     var activeSet = (CurrentActiveDataModel)e.Node.Tag;
 
-                    CardEditorForm cardEditorForm = new CardEditorForm(activeSet, legendaryIconList, deckTypeList, templateModelList)
+                    CardEditorForm2 cardEditorForm = new CardEditorForm2(activeSet, legendaryIconList, deckTypeList, templateModelList)
                     {
                         Dock = DockStyle.Fill
                     };
@@ -206,14 +206,18 @@ namespace LegendaryCardEditor
                 if (Dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     this.Cursor = Cursors.WaitCursor;
-                    settings.lastFolder = System.IO.Path.GetDirectoryName(Dlg.FileName);
+                    //settings.lastFolder = System.IO.Path.GetDirectoryName(Dlg.FileName);
 
                     LoadCustomSet(Dlg.FileName);
 
-                    settings.lastProject = Dlg.FileName;
+                    //settings.lastProject = Dlg.FileName;
                     settings.Save();
 
                     this.Cursor = Cursors.Default;
+                }
+                else
+                {
+
                 }
             }
             catch (Exception ex)

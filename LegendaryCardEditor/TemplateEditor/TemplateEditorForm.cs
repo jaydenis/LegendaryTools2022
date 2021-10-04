@@ -91,7 +91,7 @@ namespace LegendaryCardEditor.TemplateEditor
             templateModelList = coreManager.GetTemplates();
             templateTypes = coreManager.GetTemplateTypes();
 
-            imageTools = new ImageTools(settings.lastFolder, legendaryIconList, settings, "Template Editor");
+            imageTools = new ImageTools(applicationDirectory, legendaryIconList, settings, "Template Editor");
             PopulateTemplateListBox();
             //OpenFile();
         }

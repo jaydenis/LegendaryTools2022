@@ -719,7 +719,7 @@ namespace LegendaryCardEditor.Utilities
                 var sections = model.CardText.Split(' ').ToList();
 
                 bool lastCharIsNumeric = false;
-int index = 0;
+                int index = 0;
                 foreach (String sectionString in sections)
                 {
 
@@ -781,7 +781,7 @@ int index = 0;
                                     TextField txtFieldDetails = new TextField(s)
                                     {
                                         // Point = new Point(x, y),
-                                        TargetArea = new Rectangle(x, y, textSize.Width, textSize.Height + 3),
+                                        TargetArea = new Rectangle(x, y, textSize.Width+1, textSize.Height + 3),
                                         Font = currentFont,
                                         TextBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black),
                                         TextColor = Color.Black
@@ -796,14 +796,14 @@ int index = 0;
                                     if (lastCharIsNumeric)
                                         x += stringLength;
                                     else
-                                        x += stringLength + 1;
+                                        x += stringLength;
 
                                     index++;
                                 }
                             }
                             else if ((icon != null))
                             {
-                                var iconImage = GetIconMaxHeight(icon, GetPercentage(currentFont.Height - 1, 1.1d));
+                                KalikoImage iconImage = GetIconMaxHeight(icon, GetPercentage(currentFont.Height - 1, 1.1d));
 
                                 if (x + iconImage.Width > GetPercentage(endX, scale))
                                 {
