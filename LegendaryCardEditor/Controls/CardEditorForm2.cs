@@ -116,6 +116,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
 
             }
@@ -164,6 +165,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
 
             }
@@ -265,6 +267,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
 
             }
@@ -374,6 +377,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
 
             }
@@ -453,6 +457,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
         }
@@ -541,6 +546,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
 
@@ -565,6 +571,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
         }
@@ -590,6 +597,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
         }
@@ -603,6 +611,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
         }
@@ -616,6 +625,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
         }
@@ -630,6 +640,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
         }
@@ -692,6 +703,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
 
@@ -756,6 +768,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
 
@@ -793,6 +806,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
                 return null;
             }
@@ -812,6 +826,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 return false;
             }
         }
@@ -871,6 +886,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
 
@@ -1018,6 +1034,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
 
@@ -1058,6 +1075,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
 
             }
@@ -1077,6 +1095,7 @@ namespace LegendaryCardEditor.Controls
             catch (Exception ex)
             {
                 txtErrorConsole.Text = ex.ToString();
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex.ToString());
             }
         }

@@ -1,11 +1,11 @@
 {
-  "templateId": 5,
-  "templateName": "mastermind_token",
-  "templateDisplayName": "Mastermind Token",
-  "templateType": "Mastermind",
-  "frameImage": "mastermind_token_frame.png",
-  "costImage": "back_attack.png",
-  "textImage": "mastermind_tactic_back_text.png",
+  "templateId": 1,
+  "templateName": "sidekick",
+  "templateDisplayName": "Special Sidekick",
+  "templateType": "Sidekick",
+  "frameImage": "sidekick_none.png",
+  "costImage": "--NONE--",
+  "textImage": "back_text.png",
   "underlayImage": "--NONE--",
   "imageHeight": 567,
   "imageWidth": 404,
@@ -13,17 +13,17 @@
     15,
     20
   ],
-  "teamIconVisible": false,
+  "teamIconVisible": true,
   "powerPrimaryIconXY": [
     20,
     56
   ],
-  "powerPrimaryIconVisible": false,
+  "powerPrimaryIconVisible": true,
   "powerSecondaryIconXY": [
     20,
     80
   ],
-  "powerSecondaryIconVisible": false,
+  "powerSecondaryIconVisible": true,
   "cardNameXY": [
     17,
     17
@@ -34,9 +34,9 @@
     17,
     41
   ],
-  "cardNameSubTextSize": 18,
+  "cardNameSubTextSize": 17,
   "cardNameSubVisible": true,
-  "attributesPrimaryVisible": false,
+  "attributesPrimaryVisible": true,
   "attributesPrimaryTextSize": 47,
   "recruitIconXY": [
     17,
@@ -46,7 +46,7 @@
     19,
     434
   ],
-  "recruitVisible": false,
+  "recruitVisible": true,
   "attackIconXY": [
     17,
     500
@@ -55,61 +55,61 @@
     17,
     500
   ],
-  "attackVisible": false,
+  "attackVisible": true,
   "piercingIconXY": [
-    0,
-    0
+     17,
+    500
   ],
   "piercingValueXY": [
-    0,
-    0
+    17,
+    500
   ],
-  "piercingVisible": false,
-  "attributesSecondryTextSize": 46,
+  "piercingVisible": true,
+  "attributesSecondryTextSize": 60,
   "costIconXY": [
     355,
     509
   ],
   "costValueXY": [
     315,
-    485
+    487
   ],
-  "costVisible": false,
+  "costVisible": true,
   "attackDefenseIconXY": [
-    1,
-    1
+    0,
+    0
   ],
   "attackDefenseValueXY": [
-    337,
-    485
+    0,
+    0
   ],
-  "attackDefenseVisible": true,
-  "attackDefenseTextSize": 59,
+  "attackDefenseVisible": false,
+  "attackDefenseTextSize": 45,
   "victroyIconXY": [
-    345,
-    365
+    0,
+    0
   ],
   "victroyValueXY": [
-    360,
-    367
+    0,
+    0
   ],
-  "victroyVisible": true,
-  "victoryTextSize": 28,
+  "victroyVisible": false,
+  "victoryTextSize": 0,
   "cardTextRectAreaX": [
-    70,
-    355,
-    355,
-    305,
-    305,
-    70
+    80,
+    350,
+    350,
+    298,
+    290,
+    80
   ],
   "cardTextRectAreaY": [
     420,
     420,
-    475,
-    475,
-    520,
-    540
+    470,
+    470,
+    530,
+    530
   ],
   "cardTextSize": 15,
   "NumberInDeck": 1

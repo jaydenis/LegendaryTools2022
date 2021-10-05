@@ -23,7 +23,6 @@ namespace LegendaryCardEditor
         DeckList deckList;
         string dataFile;
 
-        List<CurrentActiveDataModel> activeDataModels;
         List<LegendaryIconViewModel> legendaryIconList;
         List<Templates> templateModelList;
         List<DeckTypeModel> deckTypeList;
@@ -54,23 +53,18 @@ namespace LegendaryCardEditor
 
                 PopulateKeywordListBox();
                 OpenFile();
-                //if (settings.lastProject != string.Empty)
-                //    if (File.Exists(settings.lastProject))
-                //        LoadCustomSet(settings.lastProject);
-                //    else
-                //        OpenFile();
-                //else
-                //    AddNewDeck(true);
-
+             
                 PopulateIconsEditor();
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex, ex.Message);
             }
         }
+
+        #region MainForm
 
         private void PopulateKeywordListBox()
         {
@@ -91,7 +85,7 @@ namespace LegendaryCardEditor
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex, ex.Message);
             }
         }
@@ -167,7 +161,7 @@ namespace LegendaryCardEditor
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex, ex.Message);
             }
         }
@@ -222,7 +216,7 @@ namespace LegendaryCardEditor
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex, ex.Message);
             }
         }
@@ -241,10 +235,12 @@ namespace LegendaryCardEditor
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex, ex.Message);
             }
         }
+
+       
 
         private void helpToolStripButton_Click(object sender, EventArgs e)
         {
@@ -286,7 +282,7 @@ namespace LegendaryCardEditor
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
             }
         }
 
@@ -304,6 +300,9 @@ namespace LegendaryCardEditor
         {
             MessageBox.Show("Coming Soon!");
         }
+        #endregion
+
+        #region KeyWords
 
         private void listBoxKeywords_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -331,6 +330,11 @@ namespace LegendaryCardEditor
                 MessageBox.Show("Keyword Name is too short!");
             }
         }
+        #endregion
+
+        #region Icons
+
+        LegendaryIconViewModel selectedIcon;
 
         private void PopulateIconsEditor()
         {
@@ -339,18 +343,18 @@ namespace LegendaryCardEditor
                 legendaryIconList = coreManager.LoadIconsFromDirectory();
                 kryptonListBox1.Items.Clear();
 
-                foreach (var icon in legendaryIconList.Where(x => x.Category == "TEAMS").OrderBy(o => o.Name))
+                foreach (var icon in legendaryIconList.OrderBy(o => o.Category))
                 {
                     //Image image = Image.FromFile(icon.FileName);
                     // kryptonGalleryIcons.ImageList.Images.Add(i.ToString(), image);
                     var kImage = new KalikoImage($"{settings.iconsFolder}\\{icon.Category.ToLower()}\\{icon.FileName}");
 
-                    kImage.Resize(64, 64);
+                    kImage.Resize(48, 48);
 
                     KryptonListItem item = new KryptonListItem
                     {
                         ShortText = icon.Name,
-                        //item.LongText = icon.TemplateName;
+                        LongText = icon.Category,
                         Tag = icon,
                         Image = kImage.GetAsBitmap()
                     };
@@ -360,12 +364,10 @@ namespace LegendaryCardEditor
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex, ex.Message);
             }
         }
-
-        LegendaryIconViewModel selectedIcon;
 
         private void kryptonListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -402,7 +404,7 @@ namespace LegendaryCardEditor
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
                 Logger.Error(ex, ex.Message);
 
             }
@@ -436,5 +438,7 @@ namespace LegendaryCardEditor
         {
 
         }
+
+        #endregion
     }
 }

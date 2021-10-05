@@ -57,6 +57,8 @@ namespace LegendaryCardEditor.Models
 
         [JsonProperty("templateName", Required = Required.Always)]
         public string TemplateName { get; set; }
+        [JsonProperty("templateDisplayName", Required = Required.Always)]
+        public string TemplateDisplayName { get; set; }
 
         [JsonProperty("templateType", Required = Required.Always)]
         public string TemplateType { get; set; }

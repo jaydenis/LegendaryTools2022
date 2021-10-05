@@ -156,6 +156,7 @@
     <None Remove="Templates\cards\sidekick\sidekick_range.png" />
     <None Remove="Templates\cards\sidekick\sidekick_strength.png" />
     <None Remove="Templates\cards\sidekick\sidekick_tech.png" />
+    <None Remove="Templates\cards\sidekick\sidekick_template.json" />
     <None Remove="Templates\cards\villain\back_attack.png" />
     <None Remove="Templates\cards\villain\cardData.json" />
     <None Remove="Templates\cards\villain\henchmen.png" />
@@ -544,6 +545,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\sidekick\cardData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\sidekick\sidekick_template.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\sidekick\sidekick_covert.png">

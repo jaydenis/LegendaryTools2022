@@ -207,6 +207,8 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtCardTextTest = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -279,6 +281,7 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox2)).BeginInit();
             this.toolStrip3.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -910,6 +913,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
@@ -1018,7 +1022,7 @@
             this.groupBox4.Controls.Add(this.label29);
             this.groupBox4.Controls.Add(this.cmbFrameImage);
             this.groupBox4.Controls.Add(this.label28);
-            this.groupBox4.Location = new System.Drawing.Point(6, 384);
+            this.groupBox4.Location = new System.Drawing.Point(319, 384);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(391, 155);
             this.groupBox4.TabIndex = 6;
@@ -1070,8 +1074,6 @@
             // chkUnderlayImageVisible
             // 
             this.chkUnderlayImageVisible.AutoSize = true;
-            this.chkUnderlayImageVisible.Checked = true;
-            this.chkUnderlayImageVisible.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkUnderlayImageVisible.Location = new System.Drawing.Point(304, 116);
             this.chkUnderlayImageVisible.Name = "chkUnderlayImageVisible";
             this.chkUnderlayImageVisible.Size = new System.Drawing.Size(60, 19);
@@ -1083,8 +1085,6 @@
             // chkTextImageVisible
             // 
             this.chkTextImageVisible.AutoSize = true;
-            this.chkTextImageVisible.Checked = true;
-            this.chkTextImageVisible.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkTextImageVisible.Location = new System.Drawing.Point(304, 87);
             this.chkTextImageVisible.Name = "chkTextImageVisible";
             this.chkTextImageVisible.Size = new System.Drawing.Size(60, 19);
@@ -1096,8 +1096,6 @@
             // chkCostImageVisible
             // 
             this.chkCostImageVisible.AutoSize = true;
-            this.chkCostImageVisible.Checked = true;
-            this.chkCostImageVisible.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCostImageVisible.Location = new System.Drawing.Point(304, 58);
             this.chkCostImageVisible.Name = "chkCostImageVisible";
             this.chkCostImageVisible.Size = new System.Drawing.Size(60, 19);
@@ -1109,8 +1107,6 @@
             // chkFrameImageVisible
             // 
             this.chkFrameImageVisible.AutoSize = true;
-            this.chkFrameImageVisible.Checked = true;
-            this.chkFrameImageVisible.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkFrameImageVisible.Location = new System.Drawing.Point(304, 29);
             this.chkFrameImageVisible.Name = "chkFrameImageVisible";
             this.chkFrameImageVisible.Size = new System.Drawing.Size(60, 19);
@@ -1965,7 +1961,6 @@
             this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fastColoredTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fastColoredTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.fastColoredTextBox1.IsReplaceMode = false;
             this.fastColoredTextBox1.Location = new System.Drawing.Point(3, 28);
             this.fastColoredTextBox1.Name = "fastColoredTextBox1";
@@ -2028,7 +2023,6 @@
             this.fastColoredTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox2.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fastColoredTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fastColoredTextBox2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.fastColoredTextBox2.IsReplaceMode = false;
             this.fastColoredTextBox2.Location = new System.Drawing.Point(3, 28);
             this.fastColoredTextBox2.Name = "fastColoredTextBox2";
@@ -2147,6 +2141,27 @@
             this.saveFileDialog1.Filter = "Json files|*.json";
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtCardTextTest);
+            this.groupBox6.Location = new System.Drawing.Point(7, 384);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(306, 155);
+            this.groupBox6.TabIndex = 8;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Test Card Text";
+            // 
+            // txtCardTextTest
+            // 
+            this.txtCardTextTest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCardTextTest.Location = new System.Drawing.Point(3, 19);
+            this.txtCardTextTest.MaxLength = 500;
+            this.txtCardTextTest.Multiline = true;
+            this.txtCardTextTest.Name = "txtCardTextTest";
+            this.txtCardTextTest.Size = new System.Drawing.Size(300, 133);
+            this.txtCardTextTest.TabIndex = 0;
+            this.txtCardTextTest.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCardTextTest_KeyUp);
+            // 
             // TemplateEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2246,6 +2261,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox2)).EndInit();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2430,5 +2447,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private FastColoredTextBoxNS.FastColoredTextBox fastColoredTextBox2;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtCardTextTest;
     }
 }
