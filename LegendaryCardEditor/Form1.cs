@@ -53,14 +53,14 @@ namespace LegendaryCardEditor
                 deckTypeList = coreManager.GetDeckTypes();
 
                 PopulateKeywordListBox();
-
-                if (settings.lastProject != string.Empty)
-                    if (File.Exists(settings.lastProject))
-                        LoadCustomSet(settings.lastProject);
-                    else
-                        OpenFile();
-                else
-                    AddNewDeck(true);
+                OpenFile();
+                //if (settings.lastProject != string.Empty)
+                //    if (File.Exists(settings.lastProject))
+                //        LoadCustomSet(settings.lastProject);
+                //    else
+                //        OpenFile();
+                //else
+                //    AddNewDeck(true);
 
                 PopulateIconsEditor();
 
@@ -206,14 +206,18 @@ namespace LegendaryCardEditor
                 if (Dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     this.Cursor = Cursors.WaitCursor;
-                    settings.lastFolder = System.IO.Path.GetDirectoryName(Dlg.FileName);
+                    //settings.lastFolder = System.IO.Path.GetDirectoryName(Dlg.FileName);
 
                     LoadCustomSet(Dlg.FileName);
 
-                    settings.lastProject = Dlg.FileName;
+                    //settings.lastProject = Dlg.FileName;
                     settings.Save();
 
                     this.Cursor = Cursors.Default;
+                }
+                else
+                {
+
                 }
             }
             catch (Exception ex)

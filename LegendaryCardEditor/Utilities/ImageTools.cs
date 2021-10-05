@@ -109,12 +109,12 @@ namespace LegendaryCardEditor.Utilities
             return imageIcon;
         }
 
-        public KalikoImage RenderCardImage(CardEntity card, TemplateEntity template)
+        public KalikoImage RenderCardImage(CardEntity cardModel, TemplateEntity template)
         {
             try
             {
                 this.template = template;
-                this.card = card;
+                card = cardModel;
 
                 currentTemplateDirectory = new DirectoryInfo($"{settings.templatesFolder}\\cards\\{template.TemplateType}\\");
 
@@ -423,31 +423,34 @@ namespace LegendaryCardEditor.Utilities
                    FontStyle.Bold,
                    GraphicsUnit.Pixel);
 
-                TextField txtFieldTitle = new TextField(card.CardDisplayName.ToUpper())
-                {
-                    Font = fontTitle,
-                    TargetArea = new Rectangle(template.CardNameXY[0], template.CardNameXY[1], template.ImageWidth - 40, fontTitle.Height + 20),
-                    Alignment = StringAlignment.Center,
-                    TextColor = Color.Gold,
-                    Outline = 2,
-                    OutlineColor = Color.Black
-                };
 
+
+                Rectangle txtRectangle = new Rectangle(template.CardNameXY[0], template.CardNameXY[1], template.ImageWidth - template.CardNameXY[0], fontTitle.Height + 10);
+                TextField txtFieldTitle = GetCardText(card.CardDisplayName.ToUpper(), txtRectangle, card.CardDisplayNameFont);
+               
                 Font fontSubTitle = new Font(
                    attributesFont.FontFamily,
                    card.CardDisplayNameSubFont,
                    FontStyle.Bold,
                    GraphicsUnit.Pixel);
 
-                TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
+                ////TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
+                //{
+                //    Font = fontSubTitle,
+                //    TargetArea = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1] + 2, template.ImageWidth - 40, 63),
+                //    Alignment = StringAlignment.Center,
+                //    TextColor = Color.Gold,
+                //    Outline = 2,
+                //    OutlineColor = Color.Black
+                //};
+
+                if(card.CardDisplayNameSubFont > card.CardDisplayNameFont || card.CardDisplayNameSubFont > 22)
                 {
-                    Font = fontSubTitle,
-                    TargetArea = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1] + 2, template.ImageWidth - 40, 63),
-                    Alignment = StringAlignment.Center,
-                    TextColor = Color.Gold,
-                    Outline = 2,
-                    OutlineColor = Color.Black
-                };
+                    card.CardDisplayNameSubFont = 22;
+                }
+
+                 txtRectangle = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1], template.ImageWidth- template.CardNameSubXY[0], 63);
+                TextField txtFieldSubTitle = GetCardText(tempSubName.ToUpper(), txtRectangle, card.CardDisplayNameSubFont);
 
                 if (template.TemplateName.ToLower() == "wound" || template.TemplateName.ToLower() == "bystander")
                 {
@@ -631,14 +634,15 @@ namespace LegendaryCardEditor.Utilities
 
                 if (card.CardText != null && template != null)
                 {
-                    bool cardTextResult = GetCardText(card, card.CardTextFont);
+                    bool cardTextResult = GetCardRulesText(card, card.CardTextFont);
                     if (!cardTextResult)
                     {
+                        int fsize = card.CardTextFont;
                         int reduceSize = 1;
                         while (!cardTextResult)
                         {
-                            card.CardTextFont = card.CardTextFont - reduceSize;
-                            cardTextResult = GetCardText(card, card.CardTextFont);
+                            fsize -= reduceSize;
+                            cardTextResult = GetCardRulesText(card, fsize);
                             reduceSize++;
                         }
                     }
@@ -660,7 +664,7 @@ namespace LegendaryCardEditor.Utilities
 
         }
 
-        public bool GetCardText(CardEntity model, int fontSize)
+        public bool GetCardRulesText(CardEntity model, int fontSize)
         {
             try
             {
@@ -715,12 +719,13 @@ namespace LegendaryCardEditor.Utilities
                 var sections = model.CardText.Split(' ').ToList();
 
                 bool lastCharIsNumeric = false;
-
+                int index = 0;
                 foreach (String sectionString in sections)
                 {
 
                     if (sectionString.Length > 0)
                     {
+                        
                         Font currentFont = fontRegular;
                         List<WordDefinition> words = WordDefinition.GetWordDefinitionList(sectionString);
                         foreach (WordDefinition wd in words)
@@ -776,7 +781,7 @@ namespace LegendaryCardEditor.Utilities
                                     TextField txtFieldDetails = new TextField(s)
                                     {
                                         // Point = new Point(x, y),
-                                        TargetArea = new Rectangle(x, y, textSize.Width, textSize.Height + 3),
+                                        TargetArea = new Rectangle(x, y, textSize.Width+1, textSize.Height + 3),
                                         Font = currentFont,
                                         TextBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black),
                                         TextColor = Color.Black
@@ -791,12 +796,14 @@ namespace LegendaryCardEditor.Utilities
                                     if (lastCharIsNumeric)
                                         x += stringLength;
                                     else
-                                        x += stringLength + 1;
+                                        x += stringLength;
+
+                                    index++;
                                 }
                             }
                             else if ((icon != null))
                             {
-                                var iconImage = GetIconMaxHeight(icon, GetPercentage(currentFont.Height - 1, 1.1d));
+                                KalikoImage iconImage = GetIconMaxHeight(icon, GetPercentage(currentFont.Height - 1, 1.1d));
 
                                 if (x + iconImage.Width > GetPercentage(endX, scale))
                                 {
@@ -810,10 +817,12 @@ namespace LegendaryCardEditor.Utilities
                                 if (lastCharIsNumeric && x != startPoint[0].X)
                                     x -= 10;
 
-                                if (!IsInPolygon(startPoint, new Point(x - 2 + iconImage.Width, modifiedY)))
+                                if (index != 0 && !IsInPolygon(startPoint, new Point(x - 2 + iconImage.Width, modifiedY)))
                                 {
-                                    // modifiedY += iconImage.Height;
-                                    x = getXStart(modifiedY);
+                                    y += iconImage.Height;
+                                    x = getXStart(y);
+                                    //if (x < startX)
+                                    //    x = startX;
                                 }
 
                                 var imgX = new CardTextIconViewModel
@@ -824,7 +833,11 @@ namespace LegendaryCardEditor.Utilities
                                 cardTextIcons.Add(imgX);
 
                                 x += (iconImage.Width);
+
+                                index++;
                             }
+
+                            
                         }
                     }
                 }
@@ -834,6 +847,112 @@ namespace LegendaryCardEditor.Utilities
             {
                 Logger.Error(ex.ToString());
             }
+
+            return true;
+        }
+
+        public TextField GetCardText(string cardText, Rectangle recDetails, int fontSize)
+        {
+            try
+            {
+
+                bool cardTextResult = RenderCardText(cardText, recDetails,fontSize);
+                if (!cardTextResult)
+                {
+                    int reduceSize = 1;
+                    while (!cardTextResult)
+                    {
+                        fontSize -=reduceSize;
+                        cardTextResult = RenderCardText(cardText, recDetails, fontSize);
+                        reduceSize++;
+                    }
+                }
+
+                FontFamily fontFamily = new FontFamily("Percolator");
+
+                Font currentFont = new Font(
+                         fontFamily,
+                         fontSize,
+                         FontStyle.Regular,
+                         GraphicsUnit.Pixel);
+
+                TextField txtField = new TextField(cardText.ToUpper())
+                {
+                    Font = currentFont,
+                    TargetArea = recDetails,
+                    Alignment = StringAlignment.Center,
+                    TextColor = Color.Gold,
+                    Outline = 2,
+                    OutlineColor = Color.Black
+                };
+
+                return txtField;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.ToString());
+                return null;
+            }
+
+           
+        }
+
+        private bool RenderCardText(string cardText, Rectangle recDetails,int fontSize)
+        {
+            FontFamily fontFamily = new FontFamily("Percolator");
+
+            Font currentFont = new Font(
+                     fontFamily,
+                     fontSize,
+                     FontStyle.Regular,
+                     GraphicsUnit.Pixel);
+
+            var ascent = fontFamily.GetCellAscent(FontStyle.Regular);
+            var descent = fontFamily.GetCellDescent(FontStyle.Regular);
+
+            // 14.484375 = 16.0 * 1854 / 2048
+            var ascentPixel = currentFont.Size * ascent / fontFamily.GetEmHeight(FontStyle.Regular);
+
+            int x = recDetails.X;
+            int y = recDetails.Y;
+            startX = x;
+            startY = y;
+
+            endX = recDetails.Right;
+            endY = recDetails.Bottom;
+
+
+            Point[] startPoint = new Point[2];
+
+            startPoint[0].X = startX;
+            startPoint[0].Y = startY;
+            startPoint[1].X = endX;
+            startPoint[1].Y = endY;
+
+
+            Size textSize = TextRenderer.MeasureText(cardText, currentFont);
+
+
+            int stringLength = textSize.Width;
+            if (stringLength > 0)
+            {
+                bool isinPoly = IsInPolygon(startPoint, new Point(x - 2 + stringLength, y));
+                if (!isinPoly)
+                {
+                    y += currentFont.Height;
+                   
+                    if (y > endY)
+                        return false;
+
+                    if (textSize.Width > endX)
+                        return false;
+
+                }
+
+                return true;
+
+            }
+       
 
             return true;
         }
