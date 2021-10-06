@@ -17,6 +17,25 @@ namespace LegendaryCardEditor.Managers
             settings = SystemSettings.Load();
             settings.Save();
         }
+
+        public BaseTemplate GetBaseTemplate()
+        {
+            try
+            {
+                string path = settings.templatesFolder + "\\" + settings.json_basetemplate;
+                string jsonText = File.ReadAllText(path);
+
+                var dataModel = JsonConvert.DeserializeObject<BaseTemplate>(jsonText);
+
+                return dataModel;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, ex.Message);
+                return null;
+            }
+        }
+
         public List<DeckTypeModel> GetDeckTypes()
         {
             try
@@ -166,6 +185,17 @@ namespace LegendaryCardEditor.Managers
         {
             try
             {
+                string newPath = Path.GetDirectoryName(path);
+                string newFileName = Path.GetFileNameWithoutExtension(path);    
+                newPath = $"{newPath}\\bak";
+                DirectoryInfo directory = new DirectoryInfo(newPath);
+
+                if (!directory.Exists)
+                    directory.Create();
+
+                newFileName = $"{newFileName}_{DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}{DateTime.Now.Hour}{DateTime.Now.Minute}.json.bak";
+
+                path = newPath + "\\" + newFileName;
                 File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
                 return true;
             }
@@ -196,6 +226,21 @@ namespace LegendaryCardEditor.Managers
             try
             {
                 string path = settings.templatesFolder + "\\" + settings.json_icons;
+                File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, ex.Message);
+                return false;
+            }
+        }
+
+        public bool SaveBaseTemplate(BaseTemplate model)
+        {
+            try
+            {
+                string path = settings.templatesFolder + "\\" + settings.json_basetemplate;
                 File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
                 return true;
             }

@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace LegendaryCardEditor
@@ -33,6 +34,9 @@ namespace LegendaryCardEditor
         public Form1()
         {
             InitializeComponent();
+            Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            string versionDetails = $"v{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            Text = Text + " " + versionDetails; //change form title
 
             settings = SystemSettings.Load($"{applicationDirectory}\\settings.json");
 
@@ -98,7 +102,7 @@ namespace LegendaryCardEditor
             PopulateDeckTree();
 
             //create a backup each time a file is loaded
-            coreManager.CreateBackup(deckList, $"{dataFile}.bak");
+            coreManager.CreateBackup(deckList, dataFile);
 
         }
 

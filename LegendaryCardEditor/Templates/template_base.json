@@ -1,0 +1,73 @@
+
+	{
+
+
+		"imageHeight": 567,
+		"imageWidth": 404,
+		"teamIconXY": [
+			15,
+			20
+		],
+		"powerPrimaryIconXY": [
+			20,
+			56
+		],
+		"powerSecondaryIconXY": [
+			20,
+			80
+		],
+		"attributesPrimaryTextSize": 47,
+		"recruitIconXY": [
+			17,
+			430
+		],
+		"recruitValueXY": [
+			19,
+			434
+		],
+		"attackIconXY": [
+			17,
+			500
+		],
+		"attackValueXY": [
+			17,
+			500
+		],
+		"piercingIconXY": [
+			17,
+			500
+		],
+		"piercingValueXY": [
+			17,
+			500
+		],
+		"attributesSecondryTextSize": 59,
+		"costIconXY": [
+			355,
+			509
+		],
+		"costValueXY": [
+			315,
+			485
+		],
+		"attackDefenseIconXY": [
+			128,
+			118
+		],
+		"attackDefenseValueXY": [
+			342,
+			484
+		],
+		"attackDefenseTextSize": 59,
+		"victroyIconXY": [
+			345,
+			365
+		],
+		"victroyValueXY": [
+			360,
+			367
+		],
+		"victoryTextSize": 28,
+		"cardTextSize": 15
+	}
+		

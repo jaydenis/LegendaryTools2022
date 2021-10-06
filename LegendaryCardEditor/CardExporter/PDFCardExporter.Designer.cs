@@ -1,7 +1,6 @@
-﻿
-namespace LegendaryCardEditor.CardExporter
+﻿namespace LegendaryCardEditor.CardExporter
 {
-    partial class PDFExporter
+    partial class PDFCardExporter
     {
         /// <summary>
         /// Required designer variable.
@@ -29,19 +28,34 @@ namespace LegendaryCardEditor.CardExporter
         /// </summary>
         private void InitializeComponent()
         {
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // PDFExporter
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(796, 855);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // PDFCardExporter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1283, 776);
-            this.Name = "PDFExporter";
-            this.Text = "PDFExporter";
+            this.ClientSize = new System.Drawing.Size(796, 855);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Name = "PDFCardExporter";
+            this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            this.Text = "PDFCardExporter";
+            this.Load += new System.EventHandler(this.PDFCardExporter_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

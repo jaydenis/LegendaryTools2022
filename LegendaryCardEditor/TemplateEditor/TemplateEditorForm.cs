@@ -1,4 +1,5 @@
-﻿using Kaliko.ImageLibrary;
+﻿using ComponentFactory.Krypton.Toolkit;
+using Kaliko.ImageLibrary;
 using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;
 using LegendaryCardEditor.Properties;
@@ -15,12 +16,13 @@ using System.Windows.Forms;
 
 namespace LegendaryCardEditor.TemplateEditor
 {
-    public partial class TemplateEditorForm : Form
+    public partial class TemplateEditorForm : KryptonForm
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         CoreManager coreManager = new CoreManager();
         SystemSettings settings;
 
+        BaseTemplate baseTemplate = new BaseTemplate();
         TemplateEntity template = new TemplateEntity();
         CardEntity card = new CardEntity();
 
@@ -94,6 +96,7 @@ namespace LegendaryCardEditor.TemplateEditor
                 legendaryIconList = coreManager.LoadIconsFromDirectory();
                 templateModelList = coreManager.GetTemplates();
                 templateTypes = coreManager.GetTemplateTypes();
+                baseTemplate = coreManager.GetBaseTemplate();
 
                 imageTools = new ImageTools(applicationDirectory, legendaryIconList, settings, "Template Editor");
                 PopulateTemplateListBox();
@@ -249,7 +252,10 @@ namespace LegendaryCardEditor.TemplateEditor
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
+
+
+                coreManager.SaveBaseTemplate(baseTemplate);
                 if(coreManager.SaveTemplate(template, currentTemplatePath))
                     MessageBox.Show("Template saved.",MCUErrors.GetRandomErrorMessage());
                 else
@@ -336,8 +342,8 @@ namespace LegendaryCardEditor.TemplateEditor
 
                 try
                 {
+                    baseTemplate = coreManager.GetBaseTemplate();
                     var tempFile = templateModelList.Where(x => x.TemplateDisplayName == toolStripTemplateList.SelectedItem.ToString()).FirstOrDefault();
-                    //template = coreManager.GetTemplate($"{tempFile.TemplateType}\\{tempFile.TemplateName}.json");
                     currentTemplatePath = $"{settings.templatesFolder}\\cards\\{tempFile.TemplateType}\\{tempFile.TemplateName}.json";
                     string jsonText = File.ReadAllText(currentTemplatePath);
                     fastColoredTextBox1.Text = jsonText;
@@ -473,17 +479,20 @@ namespace LegendaryCardEditor.TemplateEditor
         {
             try
             {
+                template.ImageHeight = baseTemplate.ImageHeight;
+                template.ImageWidth = baseTemplate.ImageWidth;
+
                 txtCardTextTest.Text = card.CardText;
                 txtTemplateName.Text = template.TemplateName;
                 txtTemplateDisplayName.Text = template.TemplateDisplayName;
 
                 if (template.AttackDefenseVisible)
                 {
-                    numAttackDefenseIconX.Value = template.AttackDefenseIconXY[0];
-                    numAttackDefenseIconY.Value = template.AttackDefenseIconXY[1];
-                    numAttackDefenseTextSize.Value = template.AttackDefenseTextSize;
-                    numAttackDefenseTextX.Value = template.AttackDefenseValueXY[0];
-                    numAttackDefenseTextY.Value = template.AttackDefenseValueXY[1];
+                    numAttackDefenseIconX.Value = baseTemplate.AttackDefenseIconXY[0];
+                    numAttackDefenseIconY.Value = baseTemplate.AttackDefenseIconXY[1];
+                    numAttackDefenseTextSize.Value = baseTemplate.AttackDefenseTextSize;
+                    numAttackDefenseTextX.Value = baseTemplate.AttackDefenseValueXY[0];
+                    numAttackDefenseTextY.Value = baseTemplate.AttackDefenseValueXY[1];
                 }
                 chkAttackDefenseVisible.Checked = template.AttackDefenseVisible;
 
@@ -521,11 +530,11 @@ namespace LegendaryCardEditor.TemplateEditor
 
                 if (template.CostVisible)
                 {
-                    numCostIconX.Value = template.CostIconXY[0];
-                    numCostIconY.Value = template.CostIconXY[1];
-                    numCostTextSize.Value = template.AttributesSecondryTextSize;
-                    numCostTextX.Value = template.CostValueXY[0];
-                    numCostTextY.Value = template.CostValueXY[1];
+                    numCostIconX.Value = baseTemplate.CostIconXY[0];
+                    numCostIconY.Value = baseTemplate.CostIconXY[1];
+                    numCostTextSize.Value = baseTemplate.AttributesSecondryTextSize;
+                    numCostTextX.Value = baseTemplate.CostValueXY[0];
+                    numCostTextY.Value = baseTemplate.CostValueXY[1];
                 }
                 chkCostVisible.Checked = template.CostVisible;
 
@@ -533,43 +542,43 @@ namespace LegendaryCardEditor.TemplateEditor
                 {
                     if (template.AttackVisible)
                     {
-                        numAttackIconX.Value = template.AttackIconXY[0];
-                        numAttackIconY.Value = template.AttackIconXY[1];
-                        numAttributesTextSize.Value = template.AttributesPrimaryTextSize;
-                        numAttackTextX.Value = template.AttackIconXY[0];
-                        numAttackTextY.Value = template.AttackIconXY[1];
+                        numAttackIconX.Value = baseTemplate.AttackIconXY[0];
+                        numAttackIconY.Value = baseTemplate.AttackIconXY[1];
+                        numAttributesTextSize.Value = baseTemplate.AttributesPrimaryTextSize;
+                        numAttackTextX.Value = baseTemplate.AttackIconXY[0];
+                        numAttackTextY.Value = baseTemplate.AttackIconXY[1];
                     }
                     chkAttackVisible.Checked = template.AttackVisible;
 
                     if (template.PiercingVisible)
                     {
-                        numPiercingIconX.Value = template.PiercingIconXY[0];
-                        numPiercingIconY.Value = template.PiercingIconXY[1];
-                        numPiercingTextX.Value = template.PiercingValueXY[0];
-                        numPiercingTextY.Value = template.PiercingValueXY[1];
+                        numPiercingIconX.Value = baseTemplate.PiercingIconXY[0];
+                        numPiercingIconY.Value = baseTemplate.PiercingIconXY[1];
+                        numPiercingTextX.Value = baseTemplate.PiercingValueXY[0];
+                        numPiercingTextY.Value = baseTemplate.PiercingValueXY[1];
                     }
                     chkPiercingVisible.Checked = template.PiercingVisible;
 
                     if (template.PowerPrimaryIconVisible)
                     {
-                        numPowerPrimaryX.Value = template.PowerPrimaryIconXY[0];
-                        numPowerPrimaryY.Value = template.PowerPrimaryIconXY[1];
+                        numPowerPrimaryX.Value = baseTemplate.PowerPrimaryIconXY[0];
+                        numPowerPrimaryY.Value = baseTemplate.PowerPrimaryIconXY[1];
                     }
                     chkPowerPrimaryVisible.Checked = template.PowerPrimaryIconVisible;
 
                     if (template.PowerSecondaryIconVisible)
                     {
-                        numPowerSecondaryX.Value = template.PowerSecondaryIconXY[0];
-                        numPowerSecondaryY.Value = template.PowerSecondaryIconXY[1];
+                        numPowerSecondaryX.Value = baseTemplate.PowerSecondaryIconXY[0];
+                        numPowerSecondaryY.Value = baseTemplate.PowerSecondaryIconXY[1];
                     }
                     chkPowerSecondaryVisible.Checked = template.PowerSecondaryIconVisible;
 
                     if (template.RecruitVisible)
                     {
-                        numRecruitIconX.Value = template.RecruitIconXY[0];
-                        numRecruitIconY.Value = template.RecruitIconXY[1];
-                        numRecruitTextX.Value = template.RecruitValueXY[0];
-                        numRecruitTextY.Value = template.RecruitValueXY[1];
+                        numRecruitIconX.Value = baseTemplate.RecruitIconXY[0];
+                        numRecruitIconY.Value = baseTemplate.RecruitIconXY[1];
+                        numRecruitTextX.Value = baseTemplate.RecruitValueXY[0];
+                        numRecruitTextY.Value = baseTemplate.RecruitValueXY[1];
                     }
                     chkRecruitVisible.Checked = template.RecruitVisible;
                 }
@@ -586,18 +595,18 @@ namespace LegendaryCardEditor.TemplateEditor
 
                 if (template.TeamIconVisible)
                 {
-                    numTeamX.Value = template.TeamIconXY[0];
-                    numTeamY.Value = template.TeamIconXY[1];
+                    numTeamX.Value = baseTemplate.TeamIconXY[0];
+                    numTeamY.Value = baseTemplate.TeamIconXY[1];
                 }
                 chkTeamVisible.Checked = template.TeamIconVisible;
 
                 if (template.VictroyVisible)
                 {
-                    numVictoryTextSize.Value = template.VictoryTextSize;
-                    numVictoryIconX.Value = template.VictroyIconXY[0];
-                    numVictoryIconY.Value = template.VictroyIconXY[1];
-                    numVictoryTextX.Value = template.VictroyValueXY[0];
-                    numVictoryTextY.Value = template.VictroyValueXY[1];
+                    numVictoryTextSize.Value = baseTemplate.VictoryTextSize;
+                    numVictoryIconX.Value = baseTemplate.VictroyIconXY[0];
+                    numVictoryIconY.Value = baseTemplate.VictroyIconXY[1];
+                    numVictoryTextX.Value = baseTemplate.VictroyValueXY[0];
+                    numVictoryTextY.Value = baseTemplate.VictroyValueXY[1];
                 }
                 chkVictoryVisible.Checked = template.VictroyVisible;
 
@@ -631,24 +640,28 @@ namespace LegendaryCardEditor.TemplateEditor
                     template.TemplateDisplayName = txtTemplateDisplayName.Text;
                     template.TemplateType = cmbTemplateType.SelectedItem.ToString();
 
-                    template.AttackDefenseIconXY = new List<int>
-                {
-                    Convert.ToInt32(numAttackDefenseIconX.Value),
-                    Convert.ToInt32(numAttackDefenseIconY.Value)
-                };
+                    baseTemplate.AttackDefenseIconXY = new List<int>{Convert.ToInt32(numAttackDefenseIconX.Value),Convert.ToInt32(numAttackDefenseIconY.Value)};
+                    baseTemplate.AttackDefenseValueXY = new List<int>{Convert.ToInt32(numAttackDefenseTextX.Value),Convert.ToInt32(numAttackDefenseTextY.Value)};
 
-                    template.AttackDefenseValueXY = new List<int>{
-                    Convert.ToInt32(numAttackDefenseTextX.Value),
-                    Convert.ToInt32(numAttackDefenseTextY.Value)
-                };
+                    template.AttackDefenseIconXY = baseTemplate.AttackDefenseIconXY;
+                    template.AttackDefenseValueXY = baseTemplate.AttackDefenseValueXY;
 
                     template.AttackDefenseVisible = chkAttackDefenseVisible.Checked;
-                    template.AttackIconXY = new List<int> { Convert.ToInt32(numAttackIconX.Value), Convert.ToInt32(numAttackIconY.Value) };
-                    template.AttackValueXY = new List<int> { Convert.ToInt32(numAttackTextX.Value), Convert.ToInt32(numAttackTextY.Value) };
+                    baseTemplate.AttackIconXY = new List<int> { Convert.ToInt32(numAttackIconX.Value), Convert.ToInt32(numAttackIconY.Value) };
+                    baseTemplate.AttackValueXY = new List<int> { Convert.ToInt32(numAttackTextX.Value), Convert.ToInt32(numAttackTextY.Value) };
+
+                    template.AttackIconXY = baseTemplate.AttackIconXY;
+                    template.AttackValueXY = baseTemplate.AttackValueXY;
+
                     template.AttackVisible = chkAttackVisible.Checked;
-                    template.AttributesPrimaryTextSize = Convert.ToInt32(numAttributesTextSize.Value);
-                    template.AttributesSecondryTextSize = Convert.ToInt32(numCostTextSize.Value);
-                    template.AttackDefenseTextSize = Convert.ToInt32(numAttackDefenseTextSize.Value);
+                    baseTemplate.AttributesPrimaryTextSize = Convert.ToInt32(numAttributesTextSize.Value);
+                    baseTemplate.AttributesSecondryTextSize = Convert.ToInt32(numCostTextSize.Value);
+                    baseTemplate.AttackDefenseTextSize = Convert.ToInt32(numAttackDefenseTextSize.Value);
+
+                    template.AttributesPrimaryTextSize = baseTemplate.AttributesPrimaryTextSize;
+                    template.AttributesSecondryTextSize = baseTemplate.AttributesSecondryTextSize;
+                    template.AttackDefenseTextSize = baseTemplate.AttackDefenseTextSize;
+
                     template.CardNameXY = new List<int> { Convert.ToInt32(numCardNameX.Value), Convert.ToInt32(numCardNameY.Value) };
                     template.CardNameVisible = chkCardNameVisible.Checked;
                     template.CardNameTextSize = Convert.ToInt32(numCardNameTextSize.Value);
@@ -657,25 +670,50 @@ namespace LegendaryCardEditor.TemplateEditor
                     template.CardNameSubTextSize = Convert.ToInt32(numCardNameSubTextSize.Value);
                     template.CardTextRectAreaX = SetPolygon(true, false);
                     template.CardTextRectAreaY = SetPolygon(false, true);
-                    template.CardTextSize = Convert.ToInt32(numCardTextSize.Value);
-                    template.CostIconXY = new List<int> { Convert.ToInt32(numCostIconX.Value), Convert.ToInt32(numCostIconY.Value) };
-                    template.CostValueXY = new List<int> { Convert.ToInt32(numCostTextX.Value), Convert.ToInt32(numCostTextY.Value) };
+                    baseTemplate.CardTextSize = Convert.ToInt32(numCardTextSize.Value);
+                    baseTemplate.CostIconXY = new List<int> { Convert.ToInt32(numCostIconX.Value), Convert.ToInt32(numCostIconY.Value) };
+                    baseTemplate.CostValueXY = new List<int> { Convert.ToInt32(numCostTextX.Value), Convert.ToInt32(numCostTextY.Value) };
+
+                    template.CardTextSize = baseTemplate.CardTextSize;
+                    template.CostIconXY = baseTemplate.CostIconXY;
+                    template.CostValueXY = baseTemplate.CostValueXY;
+
                     template.CostVisible = chkCostVisible.Checked;
-                    template.PiercingIconXY = new List<int> { Convert.ToInt32(numPiercingIconX.Value), Convert.ToInt32(numPiercingIconY.Value) };
-                    template.PiercingValueXY = new List<int> { Convert.ToInt32(numPiercingTextX.Value), Convert.ToInt32(numPiercingTextY.Value) };
+                    baseTemplate.PiercingIconXY = new List<int> { Convert.ToInt32(numPiercingIconX.Value), Convert.ToInt32(numPiercingIconY.Value) };
+                    baseTemplate.PiercingValueXY = new List<int> { Convert.ToInt32(numPiercingTextX.Value), Convert.ToInt32(numPiercingTextY.Value) };
+
+                    template.PiercingIconXY = baseTemplate.PiercingIconXY;
+                    template.PiercingValueXY = baseTemplate.PiercingValueXY;
+
                     template.PiercingVisible = chkPiercingVisible.Checked;
-                    template.PowerPrimaryIconXY = new List<int> { Convert.ToInt32(numPowerPrimaryX.Value), Convert.ToInt32(numPowerPrimaryY.Value) };
-                    template.PowerSecondaryIconXY = new List<int> { Convert.ToInt32(numPowerSecondaryX.Value), Convert.ToInt32(numPowerSecondaryY.Value) };
+                    baseTemplate.PowerPrimaryIconXY = new List<int> { Convert.ToInt32(numPowerPrimaryX.Value), Convert.ToInt32(numPowerPrimaryY.Value) };
+                    baseTemplate.PowerSecondaryIconXY = new List<int> { Convert.ToInt32(numPowerSecondaryX.Value), Convert.ToInt32(numPowerSecondaryY.Value) };
+
+                    template.PowerPrimaryIconXY = baseTemplate.PowerPrimaryIconXY;
+                    template.PowerSecondaryIconXY = baseTemplate.PowerSecondaryIconXY;
+
                     template.PowerPrimaryIconVisible = chkPowerPrimaryVisible.Checked;
                     template.PowerSecondaryIconVisible = chkPowerSecondaryVisible.Checked;
-                    template.RecruitIconXY = new List<int> { Convert.ToInt32(numRecruitIconX.Value), Convert.ToInt32(numRecruitIconY.Value) };
-                    template.RecruitValueXY = new List<int> { Convert.ToInt32(numRecruitTextX.Value), Convert.ToInt32(numRecruitTextY.Value) };
+                    baseTemplate.RecruitIconXY = new List<int> { Convert.ToInt32(numRecruitIconX.Value), Convert.ToInt32(numRecruitIconY.Value) };
+                    baseTemplate.RecruitValueXY = new List<int> { Convert.ToInt32(numRecruitTextX.Value), Convert.ToInt32(numRecruitTextY.Value) };
+
+                    template.RecruitIconXY = baseTemplate.RecruitIconXY;
+                    template.RecruitValueXY = baseTemplate.RecruitValueXY;
+
                     template.RecruitVisible = chkRecruitVisible.Checked;
-                    template.TeamIconXY = new List<int> { Convert.ToInt32(numTeamX.Value), Convert.ToInt32(numTeamY.Value) };
+                    baseTemplate.TeamIconXY = new List<int> { Convert.ToInt32(numTeamX.Value), Convert.ToInt32(numTeamY.Value) };
+
+                    template.TeamIconXY = baseTemplate.TeamIconXY;
+
                     template.TeamIconVisible = chkTeamVisible.Checked;
-                    template.VictroyIconXY = new List<int> { Convert.ToInt32(numVictoryIconX.Value), Convert.ToInt32(numVictoryIconY.Value) };
-                    template.VictroyValueXY = new List<int> { Convert.ToInt32(numVictoryTextX.Value), Convert.ToInt32(numVictoryTextY.Value) };
-                    template.VictoryTextSize = Convert.ToInt32(numVictoryTextSize.Value);
+                    baseTemplate.VictroyIconXY = new List<int> { Convert.ToInt32(numVictoryIconX.Value), Convert.ToInt32(numVictoryIconY.Value) };
+                    baseTemplate.VictroyValueXY = new List<int> { Convert.ToInt32(numVictoryTextX.Value), Convert.ToInt32(numVictoryTextY.Value) };
+                    baseTemplate.VictoryTextSize = Convert.ToInt32(numVictoryTextSize.Value);
+
+                    template.VictroyIconXY = baseTemplate.VictroyIconXY;
+                    template.VictroyValueXY = baseTemplate.VictroyValueXY;
+                    template.VictoryTextSize = baseTemplate.VictoryTextSize;
+
                     template.VictroyVisible = chkVictoryVisible.Checked;
 
                     if (template.PowerPrimaryIconVisible)
@@ -731,7 +769,6 @@ namespace LegendaryCardEditor.TemplateEditor
                 Logger.Error(ex, ex.Message);
                 return null;
             }
-
         }
 
         public List<int> SetPolygon(bool getX, bool getY)

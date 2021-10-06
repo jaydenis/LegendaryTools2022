@@ -17,6 +17,7 @@ namespace LegendaryCardEditor.Utilities
         public string json_decktypes = "decktypes.json";
         public string json_keywords = "keywords.json";
         public string json_icons = "icons.json";
+        public string json_basetemplate = "template_base.json";
         public string json_templatetypes = "template_types.json";
         public string json_templates = "templates.json";
         public string default_blank_card = "default_blank_card.png"; 

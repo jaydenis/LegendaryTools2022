@@ -213,7 +213,7 @@ namespace LegendaryCardEditor.Utilities
                     if (File.Exists(path))
                     {
                         powerImage = new KalikoImage(path);
-                        powerImage.Resize(25, 25);
+                        powerImage.Resize(30, 30);
                         infoImage.BlitImage(powerImage, template.PowerPrimaryIconXY[0], template.PowerPrimaryIconXY[1]);
 
                         if (template.PowerPrimaryIconVisible && template.PowerSecondaryIconVisible && card.PowerSecondary != "--NONE--")
@@ -226,7 +226,7 @@ namespace LegendaryCardEditor.Utilities
                                 if (File.Exists(path))
                                 {
                                     powerImage2 = new KalikoImage(path);
-                                    powerImage2.Resize(25, 25);
+                                    powerImage2.Resize(30,30);
                                     infoImage.BlitImage(powerImage2, template.PowerSecondaryIconXY[0], template.PowerSecondaryIconXY[1]);
                                 }
                             }
@@ -281,7 +281,7 @@ namespace LegendaryCardEditor.Utilities
                 {
                     if (card.AttributeRecruit.Length > 0)
                     {
-                        recruitImage.Resize(50, 50);
+                        recruitImage.Resize(55, 55);
                         infoImage.BlitImage(recruitImage, template.RecruitIconXY[0], template.RecruitIconXY[1]);
                     }
                 }
@@ -290,7 +290,7 @@ namespace LegendaryCardEditor.Utilities
                 {
                     if (card.AttributeAttack.Length > 0)
                     {
-                        attackImageHero.Resize(50, 50);
+                        attackImageHero.Resize(55, 55);
                         infoImage.BlitImage(attackImageHero, template.AttackIconXY[0], template.AttackIconXY[1]);
                     }
                 }
@@ -299,7 +299,7 @@ namespace LegendaryCardEditor.Utilities
                 {
                     if (card.AttributePiercing.Length > 0)
                     {
-                        piercingImage.Resize(50, 50);
+                        piercingImage.Resize(55, 55);
                         infoImage.BlitImage(piercingImage, template.PiercingIconXY[0], template.PiercingIconXY[1]);
                     }
                 }
@@ -881,7 +881,7 @@ namespace LegendaryCardEditor.Utilities
                     Font = currentFont,
                     TargetArea = recDetails,
                     Alignment = StringAlignment.Center,
-                    TextColor = Color.Gold,
+                    TextColor = Color.Goldenrod,
                     Outline = 2,
                     OutlineColor = Color.Black
                 };

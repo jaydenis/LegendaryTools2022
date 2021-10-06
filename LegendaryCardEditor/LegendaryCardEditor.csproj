@@ -180,8 +180,8 @@
     <None Remove="Templates\decktypes.json" />
     <None Remove="Templates\icons.json" />
     <None Remove="Templates\keywords.json" />
-    <None Remove="Templates\template.json" />
     <None Remove="Templates\templates.json" />
+    <None Remove="Templates\template_base.json" />
     <None Remove="Templates\template_types.json" />
     <None Include="..\..\..\Users\jayte\OneDrive\TableTopGaming\Legendery-Marvel\Legedit2_jar\legedit\icons\attributes\cards.png">
       <Pack>True</Pack>
@@ -634,7 +634,7 @@
     <Content Include="Templates\keywords.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\template.json">
+    <Content Include="Templates\template_base.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\templates.json">
