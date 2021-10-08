@@ -1,5 +1,6 @@
-﻿using ComponentFactory.Krypton.Toolkit;
+﻿
 using Kaliko.ImageLibrary;
+using Krypton.Toolkit;
 using LegendaryCardEditor.Controls;
 using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;
@@ -64,7 +65,7 @@ namespace LegendaryCardEditor
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
             }
         }
 
@@ -90,7 +91,7 @@ namespace LegendaryCardEditor
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
             }
         }
 
@@ -166,7 +167,7 @@ namespace LegendaryCardEditor
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
             }
         }
 
@@ -221,7 +222,7 @@ namespace LegendaryCardEditor
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
             }
         }
 
@@ -240,7 +241,7 @@ namespace LegendaryCardEditor
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
             }
         }
 
@@ -369,7 +370,7 @@ namespace LegendaryCardEditor
             {
 
                 MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
             }
         }
 
@@ -409,7 +410,7 @@ namespace LegendaryCardEditor
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
 
             }
         }

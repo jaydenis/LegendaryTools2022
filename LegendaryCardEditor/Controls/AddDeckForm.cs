@@ -1,5 +1,6 @@
-﻿using ComponentFactory.Krypton.Toolkit;
+﻿
 using Kaliko.ImageLibrary;
+using Krypton.Toolkit;
 using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;
 using LegendaryCardEditor.Utilities;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace LegendaryCardEditor.Controls
 {
-    public partial class AddDeckForm : Form
+    public partial class AddDeckForm : KryptonForm
     {
         CoreManager coreManager = new CoreManager();
         SystemSettings settings;

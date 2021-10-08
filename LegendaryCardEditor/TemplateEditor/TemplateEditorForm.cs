@@ -1,5 +1,6 @@
-﻿using ComponentFactory.Krypton.Toolkit;
+﻿
 using Kaliko.ImageLibrary;
+using Krypton.Toolkit;
 using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;
 using LegendaryCardEditor.Properties;
@@ -178,30 +179,7 @@ namespace LegendaryCardEditor.TemplateEditor
             }
         }
 
-        private void toolStripButtonTemplateSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.Cursor = Cursors.WaitCursor;
-
-                template = JsonConvert.DeserializeObject<TemplateEntity>(fastColoredTextBox1.Text);
-
-                string path = applicationDirectory + "\\cardData.json";
-                string jsonText = File.ReadAllText(path);
-                fastColoredTextBox2.Text = jsonText;
-                card = JsonConvert.DeserializeObject<CardEntity>(jsonText);
-
-                Reload();
-
-                this.Cursor = Cursors.Default;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
-                Logger.Error(ex, ex.Message);
-            }
-        }
-
+        
         private void toolStripButtonUpdateImage_Click(object sender, EventArgs e)
         {
             try
@@ -758,6 +736,9 @@ namespace LegendaryCardEditor.TemplateEditor
                     card.CardDisplayNameSubFont = template.CardNameSubTextSize;
                     card.CardTextFont = template.CardTextSize;
                     card.CardText = txtCardTextTest.Text;
+
+                    fastColoredTextBox1.Text = JsonConvert.SerializeObject(template,Formatting.Indented);
+                    
                 }
 
 
@@ -835,6 +816,43 @@ namespace LegendaryCardEditor.TemplateEditor
         {
             card.CardText = txtCardTextTest.Text;
             Reload();
+        }
+
+        private void tsbJSONTemplateSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+               
+
+                baseTemplate = coreManager.GetBaseTemplate();
+                var tempFile = templateModelList.Where(x => x.TemplateDisplayName == toolStripTemplateList.SelectedItem.ToString()).FirstOrDefault();
+                currentTemplatePath = $"{settings.templatesFolder}\\cards\\{tempFile.TemplateType}\\{tempFile.TemplateName}.json";
+                template = JsonConvert.DeserializeObject<TemplateEntity>(fastColoredTextBox1.Text);             
+
+               
+
+                formIsReady = false;
+                chkLiveChanges.Checked = false;
+
+                ConfigureControlProperties();
+
+                LoadFormControls();
+
+                Reload();
+
+                chkLiveChanges.Checked = true;
+
+                formIsReady = true;
+
+                this.Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), MCUErrors.GetRandomErrorMessage());
+                Logger.Error(ex, ex.Message);
+            }
         }
     }
 }

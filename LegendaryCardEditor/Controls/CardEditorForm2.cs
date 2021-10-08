@@ -628,7 +628,7 @@ namespace LegendaryCardEditor.Controls
                         Tag = card.Id,
                         Image = cardImage.GetAsBitmap(),
                         ImageLocation = Convert.ToString(curFile),
-                        Size = new Size(255, 357),
+                        Size = new Size(200, 280),
                         SizeMode = PictureBoxSizeMode.StretchImage,
 
                     };

@@ -56,7 +56,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
+            this.kryptonManager1 = new Krypton.Toolkit.KryptonManager(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.fastColoredTextBox2 = new FastColoredTextBoxNS.FastColoredTextBox();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
@@ -73,7 +73,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.fastColoredTextBox1 = new FastColoredTextBoxNS.FastColoredTextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsbJSONTemplateSave = new System.Windows.Forms.ToolStripButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -567,7 +567,7 @@
             // 
             // kryptonManager1
             // 
-            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Black;
+            this.kryptonManager1.GlobalPaletteMode = Krypton.Toolkit.PaletteModeManager.Office2010Black;
             // 
             // tabPage3
             // 
@@ -594,14 +594,16 @@
         '\"',
         '\'',
         '\''};
-            this.fastColoredTextBox2.AutoScrollMinSize = new System.Drawing.Size(154, 14);
+            this.fastColoredTextBox2.AutoScrollMinSize = new System.Drawing.Size(179, 14);
             this.fastColoredTextBox2.BackBrush = null;
             this.fastColoredTextBox2.CharHeight = 14;
             this.fastColoredTextBox2.CharWidth = 8;
             this.fastColoredTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox2.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fastColoredTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastColoredTextBox2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.fastColoredTextBox2.IsReplaceMode = false;
+            this.fastColoredTextBox2.Language = FastColoredTextBoxNS.Language.JS;
             this.fastColoredTextBox2.Location = new System.Drawing.Point(3, 28);
             this.fastColoredTextBox2.Name = "fastColoredTextBox2";
             this.fastColoredTextBox2.Paddings = new System.Windows.Forms.Padding(0);
@@ -739,14 +741,16 @@
         '\"',
         '\'',
         '\''};
-            this.fastColoredTextBox1.AutoScrollMinSize = new System.Drawing.Size(154, 14);
+            this.fastColoredTextBox1.AutoScrollMinSize = new System.Drawing.Size(179, 14);
             this.fastColoredTextBox1.BackBrush = null;
             this.fastColoredTextBox1.CharHeight = 14;
             this.fastColoredTextBox1.CharWidth = 8;
             this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fastColoredTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastColoredTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.fastColoredTextBox1.IsReplaceMode = false;
+            this.fastColoredTextBox1.Language = FastColoredTextBoxNS.Language.JS;
             this.fastColoredTextBox1.Location = new System.Drawing.Point(3, 28);
             this.fastColoredTextBox1.Name = "fastColoredTextBox1";
             this.fastColoredTextBox1.Paddings = new System.Windows.Forms.Padding(0);
@@ -761,21 +765,22 @@
             // 
             this.toolStrip2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
+            this.tsbJSONTemplateSave});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(723, 25);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
             // 
-            // toolStripButton1
+            // tsbJSONTemplateSave
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::LegendaryCardEditor.Properties.Resources.cards;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.tsbJSONTemplateSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbJSONTemplateSave.Image = global::LegendaryCardEditor.Properties.Resources.script_save;
+            this.tsbJSONTemplateSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbJSONTemplateSave.Name = "tsbJSONTemplateSave";
+            this.tsbJSONTemplateSave.Size = new System.Drawing.Size(23, 22);
+            this.tsbJSONTemplateSave.Text = "toolStripButton1";
+            this.tsbJSONTemplateSave.Click += new System.EventHandler(this.tsbJSONTemplateSave_Click);
             // 
             // tabPage1
             // 
@@ -1924,7 +1929,7 @@
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TemplateEditorForm";
-            this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            this.PaletteMode = Krypton.Toolkit.PaletteMode.Office2010Black;
             this.Text = "Template Editor";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
@@ -2045,7 +2050,7 @@
         private System.Windows.Forms.NumericUpDown numCardTextY5;
         private System.Windows.Forms.NumericUpDown numCardTextX5;
         private System.Windows.Forms.Label label33;
-        private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
+        private Krypton.Toolkit.KryptonManager kryptonManager1;
         private System.Windows.Forms.TabPage tabPage3;
         private FastColoredTextBoxNS.FastColoredTextBox fastColoredTextBox2;
         private System.Windows.Forms.ToolStrip toolStrip3;
@@ -2062,7 +2067,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private FastColoredTextBoxNS.FastColoredTextBox fastColoredTextBox1;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton newToolStripButton;
@@ -2169,5 +2173,6 @@
         private System.Windows.Forms.NumericUpDown numTeamX;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ToolStripButton tsbJSONTemplateSave;
     }
 }

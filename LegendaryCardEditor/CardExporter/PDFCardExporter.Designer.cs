@@ -47,7 +47,7 @@
             this.ClientSize = new System.Drawing.Size(796, 855);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "PDFCardExporter";
-            this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            this.PaletteMode = Krypton.Toolkit.PaletteMode.Office2010Black;
             this.Text = "PDFCardExporter";
             this.Load += new System.EventHandler(this.PDFCardExporter_Load);
             this.ResumeLayout(false);

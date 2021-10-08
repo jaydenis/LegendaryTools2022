@@ -31,7 +31,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return null;
             }
         }
@@ -48,7 +48,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return null;
             }
         }
@@ -65,7 +65,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return null;
             }
         }
@@ -83,7 +83,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return null;
             }
         }
@@ -101,7 +101,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return null;
             }
         }
@@ -119,7 +119,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return null;
             }
         }
@@ -144,7 +144,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return null;
             }
 
@@ -161,7 +161,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return null;
             }
         }
@@ -176,7 +176,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return false;
             }
         }
@@ -201,7 +201,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return false;
             }
         }
@@ -216,7 +216,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return false;
             }
         }
@@ -231,7 +231,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return false;
             }
         }
@@ -246,7 +246,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return false;
             }
         }
@@ -260,7 +260,7 @@ namespace LegendaryCardEditor.Managers
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.ToString());
                 return false;
             }
         }
