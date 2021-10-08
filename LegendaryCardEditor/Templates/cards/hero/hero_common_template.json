@@ -4,7 +4,7 @@
   "templateDisplayName": "Hero - Common",
   "templateType": "Hero",
   "frameImage": "hero_common_none.png",
-  "costImage": "",
+  "costImage": "--NONE--",
   "textImage": "back_text_common.png",
   "underlayImage": "--NONE--",
   "imageHeight": 567,
@@ -57,7 +57,7 @@
   ],
   "attackVisible": true,
   "piercingIconXY": [
-     17,
+    17,
     500
   ],
   "piercingValueXY": [

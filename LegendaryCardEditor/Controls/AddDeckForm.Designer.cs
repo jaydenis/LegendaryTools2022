@@ -31,16 +31,16 @@ namespace LegendaryCardEditor.Controls
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbDeckTypeAmbition = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.rbDeckTypeWound = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.rbDeckTypeOfficer = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.kryptonRadioBystander = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.rbDeckTypeVillain = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.rbDeckTypeSidekick = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.rbDeckTypeMastermind = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.rbDeckTypeHenchmen = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.rbDeckTypeHero = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.cmbDeckTeam = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
+            this.rbDeckTypeAmbition = new Krypton.Toolkit.KryptonRadioButton();
+            this.rbDeckTypeWound = new Krypton.Toolkit.KryptonRadioButton();
+            this.rbDeckTypeOfficer = new Krypton.Toolkit.KryptonRadioButton();
+            this.kryptonRadioBystander = new Krypton.Toolkit.KryptonRadioButton();
+            this.rbDeckTypeVillain = new Krypton.Toolkit.KryptonRadioButton();
+            this.rbDeckTypeSidekick = new Krypton.Toolkit.KryptonRadioButton();
+            this.rbDeckTypeMastermind = new Krypton.Toolkit.KryptonRadioButton();
+            this.rbDeckTypeHenchmen = new Krypton.Toolkit.KryptonRadioButton();
+            this.rbDeckTypeHero = new Krypton.Toolkit.KryptonRadioButton();
+            this.cmbDeckTeam = new Krypton.Ribbon.KryptonGallery();
             this.txtNewDeckName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCreateDeck = new System.Windows.Forms.Button();
@@ -69,7 +69,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // rbDeckTypeAmbition
             // 
-            this.rbDeckTypeAmbition.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl;
+            this.rbDeckTypeAmbition.LabelStyle = Krypton.Toolkit.LabelStyle.TitleControl;
             this.rbDeckTypeAmbition.Location = new System.Drawing.Point(15, 312);
             this.rbDeckTypeAmbition.Name = "rbDeckTypeAmbition";
             this.rbDeckTypeAmbition.Size = new System.Drawing.Size(106, 29);
@@ -80,7 +80,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // rbDeckTypeWound
             // 
-            this.rbDeckTypeWound.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl;
+            this.rbDeckTypeWound.LabelStyle = Krypton.Toolkit.LabelStyle.TitleControl;
             this.rbDeckTypeWound.Location = new System.Drawing.Point(15, 242);
             this.rbDeckTypeWound.Name = "rbDeckTypeWound";
             this.rbDeckTypeWound.Size = new System.Drawing.Size(88, 29);
@@ -91,7 +91,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // rbDeckTypeOfficer
             // 
-            this.rbDeckTypeOfficer.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl;
+            this.rbDeckTypeOfficer.LabelStyle = Krypton.Toolkit.LabelStyle.TitleControl;
             this.rbDeckTypeOfficer.Location = new System.Drawing.Point(15, 277);
             this.rbDeckTypeOfficer.Name = "rbDeckTypeOfficer";
             this.rbDeckTypeOfficer.Size = new System.Drawing.Size(183, 29);
@@ -102,7 +102,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // kryptonRadioBystander
             // 
-            this.kryptonRadioBystander.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl;
+            this.kryptonRadioBystander.LabelStyle = Krypton.Toolkit.LabelStyle.TitleControl;
             this.kryptonRadioBystander.Location = new System.Drawing.Point(15, 207);
             this.kryptonRadioBystander.Name = "kryptonRadioBystander";
             this.kryptonRadioBystander.Size = new System.Drawing.Size(112, 29);
@@ -113,7 +113,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // rbDeckTypeVillain
             // 
-            this.rbDeckTypeVillain.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl;
+            this.rbDeckTypeVillain.LabelStyle = Krypton.Toolkit.LabelStyle.TitleControl;
             this.rbDeckTypeVillain.Location = new System.Drawing.Point(15, 102);
             this.rbDeckTypeVillain.Name = "rbDeckTypeVillain";
             this.rbDeckTypeVillain.Size = new System.Drawing.Size(79, 29);
@@ -124,7 +124,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // rbDeckTypeSidekick
             // 
-            this.rbDeckTypeSidekick.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl;
+            this.rbDeckTypeSidekick.LabelStyle = Krypton.Toolkit.LabelStyle.TitleControl;
             this.rbDeckTypeSidekick.Location = new System.Drawing.Point(15, 172);
             this.rbDeckTypeSidekick.Name = "rbDeckTypeSidekick";
             this.rbDeckTypeSidekick.Size = new System.Drawing.Size(163, 29);
@@ -135,7 +135,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // rbDeckTypeMastermind
             // 
-            this.rbDeckTypeMastermind.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl;
+            this.rbDeckTypeMastermind.LabelStyle = Krypton.Toolkit.LabelStyle.TitleControl;
             this.rbDeckTypeMastermind.Location = new System.Drawing.Point(15, 67);
             this.rbDeckTypeMastermind.Name = "rbDeckTypeMastermind";
             this.rbDeckTypeMastermind.Size = new System.Drawing.Size(130, 29);
@@ -146,7 +146,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // rbDeckTypeHenchmen
             // 
-            this.rbDeckTypeHenchmen.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl;
+            this.rbDeckTypeHenchmen.LabelStyle = Krypton.Toolkit.LabelStyle.TitleControl;
             this.rbDeckTypeHenchmen.Location = new System.Drawing.Point(15, 137);
             this.rbDeckTypeHenchmen.Name = "rbDeckTypeHenchmen";
             this.rbDeckTypeHenchmen.Size = new System.Drawing.Size(118, 29);
@@ -157,7 +157,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // rbDeckTypeHero
             // 
-            this.rbDeckTypeHero.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.TitleControl;
+            this.rbDeckTypeHero.LabelStyle = Krypton.Toolkit.LabelStyle.TitleControl;
             this.rbDeckTypeHero.Location = new System.Drawing.Point(15, 32);
             this.rbDeckTypeHero.Name = "rbDeckTypeHero";
             this.rbDeckTypeHero.Size = new System.Drawing.Size(67, 29);
@@ -174,7 +174,7 @@ namespace LegendaryCardEditor.Controls
             this.cmbDeckTeam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDeckTeam.Name = "cmbDeckTeam";
             this.cmbDeckTeam.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbDeckTeam.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
+            this.cmbDeckTeam.PaletteMode = Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
             this.cmbDeckTeam.Size = new System.Drawing.Size(531, 46);
             this.cmbDeckTeam.TabIndex = 76;
             this.cmbDeckTeam.SelectedIndexChanged += new System.EventHandler(this.cmbDeckTeam_SelectedIndexChanged);
@@ -248,16 +248,16 @@ namespace LegendaryCardEditor.Controls
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton kryptonRadioBystander;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rbDeckTypeVillain;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rbDeckTypeSidekick;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rbDeckTypeMastermind;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rbDeckTypeHenchmen;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rbDeckTypeHero;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rbDeckTypeWound;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rbDeckTypeAmbition;
-        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rbDeckTypeOfficer;
-        private ComponentFactory.Krypton.Ribbon.KryptonGallery cmbDeckTeam;
+        private Krypton.Toolkit.KryptonRadioButton kryptonRadioBystander;
+        private Krypton.Toolkit.KryptonRadioButton rbDeckTypeVillain;
+        private Krypton.Toolkit.KryptonRadioButton rbDeckTypeSidekick;
+        private Krypton.Toolkit.KryptonRadioButton rbDeckTypeMastermind;
+        private Krypton.Toolkit.KryptonRadioButton rbDeckTypeHenchmen;
+        private Krypton.Toolkit.KryptonRadioButton rbDeckTypeHero;
+        private Krypton.Toolkit.KryptonRadioButton rbDeckTypeWound;
+        private Krypton.Toolkit.KryptonRadioButton rbDeckTypeAmbition;
+        private Krypton.Toolkit.KryptonRadioButton rbDeckTypeOfficer;
+        private Krypton.Ribbon.KryptonGallery cmbDeckTeam;
         private System.Windows.Forms.TextBox txtNewDeckName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCreateDeck;

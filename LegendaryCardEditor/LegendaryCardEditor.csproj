@@ -646,21 +646,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ComponentFactory.Krypton.Toolkit" Version="1.0.0" />
     <PackageReference Include="FCTB" Version="2.16.24" />
     <PackageReference Include="ImageLibrary" Version="3.0.2" />
-    <PackageReference Include="Krypton.Components.Suite" Version="4.5.9" />
-    <PackageReference Include="Krypton.Toolkit" Version="5.550.2108.1" />
-    <PackageReference Include="Krypton.Toolkit.Suite.Extended.Common" Version="5.550.2106" />
-    <PackageReference Include="Krypton.Toolkit.Suite.Extended.Core" Version="5.550.2106" />
-    <PackageReference Include="Krypton.Toolkit.Suite.Extended.Drawing.Suite" Version="5.550.2106" />
-    <PackageReference Include="Krypton.Toolkit.Suite.Extended.Navi.Suite" Version="5.550.2106" />
-    <PackageReference Include="Krypton.Toolkit.Suite.Extended.Notifications" Version="5.550.2106" />
-    <PackageReference Include="Krypton.Toolkit.Suite.Extended.Settings" Version="5.550.2106" />
-    <PackageReference Include="Krypton.Toolkit.Suite.Extended.Software.Updater" Version="5.550.2106" />
-    <PackageReference Include="Krypton.Toolkit.Suite.Extended.Tool.Strip.Items" Version="5.550.2106" />
-    <PackageReference Include="Krypton.Toolkit.Suite.Extended.Utilities" Version="5.550.2106" />
-    <PackageReference Include="Krypton.Toolkit.Suite.Extended.Wizard" Version="5.550.2106" />
+    <PackageReference Include="Krypton.Docking.Canary" Version="6.0.2108.1" />
+    <PackageReference Include="Krypton.Navigator.Canary" Version="6.0.2108.1" />
+    <PackageReference Include="Krypton.Ribbon.Canary" Version="6.0.2108.1" />
+    <PackageReference Include="Krypton.Toolkit.Canary" Version="6.0.2108.1" />
+    <PackageReference Include="Krypton.Workspace.Canary" Version="6.0.2108.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NLog" Version="4.7.11" />
     <PackageReference Include="NLog.Config" Version="4.7.11" />

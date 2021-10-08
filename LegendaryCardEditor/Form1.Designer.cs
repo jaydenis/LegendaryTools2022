@@ -73,34 +73,34 @@ namespace LegendaryCardEditor
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new ComponentFactory.Krypton.Toolkit.KryptonTreeView();
+            this.treeView1 = new Krypton.Toolkit.KryptonTreeView();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnAddDeck = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnAddDeck = new Krypton.Toolkit.KryptonButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPageKeywords = new System.Windows.Forms.TabPage();
-            this.btnSaveKeyword = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.txtKeywordDescription = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtkeywordName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.listBoxKeywords = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
-            this.tabPageIcons = new System.Windows.Forms.TabPage();
-            this.btnIconCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnIconSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnBrowseIcon = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.txtIconFilePath = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtIconName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtIconCategory = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonListBox1 = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
+            this.kryptonNavigator1 = new Krypton.Navigator.KryptonNavigator();
+            this.kryptonPage2 = new Krypton.Navigator.KryptonPage();
+            this.kryptonLabel4 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel3 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel6 = new Krypton.Toolkit.KryptonLabel();
+            this.btnIconCancel = new Krypton.Toolkit.KryptonButton();
+            this.kryptonListBox1 = new Krypton.Toolkit.KryptonListBox();
+            this.btnIconSave = new Krypton.Toolkit.KryptonButton();
+            this.btnBrowseIcon = new Krypton.Toolkit.KryptonButton();
+            this.txtIconFilePath = new Krypton.Toolkit.KryptonTextBox();
+            this.txtIconName = new Krypton.Toolkit.KryptonTextBox();
+            this.txtIconCategory = new Krypton.Toolkit.KryptonTextBox();
+            this.kryptonPage1 = new Krypton.Navigator.KryptonPage();
+            this.btnSaveKeyword = new Krypton.Toolkit.KryptonButton();
+            this.listBoxKeywords = new Krypton.Toolkit.KryptonListBox();
+            this.kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
+            this.txtkeywordName = new Krypton.Toolkit.KryptonTextBox();
+            this.txtKeywordDescription = new Krypton.Toolkit.KryptonTextBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.treeViewMenuDeleteDeck = new System.Windows.Forms.ToolStripMenuItem();
-            this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
+            this.kryptonManager1 = new Krypton.Toolkit.KryptonManager(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -111,9 +111,11 @@ namespace LegendaryCardEditor
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPageKeywords.SuspendLayout();
-            this.tabPageIcons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPage2)).BeginInit();
+            this.kryptonPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPage1)).BeginInit();
+            this.kryptonPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -537,7 +539,7 @@ namespace LegendaryCardEditor
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.tabControl2);
+            this.tabPage2.Controls.Add(this.kryptonNavigator1);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -546,120 +548,89 @@ namespace LegendaryCardEditor
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabControl2
+            // kryptonNavigator1
             // 
-            this.tabControl2.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.tabControl2.Controls.Add(this.tabPageKeywords);
-            this.tabControl2.Controls.Add(this.tabPageIcons);
-            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl2.Location = new System.Drawing.Point(3, 3);
-            this.tabControl2.Multiline = true;
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(1350, 671);
-            this.tabControl2.TabIndex = 0;
+            this.kryptonNavigator1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonNavigator1.Location = new System.Drawing.Point(3, 3);
+            this.kryptonNavigator1.Name = "kryptonNavigator1";
+            this.kryptonNavigator1.Pages.AddRange(new Krypton.Navigator.KryptonPage[] {
+            this.kryptonPage2,
+            this.kryptonPage1});
+            this.kryptonNavigator1.SelectedIndex = 0;
+            this.kryptonNavigator1.Size = new System.Drawing.Size(1350, 671);
+            this.kryptonNavigator1.TabIndex = 1;
+            this.kryptonNavigator1.Text = "kryptonNavigator1";
             // 
-            // tabPageKeywords
+            // kryptonPage2
             // 
-            this.tabPageKeywords.Controls.Add(this.btnSaveKeyword);
-            this.tabPageKeywords.Controls.Add(this.kryptonLabel2);
-            this.tabPageKeywords.Controls.Add(this.kryptonLabel1);
-            this.tabPageKeywords.Controls.Add(this.txtKeywordDescription);
-            this.tabPageKeywords.Controls.Add(this.txtkeywordName);
-            this.tabPageKeywords.Controls.Add(this.listBoxKeywords);
-            this.tabPageKeywords.Location = new System.Drawing.Point(27, 4);
-            this.tabPageKeywords.Name = "tabPageKeywords";
-            this.tabPageKeywords.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageKeywords.Size = new System.Drawing.Size(1319, 663);
-            this.tabPageKeywords.TabIndex = 0;
-            this.tabPageKeywords.Text = "Keywords";
-            this.tabPageKeywords.UseVisualStyleBackColor = true;
+            this.kryptonPage2.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
+            this.kryptonPage2.Controls.Add(this.kryptonLabel4);
+            this.kryptonPage2.Controls.Add(this.kryptonLabel3);
+            this.kryptonPage2.Controls.Add(this.kryptonLabel6);
+            this.kryptonPage2.Controls.Add(this.btnIconCancel);
+            this.kryptonPage2.Controls.Add(this.kryptonListBox1);
+            this.kryptonPage2.Controls.Add(this.btnIconSave);
+            this.kryptonPage2.Controls.Add(this.btnBrowseIcon);
+            this.kryptonPage2.Controls.Add(this.txtIconFilePath);
+            this.kryptonPage2.Controls.Add(this.txtIconName);
+            this.kryptonPage2.Controls.Add(this.txtIconCategory);
+            this.kryptonPage2.Flags = 65534;
+            this.kryptonPage2.LastVisibleSet = true;
+            this.kryptonPage2.MinimumSize = new System.Drawing.Size(50, 50);
+            this.kryptonPage2.Name = "kryptonPage2";
+            this.kryptonPage2.Size = new System.Drawing.Size(1348, 644);
+            this.kryptonPage2.Text = "Icons";
+            this.kryptonPage2.ToolTipTitle = "Page ToolTip";
+            this.kryptonPage2.UniqueName = "7c5aacec20ab46c0a6c7d24c1d954f18";
             // 
-            // btnSaveKeyword
+            // kryptonLabel4
             // 
-            this.btnSaveKeyword.Location = new System.Drawing.Point(542, 339);
-            this.btnSaveKeyword.Name = "btnSaveKeyword";
-            this.btnSaveKeyword.Size = new System.Drawing.Size(90, 25);
-            this.btnSaveKeyword.TabIndex = 3;
-            this.btnSaveKeyword.Values.Text = "Save";
-            this.btnSaveKeyword.Click += new System.EventHandler(this.btnSaveKeyword_Click);
+            this.kryptonLabel4.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel4.Location = new System.Drawing.Point(245, 92);
+            this.kryptonLabel4.Name = "kryptonLabel4";
+            this.kryptonLabel4.Size = new System.Drawing.Size(31, 20);
+            this.kryptonLabel4.TabIndex = 7;
+            this.kryptonLabel4.Values.Text = "File";
             // 
-            // kryptonLabel2
+            // kryptonLabel3
             // 
-            this.kryptonLabel2.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel2.Location = new System.Drawing.Point(224, 88);
-            this.kryptonLabel2.Name = "kryptonLabel2";
-            this.kryptonLabel2.Size = new System.Drawing.Size(132, 20);
-            this.kryptonLabel2.TabIndex = 2;
-            this.kryptonLabel2.Values.Text = "Keyword Description";
+            this.kryptonLabel3.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel3.Location = new System.Drawing.Point(245, 58);
+            this.kryptonLabel3.Name = "kryptonLabel3";
+            this.kryptonLabel3.Size = new System.Drawing.Size(45, 20);
+            this.kryptonLabel3.TabIndex = 7;
+            this.kryptonLabel3.Values.Text = "Name";
             // 
-            // kryptonLabel1
+            // kryptonLabel6
             // 
-            this.kryptonLabel1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel1.Location = new System.Drawing.Point(224, 33);
-            this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(100, 20);
-            this.kryptonLabel1.TabIndex = 2;
-            this.kryptonLabel1.Values.Text = "Keyword Name";
-            // 
-            // txtKeywordDescription
-            // 
-            this.txtKeywordDescription.Location = new System.Drawing.Point(224, 114);
-            this.txtKeywordDescription.MaxLength = 300;
-            this.txtKeywordDescription.Multiline = true;
-            this.txtKeywordDescription.Name = "txtKeywordDescription";
-            this.txtKeywordDescription.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtKeywordDescription.Size = new System.Drawing.Size(408, 219);
-            this.txtKeywordDescription.TabIndex = 1;
-            // 
-            // txtkeywordName
-            // 
-            this.txtkeywordName.Location = new System.Drawing.Point(224, 59);
-            this.txtkeywordName.Name = "txtkeywordName";
-            this.txtkeywordName.Size = new System.Drawing.Size(408, 23);
-            this.txtkeywordName.TabIndex = 1;
-            // 
-            // listBoxKeywords
-            // 
-            this.listBoxKeywords.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listBoxKeywords.Location = new System.Drawing.Point(3, 3);
-            this.listBoxKeywords.Name = "listBoxKeywords";
-            this.listBoxKeywords.Size = new System.Drawing.Size(199, 657);
-            this.listBoxKeywords.TabIndex = 0;
-            this.listBoxKeywords.SelectedIndexChanged += new System.EventHandler(this.listBoxKeywords_SelectedIndexChanged);
-            // 
-            // tabPageIcons
-            // 
-            this.tabPageIcons.Controls.Add(this.btnIconCancel);
-            this.tabPageIcons.Controls.Add(this.btnIconSave);
-            this.tabPageIcons.Controls.Add(this.btnBrowseIcon);
-            this.tabPageIcons.Controls.Add(this.txtIconFilePath);
-            this.tabPageIcons.Controls.Add(this.txtIconName);
-            this.tabPageIcons.Controls.Add(this.txtIconCategory);
-            this.tabPageIcons.Controls.Add(this.kryptonLabel5);
-            this.tabPageIcons.Controls.Add(this.kryptonLabel4);
-            this.tabPageIcons.Controls.Add(this.kryptonLabel3);
-            this.tabPageIcons.Controls.Add(this.kryptonListBox1);
-            this.tabPageIcons.Location = new System.Drawing.Point(27, 4);
-            this.tabPageIcons.Name = "tabPageIcons";
-            this.tabPageIcons.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageIcons.Size = new System.Drawing.Size(1319, 663);
-            this.tabPageIcons.TabIndex = 1;
-            this.tabPageIcons.Text = "Icons";
-            this.tabPageIcons.UseVisualStyleBackColor = true;
+            this.kryptonLabel6.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel6.Location = new System.Drawing.Point(242, 26);
+            this.kryptonLabel6.Name = "kryptonLabel6";
+            this.kryptonLabel6.Size = new System.Drawing.Size(63, 20);
+            this.kryptonLabel6.TabIndex = 7;
+            this.kryptonLabel6.Values.Text = "Category";
             // 
             // btnIconCancel
             // 
-            this.btnIconCancel.Location = new System.Drawing.Point(261, 203);
+            this.btnIconCancel.Location = new System.Drawing.Point(314, 207);
             this.btnIconCancel.Name = "btnIconCancel";
             this.btnIconCancel.Size = new System.Drawing.Size(90, 25);
             this.btnIconCancel.TabIndex = 6;
             this.btnIconCancel.Values.Text = "Cancel";
             this.btnIconCancel.Click += new System.EventHandler(this.btnIconCancel_Click);
             // 
+            // kryptonListBox1
+            // 
+            this.kryptonListBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.kryptonListBox1.Location = new System.Drawing.Point(0, 0);
+            this.kryptonListBox1.Name = "kryptonListBox1";
+            this.kryptonListBox1.Size = new System.Drawing.Size(236, 644);
+            this.kryptonListBox1.TabIndex = 2;
+            this.kryptonListBox1.SelectedIndexChanged += new System.EventHandler(this.kryptonListBox1_SelectedIndexChanged);
+            // 
             // btnIconSave
             // 
-            this.btnIconSave.Location = new System.Drawing.Point(781, 203);
+            this.btnIconSave.Location = new System.Drawing.Point(752, 207);
             this.btnIconSave.Name = "btnIconSave";
             this.btnIconSave.Size = new System.Drawing.Size(90, 25);
             this.btnIconSave.TabIndex = 6;
@@ -668,7 +639,7 @@ namespace LegendaryCardEditor
             // 
             // btnBrowseIcon
             // 
-            this.btnBrowseIcon.Location = new System.Drawing.Point(781, 80);
+            this.btnBrowseIcon.Location = new System.Drawing.Point(752, 92);
             this.btnBrowseIcon.Name = "btnBrowseIcon";
             this.btnBrowseIcon.Size = new System.Drawing.Size(90, 25);
             this.btnBrowseIcon.TabIndex = 5;
@@ -677,57 +648,95 @@ namespace LegendaryCardEditor
             // 
             // txtIconFilePath
             // 
-            this.txtIconFilePath.Location = new System.Drawing.Point(346, 80);
+            this.txtIconFilePath.Location = new System.Drawing.Point(314, 92);
             this.txtIconFilePath.Name = "txtIconFilePath";
             this.txtIconFilePath.Size = new System.Drawing.Size(429, 23);
             this.txtIconFilePath.TabIndex = 4;
             // 
             // txtIconName
             // 
-            this.txtIconName.Location = new System.Drawing.Point(346, 54);
+            this.txtIconName.Location = new System.Drawing.Point(314, 58);
             this.txtIconName.Name = "txtIconName";
             this.txtIconName.Size = new System.Drawing.Size(205, 23);
             this.txtIconName.TabIndex = 4;
             // 
             // txtIconCategory
             // 
-            this.txtIconCategory.Location = new System.Drawing.Point(346, 28);
+            this.txtIconCategory.Location = new System.Drawing.Point(314, 26);
             this.txtIconCategory.Name = "txtIconCategory";
             this.txtIconCategory.Size = new System.Drawing.Size(205, 23);
             this.txtIconCategory.TabIndex = 4;
             // 
-            // kryptonLabel5
+            // kryptonPage1
             // 
-            this.kryptonLabel5.Location = new System.Drawing.Point(261, 80);
-            this.kryptonLabel5.Name = "kryptonLabel5";
-            this.kryptonLabel5.Size = new System.Drawing.Size(29, 20);
-            this.kryptonLabel5.TabIndex = 3;
-            this.kryptonLabel5.Values.Text = "File";
+            this.kryptonPage1.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
+            this.kryptonPage1.Controls.Add(this.btnSaveKeyword);
+            this.kryptonPage1.Controls.Add(this.listBoxKeywords);
+            this.kryptonPage1.Controls.Add(this.kryptonLabel2);
+            this.kryptonPage1.Controls.Add(this.kryptonLabel1);
+            this.kryptonPage1.Controls.Add(this.txtkeywordName);
+            this.kryptonPage1.Controls.Add(this.txtKeywordDescription);
+            this.kryptonPage1.Flags = 65534;
+            this.kryptonPage1.LastVisibleSet = true;
+            this.kryptonPage1.MinimumSize = new System.Drawing.Size(50, 50);
+            this.kryptonPage1.Name = "kryptonPage1";
+            this.kryptonPage1.Size = new System.Drawing.Size(1348, 644);
+            this.kryptonPage1.Text = "Keywords";
+            this.kryptonPage1.ToolTipTitle = "Page ToolTip";
+            this.kryptonPage1.UniqueName = "a97cd16406104081b64ac906f0304907";
             // 
-            // kryptonLabel4
+            // btnSaveKeyword
             // 
-            this.kryptonLabel4.Location = new System.Drawing.Point(261, 54);
-            this.kryptonLabel4.Name = "kryptonLabel4";
-            this.kryptonLabel4.Size = new System.Drawing.Size(43, 20);
-            this.kryptonLabel4.TabIndex = 3;
-            this.kryptonLabel4.Values.Text = "Name";
+            this.btnSaveKeyword.Location = new System.Drawing.Point(661, 293);
+            this.btnSaveKeyword.Name = "btnSaveKeyword";
+            this.btnSaveKeyword.Size = new System.Drawing.Size(90, 25);
+            this.btnSaveKeyword.TabIndex = 3;
+            this.btnSaveKeyword.Values.Text = "Save";
+            this.btnSaveKeyword.Click += new System.EventHandler(this.btnSaveKeyword_Click);
             // 
-            // kryptonLabel3
+            // listBoxKeywords
             // 
-            this.kryptonLabel3.Location = new System.Drawing.Point(261, 28);
-            this.kryptonLabel3.Name = "kryptonLabel3";
-            this.kryptonLabel3.Size = new System.Drawing.Size(60, 20);
-            this.kryptonLabel3.TabIndex = 3;
-            this.kryptonLabel3.Values.Text = "Category";
+            this.listBoxKeywords.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listBoxKeywords.Location = new System.Drawing.Point(0, 0);
+            this.listBoxKeywords.Name = "listBoxKeywords";
+            this.listBoxKeywords.Size = new System.Drawing.Size(199, 644);
+            this.listBoxKeywords.TabIndex = 0;
+            this.listBoxKeywords.SelectedIndexChanged += new System.EventHandler(this.listBoxKeywords_SelectedIndexChanged);
             // 
-            // kryptonListBox1
+            // kryptonLabel2
             // 
-            this.kryptonListBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.kryptonListBox1.Location = new System.Drawing.Point(3, 3);
-            this.kryptonListBox1.Name = "kryptonListBox1";
-            this.kryptonListBox1.Size = new System.Drawing.Size(236, 657);
-            this.kryptonListBox1.TabIndex = 2;
-            this.kryptonListBox1.SelectedIndexChanged += new System.EventHandler(this.kryptonListBox1_SelectedIndexChanged);
+            this.kryptonLabel2.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel2.Location = new System.Drawing.Point(205, 58);
+            this.kryptonLabel2.Name = "kryptonLabel2";
+            this.kryptonLabel2.Size = new System.Drawing.Size(132, 20);
+            this.kryptonLabel2.TabIndex = 2;
+            this.kryptonLabel2.Values.Text = "Keyword Description";
+            // 
+            // kryptonLabel1
+            // 
+            this.kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel1.Location = new System.Drawing.Point(205, 26);
+            this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.Size = new System.Drawing.Size(100, 20);
+            this.kryptonLabel1.TabIndex = 2;
+            this.kryptonLabel1.Values.Text = "Keyword Name";
+            // 
+            // txtkeywordName
+            // 
+            this.txtkeywordName.Location = new System.Drawing.Point(343, 26);
+            this.txtkeywordName.Name = "txtkeywordName";
+            this.txtkeywordName.Size = new System.Drawing.Size(408, 23);
+            this.txtkeywordName.TabIndex = 1;
+            // 
+            // txtKeywordDescription
+            // 
+            this.txtKeywordDescription.Location = new System.Drawing.Point(343, 58);
+            this.txtKeywordDescription.MaxLength = 300;
+            this.txtKeywordDescription.Multiline = true;
+            this.txtKeywordDescription.Name = "txtKeywordDescription";
+            this.txtKeywordDescription.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtKeywordDescription.Size = new System.Drawing.Size(408, 219);
+            this.txtKeywordDescription.TabIndex = 1;
             // 
             // imageList1
             // 
@@ -753,7 +762,7 @@ namespace LegendaryCardEditor
             // 
             // kryptonManager1
             // 
-            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Black;
+            this.kryptonManager1.GlobalPaletteMode = Krypton.Toolkit.PaletteModeManager.Office2010Black;
             // 
             // saveFileDialog1
             // 
@@ -773,7 +782,7 @@ namespace LegendaryCardEditor
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            this.PaletteMode = Krypton.Toolkit.PaletteMode.Office2010Black;
             this.Text = "Legendary Tools 2022";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -788,11 +797,13 @@ namespace LegendaryCardEditor
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
-            this.tabPageKeywords.ResumeLayout(false);
-            this.tabPageKeywords.PerformLayout();
-            this.tabPageIcons.ResumeLayout(false);
-            this.tabPageIcons.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPage2)).EndInit();
+            this.kryptonPage2.ResumeLayout(false);
+            this.kryptonPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPage1)).EndInit();
+            this.kryptonPage1.ResumeLayout(false);
+            this.kryptonPage1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -848,30 +859,30 @@ namespace LegendaryCardEditor
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem treeViewMenuDeleteDeck;
-        private ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
-        private ComponentFactory.Krypton.Toolkit.KryptonTreeView treeView1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddDeck;
+        private Krypton.Toolkit.KryptonManager kryptonManager1;
+        private Krypton.Toolkit.KryptonTreeView treeView1;
+        private Krypton.Toolkit.KryptonButton btnAddDeck;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPageKeywords;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtKeywordDescription;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtkeywordName;
-        private ComponentFactory.Krypton.Toolkit.KryptonListBox listBoxKeywords;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSaveKeyword;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private System.Windows.Forms.TabPage tabPageIcons;
+        private Krypton.Toolkit.KryptonTextBox txtKeywordDescription;
+        private Krypton.Toolkit.KryptonTextBox txtkeywordName;
+        private Krypton.Toolkit.KryptonListBox listBoxKeywords;
+        private Krypton.Toolkit.KryptonButton btnSaveKeyword;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel2;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private System.Windows.Forms.ImageList imageList2;
-        private ComponentFactory.Krypton.Toolkit.KryptonListBox kryptonListBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnIconCancel;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnIconSave;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnBrowseIcon;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtIconFilePath;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtIconName;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtIconCategory;
+        private Krypton.Toolkit.KryptonListBox kryptonListBox1;
+        private Krypton.Toolkit.KryptonButton btnIconCancel;
+        private Krypton.Toolkit.KryptonButton btnIconSave;
+        private Krypton.Toolkit.KryptonButton btnBrowseIcon;
+        private Krypton.Toolkit.KryptonTextBox txtIconFilePath;
+        private Krypton.Toolkit.KryptonTextBox txtIconName;
+        private Krypton.Toolkit.KryptonTextBox txtIconCategory;
+        private Krypton.Navigator.KryptonNavigator kryptonNavigator1;
+        private Krypton.Navigator.KryptonPage kryptonPage1;
+        private Krypton.Navigator.KryptonPage kryptonPage2;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel4;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel3;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel6;
     }
 }
 

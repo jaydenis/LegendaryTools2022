@@ -1,5 +1,6 @@
-﻿using ComponentFactory.Krypton.Toolkit;
+﻿
 using Kaliko.ImageLibrary;
+using Krypton.Toolkit;
 using LegendaryCardEditor.Controls;
 using LegendaryCardEditor.Managers;
 using LegendaryCardEditor.Models;

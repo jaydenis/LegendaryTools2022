@@ -270,7 +270,7 @@ namespace LegendaryCardEditor.Utilities
                         Font = font,
                         Point = new Point(template.VictroyValueXY[0], template.VictroyValueXY[1]),
                         Alignment = StringAlignment.Center,
-                        TextColor = Color.LightGoldenrodYellow,
+                        TextColor = Color.Gold,
                         Outline = 2,
                         OutlineColor = Color.Black
                     };
@@ -881,7 +881,7 @@ namespace LegendaryCardEditor.Utilities
                     Font = currentFont,
                     TargetArea = recDetails,
                     Alignment = StringAlignment.Center,
-                    TextColor = Color.Goldenrod,
+                    TextColor = Color.Gold,
                     Outline = 2,
                     OutlineColor = Color.Black
                 };
