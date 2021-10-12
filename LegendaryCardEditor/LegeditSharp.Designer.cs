@@ -473,7 +473,7 @@ namespace LegendaryCardEditor
             this.listBoxCards.Name = "listBoxCards";
             this.listBoxCards.Size = new System.Drawing.Size(422, 131);
             this.listBoxCards.TabIndex = 1;
-            this.listBoxCards.SelectedIndexChanged += new System.EventHandler(this.listBoxCards_SelectedIndexChanged);
+            //this.listBoxCards.SelectedIndexChanged += new System.EventHandler(this.listBoxCards_SelectedIndexChanged);
             // 
             // panel3
             // 
@@ -633,7 +633,7 @@ namespace LegendaryCardEditor
             this.listBoxDecks.Name = "listBoxDecks";
             this.listBoxDecks.Size = new System.Drawing.Size(279, 716);
             this.listBoxDecks.TabIndex = 1;
-            this.listBoxDecks.SelectedIndexChanged += new System.EventHandler(this.listBoxDecks_SelectedIndexChanged);
+           // this.listBoxDecks.SelectedIndexChanged += new System.EventHandler(this.listBoxDecks_SelectedIndexChanged);
             // 
             // panel2
             // 

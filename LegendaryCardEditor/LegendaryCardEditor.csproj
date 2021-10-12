@@ -183,10 +183,6 @@
     <None Remove="Templates\templates.json" />
     <None Remove="Templates\template_base.json" />
     <None Remove="Templates\template_types.json" />
-    <None Include="..\..\..\Users\jayte\OneDrive\TableTopGaming\Legendery-Marvel\Legedit2_jar\legedit\icons\attributes\cards.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

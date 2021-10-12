@@ -117,20 +117,22 @@ namespace LegendaryCardEditor.Controls
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panelImagePreview);
             this.splitContainer1.Size = new System.Drawing.Size(1390, 813);
-            this.splitContainer1.SplitterDistance = 416;
+            this.splitContainer1.SplitterDistance = 310;
             this.splitContainer1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 36);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(416, 777);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(310, 777);
             this.flowLayoutPanel1.TabIndex = 1;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
             // panel1
             // 
@@ -141,12 +143,14 @@ namespace LegendaryCardEditor.Controls
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(416, 36);
+            this.panel1.Size = new System.Drawing.Size(310, 36);
             this.panel1.TabIndex = 0;
             // 
             // cmbCardTemplateTypes
             // 
+            this.cmbCardTemplateTypes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.cmbCardTemplateTypes.DropDownWidth = 121;
+            this.cmbCardTemplateTypes.IntegralHeight = false;
             this.cmbCardTemplateTypes.Location = new System.Drawing.Point(11, 5);
             this.cmbCardTemplateTypes.Name = "cmbCardTemplateTypes";
             this.cmbCardTemplateTypes.Size = new System.Drawing.Size(187, 21);
@@ -196,7 +200,7 @@ namespace LegendaryCardEditor.Controls
             this.panelImagePreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelImagePreview.Location = new System.Drawing.Point(0, 0);
             this.panelImagePreview.Name = "panelImagePreview";
-            this.panelImagePreview.Size = new System.Drawing.Size(970, 813);
+            this.panelImagePreview.Size = new System.Drawing.Size(1076, 813);
             this.panelImagePreview.TabIndex = 0;
             // 
             // btnExport
@@ -210,26 +214,22 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnDeckUpdate
             // 
-            this.btnDeckUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeckUpdate.Location = new System.Drawing.Point(845, 94);
+            this.btnDeckUpdate.Location = new System.Drawing.Point(885, 5);
             this.btnDeckUpdate.Name = "btnDeckUpdate";
-            this.btnDeckUpdate.Size = new System.Drawing.Size(122, 28);
+            this.btnDeckUpdate.Size = new System.Drawing.Size(82, 46);
             this.btnDeckUpdate.TabIndex = 83;
             this.btnDeckUpdate.Values.Text = "Update Deck";
             this.btnDeckUpdate.Click += new System.EventHandler(this.btnDeckUpdate_Click);
             // 
             // cmbDeckTeam
             // 
-            this.cmbDeckTeam.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbDeckTeam.AutoSize = true;
             this.cmbDeckTeam.ImageList = this.imageListTeams;
-            this.cmbDeckTeam.Location = new System.Drawing.Point(424, 42);
+            this.cmbDeckTeam.Location = new System.Drawing.Point(415, 5);
             this.cmbDeckTeam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDeckTeam.Name = "cmbDeckTeam";
             this.cmbDeckTeam.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbDeckTeam.Size = new System.Drawing.Size(542, 46);
+            this.cmbDeckTeam.Size = new System.Drawing.Size(463, 46);
             this.cmbDeckTeam.SmoothScrolling = false;
             this.cmbDeckTeam.TabIndex = 75;
             this.cmbDeckTeam.SelectedIndexChanged += new System.EventHandler(this.cmbTeam_SelectedIndexChanged);
@@ -242,11 +242,9 @@ namespace LegendaryCardEditor.Controls
             // 
             // txtDeckName
             // 
-            this.txtDeckName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDeckName.Location = new System.Drawing.Point(512, 13);
+            this.txtDeckName.Location = new System.Drawing.Point(93, 5);
             this.txtDeckName.Name = "txtDeckName";
-            this.txtDeckName.Size = new System.Drawing.Size(455, 23);
+            this.txtDeckName.Size = new System.Drawing.Size(315, 23);
             this.txtDeckName.TabIndex = 81;
             this.txtDeckName.TextChanged += new System.EventHandler(this.txtDeckName_Leave);
             // 
@@ -254,7 +252,7 @@ namespace LegendaryCardEditor.Controls
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(424, 13);
+            this.label5.Location = new System.Drawing.Point(4, 5);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 17);
@@ -263,16 +261,18 @@ namespace LegendaryCardEditor.Controls
             // 
             // cmbKeywords
             // 
+            this.cmbKeywords.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.cmbKeywords.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbKeywords.DropDownWidth = 121;
-            this.cmbKeywords.Location = new System.Drawing.Point(643, 497);
+            this.cmbKeywords.IntegralHeight = false;
+            this.cmbKeywords.Location = new System.Drawing.Point(635, 415);
             this.cmbKeywords.Name = "cmbKeywords";
             this.cmbKeywords.Size = new System.Drawing.Size(141, 21);
             this.cmbKeywords.TabIndex = 99;
             // 
             // txtCardTextBox
             // 
-            this.txtCardTextBox.Location = new System.Drawing.Point(424, 536);
+            this.txtCardTextBox.Location = new System.Drawing.Point(416, 454);
             this.txtCardTextBox.MaxLength = 500;
             this.txtCardTextBox.Multiline = true;
             this.txtCardTextBox.Name = "txtCardTextBox";
@@ -293,7 +293,7 @@ namespace LegendaryCardEditor.Controls
             this.numNumberInDeck.Items.Add("8");
             this.numNumberInDeck.Items.Add("9");
             this.numNumberInDeck.Items.Add("10");
-            this.numNumberInDeck.Location = new System.Drawing.Point(541, 689);
+            this.numNumberInDeck.Location = new System.Drawing.Point(533, 607);
             this.numNumberInDeck.Name = "numNumberInDeck";
             this.numNumberInDeck.Size = new System.Drawing.Size(88, 22);
             this.numNumberInDeck.TabIndex = 96;
@@ -310,7 +310,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnGap
             // 
-            this.btnGap.Location = new System.Drawing.Point(925, 497);
+            this.btnGap.Location = new System.Drawing.Point(917, 415);
             this.btnGap.Name = "btnGap";
             this.btnGap.Size = new System.Drawing.Size(42, 32);
             this.btnGap.TabIndex = 95;
@@ -319,7 +319,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnRegular
             // 
-            this.btnRegular.Location = new System.Drawing.Point(867, 497);
+            this.btnRegular.Location = new System.Drawing.Point(859, 415);
             this.btnRegular.Name = "btnRegular";
             this.btnRegular.Size = new System.Drawing.Size(52, 32);
             this.btnRegular.TabIndex = 95;
@@ -328,7 +328,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnKeyword
             // 
-            this.btnKeyword.Location = new System.Drawing.Point(787, 498);
+            this.btnKeyword.Location = new System.Drawing.Point(779, 416);
             this.btnKeyword.Name = "btnKeyword";
             this.btnKeyword.Size = new System.Drawing.Size(74, 32);
             this.btnKeyword.TabIndex = 95;
@@ -337,7 +337,7 @@ namespace LegendaryCardEditor.Controls
             // 
             // btnBrowseImage
             // 
-            this.btnBrowseImage.Location = new System.Drawing.Point(899, 263);
+            this.btnBrowseImage.Location = new System.Drawing.Point(891, 181);
             this.btnBrowseImage.Name = "btnBrowseImage";
             this.btnBrowseImage.Size = new System.Drawing.Size(68, 25);
             this.btnBrowseImage.TabIndex = 93;
@@ -347,7 +347,7 @@ namespace LegendaryCardEditor.Controls
             // lblArtworkPath
             // 
             this.lblArtworkPath.AutoSize = false;
-            this.lblArtworkPath.Location = new System.Drawing.Point(424, 263);
+            this.lblArtworkPath.Location = new System.Drawing.Point(416, 181);
             this.lblArtworkPath.Name = "lblArtworkPath";
             this.lblArtworkPath.Size = new System.Drawing.Size(468, 37);
             this.lblArtworkPath.TabIndex = 92;
@@ -359,17 +359,17 @@ namespace LegendaryCardEditor.Controls
             this.txtErrorConsole.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtErrorConsole.Font = new System.Drawing.Font("Eurostile", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtErrorConsole.ForeColor = System.Drawing.Color.LimeGreen;
-            this.txtErrorConsole.Location = new System.Drawing.Point(4, 615);
+            this.txtErrorConsole.Location = new System.Drawing.Point(4, 628);
             this.txtErrorConsole.Multiline = true;
             this.txtErrorConsole.Name = "txtErrorConsole";
             this.txtErrorConsole.ReadOnly = true;
             this.txtErrorConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtErrorConsole.Size = new System.Drawing.Size(404, 195);
+            this.txtErrorConsole.Size = new System.Drawing.Size(404, 182);
             this.txtErrorConsole.TabIndex = 91;
             // 
             // txtCardName
             // 
-            this.txtCardName.Location = new System.Drawing.Point(424, 155);
+            this.txtCardName.Location = new System.Drawing.Point(416, 73);
             this.txtCardName.MaxLength = 100;
             this.txtCardName.Name = "txtCardName";
             this.txtCardName.Size = new System.Drawing.Size(543, 23);
@@ -382,7 +382,7 @@ namespace LegendaryCardEditor.Controls
             // 
             this.pictureBoxTemplate.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBoxTemplate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxTemplate.Location = new System.Drawing.Point(3, 42);
+            this.pictureBoxTemplate.Location = new System.Drawing.Point(4, 55);
             this.pictureBoxTemplate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBoxTemplate.MaximumSize = new System.Drawing.Size(404, 567);
             this.pictureBoxTemplate.MinimumSize = new System.Drawing.Size(404, 567);
@@ -397,7 +397,7 @@ namespace LegendaryCardEditor.Controls
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(424, 692);
+            this.label2.Location = new System.Drawing.Point(416, 610);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 15);
@@ -407,7 +407,7 @@ namespace LegendaryCardEditor.Controls
             // cmbAttributesOther
             // 
             this.cmbAttributesOther.ImageList = this.imageListAttributes;
-            this.cmbAttributesOther.Location = new System.Drawing.Point(571, 497);
+            this.cmbAttributesOther.Location = new System.Drawing.Point(563, 415);
             this.cmbAttributesOther.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbAttributesOther.Name = "cmbAttributesOther";
             this.cmbAttributesOther.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -425,7 +425,7 @@ namespace LegendaryCardEditor.Controls
             // cmbAttributesPower
             // 
             this.cmbAttributesPower.ImageList = this.imageListAttributesPowers;
-            this.cmbAttributesPower.Location = new System.Drawing.Point(497, 497);
+            this.cmbAttributesPower.Location = new System.Drawing.Point(489, 415);
             this.cmbAttributesPower.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbAttributesPower.Name = "cmbAttributesPower";
             this.cmbAttributesPower.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -445,7 +445,7 @@ namespace LegendaryCardEditor.Controls
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(424, 181);
+            this.label4.Location = new System.Drawing.Point(416, 99);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 15);
@@ -457,7 +457,7 @@ namespace LegendaryCardEditor.Controls
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(424, 137);
+            this.label6.Location = new System.Drawing.Point(416, 55);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(83, 15);
@@ -469,7 +469,7 @@ namespace LegendaryCardEditor.Controls
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(424, 248);
+            this.label1.Location = new System.Drawing.Point(416, 166);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 15);
@@ -479,7 +479,7 @@ namespace LegendaryCardEditor.Controls
             // cmbTeam
             // 
             this.cmbTeam.ImageList = this.imageListTeams;
-            this.cmbTeam.Location = new System.Drawing.Point(424, 199);
+            this.cmbTeam.Location = new System.Drawing.Point(416, 117);
             this.cmbTeam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbTeam.Name = "cmbTeam";
             this.cmbTeam.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -495,7 +495,7 @@ namespace LegendaryCardEditor.Controls
             this.groupBoxPower.Controls.Add(this.cmbPower1);
             this.groupBoxPower.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBoxPower.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxPower.Location = new System.Drawing.Point(424, 306);
+            this.groupBoxPower.Location = new System.Drawing.Point(416, 224);
             this.groupBoxPower.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxPower.Name = "groupBoxPower";
             this.groupBoxPower.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -546,7 +546,7 @@ namespace LegendaryCardEditor.Controls
             this.groupBox6.Controls.Add(this.lblCardVictoryPointsValue);
             this.groupBox6.Controls.Add(this.lblCardCostValue);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox6.Location = new System.Drawing.Point(424, 376);
+            this.groupBox6.Location = new System.Drawing.Point(416, 294);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -663,7 +663,7 @@ namespace LegendaryCardEditor.Controls
             // cmbAttributesTeams
             // 
             this.cmbAttributesTeams.ImageList = this.imageListAttributesTeams;
-            this.cmbAttributesTeams.Location = new System.Drawing.Point(424, 497);
+            this.cmbAttributesTeams.Location = new System.Drawing.Point(416, 415);
             this.cmbAttributesTeams.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbAttributesTeams.Name = "cmbAttributesTeams";
             this.cmbAttributesTeams.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -685,7 +685,7 @@ namespace LegendaryCardEditor.Controls
             this.groupBoxPower2.Controls.Add(this.cmbPower2);
             this.groupBoxPower2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBoxPower2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxPower2.Location = new System.Drawing.Point(703, 306);
+            this.groupBoxPower2.Location = new System.Drawing.Point(695, 224);
             this.groupBoxPower2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxPower2.Name = "groupBoxPower2";
             this.groupBoxPower2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -746,6 +746,7 @@ namespace LegendaryCardEditor.Controls
             this.Size = new System.Drawing.Size(1390, 813);
             this.Load += new System.EventHandler(this.CardEditorForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);

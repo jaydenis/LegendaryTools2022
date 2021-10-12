@@ -56,8 +56,8 @@ namespace LegendaryCardEditor
                 templateModelList = coreManager.GetTemplates();
                 deckTypeList = coreManager.GetDeckTypes();
 
-                PopulateKeywordListBox();
-                OpenFile();
+               // PopulateKeywordListBox();
+                //OpenFile();
              
                 PopulateIconsEditor();
 
@@ -229,12 +229,11 @@ namespace LegendaryCardEditor
         private void AddNewDeck(bool showSaveDialog)
         {
             try
-            {
-               
+            {             
 
                 AddDeckForm addDeckForm = new AddDeckForm(legendaryIconList,dataFile, showSaveDialog, settings);
                 addDeckForm.ShowDialog();
-
+                dataFile = addDeckForm.dataFilePath;
                 LoadCustomSet(dataFile);
 
             }
