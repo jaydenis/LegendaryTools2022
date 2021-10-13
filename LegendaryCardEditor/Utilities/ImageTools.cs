@@ -121,7 +121,7 @@ namespace LegendaryCardEditor.Utilities
                 KalikoImage infoImage = new KalikoImage(template.ImageWidth, template.ImageHeight);
 
                 bool containsPlus = false;
-                FontFamily fontFamily = new FontFamily("Percolator");
+                FontFamily fontFamily = new FontFamily("Sylfaen");
 
                 Font font = new Font(
                    fontFamily,
@@ -146,7 +146,9 @@ namespace LegendaryCardEditor.Utilities
                 if (File.Exists(curFile))
                     artworkImage = new KalikoImage(curFile);
                 else
-                    artworkImage = new KalikoImage(Resources.default_blank_card);
+                    artworkImage = new KalikoImage(Resources.hero_card_common);
+
+                artworkImage.Resize(404, 567);
 
                 //artworkImage.Resize(template.ImageWidth, template.ImageHeight);
                 infoImage.BlitImage(artworkImage);
@@ -213,7 +215,7 @@ namespace LegendaryCardEditor.Utilities
                     if (File.Exists(path))
                     {
                         powerImage = new KalikoImage(path);
-                        powerImage.Resize(30, 30);
+                        powerImage.Resize(31, 31);
                         infoImage.BlitImage(powerImage, template.PowerPrimaryIconXY[0], template.PowerPrimaryIconXY[1]);
 
                         if (template.PowerPrimaryIconVisible && template.PowerSecondaryIconVisible && card.PowerSecondary != "--NONE--")
@@ -226,7 +228,7 @@ namespace LegendaryCardEditor.Utilities
                                 if (File.Exists(path))
                                 {
                                     powerImage2 = new KalikoImage(path);
-                                    powerImage2.Resize(30,30);
+                                    powerImage2.Resize(31,31);
                                     infoImage.BlitImage(powerImage2, template.PowerSecondaryIconXY[0], template.PowerSecondaryIconXY[1]);
                                 }
                             }
@@ -245,7 +247,7 @@ namespace LegendaryCardEditor.Utilities
                     if (File.Exists(path))
                     {
                         teamImage = new KalikoImage(path);
-                        teamImage.Resize(35, 35);
+                        teamImage.Resize(36, 36);
                         infoImage.BlitImage(teamImage, template.TeamIconXY[0], template.TeamIconXY[1]);
                     }
                 }
@@ -281,7 +283,7 @@ namespace LegendaryCardEditor.Utilities
                 {
                     if (card.AttributeRecruit.Length > 0)
                     {
-                        recruitImage.Resize(55, 55);
+                        recruitImage.Resize(80, 80);
                         infoImage.BlitImage(recruitImage, template.RecruitIconXY[0], template.RecruitIconXY[1]);
                     }
                 }
@@ -290,7 +292,7 @@ namespace LegendaryCardEditor.Utilities
                 {
                     if (card.AttributeAttack.Length > 0)
                     {
-                        attackImageHero.Resize(55, 55);
+                        attackImageHero.Resize(80, 80);
                         infoImage.BlitImage(attackImageHero, template.AttackIconXY[0], template.AttackIconXY[1]);
                     }
                 }
@@ -299,7 +301,7 @@ namespace LegendaryCardEditor.Utilities
                 {
                     if (card.AttributePiercing.Length > 0)
                     {
-                        piercingImage.Resize(55, 55);
+                        piercingImage.Resize(80, 80);
                         infoImage.BlitImage(piercingImage, template.PiercingIconXY[0], template.PiercingIconXY[1]);
                     }
                 }
@@ -518,7 +520,7 @@ namespace LegendaryCardEditor.Utilities
                         Font = attributesFont,
                         TargetArea = new Rectangle(template.RecruitValueXY[0], template.RecruitValueXY[1], textSizeRecruit.Width + 2, textSizeRecruit.Height),
                         TextColor = Color.White,
-                        Outline = 2,
+                        Outline = 3,
                         OutlineColor = Color.Black,
                         Alignment = StringAlignment.Near
                     };
@@ -537,7 +539,7 @@ namespace LegendaryCardEditor.Utilities
                             Font = font,
                             TargetArea = new Rectangle(txtFieldRecruit.TargetArea.Width - 5, txtFieldRecruit.TargetArea.Y + 10, textSizeRecruit.Width + 2, textSizeRecruit.Height),
                             TextColor = Color.White,
-                            Outline = 2,
+                            Outline = 3,
                             OutlineColor = Color.Black,
                             Alignment = StringAlignment.Near
                         };
@@ -674,7 +676,7 @@ namespace LegendaryCardEditor.Utilities
                 cardTextFields = new List<TextField>();
                 cardTextIcons = new List<CardTextIconViewModel>();
 
-                FontFamily fontFamily = new FontFamily("Eurostile");
+                FontFamily fontFamily = new FontFamily("Swiss 721");
 
                 if (cardInfoFont == null)
                 {
@@ -700,11 +702,11 @@ namespace LegendaryCardEditor.Utilities
                 int x = 1;
                 int y = 1;
 
-                var ascent = fontFamily.GetCellAscent(FontStyle.Regular);
+                var ascent = fontFamily.GetCellAscent(FontStyle.Bold);
                 var descent = fontFamily.GetCellDescent(FontStyle.Regular);
 
                 // 14.484375 = 16.0 * 1854 / 2048
-                var ascentPixel = fontRegular.Size * ascent / fontFamily.GetEmHeight(FontStyle.Regular);
+                var ascentPixel = fontBold.Size * ascent / fontFamily.GetEmHeight(FontStyle.Bold);
 
                 Point[] startPoint = GetPolygon(); //new Point(70,390);
                 x = startPoint[0].X;
