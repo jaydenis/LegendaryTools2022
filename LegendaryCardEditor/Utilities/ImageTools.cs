@@ -145,8 +145,50 @@ namespace LegendaryCardEditor.Utilities
 
                 if (File.Exists(curFile))
                     artworkImage = new KalikoImage(curFile);
-                else
+                else if (template.TemplateName.Contains("uncommon"))
+                {
+                    artworkImage = new KalikoImage(Resources.hero_card_uncommon);
+                }
+                else if (template.TemplateName.Contains("common"))
+                {
                     artworkImage = new KalikoImage(Resources.hero_card_common);
+                }
+                else if (template.TemplateName.Contains("rare"))
+                {
+                    artworkImage = new KalikoImage(Resources.hero_card_rare);
+                }
+                else if (template.TemplateName.Contains("mastermind"))
+                {
+                    artworkImage = new KalikoImage(Resources.mastermind_card);
+                }
+                else if (template.TemplateName.Contains("villain"))
+                {
+                    artworkImage = new KalikoImage(Resources.villain_card);
+                }
+                else if (template.TemplateName.Contains("henchmen"))
+                {
+                    artworkImage = new KalikoImage(Resources.henchmen_card);
+                }
+                else if (template.TemplateName.Contains("bystander"))
+                {
+                    artworkImage = new KalikoImage(Resources.bystander_card);
+                }
+                else if (template.TemplateName.Contains("officer"))
+                {
+                    artworkImage = new KalikoImage(Resources.officer_card);
+                }
+                else if (template.TemplateName.Contains("wound"))
+                {
+                    artworkImage = new KalikoImage(Resources.wound_card);
+                }
+                else if (template.TemplateName.Contains("sidekick"))
+                {
+                    artworkImage = new KalikoImage(Resources.sidekick_card);
+                }
+                else
+                {
+                    artworkImage = new KalikoImage(Resources.default_blank_card);
+                }
 
                 artworkImage.Resize(404, 567);
 
@@ -272,7 +314,7 @@ namespace LegendaryCardEditor.Utilities
                         Font = font,
                         Point = new Point(template.VictroyValueXY[0], template.VictroyValueXY[1]),
                         Alignment = StringAlignment.Center,
-                        TextColor = Color.Gold,
+                        TextColor = Color.White,
                         Outline = 2,
                         OutlineColor = Color.Black
                     };
@@ -436,20 +478,11 @@ namespace LegendaryCardEditor.Utilities
                    FontStyle.Bold,
                    GraphicsUnit.Pixel);
 
-                ////TextField txtFieldSubTitle = new TextField(tempSubName.ToUpper())
-                //{
-                //    Font = fontSubTitle,
-                //    TargetArea = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1] + 2, template.ImageWidth - 40, 63),
-                //    Alignment = StringAlignment.Center,
-                //    TextColor = Color.Gold,
-                //    Outline = 2,
-                //    OutlineColor = Color.Black
-                //};
 
-                if(card.CardDisplayNameSubFont > card.CardDisplayNameFont || card.CardDisplayNameSubFont > 22)
-                {
-                    card.CardDisplayNameSubFont = 22;
-                }
+                //if(card.CardDisplayNameSubFont > card.CardDisplayNameFont || card.CardDisplayNameSubFont > 22)
+                //{
+                //    card.CardDisplayNameSubFont = 22;
+                //}
 
                  txtRectangle = new Rectangle(template.CardNameSubXY[0], template.CardNameSubXY[1], template.ImageWidth- template.CardNameSubXY[0], 63);
                 TextField txtFieldSubTitle = GetCardText(tempSubName.ToUpper(), txtRectangle, card.CardDisplayNameSubFont);
@@ -464,8 +497,8 @@ namespace LegendaryCardEditor.Utilities
                 else
                 {
                     // create blank bitmap with same size
-                    Bitmap combinedImageL = new Bitmap(template.ImageWidth / 2, fontTitle.Height + fontSubTitle.Height);
-                    Bitmap combinedImageR = new Bitmap(template.ImageWidth / 2, fontTitle.Height + fontSubTitle.Height);
+                    Bitmap combinedImageL = new Bitmap(template.ImageWidth / 2, fontTitle.Height+10);
+                    Bitmap combinedImageR = new Bitmap(template.ImageWidth / 2, fontTitle.Height + 10);
 
                     // create graphics object on new blank bitmap
                     Graphics gL = Graphics.FromImage(combinedImageL);
@@ -537,7 +570,7 @@ namespace LegendaryCardEditor.Utilities
                         TextField txtFieldRecruitPlus = new TextField("+")
                         {
                             Font = font,
-                            TargetArea = new Rectangle(txtFieldRecruit.TargetArea.Width - 5, txtFieldRecruit.TargetArea.Y + 10, textSizeRecruit.Width + 2, textSizeRecruit.Height),
+                            TargetArea = new Rectangle(txtFieldRecruit.TargetArea.X + 40, txtFieldRecruit.TargetArea.Y + 10, textSizeRecruit.Width + 2, textSizeRecruit.Height),
                             TextColor = Color.White,
                             Outline = 3,
                             OutlineColor = Color.Black,
@@ -546,6 +579,8 @@ namespace LegendaryCardEditor.Utilities
                         infoImage.DrawText(txtFieldRecruitPlus);
                         card.AttributeRecruit = card.AttributeRecruit + "+";
                     }
+
+                  
                 }
 
                 containsPlus = false;
@@ -563,7 +598,7 @@ namespace LegendaryCardEditor.Utilities
                         Font = attributesFont,
                         TargetArea = new Rectangle(template.AttackValueXY[0], template.AttackValueXY[1], textSizeAttack.Width + 2, textSizeAttack.Height),
                         TextColor = Color.White,
-                        Outline = 2,
+                        Outline = 3,
                         OutlineColor = Color.Black,
                         Alignment = StringAlignment.Near
                     };
@@ -580,7 +615,7 @@ namespace LegendaryCardEditor.Utilities
                         TextField txtFieldAttackPlus = new TextField("+")
                         {
                             Font = font,
-                            TargetArea = new Rectangle(txtFieldAttack.TargetArea.Width - 5, txtFieldAttack.TargetArea.Y + 10, textSizeAttack.Width + 2, textSizeAttack.Height),
+                            TargetArea = new Rectangle(txtFieldAttack.TargetArea.X + 40, txtFieldAttack.TargetArea.Y + 10, textSizeAttack.Width + 2, textSizeAttack.Height),
                             TextColor = Color.White,
                             Outline = 2,
                             OutlineColor = Color.Black,
@@ -606,7 +641,7 @@ namespace LegendaryCardEditor.Utilities
                         Font = attributesFont,
                         TargetArea = new Rectangle(template.PiercingValueXY[0], template.PiercingValueXY[1], textSizePiercing.Width + 2, textSizePiercing.Height),
                         TextColor = Color.White,
-                        Outline = 2,
+                        Outline = 3,
                         OutlineColor = Color.Black,
                         Alignment = StringAlignment.Near
                     };
@@ -623,7 +658,7 @@ namespace LegendaryCardEditor.Utilities
                         TextField txtFieldPiercingPlus = new TextField("+")
                         {
                             Font = font,
-                            TargetArea = new Rectangle(txtFieldPiercing.TargetArea.Width - 5, txtFieldPiercing.TargetArea.Y + 10, textSizePiercing.Width + 2, textSizePiercing.Height),
+                            TargetArea = new Rectangle(txtFieldPiercing.TargetArea.X + 40, txtFieldPiercing.TargetArea.Y + 10, textSizePiercing.Width + 2, textSizePiercing.Height),
                             TextColor = Color.White,
                             Outline = 2,
                             OutlineColor = Color.Black,
@@ -870,6 +905,7 @@ namespace LegendaryCardEditor.Utilities
                     }
                 }
 
+                System.Drawing.Color titleColor = System.Drawing.ColorTranslator.FromHtml("#e9dc98");
                 FontFamily fontFamily = new FontFamily("Percolator");
 
                 Font currentFont = new Font(
@@ -883,8 +919,8 @@ namespace LegendaryCardEditor.Utilities
                     Font = currentFont,
                     TargetArea = recDetails,
                     Alignment = StringAlignment.Center,
-                    TextColor = Color.Gold,
-                    Outline = 2,
+                    TextColor = titleColor,
+                Outline = 2,
                     OutlineColor = Color.Black
                 };
 

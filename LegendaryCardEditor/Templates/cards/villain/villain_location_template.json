@@ -10,23 +10,23 @@
   "imageHeight": 567,
   "imageWidth": 404,
   "teamIconXY": [
-    1,
-    1
+    17,
+    14
   ],
   "teamIconVisible": false,
   "powerPrimaryIconXY": [
-    1,
-    1
+    17,
+    50
   ],
   "powerPrimaryIconVisible": false,
   "powerSecondaryIconXY": [
-    1,
-    1
+    17,
+    80
   ],
   "powerSecondaryIconVisible": false,
   "cardNameXY": [
-    1,
-    1
+    17,
+    17
   ],
   "cardNameTextSize": 25,
   "cardNameVisible": true,
@@ -39,21 +39,21 @@
   "attributesPrimaryVisible": false,
   "attributesPrimaryTextSize": 47,
   "recruitIconXY": [
-    1,
-    1
+    17,
+    430
   ],
   "recruitValueXY": [
-    1,
-    1
+    19,
+    434
   ],
   "recruitVisible": false,
   "attackIconXY": [
-    1,
-    1
+    17,
+    500
   ],
   "attackValueXY": [
-    1,
-    1
+    17,
+    500
   ],
   "attackVisible": false,
   "piercingIconXY": [
@@ -67,12 +67,12 @@
   "piercingVisible": false,
   "attributesSecondryTextSize": 59,
   "costIconXY": [
-     1,
-    1
+    355,
+    509
   ],
   "costValueXY": [
-    1,
-    1
+    315,
+    485
   ],
   "costVisible": false,
   "attackDefenseIconXY": [

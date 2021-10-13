@@ -18,23 +18,6 @@ namespace LegendaryCardEditor.Managers
             settings.Save();
         }
 
-        public BaseTemplate GetBaseTemplate()
-        {
-            try
-            {
-                string path = settings.templatesFolder + "\\" + settings.json_basetemplate;
-                string jsonText = File.ReadAllText(path);
-
-                var dataModel = JsonConvert.DeserializeObject<BaseTemplate>(jsonText);
-
-                return dataModel;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, ex.ToString());
-                return null;
-            }
-        }
 
         public List<DeckTypeModel> GetDeckTypes()
         {
@@ -236,20 +219,7 @@ namespace LegendaryCardEditor.Managers
             }
         }
 
-        public bool SaveBaseTemplate(BaseTemplate model)
-        {
-            try
-            {
-                string path = settings.templatesFolder + "\\" + settings.json_basetemplate;
-                File.WriteAllText(path, JsonConvert.SerializeObject(model, Formatting.Indented));
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, ex.ToString());
-                return false;
-            }
-        }
+       
 
         public bool SaveTemplate(TemplateEntity model, string path)
         {

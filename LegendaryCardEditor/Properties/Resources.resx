@@ -184,7 +184,34 @@
   <data name="covert_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons\powers_modified\covert_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bystander_card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic3165697.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="henchmen_card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HenchmanVillain_henchmen__1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hero_card_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Page_14_Image_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\ElsaBloodstone_hero_common__2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hero_card_rare" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WerewolfByNight_hero_rare__1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hero_card_uncommon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\N'Kantu,theLivingMummy_hero_uncommon__1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mastermind_card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mastermind_mastermind__1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="officer_card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Page_14_Image_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="villain_card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FranksEnemies_villain__1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wound_card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Page_19_Image_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidekick_card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic3983603.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

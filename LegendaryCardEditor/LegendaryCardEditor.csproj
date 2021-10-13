@@ -18,6 +18,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>tabletop-gaming</PackageTags>
     <PackageReleaseNotes />
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -175,6 +176,7 @@
     <None Remove="Templates\cards\villain\villain_template.json" />
     <None Remove="Templates\cards\villain\villain_token.png" />
     <None Remove="Templates\cards\villain\villain_transformed.png" />
+    <None Remove="Templates\cards\wound\cardData.json" />
     <None Remove="Templates\cards\wound\wound.png" />
     <None Remove="Templates\cards\wound\wound_template.json" />
     <None Remove="Templates\decktypes.json" />
@@ -334,7 +336,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\ambition\ambition_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\ambition\back_attack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -352,7 +354,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\bystander\bystander_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\bystander\bystander_villain.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -391,7 +393,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\henchmen\henchmen_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\hero\back_cost.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -430,13 +432,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\hero\hero_common_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\hero\hero_rare.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\hero\hero_rare_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\hero\hero_uncommon_covert.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -457,7 +459,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\hero\hero_uncommon_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\mastermind\back_attack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -481,13 +483,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\mastermind\mastermind_token_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\mastermind\mastermind_tactic_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\mastermind\mastermind_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\mastermind\mastermind_token.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -526,7 +528,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\officer\officer_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\other\cardData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -544,7 +546,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\sidekick\sidekick_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\sidekick\sidekick_covert.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -601,16 +603,19 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\villain\villain_location_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\villain\villain_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\villain\villain_token.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\villain\villain_transformed.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\cards\wound\cardData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\wound\wound.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -619,7 +624,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\cards\wound\wound_template.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\decktypes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

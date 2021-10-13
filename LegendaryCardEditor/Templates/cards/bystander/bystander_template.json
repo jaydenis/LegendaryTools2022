@@ -36,7 +36,7 @@
   ],
   "cardNameSubTextSize": 25,
   "cardNameSubVisible": true,
-  "attributesPrimaryVisible": true,
+  "attributesPrimaryVisible": false,
   "attributesPrimaryTextSize": 47,
   "recruitIconXY": [
     17,
@@ -86,15 +86,15 @@
   "attackDefenseVisible": false,
   "attackDefenseTextSize": 45,
   "victroyIconXY": [
-    0,
-    0
+    345,
+    365
   ],
   "victroyValueXY": [
-    0,
-    0
+    360,
+    367
   ],
-  "victroyVisible": false,
-  "victoryTextSize": 0,
+  "victroyVisible": true,
+  "victoryTextSize": 22,
   "cardTextRectAreaX": [
     124,
     375,

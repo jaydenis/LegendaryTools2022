@@ -57,14 +57,14 @@
   ],
   "attackVisible": true,
   "piercingIconXY": [
-     17,
-    500
+    0,
+    0
   ],
   "piercingValueXY": [
-    17,
-    500
+    0,
+    0
   ],
-  "piercingVisible": true,
+  "piercingVisible": false,
   "attributesSecondryTextSize": 59,
   "costIconXY": [
     355,
